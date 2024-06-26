@@ -1,0 +1,424 @@
+<odoo>
+    <data>
+        <template id="signup" name="Trademeda Signup">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/signup.css"/>
+            </xpath>
+           
+
+        
+            <main> 
+            
+                <div class="outer">
+                    <div class="sign-in">
+                        <div class="">
+                            <button class="back">
+                                <svg width="24px" height="24px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
+                                    
+                                        <polyline fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" points="46.1964,16.2048 26.8036,35.6651 46.1964,55.1254"/>
+                                    
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="sign-in-text">
+                            <h3 style="color:#f6f6f6;">Welcome To</h3>
+                            <span style="color:#f6f6f6;font-size: 3rem;"><b>Trade</b></span><span style="color:navy;font-size: 3rem;"><b>meda</b></span>
+                            <div class="">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, mi vel tincidunt commodo, sapien</p>
+                                <div class=""> </div>
+                                <div class=""> </div>
+                                <div class=""> </div>
+                                <div class=""> </div>
+
+                                <p>Already a member?</p>
+                            </div>
+                        </div>
+                        <div class="sign-in-btn">
+                            <button   class=""><a style="text-decoration: none;color:#f6f6f6;" t-attf-href="/signin">Sign In</a></button>
+                        </div>
+                    </div>
+                    <div class="sign-up form-container">
+                    <form action="/signup/createuser" method="post" enctype="multipart/form-data" >
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <div  id="form1">
+                            <div class="heading">
+                                <h1 class="">About your Organisation</h1>
+
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Company Name</span>
+                                </div>
+                                <div class="">
+                                    <input placeholder="Company Name" id="company_name" required="required" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">We are:</span>
+                                </div>
+                                <div class="radio-group">
+                                    <input type="radio" id="buyer" name="role" value="buyer" checked="true"/>
+                                    <label for="buyer">Buyer</label>
+
+                                    <input type="radio" id="supplier" name="role" value="supplier"/>
+                                    <label for="supplier">Supplier</label>
+
+                                    <input type="radio" id="both" name="role" value="both"/>
+                                    <label for="both">Both</label>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">We are supplier of:</span>
+                                </div>
+                                <div class="">
+                                    <textarea id="supplier_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">We are buyer of:</span>
+                                </div>
+                                <div class="">
+                                    <textarea id="buyer_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">We are trader of:</span>
+                                </div>
+                                <div class="">
+                                    <textarea id="trader_textarea" placeholder="fish,cane,ball,.." style="height:80px;"/>
+                                </div>
+                            </div>
+                            <div class="" style="display:flex;">
+                                <div class="text-input" style="width:50%;">
+                                    <div class="">
+                                        <span class="">Primary Business</span>
+                                    </div>
+                                    <div class="select-container">
+                                        <select id="business-type" name="business-type" required="required">
+                                            <option value="" selected="true">Select your business type</option>
+                                            <option value="buying-agent">Buying Agent</option>
+                                            <option value="dealer-reseller">Dealer / Reseller</option>
+                                            <option value="distributor">Distributor</option>
+                                            <option value="exporter">Exporter</option>
+                                            <option value="importer">Importer</option>
+                                            <option value="manufacturer">Manufacturer</option>
+                                            <option value="not-known">Not Known</option>
+                                            <option value="retailer">Retailer</option>
+                                            <option value="service-provider">Service Provider</option>
+                                            <option value="trader">Trader</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-input" style="width:45%;">
+                                    <div class="">
+                                        <span class="">Establishment Year</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="number" placeholder="" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" style="display:flex;">
+                                <div class="text-input" style="width:50%;">
+                                    <div class="">
+                                        <span class="">Approx,Annual Sales in USD</span>
+                                    </div>
+                                    <div class="select-container">
+                                        <select id="annual-sales" name="annual-sales" required="required">
+                                            <option value="" selected="true"></option>
+                                            <option value="less-than-1000">Less than 1000 USD</option>
+                                            <option value="less-than-10000">Less than 10000 USD</option>
+                                            <option value="less-than-1000000">Less than 1000000 USD</option>
+                                            <option value="more-than-1000000">More than 1000000 USD</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-input" style="width:40%;">
+                                    <div class="">
+                                        <span class="">Number of Employees</span>
+                                    </div>
+                                    <div class="select-container">
+                                        <select id="employees" name="employees" required="required">
+                                            <option value="" selected="true"></option>
+                                            <option value="less-than-10">Less than 10</option>
+                                            <option value="less-than-100">Less than 100</option>
+                                            <option value="less-than-1000">Less than 1000</option>
+                                            <option value="more-than-1000">More than 1000</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-input">
+
+                                <div class="next-page-btn">
+                                    <button type="button" id="next1">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div  id="form2" style="display:none;">
+                            <div class="heading">
+                                <h1 class="">Your Contact Details</h1>
+
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Your Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Your Name" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Designation</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Designation" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Address</span>
+                                </div>
+                                <div class="">
+                                    <textarea placeholder="" style="height:80px;" required="required"/>
+                                </div>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Country</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Country" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">State</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="State" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">City</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="City" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Zip/Postal Code</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Zip/Postal Code" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Country Code</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Country Code" required="required"/>
+                                    </div>
+                                </div>
+
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Phone Number</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Phone Number" required="required"/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Area Code (if any)</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Area Code"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Email Address</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="email" placeholder="Email Address" required="required"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Company Website URL</span>
+                                </div>
+                                <div class="">
+                                    <input placeholder="www.example.com" required="required"/>
+                                </div>
+                            </div>
+                            
+                            <div class="multi-input" style="margin-top:1rem;">
+                            
+                            
+                               <div class="next-page-btn">
+                                    <button type="button" id="prev1">Previous</button>
+                                </div>
+                                <div class="next-page-btn">
+                                    <button type="button" id="next2">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="form3" style="display:none;">
+                            <div class="heading">
+                                <h1 class="">Create Your Login to ensure your profile remains regularly updated</h1>
+
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Email Address</span>
+                                </div>
+                                <div class="">
+                                    <input type="email" placeholder="user@email.com" required="required"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Password</span>
+                                </div>
+                                <div class="">
+                                    <input type="password" class="form-control" required="required"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Confirm Password</span>
+                                </div>
+                                <div class="">
+                                    <input type="password" required="required"/>
+                                </div>
+                            </div>
+                            <div class="multi-input" style="margin-top:1rem;">
+                               <div class="next-page-btn">
+                                    <button type="button" id="prev2">Previous</button>
+                                </div>
+                                <div class="next-page-btn">
+                                    <button type="submit" id="submit" t-attf-href="/signup/createuser">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+
+
+
+            </main>
+            <script>
+                
+
+
+                document.getElementById('form1').classList.add('active')
+                
+                function switchForm(currentForm, nextForm) {
+                    let child_len = currentForm.querySelectorAll('input , textarea, select').length
+                    let page_load = false
+
+
+                    if(document.getElementById('buyer').checked){
+                        document.getElementById('buyer_textarea').required  = true
+                        document.getElementById('supplier_textarea').required  = false
+                    }else if(document.getElementById('supplier').checked){
+                        document.getElementById('supplier_textarea').required  = true
+                        document.getElementById('buyer_textarea').required  = false
+                    }else {
+                        document.getElementById('supplier_textarea').required  = true
+                        document.getElementById('buyer_textarea').required  = true
+                    } 
+
+                    currentForm.querySelectorAll('input , textarea,select').forEach(function(element){
+                        element.style.outline = 'none'
+                    })
+                    
+
+
+                    <!-- if(document.getElementById('business-type').value == ""){
+                        document.getElementById('business-type').style.outline = '2px solid red'
+                    }
+                    if(document.getElementById('annual-sales').value == ""){
+                        document.getElementById('annual-sales').style.outline = '2px solid red'
+                    }
+                    if(document.getElementById('employees').value == ""){
+                        document.getElementById('employees').style.outline = '2px solid red'
+                    } -->
+
+
+                    for(let i = 0;i &lt; child_len ;i++){
+                        
+                        if(currentForm.querySelectorAll('input , textarea, select')[i].required &amp;&amp; currentForm.querySelectorAll('input , textarea , select')[i].value == ""){
+                            currentForm.querySelectorAll('input , textarea, select')[i].style.outline = '2px solid red'
+                            page_load = false
+
+                        }else{
+                            
+                            page_load = true
+                        }
+                    }
+                    <!-- currentForm.getElementsByTagName('input')[1].required -->
+                    // Fade out the current form
+                    if(!page_load){
+                        return
+                    }
+                    
+                    else {
+                        currentForm.classList.remove('active');
+                        // After the fade-out transition, hide currentForm and show nextForm
+                    setTimeout(function() {
+                        currentForm.style.display = 'none';
+                        nextForm.style.display = 'block';
+                        
+                        // Allow the browser to apply the display change before fading in
+                        setTimeout(function() {
+                            nextForm.classList.add('active');
+                        }, 10); // Small delay to ensure display property is applied
+                    }, 500); // Match the transition duration in CSS
+                    }
+                }
+
+                // Event listeners for the navigation buttons
+                document.getElementById('next1').onclick = function() {
+                    switchForm(document.getElementById('form1'), document.getElementById('form2'));
+                };
+
+                document.getElementById('prev1').onclick = function() {
+                    switchForm(document.getElementById('form2'), document.getElementById('form1'));
+                };
+
+                document.getElementById('next2').onclick = function() {
+                    switchForm(document.getElementById('form2'), document.getElementById('form3'));
+                };
+
+                document.getElementById('prev2').onclick = function() {
+                    switchForm(document.getElementById('form3'), document.getElementById('form2'));
+                };
+            </script>
+        </template>
+    </data>
+</odoo>

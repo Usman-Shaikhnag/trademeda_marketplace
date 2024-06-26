@@ -1,0 +1,223 @@
+body {
+
+    margin: 0;
+  
+    padding: 0;
+  
+    font-family: sans-serif;
+  
+    background-color: #f6f6f6;
+  
+  }
+  header{
+    position: fixed;
+    width: 100%;
+  }
+  
+  .container {
+  
+    display: flex;
+  
+    justify-content: space-between;
+  
+    align-items: center;
+  
+    padding: 8px;
+  
+    border-bottom: 1px solid #ddd;
+    background-color: #f6f6f6;
+    
+  
+  }
+  
+  .logo {
+  
+    display: flex;
+  
+    align-items: center;
+  
+  }
+  
+  .logo img {
+  
+    margin: 0;
+    width: 200px;
+    height: 65px;
+  
+  }
+  
+  .logo span {
+  
+    font-size: 20px;
+  
+    font-weight: bold;
+  
+    color: orange;
+  
+  }
+  
+  .logo button, .action button{
+  
+    background-color: #ea5455;
+  
+    color: white;
+  
+    border: none;
+  
+    padding: 8px 16px;
+  
+    border-radius: 5px;
+  
+    margin-left: 10px;
+  
+    cursor: pointer;
+  
+  }
+  
+  .search {
+  
+    position: relative;
+  
+    width: 50%;
+  
+  }
+  
+  .search input {
+  
+    width: 100%;
+  
+    padding: 10px;
+  
+    border: 1px solid #ddd;
+  
+    border-radius: 5px;
+  
+  }
+  
+  .search button {
+  
+    position: absolute;
+  
+    top: 50%;
+  
+    right: 10px;
+  
+    transform: translateY(-50%);
+  
+    background-color: transparent;
+  
+    border: none;
+  
+    cursor: pointer;
+  
+  }
+  
+  .search button i {
+  
+    font-size: 18px;
+  
+    color: #ea5455;
+  
+  }
+  
+  .actions {
+  
+    display: flex;
+  
+    align-items: center;
+  
+  }
+  
+  .actions button {
+  
+    background-color: #ea5455;
+  
+    color: white;
+  
+    border: none;
+  
+    padding: 10px 20px;
+  
+    border-radius: 5px;
+  
+    margin-right: 10px;
+  
+    cursor: pointer;
+  
+  }
+  
+  .actions .menu {
+  
+    background-color: transparent;
+  
+    border: none;
+  
+    cursor: pointer;
+  
+  }
+  
+  .actions .menu i {
+  
+    font-size: 18px;
+  
+    color: #ea5455;
+  
+  }
+  main {
+    display: grid; /* Define the grid container */
+    grid-template-columns:2fr 1fr; /* Define the width ratio of the two columns */
+    gap: 10px; /* Optional: Add some space between the columns */
+    padding: 10px; /* Optional: Add some padding around the grid */
+    padding-top: 50px;
+}
+main > div {
+    height: 100vh;
+}
+
+.product-section {
+    display: flex;
+    flex-direction: column;
+    /* grid-template-columns:1fr 1fr; */
+    margin-left: 50px;
+
+}
+
+.product-section .product-details{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+
+}
+
+
+.product-section img{
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.inputs input {
+  padding: 8px;
+  width: 90%;
+  border-radius: 5px;
+  height: 50px;
+  margin-top: 16px;
+  
+}
+
+.contact-section {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.contact-section button{
+  margin-top: 10px;
+
+}
+/* #ea5455  light red*/
+.bar {
+  width: 100%;
+  height: 3px;
+  border-radius: 5px;
+  background-color: #ea5455;
+}

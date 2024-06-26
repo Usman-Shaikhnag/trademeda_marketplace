@@ -1,0 +1,224 @@
+body {
+    /* background-color: cadetblue; */
+    background:#8fb15f
+
+}
+
+.outer {
+    padding: 5%;
+    display:grid;
+    grid-template-columns: 40% 60%;
+}
+
+.sign-in .back {
+    background:transparent;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid white;
+    cursor: pointer;
+}
+.back:hover{
+    border:2px solid navy;
+}
+
+.sign-in-text {
+    font-size: 1.5rem;
+    color: #f6f6f6;
+}
+.sign-in-text h3{
+    margin-bottom: 0;
+}
+.sign-in-text p{
+    font-size: 1rem;
+}
+.sign-in-text span{
+    margin: 0;
+    padding: 0;
+}
+
+.sign-in-btn {
+    
+    border-radius: 5px;
+    width: 300px;
+    border: 2px solid white;
+    height: 55px;
+
+}
+.sign-in-btn button{
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.sign-in-btn:hover{
+    border:2px solid navy;
+}
+.sign-up {
+    display: block;
+    background-color: #f6f6f6;
+    color:navy;
+    padding: 0% 8%;
+    border-radius: 8px;
+}
+.sign-up .heading{
+    text-align: center;
+}
+.text-input{
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.text-input input,textarea,select{
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 8px;
+    width: 90%;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding-left: 10px;
+}
+
+/* .text-input select{
+    width: 45%;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 8px;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding-left: 10px;
+
+} */
+
+
+.text-input input:focus{
+    border: 1px solid  navy;
+}
+
+.radio-group {
+    display: flex; /* Arrange radio buttons in a row */
+    gap: 20px; /* Space between radio buttons */
+    margin-top: 5px;
+}
+
+.radio-group input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+/* Custom styles for radio button labels */
+.radio-group label {
+    position: relative;
+    padding-left: 30px; /* Space for custom radio button */
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    user-select: none; /* Prevent text selection */
+}
+
+/* Create custom radio button */
+.radio-group label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid navy; /* Border color */
+    border-radius: 50%; /* Circle shape */
+    background-color: white; /* Background color */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+
+/* Style for selected radio button */
+.radio-group input[type="radio"]:checked + label::before {
+    background-color: navy; /* Fill color for selected state */
+    border-color: navy; /* Border color for selected state */
+}
+
+/* Inner dot for selected radio button */
+.radio-group label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Circle shape */
+    background-color: white; /* Inner dot color */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+/* Show inner dot when checked */
+.radio-group input[type="radio"]:checked + label::after {
+    opacity: 1; /* Show inner dot */
+}
+.next-page-btn {
+    
+    border-radius: 5px;
+    width: 100px;
+    border: 2px solid white;
+    height: 50px;
+    background-color: navy;
+
+}
+.next-page-btn button{
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+
+#form1,
+#form2,
+#form3 {
+    transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+
+#form1.active,
+#form2.active,
+#form3.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-in-out, visibility 0s 0s;
+    position: relative;
+}
+
+/* Ensure multi-input sections are displayed properly */
+.multi-input {
+    display: flex;
+    width: 95%;
+    margin-bottom: 15px;
+}
+
+.multi-input .text-input {
+    width: 50%;
+    margin-right: 10px;
+}
+
+/* .mandatory input{
+    outline: 2px solid red;
+} */
+ .text-input:required input{
+    outline: 2px solid red;
+ }

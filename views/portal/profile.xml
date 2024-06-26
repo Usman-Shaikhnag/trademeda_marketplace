@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="signin" name="Trademeda Signin">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/signin.css"/>
+            </xpath>
+           
+
+        
+            <main> 
+                <div class="outer">
+                </div>
+                   
+                    
+                
+            </main>
+            <script>
+                
+            </script>
+        </template>
+    </data>
+</odoo>

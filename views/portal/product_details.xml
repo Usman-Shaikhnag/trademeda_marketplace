@@ -1,0 +1,122 @@
+<odoo>
+    <data>
+        <template id="product_details" name="Product Details">
+        
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/product_details.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+        <header>
+            <div class="container">
+
+                <div class="logo">
+
+                <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="Trademeda Logo"/>
+
+                </div>
+
+                <div class="search">
+
+                <input type="text" placeholder="Search for a product, category or service"/>
+
+                <button><i class="fas fa-search"></i></button>
+
+                </div>
+
+                <div class="actions">
+
+                <button>Login</button>
+
+                <button>Sign Up</button>
+
+                <button class="menu"><i class="fas fa-bars"></i></button>
+
+                </div>
+
+            </div>
+        </header>
+        <main> 
+            <div class="product-section">
+                <div class="product-details">
+                    <h2>Shampoo</h2>
+                    <div class="rating-container">
+                    <div class="star-svg">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                            </svg>
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                            </svg>
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                            </svg>
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                            </svg>
+                        </span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                            </svg>
+                        </span>
+                        <span><p>(5.0)</p></span>
+                    </div>
+                    </div>
+
+                    </div>
+                <div>
+                    <img src="/trademeda/static/src/img/product_shampoo.png"/>
+                </div>
+                <div class="product-details">
+                    <h3>Product Details</h3>
+                    <span class="bar"></span>
+                    <p>
+                        We are engaged in providing superior quality Di Ethylene Glycol to our most reliable clients.
+                        These Di Ethylene Glycol are appreciated by large number of clients due to high quality and durability.
+                        These products are available in market at most competitive rates.
+                    </p>
+
+                    <h3>Seller Details</h3>
+                    <!-- <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                        </svg>
+                    </span> -->
+                    <span class="bar"></span>
+                    <p>
+                        We are engaged in providing superior quality Di Ethylene Glycol to our most reliable clients.
+                        These Di Ethylene Glycol are appreciated by large number of clients due to high quality and durability.
+                        These products are available in market at most competitive rates.
+                    </p>
+                </div>
+            </div>
+            <div class="contact-section">
+                <p><b>Contact Supplier</b></p>
+                <div class="inputs">
+                    <input type="text" placeholder="Company Name"/>
+                    <input type="text" placeholder="Your Name"/>
+                    <input type="email" placeholder="Your Email"/>
+                    <input type="phone" placeholder="Phone"/>
+                    <input type="text" placeholder="Country"/>
+                    <div class="actions">
+                        <button>Inquire now</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+            
+            
+        </main>
+
+        </template>
+    </data>
+</odoo>

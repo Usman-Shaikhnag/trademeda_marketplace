@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <template id="signin" name="Trademeda Signin">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/signin.css"/>
+            </xpath>
+           
+
+        
+            <main> 
+                <div class="outer">
+                    <div class="signup"> <!-- Signup Form -->
+                        <div class="logo">
+                            <img src="/trademeda/static/src/img/trademeda_white_logo.png"/>
+                        </div>
+                        <div class="signup-text">
+                            <h2>Welcome Back</h2>
+                            <h5>Not a member? Join Now</h5>
+                            <h5>It's absolutely Free</h5>
+                        </div>
+                        <div class="signup-btn">
+                            <button class=""><a style="text-decoration: none;" t-attf-href="/signup">Sign up</a></button>
+                        </div>
+
+
+                        
+                    </div>
+                    <div class="signin"> <!-- Signin Form -->
+                        <h1>Sign In</h1>
+                        <h2>Sign In to continue with trademeda</h2>
+
+                        <div class="text-input">
+                            <div class="">
+                                <span class="">Email Address</span>
+                            </div>
+                            <div class="">
+                                <input type="email" placeholder="Email"/>
+                            </div>
+                        </div>
+                        <div class="text-input">
+                            <div class="">
+                                <span class="">Password</span>
+                            </div>
+                            <div class="">
+                                <input type="password" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="sign-in-btn">
+                            <button href="/signin" class="">Sign In</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </main>
+            <script>
+                
+            </script>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+    <!-- Form view definition -->
+    <record id="view_form_product_category" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">product.categories</field>
+        <field name="arch" type="xml">
+            <form string="Product Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Lines">
+                            <field name="product_lines">
+                                <tree>
+                                    <field name="product_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view definition -->
+    <record id="view_tree_product_category" model="ir.ui.view">
+        <field name="name">product.category.tree</field>
+        <field name="model">product.categories</field>
+        <field name="arch" type="xml">
+            <tree string="Product Category">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,139 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #8fb15f /* Background color */
+}
+
+.outer {
+    width: 80%;
+    max-width: 700px;
+    background-color: white;
+    padding: 0cm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Optional: Rounds the corners */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.signup, .signin {
+    display: block;
+}
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: navy;
+    color: #f6f6f6;
+    padding: 5%;
+}
+.signin {
+    background-color: #f6f6f6;
+    color: navy;
+    padding: 5%;
+}
+
+/* .signup.active, .signin.active {
+    display: block;
+} */
+
+/* Optional: Flexbox to align content within outer */
+
+
+.sign-in-btn {
+    
+    border-radius: 5px;
+    width: 90%;
+    margin-top: 1rem;
+    /* border: 2px solid white; */
+    background-color: navy;
+    height: 55px;
+
+}
+.sign-in-btn button{
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.sign-in-btn:hover {
+   
+    /* border: 2px solid navy; */
+    background-color: #f6f6f6;
+    color: navy;
+    outline: 2px solid navy;
+
+}
+.sign-in-btn:hover button{
+   
+    /* border: 2px solid navy; */
+    color: navy;
+
+}
+
+.signup-btn {
+    
+    border-radius: 5px;
+    width: 300px;
+    border: 2px solid white;
+    height: 55px;
+
+}
+.signup-btn button{
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.signup-btn:hover {
+    
+    background-color: #f6f6f6;
+    color: navy;
+    outline: 2px solid #f6f6f6;
+
+}
+.signup-btn:hover button{
+    
+    color: navy;
+
+}
+
+.text-input input,textarea,select{
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 1rem;
+    width: 90%;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding-left: 10px;
+}
+.logo {
+    width: 100%;
+}
+.logo img {
+    height: 100px;
+    width: 100%;
+}
+a{
+    color: #f6f6f6;
+}
+a:hover {
+    color: navy;
+}

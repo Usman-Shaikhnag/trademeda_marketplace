@@ -1,0 +1,19 @@
+<odoo>
+    <!-- Action definition -->
+    
+    <record id="action_product_category" model="ir.actions.act_window">
+        <field name="name">Product Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.categories</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Product Category</p>
+        </field>
+    </record>
+
+    <!-- Menu structure -->
+    <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
+    <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
+    <menuitem id="submenu_product_category" name="Product Categories" parent="submenu_products" action="action_product_category" sequence="10"/>
+</odoo>
