@@ -15,6 +15,7 @@
         'views/portal/homepage.xml',
         'views/portal/signup.xml',
         'views/portal/signin.xml',
+        'views/portal/user_profile.xml',
         'views/portal/product_details.xml',
 
 

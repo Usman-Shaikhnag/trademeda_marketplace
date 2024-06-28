@@ -1,0 +1,345 @@
+<odoo>
+    <data>
+        <template id="user_profile" name="User Profile">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
+            </xpath>
+           
+
+        
+            <main> 
+                <div class="header">
+                    <div class="logo-container">
+                        <img src="/trademeda/static/src/img/trademeda_white_logo.png" alt="profile photo" class="logo"/>
+                    </div>
+                    <!-- <div class="search-bar">
+                        
+                    </div> -->
+                    <div class="search-container">
+                        <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
+                        <button class="search_btn">Find Buyers</button>
+                        <button class="search_btn">Find Suppliers</button>
+                    </div>
+                    
+                    <div class="">
+                        <span class="" style="color:#f6f6f6">+91 1234567890</span>
+                        <img src="/trademeda/static/src/img/profile.png" alt="profile" style="height:30px"/>
+                        
+                    </div>
+                    <div class="">
+                        <span class="divider" style="margin-top: 5px;"></span>
+                        <span class="divider" style="margin-top: 5px;"></span>
+                        <span class="divider" style="margin-top: 5px;"></span>
+
+                    </div>
+                   
+
+                </div>
+                <div class="outer">
+                    <div class="left">
+                        <div class="profile-detail">
+                            <div class="profile-pic-avatar">
+                                <img src="/trademeda/static/src/img/user.png" alt="profile photo" class=""/>
+                            </div>
+                            <div class="username">
+                                <span><b>Justin Stylus</b></span>
+                            </div>
+                        </div>
+                        <div class="">
+                        
+                            <span class="divider"></span>
+                        </div>
+                        <div class="sidemenu">
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/more.png" alt="" class="icons"/>
+                                <span class="">Add New Product</span>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/>
+                                <span class="">Product Management</span>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/>
+                                <span class="">Documents</span>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/>
+                                <span class="">Queries</span>
+                            </div>
+                        </div>
+                        <div class="">
+                        
+                            <span class="divider"></span>
+                        </div>
+                        <div class="sidemenu">
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/membership.png" alt="" class="icons"/>
+                                <span class="">Membership</span>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/trademeda/static/src/img/faq.png" alt="" class="icons"/>
+                                <span class="">Support</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="edit-profile">
+                            <div class="edit-profile-text">
+                                <h3>Edit Profile</h3>
+                                <p>Edit Profile Form</p>
+                            </div>
+                            <div class="update-btn">
+                                <button>Update</button>
+                            </div>
+
+                        </div>
+                        <div class="inner-card">
+                            <div class="heading">
+                                <h2>Company Details</h2>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Company Name</span>
+                                </div>
+                                <div class="">
+                                    <input placeholder="Company Name" name="company_name" id="company_name" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Company Details</span>
+                                </div>
+                                <div class="">
+                                    <textarea placeholder="Company Details" name="company_details" id="company_details" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Contact Person Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Contact Person Name" name="contact_person"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Year of Establishment</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="number" placeholder="2020" name="establishment_year"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input" style="width:50%;">
+                                    <div class="">
+                                        <span class="">Number of Employees</span>
+                                    </div>
+                                    <div class="select-container">
+                                        <select id="employees" name="employees">
+                                            <option value="" selected="true"></option>
+                                            <option value="less-than-10">Less than 10</option>
+                                            <option value="less-than-100">Less than 100</option>
+                                            <option value="less-than-1000">Less than 1000</option>
+                                            <option value="more-than-1000">More than 1000</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Awards</span>
+                                    </div>
+                                    <div class="">
+                                        <input  placeholder="" name="awards" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input" style="width:50%;">
+                                    <div class="">
+                                        <span class="">Approx,Annual Sales in USD</span>
+                                    </div>
+                                    <div class="select-container">
+                                        <select id="annual-sales" name="annual-sales" required="required">
+                                            <option value="" selected="true"></option>
+                                            <option value="less-than-1000">Less than 1000 USD</option>
+                                            <option value="less-than-10000">Less than 10000 USD</option>
+                                            <option value="less-than-1000000">Less than 1000000 USD</option>
+                                            <option value="more-than-1000000">More than 1000000 USD</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Certifications</span>
+                                    </div>
+                                    <div class="">
+                                        <input  placeholder="" name="certifications"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Phone Number</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Phone Number" name="phone_number"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Email Address</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="email" placeholder="" name="company_email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Address</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Company Address" name="company_address"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Website</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="company_website"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="inner-card">
+                            <div class="heading">
+                                <h2>Your Contact Details</h2>
+                            </div>
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Your Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="name"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Designation</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="designation"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Address</span>
+                                </div>
+                                <div class="">
+                                    <input placeholder="Address" name="address" id="address" class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Country</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="country"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">State</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="state"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">City</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="city"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Zip/Postal Code</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="zip_code"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Phone Number</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="phone_number"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Email Address</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Website URL</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="company_website_url"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Area Code (if any)</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="area_code"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+            <script>
+                
+            </script>
+        </template>
+    </data>
+</odoo>

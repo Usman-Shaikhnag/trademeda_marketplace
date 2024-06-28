@@ -50,7 +50,7 @@
                                     <span class="">Company Name</span>
                                 </div>
                                 <div class="">
-                                    <input placeholder="Company Name" id="company_name" required="required" class="form-control"/>
+                                    <input placeholder="Company Name" name="company_name" id="company_name" required="required" class="form-control"/>
                                 </div>
                             </div>
                             <div class="text-input">
@@ -73,7 +73,7 @@
                                     <span class="">We are supplier of:</span>
                                 </div>
                                 <div class="">
-                                    <textarea id="supplier_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
+                                    <textarea id="supplier_textarea" name="supplier_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
                                 </div>
                             </div>
                             <div class="text-input">
@@ -81,7 +81,7 @@
                                     <span class="">We are buyer of:</span>
                                 </div>
                                 <div class="">
-                                    <textarea id="buyer_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
+                                    <textarea id="buyer_textarea" name="buyer_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
                                 </div>
                             </div>
                             <div class="text-input">
@@ -89,7 +89,7 @@
                                     <span class="">We are trader of:</span>
                                 </div>
                                 <div class="">
-                                    <textarea id="trader_textarea" placeholder="fish,cane,ball,.." style="height:80px;"/>
+                                    <textarea id="trader_textarea" name="trader_textarea" placeholder="fish,cane,ball,.." style="height:80px;"/>
                                 </div>
                             </div>
                             <div class="" style="display:flex;">
@@ -118,7 +118,7 @@
                                         <span class="">Establishment Year</span>
                                     </div>
                                     <div class="">
-                                        <input type="number" placeholder="" required="required"/>
+                                        <input type="number" name="establishment_year" required="required"/>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                         <span class="">Your Name</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Your Name" required="required"/>
+                                        <input placeholder="Your Name" name="name" required="required"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -180,7 +180,7 @@
                                         <span class="">Designation</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Designation" required="required"/>
+                                        <input placeholder="Designation" name="designation" required="required"/>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                                     <span class="">Address</span>
                                 </div>
                                 <div class="">
-                                    <textarea placeholder="" style="height:80px;" required="required"/>
+                                    <textarea name="address" style="height:80px;" required="required"/>
                                 </div>
                             </div>
                             <div class="multi-input">
@@ -198,7 +198,16 @@
                                         <span class="">Country</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Country" required="required"/>
+                                        <!-- <input placeholder="Country" name="country" required="required"/> -->
+                                        <select id="country" name="country" class="form-control" required="required">
+                                            <option value="">Select your country</option>
+                                            <t t-foreach="countries" t-as="country">
+                                                <option t-att-value="country.id">
+                                                    <t t-esc="country.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -206,7 +215,7 @@
                                         <span class="">State</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="State" required="required"/>
+                                        <input placeholder="State" name="state" required="required"/>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +225,7 @@
                                         <span class="">City</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="City" required="required"/>
+                                        <input placeholder="City" name="city" required="required"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -224,7 +233,7 @@
                                         <span class="">Zip/Postal Code</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Zip/Postal Code" required="required"/>
+                                        <input placeholder="Zip/Postal Code" name="zip_code" required="required"/>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +243,7 @@
                                         <span class="">Country Code</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Country Code" required="required"/>
+                                        <input placeholder="Country Code" name="country_code" required="required"/>
                                     </div>
                                 </div>
 
@@ -243,7 +252,7 @@
                                         <span class="">Phone Number</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Phone Number" required="required"/>
+                                        <input placeholder="Phone Number" name="phone_number" required="required"/>
                                     </div>
                                 </div>
                                 
@@ -254,7 +263,7 @@
                                         <span class="">Area Code (if any)</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Area Code"/>
+                                        <input placeholder="Area Code" name="area_code"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -262,7 +271,7 @@
                                         <span class="">Email Address</span>
                                     </div>
                                     <div class="">
-                                        <input type="email" placeholder="Email Address" required="required"/>
+                                        <input type="email" placeholder="Email Address" name="company_email" required="required"/>
                                     </div>
                                 </div>
                             </div>
@@ -271,7 +280,7 @@
                                     <span class="">Company Website URL</span>
                                 </div>
                                 <div class="">
-                                    <input placeholder="www.example.com" required="required"/>
+                                    <input placeholder="www.example.com" name="website" required="required"/>
                                 </div>
                             </div>
                             
@@ -293,10 +302,10 @@
                             </div>
                             <div class="text-input">
                                 <div class="">
-                                    <span class="">Email Address</span>
+                                    <span class="">Email Address / Login</span>
                                 </div>
                                 <div class="">
-                                    <input type="email" placeholder="user@email.com" required="required"/>
+                                    <input type="email" name="email" placeholder="user@email.com" required="required"/>
                                 </div>
                             </div>
                             <div class="text-input">
@@ -304,7 +313,7 @@
                                     <span class="">Password</span>
                                 </div>
                                 <div class="">
-                                    <input type="password" class="form-control" required="required"/>
+                                    <input type="password" name="password" class="form-control" required="required"/>
                                 </div>
                             </div>
                             <div class="text-input">
@@ -312,7 +321,7 @@
                                     <span class="">Confirm Password</span>
                                 </div>
                                 <div class="">
-                                    <input type="password" required="required"/>
+                                    <input type="password" name="confirm_password" required="required"/>
                                 </div>
                             </div>
                             <div class="multi-input" style="margin-top:1rem;">
@@ -345,10 +354,14 @@
                     if(document.getElementById('buyer').checked){
                         document.getElementById('buyer_textarea').required  = true
                         document.getElementById('supplier_textarea').required  = false
+                        document.getElementById('supplier_textarea').style.display  = 'none'
                     }else if(document.getElementById('supplier').checked){
                         document.getElementById('supplier_textarea').required  = true
                         document.getElementById('buyer_textarea').required  = false
+                        document.getElementById('buyer_textarea').style.display  = 'none'
                     }else {
+                        document.getElementById('buyer_textarea').style.display  = 'block'
+                        document.getElementById('supplier_textarea').style.display  = 'block'
                         document.getElementById('supplier_textarea').required  = true
                         document.getElementById('buyer_textarea').required  = true
                     } 

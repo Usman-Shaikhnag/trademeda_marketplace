@@ -28,26 +28,29 @@
                     <div class="signin"> <!-- Signin Form -->
                         <h1>Sign In</h1>
                         <h2>Sign In to continue with trademeda</h2>
-
-                        <div class="text-input">
-                            <div class="">
-                                <span class="">Email Address</span>
+                        <form  action="/custom_login" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Email Address</span>
+                                </div>
+                                <div class="">
+                                    <input type="email" name="login" placeholder="Email"/>
+                                </div>
                             </div>
-                            <div class="">
-                                <input type="email" placeholder="Email"/>
+                            <div class="text-input">
+                                <div class="">
+                                    <span class="">Password</span>
+                                </div>
+                                <div class="">
+                                    <input type="password" name="password" placeholder="Password"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-input">
-                            <div class="">
-                                <span class="">Password</span>
+                            <div class="sign-in-btn">
+                                <button href="/signin" type="submit" class="">Sign In</button>
                             </div>
-                            <div class="">
-                                <input type="password" placeholder="Password"/>
-                            </div>
-                        </div>
-                        <div class="sign-in-btn">
-                            <button href="/signin" class="">Sign In</button>
-                        </div>
+                        </form>
                         
                     </div>
                 </div>
