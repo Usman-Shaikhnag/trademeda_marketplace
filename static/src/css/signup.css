@@ -8,6 +8,7 @@ body {
     padding: 5%;
     display:grid;
     grid-template-columns: 40% 60%;
+    position: relative;
 }
 
 .sign-in .back {
@@ -222,3 +223,54 @@ body {
  .text-input:required input{
     outline: 2px solid red;
  }
+
+
+.terms_condition_container{
+    position: absolute;
+    width: 80%;
+    height: 80vh;
+    border-radius: 5px;
+    display: none;
+    top:10%;
+    left: 10%;
+    background-color: #f6f6f6;
+    overflow: hidden;
+}
+
+.scrollable-content {
+    max-height: 60vh; /* Fixed height to make content scrollable */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Space for scrollbar */
+    padding-left: 10px;
+}
+
+/* Optional: Style the scrollbar */
+.scrollable-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+#tnc_buttons {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 0;
+}
+
+.inner_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.inner_container .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

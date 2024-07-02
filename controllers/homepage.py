@@ -1,6 +1,6 @@
 from odoo import http
 from odoo.http import request
-
+import base64
 class HomepageController(http.Controller):
 
     @http.route('/home', auth='public', website=True)
@@ -30,7 +30,14 @@ class HomepageController(http.Controller):
     
     @http.route('/profile', auth='public', website=True)
     def UserProfile(self, **kwargs):
-        return request.render('trademeda.user_profile')
+
+        user = request.env.user
+        partner_id = user.partner_id
+        vals = {
+            'user':user,
+            'partner':partner_id
+        }
+        return request.render('trademeda.user_profile',vals)
         
     @http.route(['/signup/createuser'], method=["POST"], type="http", auth="public", website=True)
     def CreateUser(self, **kw):
@@ -71,6 +78,9 @@ class HomepageController(http.Controller):
                 request.env['res.users'].sudo().create(user_data)
                 request.env['res.partner'].sudo().create({
                     'name':name,
+                    'membership_state':'free',
+                    'free_member':True,
+                    'x_studio_member_type':kw.get('role')
                     # 'x_studio_member_type':
                 })
                 
@@ -105,5 +115,68 @@ class HomepageController(http.Controller):
         
 
     @http.route('/web/login', auth='public', website=True)
-    def product(self, **kwargs):
+    def signin_redirect(self, **kwargs):
         return request.render('trademeda.signin')
+    
+    @http.route('/profile/updateuser', auth='public', website=True)
+    def update_profile(self, **kwargs):
+        # import wdb;wdb.set_trace()
+
+        return request.render('trademeda.user_profile')
+    
+
+    @http.route(['/profile/updateuser'], method=["POST"], type="http", auth="public", website=True)
+    def UpdateUser(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        if request.httprequest.method == 'POST':
+            # Extract form data
+            name = kw.get("name")
+            city = kw.get("city")
+            zip_code = kw.get("zip_code")
+            state = kw.get("state")
+            phone = kw.get("phone_number")
+            email = kw.get("email")
+
+            partner_id.sudo().write({
+                'phone':phone
+            })
+            return request.redirect("/profile")
+
+
+
+            # try:
+            # # Get file data from request
+            #     company_registration_file = kw.get('company_registration').read() if 'company_registration' in kw else False
+            #     company_address_proof_file = kw.get('company_address_proof').read() if 'company_address_proof' in kw else False
+            #     identity_proof_file = kw.get('identity_proof').read() if 'identity_proof' in kw else False
+            #     trading_license_file = kw.get('trading_license').read() if 'trading_license' in kw else False
+            #     other_documents_file = kw.get('other_documents').read() if 'other_documents' in kw else False
+            #     prior_import_export_file = kw.get('prior_import_export').read() if 'prior_import_export' in kw else False
+            #     tax_id_proof_file = kw.get('tax_id_proof').read() if 'tax_id_proof' in kw else False
+                
+            #     # Convert file content to base64 (optional)
+            #     def convert_to_base64(file_data):
+            #         if file_data:
+            #             return base64.b64encode(file_data)
+            #         return False
+                
+            #     # Write to partner record
+            #     partner_id.sudo().write({
+            #         'x_studio_company_registration': convert_to_base64(company_registration_file),
+            #         'x_studio_company_address_proof': convert_to_base64(company_address_proof_file),
+            #         'x_studio_identity_proof': convert_to_base64(identity_proof_file),
+            #         'x_studio_trading_license': convert_to_base64(trading_license_file),
+            #         'x_studio_other_documents': convert_to_base64(other_documents_file),
+            #         'x_studio_proof_of_prior_import_export': convert_to_base64(prior_import_export_file),
+            #         'x_studio_tax_id_proof': convert_to_base64(tax_id_proof_file),
+            #     })
+
+            #     return request.redirect("/profile")
+
+            # except Exception as e:
+            #     # Handle exception (e.g., file read error, database update error)
+            #     return request.redirect("/signup?error=upload_failed")
+
+            # return request.redirect("/signup")

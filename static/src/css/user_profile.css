@@ -62,6 +62,12 @@ main {
     flex-direction: column;
 }
 
+.update-btn:hover button{
+    color: #8fb15f;
+    background: transparent;
+    outline: 2px solid #8fb15f;
+}
+
 .update-btn button{
     color: #f6f6f6;
     background-color: #8fb15f;
@@ -69,10 +75,11 @@ main {
     width: 150px;
     border-radius: 5px;
     cursor: pointer;
+    border: none;
 }
 
 .inner-card {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: white;
     border-radius: 8px;
@@ -134,8 +141,17 @@ main {
     height: 75px;
     width: 75px;
     border-radius: 100px;
+    position: relative;
 }
+/* .edit-profile-pic {
 
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 8px;
+    width: 8px;
+    color: #f6f6f6;
+} */
 .profile-pic-avatar img{
     height: 80px;
     width: 80px;
@@ -171,6 +187,15 @@ main {
     margin: 1.5rem 1rem;
     color: #8fb15f;
     cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.menu-item:hover {
+    margin-left: 2rem;
+    
+}
+.menu-item.active {
+    margin-left: 2rem; /* Same as the hover state */
 }
 .icons {
     width: 20px;
@@ -213,3 +238,47 @@ main {
 
 }
 
+input[type="file"] {
+    display: none;  /* Hide the default file input */
+}
+
+.file-label {
+    display: inline-block;
+    color: #f6f6f6;
+    background-color: #8fb15f;
+    text-align: center;
+    padding: 10px 30px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+
+.file-label:hover {
+    background-color: white;
+    color: #8fb15f;
+    outline: 2px solid #8fb15f;
+}
+
+.file-label:active {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);  /* Inset shadow on click */
+}
+
+.file-name {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+    vertical-align: middle;  /* Align text with the middle of the button */
+    max-width: 300px;  /* Limit the width of the file name display */
+    white-space: nowrap;  /* Prevent text wrapping */
+    overflow: hidden;  /* Hide overflow text */
+    text-overflow: ellipsis;  /* Display ellipsis for overflow text */
+}
+
+.file-delete {
+    margin-left: 1rem;
+    color: red;
+}

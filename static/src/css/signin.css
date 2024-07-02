@@ -21,6 +21,7 @@ main {
     border-radius: 10px; /* Optional: Rounds the corners */
     display: grid;
     grid-template-columns: 1fr 1fr;
+    
 }
 
 .signup, .signin {

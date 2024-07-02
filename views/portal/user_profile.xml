@@ -3,6 +3,7 @@
         <template id="user_profile" name="User Profile">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
            
 
@@ -40,29 +41,36 @@
                         <div class="profile-detail">
                             <div class="profile-pic-avatar">
                                 <img src="/trademeda/static/src/img/user.png" alt="profile photo" class=""/>
+                                <!-- <img src="/trademeda/static/src/img/edit.png" alt="edit photo" class="edit-profile-pic"/> -->
+
                             </div>
                             <div class="username">
                                 <span><b>Justin Stylus</b></span>
+                                <div class="">
+                                    <span class="" style="color:#8fb15f;margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
+
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="">
                         
                             <span class="divider"></span>
                         </div>
                         <div class="sidemenu">
-                            <div class="menu-item">
+                            <div class="menu-item" onclick="enable_add_new_product(this)" id="new-product-menu">
                                 <img src="/trademeda/static/src/img/more.png" alt="" class="icons"/>
                                 <span class="">Add New Product</span>
                             </div>
-                            <div class="menu-item">
+                            <div class="menu-item" onclick="enable_product_management(this)" id="product-management-menu">
                                 <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/>
                                 <span class="">Product Management</span>
                             </div>
-                            <div class="menu-item">
+                            <div class="menu-item" onclick="enable_documents(this)" id="documents-menu">
                                 <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/>
                                 <span class="">Documents</span>
                             </div>
-                            <div class="menu-item">
+                            <div class="menu-item" onclick="enable_queries(this)" id="queries-menu">
                                 <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/>
                                 <span class="">Queries</span>
                             </div>
@@ -84,261 +92,559 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="edit-profile">
-                            <div class="edit-profile-text">
-                                <h3>Edit Profile</h3>
-                                <p>Edit Profile Form</p>
-                            </div>
-                            <div class="update-btn">
-                                <button>Update</button>
-                            </div>
+                        <form action="/profile/updateuser" method="post" enctype="multipart/form-data" class="">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <div class="edit-profile">
+                                <div class="edit-profile-text">
+                                    <h3>Edit Profile</h3>
+                                    <p>Edit Profile Form</p>
+                                </div>
+                                <div class="update-btn">
+                                    <button type="submit">Update</button>
+                                </div>
 
-                        </div>
-                        <div class="inner-card">
-                            <div class="heading">
-                                <h2>Company Details</h2>
                             </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Company Name</span>
+                            <div class="inner-card" id="company_details">
+                                <div class="heading">
+                                    <h2>Company Details</h2>
                                 </div>
-                                <div class="">
-                                    <input placeholder="Company Name" name="company_name" id="company_name" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Company Details</span>
-                                </div>
-                                <div class="">
-                                    <textarea placeholder="Company Details" name="company_details" id="company_details" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="multi-input">
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Contact Person Name</span>
+                                        <span class="">Company Name</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Contact Person Name" name="contact_person"/>
+                                        <input placeholder="Company Name" name="company_name" id="company_name" class="form-control" t-att-value="partner.x_studio_company_name"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Year of Establishment</span>
+                                        <span class="">Company Details</span>
                                     </div>
                                     <div class="">
-                                        <input type="number" placeholder="2020" name="establishment_year"/>
+                                        <textarea placeholder="Company Details" t-esc="partner.x_studio_company_details" name="company_details" id="company_details" class="form-control"/>
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input" style="width:50%;">
-                                    <div class="">
-                                        <span class="">Number of Employees</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Contact Person Name</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Contact Person Name" t-att-value="partner.x_studio_contact_person_name" name="contact_person"/>
+                                        </div>
                                     </div>
-                                    <div class="select-container">
-                                        <select id="employees" name="employees">
-                                            <option value="" selected="true"></option>
-                                            <option value="less-than-10">Less than 10</option>
-                                            <option value="less-than-100">Less than 100</option>
-                                            <option value="less-than-1000">Less than 1000</option>
-                                            <option value="more-than-1000">More than 1000</option>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Year of Establishment</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="number" t-att-value="partner.x_studio_establishment_year_1" placeholder="2020" name="establishment_year"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="multi-input">
+                                    <div class="text-input" style="width:50%;">
+                                        <div class="">
+                                            <span class="">Number of Employees</span>
+                                        </div>
+                                        <div class="select-container">
                                             
-                                        </select>
+                                            <select id="annual-sales" name="annual-sales" class="form-control">
+                                                <!-- Iterate over the selection options -->
+                                                <t t-foreach="partner._fields['x_studio_number_of_employees'].selection" t-as="option">
+                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.x_studio_number_of_employees and 'selected'">
+                                                        <t t-esc="option[1]"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Awards</span>
+                                        </div>
+                                        <div class="">
+                                            <input  placeholder="" name="awards" />
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Company Awards</span>
-                                    </div>
-                                    <div class="">
-                                        <input  placeholder="" name="awards" />
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="multi-input">
-                                <div class="text-input" style="width:50%;">
-                                    <div class="">
-                                        <span class="">Approx,Annual Sales in USD</span>
-                                    </div>
-                                    <div class="select-container">
-                                        <select id="annual-sales" name="annual-sales" required="required">
-                                            <option value="" selected="true"></option>
-                                            <option value="less-than-1000">Less than 1000 USD</option>
-                                            <option value="less-than-10000">Less than 10000 USD</option>
-                                            <option value="less-than-1000000">Less than 1000000 USD</option>
-                                            <option value="more-than-1000000">More than 1000000 USD</option>
+                                <div class="multi-input">
+                                    <div class="text-input" style="width:50%;">
+                                        <div class="">
+                                            <span class="">Approx,Annual Sales in USD</span>
+                                        </div>
+                                        <div class="select-container">
                                             
-                                        </select>
+                                            <select id="annual-sales" name="annual-sales" class="form-control">
+                                                <!-- Iterate over the selection options -->
+                                                <t t-foreach="partner._fields['x_studio_annual_sales'].selection" t-as="option">
+                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.x_studio_annual_sales and 'selected'">
+                                                        <t t-esc="option[1]"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Certifications</span>
+                                        </div>
+                                        <div class="">
+                                            <input  placeholder="" name="certifications"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Phone Number</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Phone Number" t-att-value="partner.phone" name="phone_number"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Email Address</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="email" placeholder="" t-att-value="partner.x_studio_company_email" name="company_email"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Address</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Company Address" t-att-value="partner.x_studio_company_address" name="company_address"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Website</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.website" name="company_website"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="inner-card" id="contact_details">
+                                <div class="heading">
+                                    <h2>Your Contact Details</h2>
+                                </div>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Your Name</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.name" name="name"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Designation</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.function" name="designation"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Company Certifications</span>
+                                        <span class="">Address</span>
                                     </div>
                                     <div class="">
-                                        <input  placeholder="" name="certifications"/>
+                                        <input placeholder="Address" name="address" id="address" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Country</span>
+                                        </div>
+                                        <!-- <div class="">
+                                            <input placeholder=""  name="country"/>
+                                        </div> -->
+
+                                        <div class="select-container">
+                                            
+                                           <select id="country" name="country" class="form-control">
+                                                <t t-foreach="request.env['res.country'].sudo().search([])" t-as="country">
+                                                    <option t-att-value="country.id" t-att-selected="country.id == partner.country_id.id and 'selected'">
+                                                        <t t-esc="country.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">State</span>
+                                        </div>
+                                        <!-- <div class="">
+                                            <input placeholder="" name="state"/>
+                                        </div> -->
+                                        <div class="select-container">
+                                            
+                                           <select id="state" name="state" class="form-control">
+                                                <t t-foreach="request.env['res.country.state'].sudo().search([])" t-as="state">
+                                                    <option t-att-value="state.id" t-att-selected="state.id == partner.state_id.id and 'selected'">
+                                                        <t t-esc="state.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">City</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.city" name="city"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Zip/Postal Code</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.zip" name="zip_code"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Phone Number</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.phone" name="phone_number"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Email Address</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.email" name="email"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Website URL</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" name="company_website_url"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Area Code (if any)</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="" t-att-value="partner.x_studio_area_code" name="area_code"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Phone Number</span>
+                            <div class="inner-card" id="documents">
+                                <div class="heading">
+                                    <h2>Your Documents</h2>
+                                </div>
+                                <div class="multi-input">
+                                    <!-- <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Registration</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="company_registration" name="company_registration" class="file-input" data-file-name="company_registration_name" data-delete-btn="company_registration_delete"/>
+                                            <label for="company_registration" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="company_registration_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="company_registration_name" class="file-name">No file chosen</span>
+                                        </div>
+                                    </div> -->
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Registration</span>
+                                        </div>
+                                        <!-- <div class="file-upload-wrapper">
+                                            <input type="file" id="company_registration" name="company_registration" class="file-input" data-file-name="company_registration_name" data-delete-btn="company_registration_delete"/>
+                                            <label for="company_registration" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            
+                                            <t t-if="partner.x_studio_company_registration">
+                                                <a t-att-href="'/web/content/' + str(partner.id) + '?model=res.partner&amp;field=x_studio_company_registration&amp;filename_field=x_studio_company_registration_filename&amp;download=true'" class="file-name">
+                                                    <t t-esc="partner.x_studio_company_registration_filename or 'Download File'"/>
+                                                </a>
+                                                <span id="company_registration_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            </t>
+                                            <t t-if="not partner.x_studio_company_registration">
+                                                <span id="company_registration_name" class="file-name">No file chosen</span>
+                                            </t>
+                                        </div> -->
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="company_registration" name="company_registration" class="file-input" data-file-name="company_registration_name" data-delete-btn="company_registration_delete"/>
+                                            <label for="company_registration" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="company_registration_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="company_registration_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="Phone Number" name="phone_number"/>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Company Address Proof</span>
+                                        </div>
+                                        <!-- <div class="file-upload-wrapper">
+                                            <input type="file" id="company_address_proof" name="company_address_proof" class="file-input" data-file-name="company_address_proof_name" data-delete-btn="company_address_proof_delete"/>
+                                            <label for="company_address_proof" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="company_address_proof_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="company_address_proof_name" class="file-name">No file chosen</span>
+                                        </div> -->
+                                        <!-- <div class="file-upload-wrapper">
+                                            <input type="file" id="company_address_proof" name="company_address_proof" class="file-input" data-file-name="company_address_proof_name" data-delete-btn="company_address_proof_delete"/>
+                                            <label for="company_address_proof" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            
+                                            <t t-if="partner.x_studio_company_address_proof">
+                                                <a t-att-href="'/web/content/' + str(partner.id) + '?model=res.partner&amp;field=x_studio_company_address_proof&amp;filename_field=x_studio_company_address_proof_filename&amp;download=true'" class="file-name">
+                                                    <t t-esc="partner.x_studio_company_address_proof_filename or 'Download File'"/>
+                                                </a>
+                                                <span id="company_address_proof_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            </t>
+                                            <t t-if="not partner.x_studio_company_address_proof">
+                                                <span id="company_address_proof_name" class="file-name">No file chosen</span>
+                                            </t>
+                                        </div> -->
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="company_address_proof" name="company_address_proof" class="file-input" data-file-name="company_address_proof_name" data-delete-btn="company_address_proof_delete"/>
+                                            <label for="company_address_proof" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="company_address_proof_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="company_address_proof_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Company Email Address</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Identity Proof</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="identity_proof" name="identity_proof" class="file-input" data-file-name="identity_proof_name" data-delete-btn="identity_proof_delete"/>
+                                            <label for="identity_proof" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="identity_proof_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="identity_proof_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input type="email" placeholder="" name="company_email"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Company Address</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="Company Address" name="company_address"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Company Website</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="company_website"/>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Trading License</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="trading_license" name="trading_license" class="file-input" data-file-name="trading_license_name" data-delete-btn="trading_license_delete"/>
+                                            <label for="trading_license" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="trading_license_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="trading_license_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-
-
-                        </div>
-                        <div class="inner-card">
-                            <div class="heading">
-                                <h2>Your Contact Details</h2>
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Your Name</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Proof of Prior Import / Export</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="prior_import_export" name="prior_import_export" class="file-input" data-file-name="prior_import_export_name" data-delete-btn="prior_import_export_delete"/>
+                                            <label for="prior_import_export" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="prior_import_export_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="prior_import_export_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="" name="name"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Designation</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="designation"/>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Tax ID Proof</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="tax_id_proof" name="tax_id_proof" class="file-input" data-file-name="tax_id_proof_name" data-delete-btn="tax_id_proof_delete"/>
+                                            <label for="tax_id_proof" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="tax_id_proof_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="tax_id_proof_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Address</span>
-                                </div>
-                                <div class="">
-                                    <input placeholder="Address" name="address" id="address" class="form-control"/>
-                                </div>
-                            </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Country</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Other Documents</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="other_documents" name="other_documents" class="file-input" data-file-name="other_documents_name" data-delete-btn="other_documents_delete"/>
+                                            <label for="other_documents" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="other_documents_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="other_documents_name" class="file-name">No file chosen</span>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="" name="country"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">State</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="state"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">City</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="city"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Zip/Postal Code</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="zip_code"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Phone Number</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="phone_number"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Email Address</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="email"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Company Website URL</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="company_website_url"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Area Code (if any)</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="" name="area_code"/>
-                                    </div>
+                                    
                                 </div>
                             </div>
-                        </div>
+                            <div class="inner-card" id="new_product">
+                            </div>
+                            <div class="inner-card" id="product_management">
+                            </div>
+                            <div class="inner-card" id="queries">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 
             </main>
             <script>
+                    document.getElementById('company_details').style.display = 'flex'
+                    document.getElementById('contact_details').style.display = 'flex'
+                function enable_documents(element){
+                    document.getElementById('documents').style.display = 'flex'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+                    }
+
+
+
                 
+
+                function enable_profile_detail(){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('new_product').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+
+
+                    document.getElementById('company_details').style.display = 'flex'
+                    document.getElementById('contact_details').style.display = 'flex'
+
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+                    
+
+                }
+                function enable_add_new_product(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('new_product').style.display = 'flex'
+
+                    
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+
+                function enable_product_management(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'flex'
+
+
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+
+                function enable_queries(element){
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+                <!-- document.getElementById('file-input').addEventListener('change', function() {
+                    var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                    document.getElementById('file-name').textContent = fileName;
+                });
+                document.getElementById('file-delete').addEventListener('click', function() {
+                    document.getElementById('file-name').textContent = '';
+                    document.getElementById('file-input').value = '';
+                }); -->
+
+                document.querySelectorAll('.file-input').forEach(function(input) {
+                    input.addEventListener('change', function() {
+                        // Get the corresponding file name display span
+                        const fileNameSpan = document.getElementById(this.getAttribute('data-file-name'));
+                        // Update the file name display
+                        fileNameSpan.textContent = this.files[0] ? this.files[0].name : 'No file chosen';
+                    });
+                });
+
+                // Select all delete buttons and attach event listeners
+                document.querySelectorAll('.file-delete').forEach(function(deleteButton) {
+                    deleteButton.addEventListener('click', function() {
+                        // Get the corresponding file input
+                        const fileInput = document.querySelector(`input[data-delete-btn="${this.id}"]`);
+                        // Reset the file input
+                        fileInput.value = '';
+                        // Get the corresponding file name display span
+                        const fileNameSpan = document.getElementById(fileInput.getAttribute('data-file-name'));
+                        // Reset the file name display
+                        fileNameSpan.textContent = 'No file chosen';
+                    });
+                });
+
+                <!-- document.querySelectorAll('.file-delete').forEach(function(deleteButton) {
+                    deleteButton.addEventListener('click', function() {
+                        // Get the corresponding file input using the data-delete-btn attribute
+                        const fileInputId = this.getAttribute('id'); // This will be 'company_registration_delete'
+                        const fileInput = document.querySelector(`input[data-delete-btn="${fileInputId}"]`);
+                        
+                        // Reset the file input value
+                        fileInput.value = '';
+
+                        // Get the corresponding file name display span
+                        const fileNameSpanId = fileInput.getAttribute('data-file-name'); // This will be 'company_registration_name'
+                        const fileNameSpan = document.getElementById(fileNameSpanId);
+
+                        // Reset the file name display
+                        fileNameSpan.textContent = 'No file chosen';
+
+                        // Optionally, you can also remove the download link or add more logic here
+                        // if you want to remove the file from the backend as well.
+                    });
+                }); -->
             </script>
         </template>
     </data>

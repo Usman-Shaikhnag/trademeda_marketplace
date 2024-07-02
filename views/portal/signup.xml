@@ -38,302 +38,349 @@
                         </div>
                     </div>
                     <div class="sign-up form-container">
-                    <form action="/signup/createuser" method="post" enctype="multipart/form-data" >
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                        <div  id="form1">
-                            <div class="heading">
-                                <h1 class="">About your Organisation</h1>
+                        <form action="/signup/createuser" method="post" enctype="multipart/form-data" >
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <div  id="form1">
+                                <div class="heading">
+                                    <h1 class="">About your Organisation</h1>
 
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Company Name</span>
                                 </div>
-                                <div class="">
-                                    <input placeholder="Company Name" name="company_name" id="company_name" required="required" class="form-control"/>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Company Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="Company Name" name="company_name" id="company_name" required="required" class="form-control"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">We are:</span>
-                                </div>
-                                <div class="radio-group">
-                                    <input type="radio" id="buyer" name="role" value="buyer" checked="true"/>
-                                    <label for="buyer">Buyer</label>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">We are:</span>
+                                    </div>
+                                    <div class="radio-group">
+                                        <input type="radio" id="buyer" name="role" value="Buyer" checked="true"/>
+                                        <label for="buyer">Buyer</label>
 
-                                    <input type="radio" id="supplier" name="role" value="supplier"/>
-                                    <label for="supplier">Supplier</label>
+                                        <input type="radio" id="supplier" name="role" value="Supplier"/>
+                                        <label for="supplier">Supplier</label>
 
-                                    <input type="radio" id="both" name="role" value="both"/>
-                                    <label for="both">Both</label>
-                                </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">We are supplier of:</span>
-                                </div>
-                                <div class="">
-                                    <textarea id="supplier_textarea" name="supplier_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
-                                </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">We are buyer of:</span>
-                                </div>
-                                <div class="">
-                                    <textarea id="buyer_textarea" name="buyer_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
-                                </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">We are trader of:</span>
-                                </div>
-                                <div class="">
-                                    <textarea id="trader_textarea" name="trader_textarea" placeholder="fish,cane,ball,.." style="height:80px;"/>
-                                </div>
-                            </div>
-                            <div class="" style="display:flex;">
-                                <div class="text-input" style="width:50%;">
-                                    <div class="">
-                                        <span class="">Primary Business</span>
-                                    </div>
-                                    <div class="select-container">
-                                        <select id="business-type" name="business-type" required="required">
-                                            <option value="" selected="true">Select your business type</option>
-                                            <option value="buying-agent">Buying Agent</option>
-                                            <option value="dealer-reseller">Dealer / Reseller</option>
-                                            <option value="distributor">Distributor</option>
-                                            <option value="exporter">Exporter</option>
-                                            <option value="importer">Importer</option>
-                                            <option value="manufacturer">Manufacturer</option>
-                                            <option value="not-known">Not Known</option>
-                                            <option value="retailer">Retailer</option>
-                                            <option value="service-provider">Service Provider</option>
-                                            <option value="trader">Trader</option>
-                                        </select>
+                                        <input type="radio" id="both" name="role" value="Both"/>
+                                        <label for="both">Both</label>
                                     </div>
                                 </div>
-                                <div class="text-input" style="width:45%;">
+                                <div class="text-input">
                                     <div class="">
-                                        <span class="">Establishment Year</span>
+                                        <span class="">We are supplier of:</span>
                                     </div>
                                     <div class="">
-                                        <input type="number" name="establishment_year" required="required"/>
+                                        <textarea id="supplier_textarea" name="supplier_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="" style="display:flex;">
-                                <div class="text-input" style="width:50%;">
+                                <div class="text-input">
                                     <div class="">
-                                        <span class="">Approx,Annual Sales in USD</span>
+                                        <span class="">We are buyer of:</span>
                                     </div>
-                                    <div class="select-container">
-                                        <select id="annual-sales" name="annual-sales" required="required">
-                                            <option value="" selected="true"></option>
-                                            <option value="less-than-1000">Less than 1000 USD</option>
-                                            <option value="less-than-10000">Less than 10000 USD</option>
-                                            <option value="less-than-1000000">Less than 1000000 USD</option>
-                                            <option value="more-than-1000000">More than 1000000 USD</option>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="text-input" style="width:40%;">
                                     <div class="">
-                                        <span class="">Number of Employees</span>
-                                    </div>
-                                    <div class="select-container">
-                                        <select id="employees" name="employees" required="required">
-                                            <option value="" selected="true"></option>
-                                            <option value="less-than-10">Less than 10</option>
-                                            <option value="less-than-100">Less than 100</option>
-                                            <option value="less-than-1000">Less than 1000</option>
-                                            <option value="more-than-1000">More than 1000</option>
-                                            
-                                        </select>
+                                        <textarea id="buyer_textarea" name="buyer_textarea" placeholder="fish,cane,ball,.." style="height:80px;" required="required"/>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">We are trader of:</span>
+                                    </div>
+                                    <div class="">
+                                        <textarea id="trader_textarea" name="trader_textarea" placeholder="fish,cane,ball,.." style="height:80px;"/>
+                                    </div>
+                                </div>
+                                <div class="" style="display:flex;">
+                                    <div class="text-input" style="width:50%;">
+                                        <div class="">
+                                            <span class="">Primary Business</span>
+                                        </div>
+                                        <div class="select-container">
+                                            <select id="business-type" name="business-type" required="required">
+                                                <option value="" selected="true">Select your business type</option>
+                                                <option value="buying-agent">Buying Agent</option>
+                                                <option value="dealer-reseller">Dealer / Reseller</option>
+                                                <option value="distributor">Distributor</option>
+                                                <option value="exporter">Exporter</option>
+                                                <option value="importer">Importer</option>
+                                                <option value="manufacturer">Manufacturer</option>
+                                                <option value="not-known">Not Known</option>
+                                                <option value="retailer">Retailer</option>
+                                                <option value="service-provider">Service Provider</option>
+                                                <option value="trader">Trader</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-input" style="width:45%;">
+                                        <div class="">
+                                            <span class="">Establishment Year</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="number" name="establishment_year" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="" style="display:flex;">
+                                    <div class="text-input" style="width:50%;">
+                                        <div class="">
+                                            <span class="">Approx,Annual Sales in USD</span>
+                                        </div>
+                                        <div class="select-container">
+                                            <select id="annual-sales" name="annual-sales" required="required">
+                                                <option value="" selected="true"></option>
+                                                <option value="less-than-1000">Less than 1000 USD</option>
+                                                <option value="less-than-10000">Less than 10000 USD</option>
+                                                <option value="less-than-1000000">Less than 1000000 USD</option>
+                                                <option value="more-than-1000000">More than 1000000 USD</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-input" style="width:40%;">
+                                        <div class="">
+                                            <span class="">Number of Employees</span>
+                                        </div>
+                                        <div class="select-container">
+                                            <select id="employees" name="employees" required="required">
+                                                <option value="" selected="true"></option>
+                                                <option value="less-than-10">Less than 10</option>
+                                                <option value="less-than-100">Less than 100</option>
+                                                <option value="less-than-1000">Less than 1000</option>
+                                                <option value="more-than-1000">More than 1000</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-input">
 
-                                <div class="next-page-btn">
-                                    <button type="button" id="next1">Next</button>
+                                    <div class="next-page-btn">
+                                        <button type="button" id="next1">Next</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div  id="form2" style="display:none;">
-                            <div class="heading">
-                                <h1 class="">Your Contact Details</h1>
+                            <div  id="form2" style="display:none;">
+                                <div class="heading">
+                                    <h1 class="">Your Contact Details</h1>
 
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Your Name</span>
+                                </div>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Your Name</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Your Name" name="name" required="required"/>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="Your Name" name="name" required="required"/>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Designation</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Designation" name="designation" required="required"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Designation</span>
+                                        <span class="">Address</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Designation" name="designation" required="required"/>
+                                        <textarea name="address" style="height:80px;" required="required"/>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Address</span>
-                                </div>
-                                <div class="">
-                                    <textarea name="address" style="height:80px;" required="required"/>
-                                </div>
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Country</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <input placeholder="Country" name="country" required="required"/> -->
-                                        <select id="country" name="country" class="form-control" required="required">
-                                            <option value="">Select your country</option>
-                                            <t t-foreach="countries" t-as="country">
-                                                <option t-att-value="country.id">
-                                                    <t t-esc="country.name"/>
-                                                </option>
-                                            </t>
-                                        </select>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Country</span>
+                                        </div>
+                                        <div class="">
+                                            <!-- <input placeholder="Country" name="country" required="required"/> -->
+                                            <select id="country" name="country" class="form-control" required="required">
+                                                <option value="">Select your country</option>
+                                                <t t-foreach="countries" t-as="country">
+                                                    <option t-att-value="country.id">
+                                                        <t t-esc="country.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
 
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">State</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="State" name="state" required="required"/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">State</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">City</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="City" name="city" required="required"/>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="State" name="state" required="required"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">City</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="City" name="city" required="required"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Zip/Postal Code</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="Zip/Postal Code" name="zip_code" required="required"/>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Zip/Postal Code</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Zip/Postal Code" name="zip_code" required="required"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Country Code</span>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Country Code</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Country Code" name="country_code" required="required"/>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input placeholder="Country Code" name="country_code" required="required"/>
-                                    </div>
-                                </div>
 
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Phone Number</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Phone Number" name="phone_number" required="required"/>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="multi-input">
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Area Code (if any)</span>
+                                        </div>
+                                        <div class="">
+                                            <input placeholder="Area Code" name="area_code"/>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Email Address</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="email" placeholder="Email Address" name="company_email" required="required"/>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Phone Number</span>
+                                        <span class="">Company Website URL</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Phone Number" name="phone_number" required="required"/>
+                                        <input placeholder="www.example.com" name="website" required="required"/>
                                     </div>
                                 </div>
                                 
-                            </div>
-                            <div class="multi-input">
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Area Code (if any)</span>
-                                    </div>
-                                    <div class="">
-                                        <input placeholder="Area Code" name="area_code"/>
-                                    </div>
-                                </div>
-                                <div class="text-input">
-                                    <div class="">
-                                        <span class="">Email Address</span>
-                                    </div>
-                                    <div class="">
-                                        <input type="email" placeholder="Email Address" name="company_email" required="required"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Company Website URL</span>
-                                </div>
-                                <div class="">
-                                    <input placeholder="www.example.com" name="website" required="required"/>
-                                </div>
-                            </div>
-                            
-                            <div class="multi-input" style="margin-top:1rem;">
-                            
-                            
-                               <div class="next-page-btn">
-                                    <button type="button" id="prev1">Previous</button>
-                                </div>
+                                <div class="multi-input" style="margin-top:1rem;">
+                                
+                                
                                 <div class="next-page-btn">
-                                    <button type="button" id="next2">Next</button>
+                                        <button type="button" id="prev1">Previous</button>
+                                    </div>
+                                    <div class="next-page-btn">
+                                        <button type="button" id="next2">Next</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="form3" style="display:none;">
-                            <div class="heading">
-                                <h1 class="">Create Your Login to ensure your profile remains regularly updated</h1>
+                            <div id="form3" style="display:none;">
+                                <div class="heading">
+                                    <h1 class="">Create Your Login to ensure your profile remains regularly updated</h1>
 
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Email Address / Login</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="email" name="email" placeholder="user@email.com" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Password</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="password" name="password" class="form-control" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Confirm Password</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="password" name="confirm_password" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="" style="margin-top:1rem;">
+                    
+
+                                        <input type="checkbox" id="agree" name="agree" style="color:green;"/>
+                                        <label for="agree" >I agree to the <a onclick="open_tnc()" style="text-decoration: underline;">Terms and Conditions</a></label>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="multi-input" style="margin-top:1rem;">
+                                    <div class="next-page-btn">
+                                        <button type="button" id="prev2">Previous</button>
+                                    </div>
+                                    <div class="next-page-btn">
+                                        <button type="submit" id="submit" t-attf-href="/signup/createuser">Submit</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Email Address / Login</span>
-                                </div>
-                                <div class="">
-                                    <input type="email" name="email" placeholder="user@email.com" required="required"/>
-                                </div>
+                        </form>
+                    
+                    </div>
+                    <div class="terms_condition_container" id="terms_condition_container">
+                        <div class="inner_container">
+                            <div class="heading">
+                                <h2 style="color:#8fb15f">Terms and Conditions</h2>
                             </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Password</span>
-                                </div>
-                                <div class="">
-                                    <input type="password" name="password" class="form-control" required="required"/>
-                                </div>
+                            <div class="scrollable-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum orci nec nunc porttitor, ac euismod lectus vulputate.</p>
+                                <p>Fusce vel turpis a elit sollicitudin fringilla nec quis quam. Ut vehicula, metus non ultrices interdum, eros felis vehicula quam.</p>
+                                <p>Sed hendrerit varius risus, sit amet aliquam nunc scelerisque at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.</p>
+                                <p>Phasellus accumsan neque vel quam tristique, sit amet laoreet nulla bibendum. Quisque luctus neque id odio fermentum pharetra.</p>
+                                <p>Etiam eget justo id odio malesuada pharetra sit amet ac lacus. Maecenas tempus, odio ac fermentum faucibus, orci velit auctor risus.</p>
+                                <p>Integer convallis erat vitae lorem convallis, et tempor risus pulvinar. Aliquam erat volutpat. Suspendisse potenti.</p>
+                                <p>Donec pretium, velit ut facilisis aliquam, velit tortor efficitur risus, id tristique turpis orci ac arcu. Proin sed erat in sem.</p>
+                                <p>Morbi vehicula tellus sed purus fermentum, ac aliquam nisl cursus. Sed sit amet ultricies orci. Duis pharetra nec risus a venenatis.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum orci nec nunc porttitor, ac euismod lectus vulputate.</p>
+                                <p>Fusce vel turpis a elit sollicitudin fringilla nec quis quam. Ut vehicula, metus non ultrices interdum, eros felis vehicula quam.</p>
+                                <p>Sed hendrerit varius risus, sit amet aliquam nunc scelerisque at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices.</p>
+                                <p>Phasellus accumsan neque vel quam tristique, sit amet laoreet nulla bibendum. Quisque luctus neque id odio fermentum pharetra.</p>
+                                <p>Etiam eget justo id odio malesuada pharetra sit amet ac lacus. Maecenas tempus, odio ac fermentum faucibus, orci velit auctor risus.</p>
+                                <p>Integer convallis erat vitae lorem convallis, et tempor risus pulvinar. Aliquam erat volutpat. Suspendisse potenti.</p>
+                                <p>Donec pretium, velit ut facilisis aliquam, velit tortor efficitur risus, id tristique turpis orci ac arcu. Proin sed erat in sem.</p>
+                                <p>Morbi vehicula tellus sed purus fermentum, ac aliquam nisl cursus. Sed sit amet ultricies orci. Duis pharetra nec risus a venenatis.</p>
                             </div>
-                            <div class="text-input">
-                                <div class="">
-                                    <span class="">Confirm Password</span>
-                                </div>
-                                <div class="">
-                                    <input type="password" name="confirm_password" required="required"/>
-                                </div>
-                            </div>
-                            <div class="multi-input" style="margin-top:1rem;">
-                               <div class="next-page-btn">
-                                    <button type="button" id="prev2">Previous</button>
+                            <div class="multi-input" style="margin-top:1rem;" id="tnc_buttons">
+                                <div class="next-page-btn">
+                                    <button type="button" id="download">Download</button>
                                 </div>
                                 <div class="next-page-btn">
-                                    <button type="submit" id="submit" t-attf-href="/signup/createuser">Submit</button>
+                                    <button id="close_tnc" onclick="close_tnc()" >Close</button>
                                 </div>
                             </div>
+
                         </div>
-                    </form>
+                            
+
                     </div>
                 </div>
 
@@ -341,7 +388,14 @@
 
             </main>
             <script>
-                
+                function close_tnc(){
+                    document.getElementById('terms_condition_container').style.display = 'none'
+                    
+                }
+                function open_tnc(){
+                    document.getElementById('terms_condition_container').style.display = 'block'
+                    
+                }
 
 
                 document.getElementById('form1').classList.add('active')
