@@ -503,7 +503,54 @@
                                     
                                 </div>
                             </div>
-                            <div class="inner-card" id="new_product">
+                            <div class="new_product_tab" id="new_product" style='margin-top:1rem;padding: 15px 0px;'>
+                                <div class="outer-product">
+                                    <div class="left-product">
+                                        <div class="general">
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Name</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Category</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Category" name="product_category" id="product_category" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Description</span>
+                                                </div>
+                                                <div class="">
+                                                    <textarea placeholder="Product Description" name="product_description" id="product_description" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="delivery"></div>
+                                    </div>
+                                    <div class="right-product">
+                                        <div class="add-product">
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Name</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="inner-card" id="product_management">
                             </div>

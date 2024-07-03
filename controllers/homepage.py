@@ -140,7 +140,13 @@ class HomepageController(http.Controller):
             email = kw.get("email")
 
             partner_id.sudo().write({
-                'phone':phone
+                'phone':phone,
+                'city':city,
+                'zip':zip_code,
+                'state_id':state,
+                'email':email
+                
+
             })
             return request.redirect("/profile")
 
