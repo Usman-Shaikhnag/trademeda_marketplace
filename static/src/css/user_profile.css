@@ -283,7 +283,6 @@ input[type="file"] {
     color: red;
 }
 #new-product{
-    display: block !important;
     padding: 15px 0px;
     margin-top: 1rem;
 }
@@ -297,6 +296,11 @@ input[type="file"] {
     flex-direction: column;
     border-radius: 8px;
 }
+.right-product {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
 .general {
     background-color: white;
     border-radius: 8px;
@@ -306,4 +310,50 @@ input[type="file"] {
 }
 .delivery {
     background-color: white;
+    margin-top: 1rem;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 30px;
+}
+.add-product {
+    background-color: white;
+    border-radius: 8px;
+    padding-top: 8px;
+    padding-bottom: 30px;
+    padding-left: 8px;
+    margin-right: 8px;
+
+}
+
+.image-file-label {
+    display: inline-flex;
+    color: #8fb15f;
+    text-align: center;
+    padding: 10px 30px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    border: 2px dotted #8fb15f;
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+}
+.money-related {
+    background-color: white;
+    border-radius: 8px;
+    padding-top: 8px;
+    padding-bottom: 30px;
+    padding-left: 8px;
+    margin-top: 1rem;
+    margin-right: 8px;
+}
+.table {
+    height: 40px;
+    width:95%;
+    color: #8fb15f;
+    border: 2px solid #8fb15f;
+    margin-top: 1rem;
 }

@@ -235,6 +235,8 @@ body {
     left: 10%;
     background-color: #f6f6f6;
     overflow: hidden;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+
 }
 
 .scrollable-content {

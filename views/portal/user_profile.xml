@@ -45,7 +45,7 @@
 
                             </div>
                             <div class="username">
-                                <span><b>Justin Stylus</b></span>
+                                <b><span t-att-value="partner.name" /></b>
                                 <div class="">
                                     <span class="" style="color:#8fb15f;margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
 
@@ -94,7 +94,7 @@
                     <div class="right">
                         <form action="/profile/updateuser" method="post" enctype="multipart/form-data" class="">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                            <div class="edit-profile">
+                            <div class="edit-profile" id="edit_profile_form">
                                 <div class="edit-profile-text">
                                     <h3>Edit Profile</h3>
                                     <p>Edit Profile Form</p>
@@ -104,6 +104,17 @@
                                 </div>
 
                             </div>
+
+                            <!-- <div class="edit-profile" id="add_new_product_form">
+                                <div class="edit-profile-text">
+                                    <h3>Add New Product</h3>
+                                    <p>Add New Product Form</p>
+                                </div>
+                                <div class="update-btn">
+                                    <button type="submit">Add Product</button>
+                                </div>
+
+                            </div> -->
                             <div class="inner-card" id="company_details">
                                 <div class="heading">
                                     <h2>Company Details</h2>
@@ -113,7 +124,7 @@
                                         <span class="">Company Name</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="Company Name" name="company_name" id="company_name" class="form-control" t-att-value="partner.x_studio_company_name"/>
+                                        <input placeholder="Company Name" name="company_name" id="company_name" class="form-control" t-att-value="partner.parent_id.name"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -121,7 +132,7 @@
                                         <span class="">Company Details</span>
                                     </div>
                                     <div class="">
-                                        <textarea placeholder="Company Details" t-esc="partner.x_studio_company_details" name="company_details" id="company_details" class="form-control"/>
+                                        <textarea placeholder="Company Details" t-esc="partner.company_details" name="company_details" id="company_details" class="form-control"/>
 
                                     </div>
                                 </div>
@@ -131,7 +142,7 @@
                                             <span class="">Contact Person Name</span>
                                         </div>
                                         <div class="">
-                                            <input placeholder="Contact Person Name" t-att-value="partner.x_studio_contact_person_name" name="contact_person"/>
+                                            <input placeholder="Contact Person Name" t-att-value="partner.contact_person_name" name="contact_person"/>
                                         </div>
                                     </div>
                                     <div class="text-input">
@@ -139,7 +150,7 @@
                                             <span class="">Year of Establishment</span>
                                         </div>
                                         <div class="">
-                                            <input type="number" t-att-value="partner.x_studio_establishment_year_1" placeholder="2020" name="establishment_year"/>
+                                            <input type="number" t-att-value="partner.establishment_year" placeholder="2020" name="establishment_year"/>
                                         </div>
                                     </div>
                                 </div>
@@ -150,27 +161,16 @@
                                         </div>
                                         <div class="select-container">
                                             
-                                            <select id="annual-sales" name="annual-sales" class="form-control">
+                                            <select id="no_of_employees" name="no_of_employees" class="form-control">
                                                 <!-- Iterate over the selection options -->
-                                                <t t-foreach="partner._fields['x_studio_number_of_employees'].selection" t-as="option">
-                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.x_studio_number_of_employees and 'selected'">
+                                                <t t-foreach="partner._fields['no_of_employees'].selection" t-as="option">
+                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.no_of_employees and 'selected'">
                                                         <t t-esc="option[1]"/>
                                                     </option>
                                                 </t>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="text-input">
-                                        <div class="">
-                                            <span class="">Company Awards</span>
-                                        </div>
-                                        <div class="">
-                                            <input  placeholder="" name="awards" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="multi-input">
                                     <div class="text-input" style="width:50%;">
                                         <div class="">
                                             <span class="">Approx,Annual Sales in USD</span>
@@ -179,23 +179,17 @@
                                             
                                             <select id="annual-sales" name="annual-sales" class="form-control">
                                                 <!-- Iterate over the selection options -->
-                                                <t t-foreach="partner._fields['x_studio_annual_sales'].selection" t-as="option">
-                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.x_studio_annual_sales and 'selected'">
+                                                <t t-foreach="partner._fields['annual_sales'].selection" t-as="option">
+                                                    <option t-att-value="option[0]" t-att-selected="option[0] == partner.annual_sales and 'selected'">
                                                         <t t-esc="option[1]"/>
                                                     </option>
                                                 </t>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="text-input">
-                                        <div class="">
-                                            <span class="">Company Certifications</span>
-                                        </div>
-                                        <div class="">
-                                            <input  placeholder="" name="certifications"/>
-                                        </div>
-                                    </div>
                                 </div>
+
+
 
                                 <div class="multi-input">
                                     <div class="text-input">
@@ -211,7 +205,7 @@
                                             <span class="">Company Email Address</span>
                                         </div>
                                         <div class="">
-                                            <input type="email" placeholder="" t-att-value="partner.x_studio_company_email" name="company_email"/>
+                                            <input type="email" placeholder="" t-att-value="partner.company_email" name="company_email"/>
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +216,7 @@
                                             <span class="">Company Address</span>
                                         </div>
                                         <div class="">
-                                            <input placeholder="Company Address" t-att-value="partner.x_studio_company_address" name="company_address"/>
+                                            <input placeholder="Company Address" t-att-value="partner.company_address" name="company_address"/>
                                         </div>
                                     </div>
                                     <div class="text-input">
@@ -362,11 +356,139 @@
                                             <span class="">Area Code (if any)</span>
                                         </div>
                                         <div class="">
-                                            <input placeholder="" t-att-value="partner.x_studio_area_code" name="area_code"/>
+                                            <input placeholder="" t-att-value="partner.area_code" name="area_code"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div id="new_product" style='margin-top:1rem;padding: 15px 0px;'>
+                                <div class="outer-product">
+                                
+                                    <div class="left-product">
+                                        <div class="general">
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Name</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Category</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Category" name="product_category" id="product_category" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Description</span>
+                                                </div>
+                                                <div class="">
+                                                    <textarea placeholder="Product Description" name="product_description" id="product_description" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="delivery">
+                                            <div class="heading">
+                                                <h2>Delivery Related</h2>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Quantity</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="" name="quantity" id="quantity" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Packaging Requirement</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Carton"  name="packaging_requirement" id="packaging_requirement" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Load Ability</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="" name="load_ability" id="load_ability" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Delivery (in Days)</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="" name="delivery_days" id="delivery_days" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right-product">
+                                        <div class="add-product">
+                                            <div class="text-input" style="margon-top:2px">
+                                                <div class="">
+                                                    <span class="">Upload Image</span>
+                                                </div>
+                                                 <div class="file-upload-wrapper">
+                                                    <input type="file" id="upload_product" name="upload_product" class="file-input" data-file-name="upload_product_name" data-delete-btn="upload_product_delete"/>
+                                                    <label for="upload_product" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                    <span id="upload_product_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                    <span id="upload_product_name" class="file-name">No file chosen</span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="money-related">
+                                            <div class="heading">
+                                                <h2>Money Related</h2>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Price (in USD)</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="" name="product_price" id="product_price" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Mode of Payment</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Mode of Payment"  name="payment_code" id="payment_code" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Sample Policy</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Sample Policy" name="sample_policy" id="sample_policy" class="form-control"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                
+
+                                </div>
+
+                            </div>
+                            
                             <div class="inner-card" id="documents">
                                 <div class="heading">
                                     <h2>Your Documents</h2>
@@ -391,13 +513,13 @@
                                             <input type="file" id="company_registration" name="company_registration" class="file-input" data-file-name="company_registration_name" data-delete-btn="company_registration_delete"/>
                                             <label for="company_registration" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
                                             
-                                            <t t-if="partner.x_studio_company_registration">
-                                                <a t-att-href="'/web/content/' + str(partner.id) + '?model=res.partner&amp;field=x_studio_company_registration&amp;filename_field=x_studio_company_registration_filename&amp;download=true'" class="file-name">
-                                                    <t t-esc="partner.x_studio_company_registration_filename or 'Download File'"/>
+                                            <t t-if="partner.company_registration">
+                                                <a t-att-href="'/web/content/' + str(partner.id) + '?model=res.partner&amp;field=company_registration&amp;filename_field=company_registration_filename&amp;download=true'" class="file-name">
+                                                    <t t-esc="partner.company_registration_filename or 'Download File'"/>
                                                 </a>
                                                 <span id="company_registration_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
                                             </t>
-                                            <t t-if="not partner.x_studio_company_registration">
+                                            <t t-if="not partner.company_registration">
                                                 <span id="company_registration_name" class="file-name">No file chosen</span>
                                             </t>
                                         </div> -->
@@ -488,70 +610,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="multi-input">
+                                <!-- <div class="multi-input">
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Other Documents</span>
+                                            <span class="">Awards</span>
                                         </div>
                                         <div class="file-upload-wrapper">
-                                            <input type="file" id="other_documents" name="other_documents" class="file-input" data-file-name="other_documents_name" data-delete-btn="other_documents_delete"/>
-                                            <label for="other_documents" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
-                                            <span id="other_documents_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
-                                            <span id="other_documents_name" class="file-name">No file chosen</span>
+                                            <input type="file" id="awards" name="awards" class="file-input" data-file-name="awards_name" data-delete-btn="awards_delete"/>
+                                            <label for="awards" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="awards_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="awards_name" class="file-name">No file chosen</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Certifications</span>
+                                        </div>
+                                        <div class="file-upload-wrapper">
+                                            <input type="file" id="certifications" name="certifications" class="file-input" data-file-name="certifications_name" data-delete-btn="certifications_delete"/>
+                                            <label for="certifications" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                            <span id="certifications_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                            <span id="certifications_name" class="file-name">No file chosen</span>
                                         </div>
                                     </div>
                                     
-                                </div>
+                                </div> -->
+                                <!-- <table class="table">
+                                    <thead>
+                                        <th>Certificate Details</th>
+                                        <th>Attachment</th>
+                                    </thead>
+                                    <tbody class="">
+
+                                    </tbody>
+
+                                </table> -->
+                                <!-- <div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Certificate Details</th>
+                                                    <th>Attachment</th>
+                                                    <th>Action</th>
+                                                    
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>
+                                        </table>
+                                </div> -->
+                                
                             </div>
-                            <div class="new_product_tab" id="new_product" style='margin-top:1rem;padding: 15px 0px;'>
-                                <div class="outer-product">
-                                    <div class="left-product">
-                                        <div class="general">
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Name</span>
-                                                </div>
-                                                <div class="">
-                                                    <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Category</span>
-                                                </div>
-                                                <div class="">
-                                                    <input placeholder="Category" name="product_category" id="product_category" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Description</span>
-                                                </div>
-                                                <div class="">
-                                                    <textarea placeholder="Product Description" name="product_description" id="product_description" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="delivery"></div>
-                                    </div>
-                                    <div class="right-product">
-                                        <div class="add-product">
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Name</span>
-                                                </div>
-                                                <div class="">
-                                                    <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
+                            
                             <div class="inner-card" id="product_management">
                             </div>
                             <div class="inner-card" id="queries">
@@ -564,10 +676,14 @@
             <script>
                     document.getElementById('company_details').style.display = 'flex'
                     document.getElementById('contact_details').style.display = 'flex'
+                    document.getElementById('new_product').style.display = 'none'
+
                 function enable_documents(element){
                     document.getElementById('documents').style.display = 'flex'
                     document.getElementById('company_details').style.display = 'none'
                     document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('new_product').style.display = 'none'
+
 
                     document.querySelectorAll('.menu-item').forEach(function(item) {
                             item.classList.remove('active');
@@ -603,7 +719,7 @@
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('company_details').style.display = 'none'
                     document.getElementById('contact_details').style.display = 'none'
-                    document.getElementById('new_product').style.display = 'flex'
+                    document.getElementById('new_product').style.display = 'block'
 
                     
                     document.querySelectorAll('.menu-item').forEach(function(item) {

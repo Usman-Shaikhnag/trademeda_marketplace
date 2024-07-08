@@ -80,7 +80,7 @@ class HomepageController(http.Controller):
                     'name':name,
                     'membership_state':'free',
                     'free_member':True,
-                    'x_studio_member_type':kw.get('role')
+                    'member_type':kw.get('role')
                     # 'x_studio_member_type':
                 })
                 
@@ -186,3 +186,9 @@ class HomepageController(http.Controller):
             #     return request.redirect("/signup?error=upload_failed")
 
             # return request.redirect("/signup")
+
+    @http.route('/profile/supplier', auth='public', website=True)
+    def update_profile(self, **kwargs):
+        # import wdb;wdb.set_trace()
+
+        return request.render('trademeda.supplier_profile')

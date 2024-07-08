@@ -10,7 +10,30 @@
                         <field name="name"/>
                     </group>
                     <notebook>
-                        <page string="Product Lines">
+                        <page string="Subcategories">
+                            <field name="subcategories_lines">
+                                <tree>
+                                    <field name="subcategories"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_form_product_subcategory" model="ir.ui.view">
+        <field name="name">product.subcategory.form</field>
+        <field name="model">product.subcategories</field>
+        <field name="arch" type="xml">
+            <form string="Product Subcategory">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Products">
                             <field name="product_lines">
                                 <tree>
                                     <field name="product_id"/>

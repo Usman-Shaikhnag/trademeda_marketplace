@@ -1,0 +1,201 @@
+body{
+    background-color: #f6f6f6;
+}
+main {
+    margin: 3%;
+    display: grid;
+    /* grid-template-columns: 80% 20%; */
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    padding: 1rem;
+    gap:1rem
+}
+.left {
+    margin-right: 1rem;
+    background-color: white;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+
+}
+
+
+.logo{
+    width: 100%;
+    height: 60px;
+}
+
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    width: 50%;
+}
+.search-container button {
+    background: #b63032;
+    border-radius: 5px;
+    padding: 8px 2rem;
+    color: fff;
+    width: 25%;
+    border: none;
+
+}
+
+.search-container input{
+    padding: 0px 2rem;
+    width: 60%;
+    border-radius: 5px;
+
+}
+.company-header {
+
+}
+.company_name h1{
+    color: #8fb15f;
+    margin-left: 1rem;
+}
+.tabs {
+    display: flex;
+    margin: 0 10px;
+    color: #8c8585;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ddd; /* Add a bottom border for the tabs container */
+}
+
+/* Styling individual tabs */
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Active tab styling */
+.tab.active {
+    color: #8fb15f;
+    border-bottom: 2px solid #8fb15f; /* Indicate active tab with a bottom border */
+    font-weight: bold;
+}
+
+/* Content area for each tab */
+.tab-content {
+    padding: 20px;
+    
+    border-top: none; /* Remove top border to align with the tabs */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    margin-top: -1px; /* Slightly overlap to hide the border gap */
+}
+
+/* Hide content that is not active */
+.content {
+    display: none;
+}
+
+/* Show the active content */
+.content.active {
+    display: block;
+    width: 95%;
+}
+
+/* Focus outline */
+.tabs:focus .tab {
+    outline: 2px solid #8fb15f;
+    outline-offset: -2px;
+}
+.company-detail {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    padding: 20px;
+    gap: 20px;
+}
+.company-image {
+    width: 100%;
+}
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    background-color: gray;
+  }
+.details-text {
+    margin: 0;
+}
+/* .card{
+    width: 100%;
+    height: 200px;
+} */
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%;
+    margin: 20px;
+    gap:1rem;
+}
+
+.product-image img{
+    max-width: 250px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.company-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.company-detail-header button{
+    padding: 1rem;
+    border-radius: 5px;
+    color: white;
+    background-color: #8fb15f;
+    border: none
+}
+.contact-us{
+    display: none;
+    position: absolute;
+    height: 70vh;
+    width: 45%;
+    max-width: 50%;
+    max-height: 70vh;
+    justify-self: center;
+    border-radius: 8px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    /* align-items: center; */
+    background-color: white;
+    padding-left: 1rem;
+
+
+}
+
+.text-input{
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.text-input input,textarea,select{
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 8px;
+    width: 90%;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid lightgrey;
+    padding-left: 10px;
+}

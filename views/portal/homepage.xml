@@ -41,7 +41,7 @@
                         <t t-foreach="product_categories" t-as="category">
                             <div class="category-item">
                                 <!-- <i t-out="category.x_studio_icon"></i> -->
-                                <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/>
+                                <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
                                  <t t-out="category.name"/>
                             </div>
                             

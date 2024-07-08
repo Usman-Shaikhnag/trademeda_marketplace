@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <template id="header" name="Header">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+            </xpath>
+                <div class="header">
+                    <div class="logo-container">
+                        <img src="/trademeda/static/src/img/trademeda_white_logo.png" alt="profile photo" class="logo"/>
+                    </div>
+                    <!-- <div class="search-bar">
+                        
+                    </div> -->
+                    <div class="search-container">
+                        <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
+                        <button class="search_btn">Find Buyers</button>
+                        <button class="search_btn">Find Suppliers</button>
+                    </div>
+                    
+                    <div class="">
+                        <span class="" style="color:#f6f6f6">+91 1234567890</span>
+                        <img src="/trademeda/static/src/img/profile.png" alt="profile" style="height:30px"/>
+                        
+                    </div>
+                    <div class="">
+                        <span class="divider" style="margin-top: 5px;"></span>
+                        <span class="divider" style="margin-top: 5px;"></span>
+                        <span class="divider" style="margin-top: 5px;"></span>
+
+                    </div>
+                   
+
+                </div>
+        </template>
+    </data>
+</odoo>
