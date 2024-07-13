@@ -33,11 +33,30 @@ class HomepageController(http.Controller):
 
         user = request.env.user
         partner_id = user.partner_id
+        categories = request.env['product.categories'].sudo().search([])
+        subcategories = request.env['product.subcategories'].sudo().search([])
+        products = request.env['product.template'].sudo().search([])
+        user_products = request.env['product.customer.images'].sudo().search([('partner_id','=',partner_id.id)])
+
         vals = {
             'user':user,
-            'partner':partner_id
+            'partner':partner_id,
+            'categories':categories,
+            'subcategories':subcategories,
+            'products':products,
+            'user_products':user_products,
+            't_product_id':1
+
         }
         return request.render('trademeda.user_profile',vals)
+    
+    @http.route(['/my/products/subcategories'], type='http', auth="user")
+    def get_subcategories(self, category_id):
+        subcategories = request.env['product.subcategories'].sudo().search([('category_id', '=', int(category_id))])
+        subcategory_list = [{'id': subcategory.id, 'name': subcategory.name} for subcategory in subcategories]
+        import wdb;wdb.set_trace()
+
+        return {'subcategories': subcategory_list}
         
     @http.route(['/signup/createuser'], method=["POST"], type="http", auth="public", website=True)
     def CreateUser(self, **kw):
@@ -152,43 +171,101 @@ class HomepageController(http.Controller):
 
 
 
-            # try:
-            # # Get file data from request
-            #     company_registration_file = kw.get('company_registration').read() if 'company_registration' in kw else False
-            #     company_address_proof_file = kw.get('company_address_proof').read() if 'company_address_proof' in kw else False
-            #     identity_proof_file = kw.get('identity_proof').read() if 'identity_proof' in kw else False
-            #     trading_license_file = kw.get('trading_license').read() if 'trading_license' in kw else False
-            #     other_documents_file = kw.get('other_documents').read() if 'other_documents' in kw else False
-            #     prior_import_export_file = kw.get('prior_import_export').read() if 'prior_import_export' in kw else False
-            #     tax_id_proof_file = kw.get('tax_id_proof').read() if 'tax_id_proof' in kw else False
-                
-            #     # Convert file content to base64 (optional)
-            #     def convert_to_base64(file_data):
-            #         if file_data:
-            #             return base64.b64encode(file_data)
-            #         return False
-                
-            #     # Write to partner record
-            #     partner_id.sudo().write({
-            #         'x_studio_company_registration': convert_to_base64(company_registration_file),
-            #         'x_studio_company_address_proof': convert_to_base64(company_address_proof_file),
-            #         'x_studio_identity_proof': convert_to_base64(identity_proof_file),
-            #         'x_studio_trading_license': convert_to_base64(trading_license_file),
-            #         'x_studio_other_documents': convert_to_base64(other_documents_file),
-            #         'x_studio_proof_of_prior_import_export': convert_to_base64(prior_import_export_file),
-            #         'x_studio_tax_id_proof': convert_to_base64(tax_id_proof_file),
-            #     })
-
-            #     return request.redirect("/profile")
-
-            # except Exception as e:
-            #     # Handle exception (e.g., file read error, database update error)
-            #     return request.redirect("/signup?error=upload_failed")
-
-            # return request.redirect("/signup")
-
     @http.route('/profile/supplier', auth='public', website=True)
-    def update_profile(self, **kwargs):
+    def supplier_profile(self, **kwargs):
         # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        products = request.env['product.customer.images'].sudo().search([('partner_id','=',7)])
 
-        return request.render('trademeda.supplier_profile')
+        vals = {
+            "products": products,
+            'partner':partner_id
+            }
+
+
+        return request.render('trademeda.supplier_profile',vals)
+    
+
+    @http.route(['/profile/updatedocuments'], method=["POST"], type="http", auth="user", website=True)
+    def UpdateDocuments(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        if request.httprequest.method == 'POST':
+            # Extract form data
+            company_registration = kw.get("company_registration").read()
+            company_registration_name = kw.get("company_registration_name")
+
+            company_address_proof = kw.get("company_address_proof").read()
+            company_address_proof_name = kw.get("company_address_proof_name")
+
+            trading_license = kw.get("trading_license").read()
+            trading_license_name = kw.get("trading_license_name")
+
+            identity_proof = kw.get("identity_proof").read()
+            identity_proof_name = kw.get("identity_proof_name")
+
+            prior_import_export = kw.get("prior_import_export").read()
+            prior_import_export_name = kw.get("prior_import_export_name")
+
+            tax_id_proof = kw.get("tax_id_proof").read()
+            tax_id_proof_name = kw.get("tax_id_proof_name")
+
+            if company_registration:
+                partner_id.sudo().write({
+                    'company_registration':base64.b64encode(company_registration),
+                    'company_registration_name':company_registration_name,
+                })
+
+            if company_address_proof:
+                partner_id.sudo().write({
+                    'company_address_proof':base64.b64encode(company_address_proof),
+                    'company_address_proof_name':company_address_proof_name,
+                })
+
+            if trading_license:
+                partner_id.sudo().write({
+                    'trading_license':base64.b64encode(trading_license),
+                    'trading_license_name':trading_license_name,
+                })
+            
+            if identity_proof:
+                partner_id.sudo().write({
+                    'identity_proof':base64.b64encode(identity_proof),
+                    'identity_proof_name':identity_proof_name,
+                })
+
+            if prior_import_export:
+                partner_id.sudo().write({
+                    'prior_import_export':base64.b64encode(prior_import_export),
+                    'prior_import_export_name':prior_import_export_name,
+                })
+
+            if tax_id_proof:
+                partner_id.sudo().write({
+                    'tax_id_proof':base64.b64encode(tax_id_proof),
+                    'tax_id_proof_name':tax_id_proof_name
+                })
+
+            return request.redirect("/profile")
+        
+
+    @http.route(['/profile/addproduct'], method=["POST"], type="http", auth="user", website=True)
+    def addProducts(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        if request.httprequest.method == 'POST':
+            # Extract form data
+            product_image = kw.get('upload_product').read()
+            product_description = kw.get('product_description')
+
+            if product_image:
+                partner_id.product_images.sudo().create({
+                    'partner_id': partner_id.id,
+                    'product_image':base64.b64encode(product_image),
+                    'product_description':product_description
+                })
+
+            return request.redirect("/profile")

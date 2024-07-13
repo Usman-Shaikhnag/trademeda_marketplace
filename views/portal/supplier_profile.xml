@@ -38,17 +38,68 @@
                 
                 <div class="left">
                     <div class="company_header">
-                        <div class="company_name">
-                            <h1>Live Corporation</h1>
+                        <div class="company_name" style="display: flex;">
+                            <img src="/trademeda/static/src/img/company.png" alt="" class="company-image"/>
+                            <div>
+                                <h1 t-esc="partner.parent_id.name" style="margin-bottom: 4px;"/>
+
+                                <!-- <div class="rating-container">
+                                    <div class="star-svg">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                            </svg>
+                                        </span>
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                            </svg>
+                                        </span>
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                            </svg>
+                                        </span>
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                            </svg>
+                                        </span>
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                            </svg>
+                                        </span>
+                                        <span><p>(5.0)</p></span>
+                                    </div>
+
+
+                                </div> -->
+                                <div class="rating-container">
+                                    <div class="star-svg" id="star-container">
+                                        <!-- Stars will be filled dynamically here -->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- start  -->
+                                
+                            <!-- end  -->
+
                         </div>
+                        <button class="btn-btn" onclick="open_contact_us(this)" >
+                            <a class="" id="contact_us">Contact Us</a>
+                        </button>
                     </div>
                     <div class="tabs">
                         <span id="tab1" class="tab active">Company</span>
                         <span id="tab2" class="tab">Products</span>
                         <span id="tab3" class="tab">Management</span>
                         <span id="tab4" class="tab">Certifications</span>
-                        <span id="tab4" class="tab">Awards</span>
-                        <span id="tab4" class="tab">News Room</span>
+                        <span id="tab5" class="tab">Awards</span>
+                        <span id="tab6" class="tab">News Room</span>
+                        <span id="tab7" class="tab">Members Only</span>
+
 
                         <!-- <span id="tab4" class="tab">Contact Us</span> -->
                     </div>
@@ -59,7 +110,9 @@
                         <div id="content1" class="content active">
                             <div class="company-detail-header">
                                 <h3>Our Company</h3>
-                                <button id="contact_us">Contact Us</button>
+                                <span style="color:#8fb15f"><t t-esc="partner.country_id.name" /></span>
+                                <span class="product-date">Jul-05-23</span>
+                                <!-- <button id="contact_us">Contact Us</button> -->
                             </div>
                             <div class="company-detail">
                                 <div class="">
@@ -70,30 +123,123 @@
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
                                     </p>
                                 </div>
+                                <!-- <details class="">
+                                    <summary class="">Click to View</summary>
+                                    <p class="details-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+                                    </p>
+                                </details> -->
                             </div>
                         </div>
-                        <div id="content2" class="content">
-                            <div class="card">
-                                <div class="product-image">
-                                    <img src="/trademeda/static/src/img/product_shampoo.png" alt="Product Image" class="product-image"/>
-                                </div>
-                                <div class="product-info">
-                                    <h2>Product Title</h2>
-                                    <span><b>Description:</b> This is a detailed description of the product. It highlights the key features and benefits to entice potential customers.</span>
-                                    <div class="">
-                                        <span class="" style="margin-top:1rem;"><b>Specifications</b></span>
-                                        <ul>
-                                            <li>Anti Dandruff</li>
-                                            <li>Silky Hair</li>
-                                        </ul>
+                        <div id="content2" class="content" style="position:relative;">
+                                
+                                <t t-foreach="request.env['product.customer.images'].sudo().search([('partner_id','=',7)])" t-as="product">
+                                    <div class="product-card">
+                                        <div class="product-header">
+                                            <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#8fb15f;text-decoration:none;"></a></h3>
+                                            <span style="color:#8fb15f">Supplier from <t t-esc="partner.country_id.name" /></span>
+                                            <span class="product-date">Jul-05-23</span>
+                                        </div>
+                                        <div class="product-content">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+                                            <p class="product-description" t-esc="product.product_description"/>
+                                        </div>
+                                        <div class="product-actions">
+                                            <a class="inquire-now" onclick="open_enquiry_form(this)">
+                                                <i class="fa fa-envelope"></i> Inquire Now
+                                            </a>
+                                            <!-- t-attf-href="/add-to-favourites/{{product.id}}"  -->
+                                            <a  onclick="add_to_favourites(product.id)" class="add-to-favorites">
+                                                <i class="fa fa-heart"></i> Add to Favorites
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                            <!-- enquiry popup start  -->
+                                    <div class="contact-us" style="" id="product-enquiry-form">
+                                        <div class="company_name" style="display:flex;justify-content:center;">
+                                            <h1>Sending Inquiry For: <t t-esc="product.product_id.name"/> </h1>
+                                        </div>
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Message</span>
+                                            </div>
+                                            <div class="">
+                                                <textarea placeholder="Message" name="message" id="message"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Your Name</span>
+                                            </div>
+                                            <div class="">
+                                                <input placeholder="Your Name" name="buyer_name" id="buyer_name"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Your Email</span>
+                                            </div>
+                                            <div class="">
+                                                <input type="email" placeholder="Your Email" name="buyer_email" id="buyer_email"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Your Phone</span>
+                                            </div>
+                                            <div class="">
+                                                <input type="phone" placeholder="Your Phone" name="buyer_phone" id="buyer_phone"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Country</span>
+                                            </div>
+                                            <div class="">
+                                                <input email="buyer_country" id="buyer_country"/>
+                                            </div>
+                                        </div>
+                                        <div class="btn-container">
+                                            <button class="">Send Enquiry</button>
+                                            <button onclick="close_enquiry_form()" id="close_enquiry_form" class="">Close</button>
+                                        </div>
+                                    </div>
+                                </t>
+
+
+                                
+                                <!-- end  -->
+
                         </div>
+                        
                         <div id="content3" class="content">Content for Management</div>
-                        <div id="content4" class="content">Content for News</div>
                         <div id="content4" class="content">Content for Awards</div>
-                        <div id="content4" class="content">Content for Certifications</div>
+                        <div id="content5" class="content">Content for Certifications</div>
+                        <div id="content6" class="content">
+                        
+                           
+                            <div id="news_management">
+
+                                    <div class="news-heading">
+                                        <!-- <h1>News Heading</h1> -->
+                                        <h1 id="news-heading-text"><t t-esc="partner.news_title"/></h1>
+                                    </div>
+                                    <div class="news-image-container">
+                                        <img t-att-src="'data:image/png;base64,' + partner.news_image.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                        
+                                        
+                                    </div>
+                                    <div class="news-content">
+                                        <p id="news-content" name="news-content" t-esc="partner.news_text"/>
+                                    </div>
+                                    
+                            </div>
+                            <!-- end  -->
+                        </div>
+                        <div id="content7" class="content">Members Only Content</div>
+
+
+
 
                         <!-- <div id="content4" class="content">Content for Contact us</div> -->
 
@@ -102,6 +248,9 @@
                     
                 </div>
                 <div class="contact-us" id="contact-us-form">
+                    <div class="company_name" style="display:flex;justify-content:center;">
+                        <h1>Contact Us</h1>
+                    </div>
                     <div class="text-input">
                         <div class="">
                             <span class="">Message</span>
@@ -142,7 +291,12 @@
                             <input email="buyer_country" id="buyer_country"/>
                         </div>
                     </div>
+                    <div class="btn-container">
+                        <button class="">Send Enquiry</button>
+                        <button onclick="close_contactus_form(this)" id="close_contactus_form" class="">Close</button>
+                    </div>
                 </div>
+                
                 
             </main>
             <script>
@@ -167,11 +321,50 @@
                         });
                     });
                 });
-                contact_us
-                contact_us = document.getElementById('contact_us');
-                contact_us.addEventListener('DOMContentLoaded', function() {
+                
+                function open_contact_us(element) {
+                    document.getElementById('contact-us-form').style.display = 'flex'
+                }
+                function close_contactus_form(element){
+                    document.getElementById('contact-us-form').style.display = 'none'
+                    
+                }
+                
+                function open_enquiry_form(element){
+                    document.getElementById('product-enquiry-form').style.display = 'flex'
+                }
+                function close_enquiry_form(){
+                    document.getElementById('product-enquiry-form').style.display = 'none'
+                }
+                var rating = 4.2; // Replace this with the actual rating value
+                var starContainer = document.getElementById('star-container');
+                function fillStars(rating) {
+                    starContainer.innerHTML = ''; // Clear existing stars
 
-                })
+                    for (var i = 1; i &lt;= 5; i++) {
+                        var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        star.setAttribute("width", "15");
+                        star.setAttribute("height", "15");
+                        star.setAttribute("viewBox", "0 0 24 24");
+
+                        var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                        polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                        if (i &lt;= Math.floor(rating)) {
+                            polygon.setAttribute("fill", "gold"); // Full star
+                        } else if (i === Math.ceil(rating) &amp;&amp; rating % 1 !== 0) {
+                            polygon.setAttribute("fill", "url(#half)"); // Half star
+                        } else {
+                            polygon.setAttribute("fill", "gray"); // Empty star
+                        }
+
+                        star.appendChild(polygon);
+                        starContainer.appendChild(star);
+                    }
+                }
+
+
+                
             </script>
           
         </template>

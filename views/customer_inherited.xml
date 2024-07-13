@@ -4,21 +4,37 @@
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
+        
         <xpath expr="//page[@name='internal_notes']" position="after">
+            
            
-            <page string="Product Images" name="product_images_page">
+            <page string="Products" name="product_images_page">
                 <field name="product_images">
-                    <tree>
+                    <tree editable="bottom">
                         <field name="product_id"/>
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image"  style="width:100px;height:100px;"/>
+                        <field name="product_quantity"/>
+                        <field name="packaging_requirement"/>
+                        <field name="delivery_days"/>
+                        <field name="product_price_usd"/>
+                        <field name="payment_mode"/>
+                        <field name="sample_policy"/>
+
+
                     </tree>
                     <form>
                         <field name="product_id"/>
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_quantity"/>
+                        <field name="packaging_requirement"/>
+                        <field name="delivery_days"/>
+                        <field name="product_price_usd"/>
+                        <field name="payment_mode"/>
+                        <field name="sample_policy"/>
                     </form>
                 </field>
             </page>
@@ -97,6 +113,15 @@
                         <field name="file_name" filename="certificate_attachment"/>
                     </form>
                 </field>
+            </page>
+            <page string="News" name="news_page">
+                <group>
+                    <field name="news_title"/>
+                    <field name="news_image"/>
+                    <field name="news_image_name"/>
+                    <field name="news_text"/>
+                </group>
+            
             </page>
         </xpath>
     </field>

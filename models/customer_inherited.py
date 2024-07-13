@@ -6,6 +6,7 @@ class ResPartner(models.Model):
     
     
     product_images = fields.One2many('product.customer.images', 'partner_id', string='Product Images')
+
     awards = fields.One2many('customer.awards', 'partner_id', string='Awards')
     certificates = fields.One2many('customer.certificates', 'partner_id', string='Certificates')
 
@@ -78,6 +79,12 @@ class ResPartner(models.Model):
     tax_id_proof_name = fields.Char(string="Tax Id Proof Name")
 
 
+    news_title = fields.Char("News Title")
+    news_image = fields.Binary('News Image')
+    news_image_name = fields.Char("Image Name")
+    news_text = fields.Text("News")
+
+
 
 
 
@@ -87,9 +94,18 @@ class ProductCustomerImages(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
     product_id = fields.Many2one('product.template', string="Product")
+    product_variety_name = fields.Char("Product Variety")
     product_description  = fields.Text("Product Description")
     product_image = fields.Binary('Image')
     image_name = fields.Char("Image Name")  
+
+    product_quantity = fields.Integer("Quantity")
+    packaging_requirement = fields.Char("Packaging Requirements")
+    delivery_days = fields.Integer("Delivery in Days")
+    product_price_usd = fields.Float("Price (in USD)")
+    payment_mode = fields.Char("Payment Mode")
+    sample_policy = fields.Char("Sample Policy")
+    upload_date = fields.Datetime("Upload Date")
 
 
 class CustomerAwards(models.Model):

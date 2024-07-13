@@ -4,6 +4,7 @@
     'summary': '',
     'description': '',
     'author': 'eSehat Meditech Ltd',
+    'license': 'LGPL-3',
     'category': 'Category',
     'depends': ['base','stock','contacts'],  # List your dependencies here
     'data': [
@@ -13,6 +14,8 @@
         'views/product_category.xml',
         'views/menuitems.xml',
         'views/customer_inherited.xml',
+        'views/product_inherited.xml',
+
 
         'views/portal/homepage.xml',
         'views/portal/signup.xml',

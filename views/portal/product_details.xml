@@ -40,34 +40,34 @@
                 <div class="product-details">
                     <h2>Shampoo</h2>
                     <div class="rating-container">
-                    <div class="star-svg">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                            </svg>
-                        </span>
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                            </svg>
-                        </span>
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                            </svg>
-                        </span>
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                            </svg>
-                        </span>
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                            </svg>
-                        </span>
-                        <span><p>(5.0)</p></span>
-                    </div>
+                        <div class="star-svg">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
+                                </svg>
+                            </span>
+                            <span><p>(5.0)</p></span>
+                        </div>
                     </div>
 
                     </div>
