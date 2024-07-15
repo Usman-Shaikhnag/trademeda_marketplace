@@ -117,9 +117,19 @@
             <page string="News" name="news_page">
                 <group>
                     <field name="news_title"/>
-                    <field name="news_image"/>
-                    <field name="news_image_name"/>
                     <field name="news_text"/>
+                    <field name="news_image1" filename="news_image_name1"/>
+                    <field name="news_image_name1" invisible='1'/>
+                    <field name="news_image3" filename="news_image_name3"/>
+                    <field name="news_image_name3" invisible='1'/>
+                    <field name="news_image5" filename="news_image_name5"/>
+                    <field name="news_image_name5" invisible='1'/>
+                </group>
+                <group>
+                    <field name="news_image2" filename="news_image_name2"/>
+                    <field name="news_image_name2" invisible='1'/>
+                    <field name="news_image4" filename="news_image_name4"/>
+                    <field name="news_image_name4" invisible='1'/>
                 </group>
             
             </page>

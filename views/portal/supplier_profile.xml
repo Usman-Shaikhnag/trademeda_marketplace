@@ -110,7 +110,7 @@
                         <div id="content1" class="content active">
                             <div class="company-detail-header">
                                 <h3>Our Company</h3>
-                                <span style="color:#8fb15f"><t t-esc="partner.country_id.name" /></span>
+                                <span style="color:#8fb15f">Supplier From <t t-esc="partner.country_id.name" /></span>
                                 <span class="product-date">Jul-05-23</span>
                                 <!-- <button id="contact_us">Contact Us</button> -->
                             </div>
@@ -155,55 +155,58 @@
                                         </div>
                                     </div>
                                             <!-- enquiry popup start  -->
-                                    <div class="contact-us" style="" id="product-enquiry-form">
-                                        <div class="company_name" style="display:flex;justify-content:center;">
-                                            <h1>Sending Inquiry For: <t t-esc="product.product_id.name"/> </h1>
+                                    <form action="/supplier/sendenquiry" method="post" enctype="multipart/form-data" class="">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                        <div class="contact-us" style="" id="product-enquiry-form">
+                                            <div class="company_name" style="display:flex;justify-content:center;">
+                                                <h1>Sending Inquiry For: <t t-esc="product.product_id.name"/> </h1>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Message</span>
+                                                </div>
+                                                <div class="">
+                                                    <textarea placeholder="Message" name="enquiry-message" id="message"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Your Name</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Your Name" name="enquiry_user_name" id="buyer_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Your Email</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="email" placeholder="Your Email" name="enquiry_user_email" id="buyer_email"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Your Phone</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="phone" placeholder="Your Phone" name="enquiry_user_phone" id="buyer_phone"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Country</span>
+                                                </div>
+                                                <div class="">
+                                                    <input email="buyer_country" id="enquiry_user_country"/>
+                                                </div>
+                                            </div>
+                                            <div class="btn-container">
+                                                <button type="submit" class="">Send Enquiry</button>
+                                                <button onclick="close_enquiry_form()" id="close_enquiry_form" class="">Close</button>
+                                            </div>
                                         </div>
-                                        <div class="text-input">
-                                            <div class="">
-                                                <span class="">Message</span>
-                                            </div>
-                                            <div class="">
-                                                <textarea placeholder="Message" name="message" id="message"/>
-                                            </div>
-                                        </div>
-                                        <div class="text-input">
-                                            <div class="">
-                                                <span class="">Your Name</span>
-                                            </div>
-                                            <div class="">
-                                                <input placeholder="Your Name" name="buyer_name" id="buyer_name"/>
-                                            </div>
-                                        </div>
-                                        <div class="text-input">
-                                            <div class="">
-                                                <span class="">Your Email</span>
-                                            </div>
-                                            <div class="">
-                                                <input type="email" placeholder="Your Email" name="buyer_email" id="buyer_email"/>
-                                            </div>
-                                        </div>
-                                        <div class="text-input">
-                                            <div class="">
-                                                <span class="">Your Phone</span>
-                                            </div>
-                                            <div class="">
-                                                <input type="phone" placeholder="Your Phone" name="buyer_phone" id="buyer_phone"/>
-                                            </div>
-                                        </div>
-                                        <div class="text-input">
-                                            <div class="">
-                                                <span class="">Country</span>
-                                            </div>
-                                            <div class="">
-                                                <input email="buyer_country" id="buyer_country"/>
-                                            </div>
-                                        </div>
-                                        <div class="btn-container">
-                                            <button class="">Send Enquiry</button>
-                                            <button onclick="close_enquiry_form()" id="close_enquiry_form" class="">Close</button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </t>
 
 
@@ -215,6 +218,7 @@
                         <div id="content3" class="content">Content for Management</div>
                         <div id="content4" class="content">Content for Awards</div>
                         <div id="content5" class="content">Content for Certifications</div>
+                        <!-- News Management  -->
                         <div id="content6" class="content">
                         
                            
@@ -225,9 +229,35 @@
                                         <h1 id="news-heading-text"><t t-esc="partner.news_title"/></h1>
                                     </div>
                                     <div class="news-image-container">
-                                        <img t-att-src="'data:image/png;base64,' + partner.news_image.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
-                                        
-                                        
+                                        <t t-if="partner.news_image1">
+                                            <div class="slider_image_active">
+                                            <img t-att-src="'data:image/png;base64,' + partner.news_image1.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="partner.news_image2">
+                                            <div class="slider_image">
+                                            <img t-att-src="'data:image/png;base64,' + partner.news_image2.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="partner.news_image3">
+                                            <div class="slider_image">
+                                            <img t-att-src="'data:image/png;base64,' + partner.news_image3.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="partner.news_image4">
+                                            <div class="slider_image">
+                                            <img t-att-src="'data:image/png;base64,' + partner.news_image4.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                            </div>
+                                        </t>
+                                        <t t-if="partner.news_image5">
+                                            <div class="slider_image">
+                                            <img t-att-src="'data:image/png;base64,' + partner.news_image5.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                    <div class="buttons">
+                                        <button class="" id="previous_image" onclick="show_previous_image(this)">&lt;</button>
+                                        <button class="" id="next_image" onclick="show_next_image(this)">&gt;</button>
                                     </div>
                                     <div class="news-content">
                                         <p id="news-content" name="news-content" t-esc="partner.news_text"/>
@@ -236,7 +266,22 @@
                             </div>
                             <!-- end  -->
                         </div>
-                        <div id="content7" class="content">Members Only Content</div>
+                        <!-- members only  -->
+                        <div id="content7" class="content">
+                        
+                            <div class="enquiry-card">
+                                <div class="enquiry-card-header">
+                                </div>
+                                <div class="enquiry-card-body">
+                                    <div class="contact_details">
+                                    
+                                    </div>
+                                    <div class="message">
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
 
@@ -362,8 +407,30 @@
                         starContainer.appendChild(star);
                     }
                 }
+                let abc;
+                function show_next_image(element){
+                    let val = document.getElementsByClassName('slider_image_active')
+                    if(val[0].nextElementSibling != null &amp;&amp; val[0].nextElementSibling.classList.contains('slider_image')){
+                        val[0].nextElementSibling.classList.remove('slider_image')
+                        val[0].nextElementSibling.classList.add('slider_image_active')
+                        val[0].classList.add('slider_image')
+                        val[0].classList.remove('slider_image_active')
+                    }
+                    
 
+                }
+                function show_previous_image(element){
+                    let val = document.getElementsByClassName('slider_image_active')
+                    abc = val
+                    if(val[0].previousElementSibling != null &amp;&amp; val[0].previousElementSibling.classList.contains('slider_image')){
+                        val[0].previousElementSibling.classList.add('slider_image_active')
+                        val[0].classList.remove('slider_image')
+                        val[0].nextElementSibling.classList.remove('slider_image_active')
+                        val[0].nextElementSibling.classList.add('slider_image')
+                    }
+                    
 
+                }
                 
             </script>
           

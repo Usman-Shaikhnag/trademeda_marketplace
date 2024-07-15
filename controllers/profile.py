@@ -23,7 +23,11 @@ class ProductController(http.Controller):
 
         if request.httprequest.method == 'POST':
             news_title = kw.get('news-heading-text')
-            news_image = kw.get('update_news')
+            news_image1 = kw.get('update_news1')
+            news_image2 = kw.get('update_news2')
+            news_image3 = kw.get('update_news3')
+            news_image4 = kw.get('update_news4')
+            news_image5 = kw.get('update_news5')
             news_content = kw.get('news-content')
 
             # Prepare the dictionary for updating partner fields
@@ -33,8 +37,16 @@ class ProductController(http.Controller):
             }
 
             # Check if a new image is uploaded
-            if news_image:
-                update_vals['news_image'] = base64.b64encode(news_image.read())
+            if news_image1:
+                update_vals['news_image1'] = base64.b64encode(news_image1.read())
+            if news_image2:
+                update_vals['news_image2'] = base64.b64encode(news_image2.read())
+            if news_image3:
+                update_vals['news_image3'] = base64.b64encode(news_image3.read())
+            if news_image4:
+                update_vals['news_image4'] = base64.b64encode(news_image4.read())
+            if news_image5:
+                update_vals['news_image5'] = base64.b64encode(news_image5.read())
 
             partner_id.sudo().write(update_vals)
 
@@ -58,3 +70,5 @@ class ProductController(http.Controller):
         # Return JSON response
 
         return json.dumps(subcategory_list)
+    
+    

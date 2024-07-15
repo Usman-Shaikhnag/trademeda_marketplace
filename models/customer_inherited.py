@@ -80,8 +80,18 @@ class ResPartner(models.Model):
 
 
     news_title = fields.Char("News Title")
-    news_image = fields.Binary('News Image')
-    news_image_name = fields.Char("Image Name")
+    news_image1 = fields.Binary('News Image1')
+    news_image2 = fields.Binary('News Image2')
+    news_image3 = fields.Binary('News Image3')
+    news_image4 = fields.Binary('News Image4')
+    news_image5 = fields.Binary('News Image5')
+
+    news_image_name1 = fields.Char("Image Name1")
+    news_image_name2 = fields.Char("Image Name2")
+    news_image_name3 = fields.Char("Image Name3")
+    news_image_name4 = fields.Char("Image Name4")
+    news_image_name5 = fields.Char("Image Name5")
+
     news_text = fields.Text("News")
 
 

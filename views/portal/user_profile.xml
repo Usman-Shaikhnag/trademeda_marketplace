@@ -484,7 +484,7 @@
                                         </div>
                                         <div class="right-product">
                                             <div class="add-product">
-                                                <div class="text-input" style="margon-top:2px">
+                                                <div class="text-input" style="margin-top:2px">
                                                     <div class="">
                                                         <span class="">Upload Image</span>
                                                     </div>
@@ -611,6 +611,7 @@
                                             </t>
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="multi-input">
                                     <div class="text-input">
@@ -703,7 +704,70 @@
                                 <div class="button-container">
                                     <button type="submit">Save</button>
                                 </div>
+                                <div class="">
+                                    <t>
+                                        <div class="document_upload_table">
+                                        <div >
+                                            <button type="button" class="button" style="margin-bottom:3px;" onclick="showAwardPopup(this)">Add</button>
+                                        </div>
+                                        <table id="award_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Name of the Award</th>
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="partner.awards" t-as="award">
+                                                    <tr>
+                                                        <td>
+                                                            
+                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteModal(this)">
+                                                        
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                                                                </svg>
+                                                            </button>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                                <t t-out="award.award_description" />
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </t>
+                                </div>
                             </form>
+                            <div class="add-award-popup" id="addAwardPopup">
+                                <div class="heading">
+                                    <h2>Add Award</h2>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Attach Document</span>
+                                    </div>
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" id="add_award" name="add_award" class="file-input" data-file-name="add_award_name" data-delete-btn="add_award_delete" onchange="file_change(this)"/>
+                                        <label for="add_award" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                        
+                                        <t>
+                                            <span id="add_award_name" class="file-name">No file chosen</span>
+                                        </t>
+                                    </div>
+
+                                    
+
+                                </div>
+                                <div class="buttons">
+                                    <button onclick="addAward(this)" class="button">Add</button>
+                                    <button onclick="closeAward(this)" class="button">Close</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- product management  -->
                         <div id="product_management" style="flex-direction:column;">
@@ -751,16 +815,52 @@
                                     <!-- <h1>News Heading</h1> -->
                                     <input placeholder="News Heading" id="news-heading-text" name="news-heading-text" t-att-value="partner.news_title"/>
                                 </div>
+                                <!-- image 1  -->
                                 <div class="news-image-container">
-                                    <img t-att-src="'data:image/png;base64,' + partner.news_image.decode('utf-8')" id="news_image_display" alt="News Image" class="news-image" name="news-image"/>
-                                    <!-- <button><i class="fas fa-camera" />   Upload a Photo</button> -->
-                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
-                                        <input onchange="news_image_change(this)" type="file" id="update_news" name="update_news" data-file-name="update_news_name" data-delete-btn="update_news_delete"/>
-                                        <button type="button"><label for="update_news"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news_delete" onclick="news_image_delete()" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
-                                        <!-- <span id="update_news_name" class="file-name">No file chosen</span> -->
-                                    </div>
                                     
+                                    <img t-att-src="'data:image/png;base64,' + (partner.news_image1.decode('utf-8') if partner.news_image1 else '')" id="news_image_display1" alt="News Image" class="news-image" name="news-image1"/>
+                                    
+                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                        <input onchange="news_image_change(this)" type="file" id="update_news1" name="update_news1" data-file-name="update_news1_name" data-delete-btn="update_news1_delete"/>
+                                        <button type="button"><label for="update_news1"><i class="fas fa-camera"></i>Upload a Photo</label></button>
+                                        <span id="update_news1_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                    </div>
+                                </div>
+                                <!-- image 2  -->
+                                <div class="news-image-container">
+                                    <img t-att-src="'data:image/png;base64,' + (partner.news_image2.decode('utf-8') if partner.news_image2 else '')" id="news_image_display2" alt="News Image" class="news-image" name="news-image2"/>
+                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                        <input onchange="news_image_change(this)" type="file" id="update_news2" name="update_news2" data-file-name="update_news2_name" data-delete-btn="update_news2_delete"/>
+                                        <button type="button"><label for="update_news2"><i class="fas fa-camera"></i>Upload a Photo</label></button>
+                                        <span id="update_news2_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                    </div>
+                                </div>
+                                <!-- image 3  -->
+                                <div class="news-image-container">
+                                    <img t-att-src="'data:image/png;base64,' + (partner.news_image3.decode('utf-8') if partner.news_image3 else '')" id="news_image_display3" alt="News Image" class="news-image" name="news-image3"/>
+                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                        <input onchange="news_image_change(this)" type="file" id="update_news3" name="update_news3" data-file-name="update_news3_name" data-delete-btn="update_news3_delete"/>
+                                        <button type="button"><label for="update_news3"><i class="fas fa-camera"></i>Upload a Photo</label></button>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                    </div>
+                                </div>
+                                <!-- image 4  -->
+                                <div class="news-image-container">
+                                    <img t-att-src="'data:image/png;base64,' + (partner.news_image4.decode('utf-8') if partner.news_image4 else '')" id="news_image_display4" alt="News Image" class="news-image" name="news-image4"/>
+                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                        <input onchange="news_image_change(this)" type="file" id="update_news4" name="update_news4" data-file-name="update_news4_name" data-delete-btn="update_news4_delete"/>
+                                        <button type="button"><label for="update_news4"><i class="fas fa-camera"></i>Upload a Photo</label></button>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                    </div>
+                                </div>
+                                <!-- image 5  -->
+                                <div class="news-image-container">
+                                    <img t-att-src="'data:image/png;base64,' + (partner.news_image5.decode('utf-8') if partner.news_image5 else '')" id="news_image_display4" alt="News Image" class="news-image" name="news-image5"/>
+                                    <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                        <input onchange="news_image_change(this)" type="file" id="update_news5" name="update_news5" data-file-name="update_news5_name" data-delete-btn="update_news5_delete"/>
+                                        <button type="button"><label for="update_news5"><i class="fas fa-camera"></i>Upload a Photo</label></button>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                    </div>
                                 </div>
                                 <div class="news-content">
                                     <textarea placeholder="News Content" id="news-content" name="news-content" t-att-value="partner.news_text"/>
@@ -772,6 +872,7 @@
                         </div>
                         <div class="inner-card" id="queries">
                         </div>
+
                         
                     </div>
                 </div>
@@ -889,23 +990,32 @@
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
-                            document.getElementById('news_image_display').src = e.target.result;
+                            const imgElement = element.parentNode.previousElementSibling;
+                            if (imgElement &amp;&amp; imgElement.tagName === 'IMG') {
+                                imgElement.src = e.target.result;
+                            }
                         };
                         reader.readAsDataURL(file);
                     }
                 }
-                function news_image_delete() {
-                    document.getElementById('news_image_display').src = '';
-                    document.getElementById('update_news').value = '';
+                function news_image_delete(element) {
+                    const parentNode = element.closest('.news-image-container');
+                    const imgElement = parentNode.querySelector('img');
+                    const fileInput = parentNode.querySelector('input[type="file"]');
+
+                    if (imgElement) {
+                        imgElement.src = '';
+                    }
+
+                    if (fileInput) {
+                        fileInput.value = '';
+                    }
                 }
 
                 function category_change(element){
-                    let url1 = 'profile/getsubcategories/'
                     let category_id = element.value
-                    let url2 = url1 + category_id
-
                     let product_subcategory = document.getElementById('product_subcategory')
-                    fetch(url2).then(function(res) {
+                    fetch('profile/getsubcategories/'+category_id).then(function(res) {
                         res.json().then(function(data){
                             data.forEach(function(subcategory) {
                             const option = document.createElement('option');
@@ -920,10 +1030,26 @@
                         }) 
 
 
-
-
-                    
                 }
+                <!-- function subcategory_change(element){
+                    let subcategory_id = element.value
+                    let product_subcategory = document.getElementById('product_subcategory')
+                    fetch('profile/getsproducts/'+subcategory_id).then(function(res) {
+                        res.json().then(function(data){
+                            data.forEach(function(subcategory) {
+                            const option = document.createElement('option');
+                                    option.value = subcategory.id
+                                    option.textContent = subcategory.name;
+                                    while (product_subcategory.firstChild) {
+                                        product_subcategory.removeChild(product_subcategory.firstChild);
+                                    }
+                                    product_subcategory.appendChild(option)
+                            })
+                        })
+                        }) 
+
+
+                } -->
                 
                 function file_change(element){
                     element.parentElement.getElementsByClassName('file-name')[0].innerText = element.value.split('\\').reverse()[0] 
@@ -939,6 +1065,54 @@
                     })
                 }
 
+                function showAwardPopup(element){
+                    document.getElementById('addAwardPopup').style.display = "flex"
+
+                }
+                function closeAward(element){
+                    document.getElementById('addAwardPopup').style.display = "none"
+
+                }
+
+                function addAward(element){
+                    let table_body = document.getElementById('award_table').children[1]
+                    let table_length = table_body.children.length
+                    const newRow = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    <!--  -->
+
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.style = 'background:transparent;border:none;';
+                    deleteButton.onclick = function() {
+                        openDeleteModal(this);
+                    };
+
+                    // Create the SVG icon and append it to the button
+                    deleteButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                        </svg>
+                    `;
+                    const awardCell = document.createElement('td');
+
+                    const award_attachment = document.createElement('input');
+                    award_attachment.type = 'file'
+                    award_attachment.id = 'award_'+table_length
+
+
+
+
+                    awardCell.textContent = 'Outstanding Achievement';
+                    nameCell.appendChild(deleteButton);
+                    newRow.appendChild(nameCell);
+                    newRow.appendChild(awardCell);
+
+                    table_body.appendChild(newRow);
+
+                }
 
 
                 

@@ -502,3 +502,68 @@ input[type="file"] {
     outline: 2px solid #8fb15f;
 
 }
+.divider-vertical {
+    height: 80%;
+    width: 2px;
+    background-color: #8fb15f;
+    border-radius: 5px;
+}
+.document_upload_table{
+    margin-top: 2rem;
+    width: 96%;
+    padding: 2%;
+}
+table {
+    width: 100%;
+    border: 1px solid #8fb15f;
+    border-collapse: collapse;
+    font-size: 12px;
+    
+}
+
+th {
+    font-weight: 500;
+    text-align: left;
+    font-size: 13px;
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: top;
+    background-color: #8fb15f;
+    color: white;
+}
+
+td {
+    border: 1px solid #8fb15f;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.button{
+    background-color: #8fb15f;
+    color: white;
+    border-radius: 5px;
+    padding: 4px 1rem;
+    border: none;
+}
+
+.button:hover{
+    background-color: transparent;
+    color: #8fb15f;
+    outline: 2px solid #8fb15f;
+
+}
+
+#addAwardPopup{
+    display: none;
+    position: absolute;
+    bottom: 20%;
+    left: 45%;
+    width: 25%;
+    z-index: 100;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
