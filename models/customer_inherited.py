@@ -9,6 +9,7 @@ class ResPartner(models.Model):
 
     awards = fields.One2many('customer.awards', 'partner_id', string='Awards')
     certificates = fields.One2many('customer.certificates', 'partner_id', string='Certificates')
+    customer_employees = fields.One2many('customer.employees','partner_id',string="Employees")
 
     member_type = fields.Selection([
         ('buyer','Buyer'),
@@ -124,9 +125,12 @@ class CustomerAwards(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
 
-    award_description  = fields.Char("Award Description")
+    award_name  = fields.Char("Award Name")
+    award_description  = fields.Text("Award Description")
     award_attachment = fields.Binary('Award')
     file_name = fields.Char("File Name") 
+    public_display = fields.Boolean("Public Display")
+
 
 class CustomerCertificates(models.Model):
     _name = "customer.certificates"
@@ -134,6 +138,21 @@ class CustomerCertificates(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
 
-    certificate_description  = fields.Char("Certificate Description")
+    certificate_name  = fields.Char("Certificate Name")
+    certificate_description  = fields.Text("Certificate Description")
     certificate_attachment = fields.Binary('Certificate')
     file_name = fields.Char("File Name") 
+    public_display = fields.Boolean("Public Display")
+
+
+class CustomerEmployees(models.Model):
+    _name = "customer.employees"
+    _description = "Customer Employees"
+
+    partner_id = fields.Many2one('res.partner', string="Customer")
+
+    employee_name  = fields.Char("Employee Name")
+    employee_designation  = fields.Char("Employee Designation")
+    employee_contact  = fields.Char("Employee Contact")
+    employee_email  = fields.Char("Employee Email")
+

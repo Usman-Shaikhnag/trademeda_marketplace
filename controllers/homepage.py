@@ -189,10 +189,15 @@ class HomepageController(http.Controller):
 
     @http.route(['/profile/updatedocuments'], method=["POST"], type="http", auth="user", website=True)
     def UpdateDocuments(self, **kw):
-        # import wdb;wdb.set_trace()
+        import wdb;wdb.set_trace()
+        
         user = request.env.user
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
+            award_list = []
+            for rec in kw:
+                if "award" in rec:
+                    award_list.append(rec)
             # Extract form data
             company_registration = kw.get("company_registration").read()
             company_registration_name = kw.get("company_registration_name")

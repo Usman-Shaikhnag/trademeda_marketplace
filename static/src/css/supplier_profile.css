@@ -378,3 +378,28 @@ main {
     overflow: auto;
     margin-top: 2rem;
 }
+
+.certificate_award_image {
+    max-width: 30%;
+}
+
+.certificate_award_container{
+    background-color: white;
+    border-radius: 5px;
+    color: #8fb15f;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+}
+.inner_award_cert_container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.award_certificate_details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}

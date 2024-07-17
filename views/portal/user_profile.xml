@@ -5,6 +5,25 @@
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
+            <script>
+                function enable_documents(element){
+                    document.getElementById('documents').style.display = 'flex'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+
+
+
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+                    }
+
+            </script>
            
 
         
@@ -73,6 +92,11 @@
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-file-lines" /> 
                                 <span class="">Documents</span>
+                            </div>
+                            <div class="menu-item" onclick="enable_usermanagement(this)" id="usermanagement-menu">
+                                <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
+                                <i class="fas fa-users" /> 
+                                <span class="">Employee management</span>
                             </div>
                             <div class="menu-item" onclick="enable_news(this)" id="news-menu">
                                 <i class="fas fa-newspaper" /> 
@@ -710,20 +734,22 @@
                                         <div >
                                             <button type="button" class="button" style="margin-bottom:3px;" onclick="showAwardPopup(this)">Add</button>
                                         </div>
-                                        <table id="award_table">
+                                        <table id="award_table" name="award_table">
                                             <thead>
                                                 <tr>
                                                     <th>Action</th>
                                                     <th>Name of the Award</th>
+                                                    <th>File</th>
                                                 </tr>
                                                 
                                             </thead>
                                             <tbody>
-                                                <t t-foreach="partner.awards" t-as="award">
+                                            <!-- here  -->
+                                                <t t-foreach="enumerate(partner.awards)" t-as="award_tuple">
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteModal(this)">
+                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteAward(this)">
                                                         
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
@@ -733,7 +759,38 @@
                                                             
                                                         </td>
                                                         <td>
-                                                                <t t-out="award.award_description" />
+                                                                <t t-esc="award_tuple[1].award_description"  />
+                                                        </td>
+                                                        <!-- <td>
+                                                                <t t-out="award.award_attachment" name="award_${i}"/>
+                                                        </td> -->
+                                                        <td>
+                                                            <t t-if="award_tuple[1].award_attachment">
+                                                                <a t-att-href="'data:application/octet-stream;base64,' + award_tuple[1].award_attachment.decode('utf-8')" t-att-download="award_tuple[1].file_name" >
+                                                                    <t t-esc="'Download ' + award_tuple[1].file_name" />
+                                                                </a>
+                                                                <!-- <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
+
+
+                                                                <div class="file-upload-wrapper">
+                                                                    <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this)" />
+                                                                    <label t-att-for="'update_award_' + str(award_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
+                                                                    
+                                                                    
+                                                                </div>
+                                                            </t>
+                                                            <t t-else="">
+                                                                No file available
+                                                                <!-- <input type="file" t-att-id="award_tuple[1].id" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
+
+                                                                <div class="file-upload-wrapper">
+                                                                    <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this)" />
+                                                                    <label t-att-for="'update_award_' + str(award_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
+                                                                    
+                                                                    
+                                                                </div>
+                                                            
+                                                            </t>
                                                         </td>
                                                     </tr>
                                                 </t>
@@ -746,6 +803,15 @@
                             <div class="add-award-popup" id="addAwardPopup">
                                 <div class="heading">
                                     <h2>Add Award</h2>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Award Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="award_name" id="award_name" class="form-control"/>
+
+                                    </div>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
@@ -764,8 +830,8 @@
 
                                 </div>
                                 <div class="buttons">
-                                    <button onclick="addAward(this)" class="button">Add</button>
-                                    <button onclick="closeAward(this)" class="button">Close</button>
+                                    <button style="height: 2.5rem;" onclick="addAward(this)" class="button">Add</button>
+                                    <button style="height: 2.5rem;" onclick="closeAward(this)" class="button">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -873,6 +939,100 @@
                         <div class="inner-card" id="queries">
                         </div>
 
+                        <div class="inner-card" id="user_management">
+                            <form action="/profile/updatedocuments" method="post" enctype="multipart/form-data" class="">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                
+                                <div class="heading">
+                                    <h2>Users</h2>
+                                </div>
+                                
+                                <div class="">
+                                    <t>
+                                        <div class="user_upload_table">
+                                        <div >
+                                            <button type="button" class="button" style="margin-bottom:3px;" onclick="showUserPopup(this)">Add</button>
+                                        </div>
+                                        <table id="employee_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Name</th>
+                                                    <th>Designation</th>
+                                                    <th>Contact</th>
+
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                            <!-- here  -->
+                                                <t t-foreach="partner.customer_employees" t-as="employee">
+                                                    <tr>
+                                                        <td>
+                                                            
+                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteAward(this)">
+                                                        
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                                                                </svg>
+                                                            </button>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                                <t t-esc="employee.employee_name"  />
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            <t t-esc="employee.employee_designation"  />
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="employee.employee_contact"  />
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </t>
+                                </div>
+                            </form>
+                            <div class="add-award-popup" id="addAwardPopup">
+                                <div class="heading">
+                                    <h2>Add Award</h2>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Award Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="award_name" id="award_name" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Attach Document</span>
+                                    </div>
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" id="add_award" name="add_award" class="file-input" data-file-name="add_award_name" data-delete-btn="add_award_delete" onchange="file_change(this)"/>
+                                        <label for="add_award" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                        
+                                        <t>
+                                            <span id="add_award_name" class="file-name">No file chosen</span>
+                                        </t>
+                                    </div>
+
+                                    
+
+                                </div>
+                                <div class="buttons">
+                                    <button style="height: 2.5rem;" onclick="addAward(this)" class="button">Add</button>
+                                    <button style="height: 2.5rem;" onclick="closeAward(this)" class="button">Close</button>
+                                </div>
+                            </div>
+                        </div>
+
                         
                     </div>
                 </div>
@@ -884,24 +1044,11 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
 
 
-                function enable_documents(element){
-                    document.getElementById('documents').style.display = 'flex'
-                    document.getElementById('company_details').style.display = 'none'
-                    document.getElementById('contact_details').style.display = 'none'
-                    document.getElementById('add_new_product_form').style.display = 'none'
-
-
-
-                    document.querySelectorAll('.menu-item').forEach(function(item) {
-                            item.classList.remove('active');
-                        });
-                        
-                        // Add active class to the clicked menu item
-                        element.classList.add('active');
-                    }
+                
 
 
 
@@ -912,7 +1059,7 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
-
+                    document.getElementById('user_management').style.display = 'none'
 
 
                     document.getElementById('company_details').style.display = 'flex'
@@ -934,6 +1081,8 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('add_new_product_form').style.display = 'flex'
                     document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+
 
 
                     
@@ -952,6 +1101,7 @@
                     document.getElementById('contact_details').style.display = 'none'
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
                     document.getElementById('product_management').style.display = 'flex'
 
 
@@ -972,7 +1122,19 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
 
+
+
+                }
+                function enable_usermanagement(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'flex'
 
                 }
 
@@ -1073,6 +1235,7 @@
                     document.getElementById('addAwardPopup').style.display = "none"
 
                 }
+                
 
                 function addAward(element){
                     let table_body = document.getElementById('award_table').children[1]
@@ -1080,13 +1243,14 @@
                     const newRow = document.createElement('tr');
                     const nameCell = document.createElement('td');
                     <!--  -->
+                    
 
 
                     const deleteButton = document.createElement('button');
                     deleteButton.type = 'button';
                     deleteButton.style = 'background:transparent;border:none;';
                     deleteButton.onclick = function() {
-                        openDeleteModal(this);
+                        openDeleteAward(this);
                     };
 
                     // Create the SVG icon and append it to the button
@@ -1097,21 +1261,83 @@
                         </svg>
                     `;
                     const awardCell = document.createElement('td');
+                    row_cnt = Number(table_length)+1
 
                     const award_attachment = document.createElement('input');
                     award_attachment.type = 'file'
-                    award_attachment.id = 'award_'+table_length
+                    award_attachment.id = 'award_'+row_cnt
+                    award_attachment.name = 'award_'+row_cnt
+                    const fileNameSpan = document.createElement('span');
+
+                    const originalInput  = document.getElementById('add_award');
+                    const add_award_name = document.getElementById('add_award_name');
+                    const award_name = document.getElementById('award_name');
+
+                    if (originalInput.files.length &gt; 0) {
+                        const file = originalInput.files[0];
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+
+                        award_attachment.files = dataTransfer.files;
+                        fileNameSpan.textContent = award_name.value;
+                        <!-- fileNameSpan.textContent = file.name; -->
+                    } else {
+                        alert('No file selected in the original input.');
+                    }
 
 
 
 
-                    awardCell.textContent = 'Outstanding Achievement';
+                    <!-- awardCell.textContent = 'Outstanding Achievement'; -->
+                    awardCell.appendChild(award_attachment)
+                    awardCell.appendChild(fileNameSpan);
+
+                    originalInput.value = '';
+                    add_award_name.textContent = 'No File Selected' 
+                    award_name.value = ''
+
                     nameCell.appendChild(deleteButton);
                     newRow.appendChild(nameCell);
                     newRow.appendChild(awardCell);
 
                     table_body.appendChild(newRow);
 
+                }
+
+                function updateAwardFile(inputElement) {
+                    let id = inputElement.id 
+                    id = "updated_"+id
+                    inputElement.name = id
+                    <!-- inputElement.name = "award_"+inputElement.parentElement.parentElement.parentElement.rowIndex  -->
+                    inputElement.parentElement.parentElement.children[0].replaceWith(inputElement.value.split('\\')[2]) 
+                    const file = inputElement.files[0];
+                    const awardId = inputElement.getAttribute('data-award-id');
+
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('file', file);
+                        formData.append('award_id', awardId);
+
+                        fetch('/update_award_attachment', {
+                            method: 'POST',
+                            body: formData
+                        }).then(function(response) {
+                            if (response.ok) {
+                                return response.json();
+                            } else {
+                                throw new Error('File upload failed');
+                            }
+                        }).then(function(data) {
+                            console.log('File uploaded successfully:', data);
+                            // Optionally refresh the page or update the UI to reflect the new file
+                        }).catch(function(error) {
+                            console.error('Error:', error);
+                        });
+                    }
+                }
+
+                function openDeleteAward(element){
+                    element.parentElement.parentElement.remove()
                 }
 
 

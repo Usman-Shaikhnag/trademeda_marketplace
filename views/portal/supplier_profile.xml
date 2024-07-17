@@ -214,10 +214,78 @@
                                 <!-- end  -->
 
                         </div>
+                        <!-- management  -->
+                        <div id="content3" class="content">
+                            
+                            <h1 class="">Employees</h1>
+                            <t t-foreach="partner.customer_employees" t-as="employee">
+                                <h3 class=""><span class="" t-esc="employee.employee_name"></span></h3>
+                                <h4 class=""><span class="" t-esc="employee.employee_designation"></span></h4>
+                                <h4 class=""><span class="" t-esc="employee.employee_contact"></span></h4>
+                                <h4 class=""><span class="" t-esc="employee.employee_email"></span></h4>
+
+
+                                
+
+                            </t>
+                        </div>
+                        <!-- certificates  -->
                         
-                        <div id="content3" class="content">Content for Management</div>
-                        <div id="content4" class="content">Content for Awards</div>
-                        <div id="content5" class="content">Content for Certifications</div>
+                        <div id="content4" style="color:#8fb15f" class="content">
+                            <h1 class="">Certificates</h1>
+                            <div class="certificate_award_container">
+                                <t t-foreach="partner.certificates" t-as="certificate">
+                                    <div class="inner_award_cert_container">
+                                        <div class="award_certificate_doc">
+                                            <t t-if="certificate.certificate_attachment">
+                                                <t t-if="certificate.file_name and (certificate.file_name.endswith('.png') or certificate.file_name.endswith('.jpg') or certificate.file_name.endswith('.jpeg'))">
+                                                    <img t-att-src="'data:image/png;base64,' + certificate.certificate_attachment.decode('utf-8')" alt="Certificate Image" class="certificate_award_image"/>
+                                                </t>
+                                                <!-- If the file is a PDF -->
+                                                <t t-elif="certificate.file_name and certificate.file_name.endswith('.pdf')">
+                                                    <a t-att-href="'data:application/pdf;base64,' + certificate.certificate_attachment.decode('utf-8')" t-att-download="certificate.file_name">
+                                                        Download PDF
+                                                    </a>
+                                                </t>
+                                            </t>
+                                        </div>
+                                        <div class="award_certificate_details">
+                                            <div class="award_certificate_name">
+                                                <h3 class=""><span class="" t-esc="certificate.certificate_name"></span></h3>
+                                            </div>
+                                            <div class="">
+                                                <p class=""><span t-esc="certificate.certificate_description"/></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <span class="divider" style="margin-top: 5px;"></span>
+                                    
+
+                                </t>
+                            
+                            </div>
+                        
+                            
+                        </div>
+                        <!-- awards  -->
+                        <div id="content5" style="color:#8fb15f" class="content">
+                            <h1 class="">Awards</h1>
+                            <t t-foreach="partner.awards" t-as="award">
+                                <h3 class=""><span class="" t-esc="award.award_description"></span></h3>
+                                <t t-if="award.award_attachment">
+                                    <t t-if="award.file_name and (award.file_name.endswith('.png') or award.file_name.endswith('.jpg') or award.file_name.endswith('.jpeg'))">
+                                        <img t-att-src="'data:image/png;base64,' + award.award_attachment.decode('utf-8')" alt="award Image" class="certificate_award_image"/>
+                                    </t>
+                                    <!-- If the file is a PDF -->
+                                    <t t-elif="award.file_name and award.file_name.endswith('.pdf')">
+                                        <a t-att-href="'data:application/pdf;base64,' + award.award_attachment.decode('utf-8')" t-att-download="award.file_name">
+                                            Download PDF
+                                        </a>
+                                    </t>
+                                </t>
+                            </t>
+                        </div>
                         <!-- News Management  -->
                         <div id="content6" class="content">
                         

@@ -89,28 +89,38 @@
 
             <page string="Awards and Certifications" name="award_certification_page">
                 <field name="awards">
-                    <tree>
+                    <tree editable="bottom">
+                        <field name="award_name"/>
                         <field name="award_description"/>
-                        <field name="award_attachment"/>
-                        <field name="file_name" filename="award_attachment" />
+                        <field name="award_attachment" filename="file_name"/>
+                        <field name="file_name" invisible="1" />
+                        <field name="public_display"/>
+
                     </tree>
                     <form>
+                        <field name="award_name"/>
                         <field name="award_description"/>
-                        <field name="award_attachment"/>
-                        <field name="file_name" filename="award_attachment"/>
+                        <field name="award_attachment" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="public_display"/>
+
                     </form>
                 </field>
 
                 <field name="certificates">
-                    <tree>
+                    <tree editable="bottom">
+                        <field name="certificate_name"/>
                         <field name="certificate_description"/>
-                        <field name="certificate_attachment"/>
-                        <field name="file_name" filename="certificate_attachment" />
+                        <field name="certificate_attachment" filename="file_name"/>
+                        <field name="file_name" invisible="1" />
+                        <field name="public_display"/>
                     </tree>
                     <form>
+                        <field name="certificate_name"/>
                         <field name="certificate_description"/>
-                        <field name="certificate_attachment"/>
-                        <field name="file_name" filename="certificate_attachment"/>
+                        <field name="certificate_attachment" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="public_display"/>
                     </form>
                 </field>
             </page>
@@ -132,6 +142,23 @@
                     <field name="news_image_name4" invisible='1'/>
                 </group>
             
+            </page>
+            <page string="Employee Details" name="employee_details_page">
+                <field name="customer_employees">
+                    <tree editable="bottom">
+                        <field name="employee_name"/>
+                        <field name="employee_designation"/>
+                        <field name="employee_contact"/>
+                        <field name="employee_email"/>
+
+                    </tree>
+                    <form>
+                        <field name="employee_name"/>
+                        <field name="employee_designation"/>
+                        <field name="employee_contact"/>
+                        <field name="employee_email"/>
+                    </form>
+                </field>
             </page>
         </xpath>
     </field>
