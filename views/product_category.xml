@@ -13,7 +13,7 @@
                         <page string="Subcategories">
                             <field name="subcategories_lines">
                                 <tree>
-                                    <field name="subcategories"/>
+                                    <field name="name"/>
                                 </tree>
                             </field>
                         </page>
@@ -31,17 +31,46 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="category"/>
+                        <field name="category_id"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Sub-Subcategories">
+                            <field name="subsubcategories_lines" >
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                                <form>
+                                    <field name="name"/>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_form_product_subsubcategory" model="ir.ui.view">
+        <field name="name">product.subsubcategory.form</field>
+        <field name="model">product.subsubcategories</field>
+        <field name="arch" type="xml">
+            <form string="Product Subcategory">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="subcategory_id"/>
 
                     </group>
                     <notebook>
                         <page string="Products">
                             <field name="product_lines" >
                                 <tree editable="bottom">
-                                    <field name="product_id"/>
+                                    <field name="name"/>
                                 </tree>
                                 <form>
-                                    <field name="product_id"/>
+                                    <field name="name"/>
                                 </form>
                             </field>
                         </page>

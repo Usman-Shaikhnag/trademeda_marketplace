@@ -2,12 +2,12 @@
     <data>
         <template id="header" name="Header">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/header.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
                 <div class="header">
                     <div class="logo-container">
-                        <img src="/trademeda/static/src/img/trademeda_white_logo.png" alt="profile photo" class="logo"/>
+                        <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="Logo photo" class="logo"/>
                     </div>
                     <!-- <div class="search-bar">
                         
@@ -17,19 +17,18 @@
                         <button class="search_btn">Find Buyers</button>
                         <button class="search_btn">Find Suppliers</button>
                     </div>
-                    
-                    <div class="">
-                        <span class="" style="color:#f6f6f6">+91 1234567890</span>
-                        <img src="/trademeda/static/src/img/profile.png" alt="profile" style="height:30px"/>
-                        
-                    </div>
-                    <div class="">
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
+                    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:6px;">
+                        <div class="">
+                            <a t-attf-href="/profile"><i class="fas fa-user" style="color:#b32f2d"></i></a>
+                            
+                        </div>
+                        <div class="hamburger-menu">
+                            <span class="divider" style="margin-top: 5px;"></span>
+                            <span class="divider" style="margin-top: 5px;"></span>
+                            <span class="divider" style="margin-top: 5px;"></span>
 
-                    </div>
-                   
+                        </div>
+                   </div>
 
                 </div>
         </template>

@@ -12,6 +12,10 @@
                     document.getElementById('contact_details').style.display = 'none'
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+
+
 
 
 
@@ -419,6 +423,7 @@
                                                     <!-- lll -->
                                                     <div class="select-container">           
                                                         <select id="product_category" name="product_category" class="form-control" onchange="category_change(this)">
+                                                            <option value=''></option>
                                                             <t t-foreach="request.env['product.categories'].sudo().search([])" t-as="category">
                                                                 <option t-att-value="category.id">
                                                                     <t t-esc="category.name"/>
@@ -428,22 +433,29 @@
                                                     </div>
                                                     
                                                 </div>
+
+                                                
                                                 <div class="text-input">
                                                     <div class="">
-                                                        <span class="">Product SubCategory</span>
+                                                        <span class="">Product Subcategory</span>
                                                     </div>
-                                                    <!-- <div class="">
-                                                        <input name="product_subcategory" id="product_subcategory" class="form-control" />
-                                                    </div> -->
+                                                    
                                                     <div class="select-container">           
-                                                        <select id="product_subcategory" name="product_subcategory" class="form-control" category__id='1'>
-                                                            <!-- <t t-foreach="request.env['product.subcategories'].sudo().search([('category', '=', 2 )])" t-as="subcategory"> -->
-                                                            <!-- <t t-foreach="request.env['product.subcategories'].sudo().search([])" t-as="subcategory"> -->
-
-                                                                <!-- <option t-att-value="subcategory.id">
-                                                                    <t t-esc="subcategory.name"/>
-                                                                </option> -->
-                                                            <!-- </t> -->
+                                                        <select id="product_subcategory" name="product_subcategory" class="form-control" onchange="subcategory_change(this)">
+                                                            <option value=''></option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Sub-Subcategory</span>
+                                                    </div>
+                                                    
+                                                    <div class="select-container">           
+                                                        <select id="product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="subsubcategory_change(this)">
+                                                            <option value=''></option>
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -451,8 +463,21 @@
                                                     <div class="">
                                                         <span class="">Product Name</span>
                                                     </div>
-                                                    <div class="">
+                                                    <!-- <div class="">
                                                         <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
+                                                    </div> -->
+                                                    <div class="select-container">           
+                                                        <select id="product_name" name="product_name" class="form-control">
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Variety / Grade</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input placeholder="Product Variety" name="product_variety" id="product_variety" class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="text-input">
@@ -847,21 +872,25 @@
                             <div class="inner-card" style="display:flex;">
                                 <t t-foreach="user_products" t-as="product">
                                     <div class="product-container">
-                                        <div class="">
+                                        <div class="product-container-img">
                                             <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
-                                            
+                                            <span style="margin-top: 0.7rem;">
+                                                <t t-set="enquiry_count" t-value="env['product.enquiries'].sudo().search_count([('product_id', '=', product.id)])"/>
+                                                <a t-att-data-product-id="product.id" onclick="showProductLeads(this)" style="color:#8fb15f"><t t-esc="enquiry_count"/> Enquiries</a>
+                                            </span>
                                         </div>
                                         <div class="product-details">
                                             <span>
-                                                <h2 style="display: inline;" t-esc="product.product_id.name"/>$
-                                                <p style="display: inline; margin-left: -4px;" t-esc="product.product_price_usd"/>
+                                                <h2 style="display: inline;" t-esc="product.product_id.name"/>
+                                                <!-- $<p style="display: inline; margin-left: -4px;" t-esc="product.product_price_usd"/> -->
                                             </span>
                                             <h3 >Product Description</h3>
                                             <p t-esc="product.product_description"/>
                                             
                                         </div>
                                         <div class="product-icons">
+                                           
                                             <span><i class="fa-solid fa-pen"></i></span>
                                             <span><i class="fa-solid fa-trash"></i></span>
                                         </div>
@@ -1032,6 +1061,7 @@
                                 </div>
                             </div>
                         </div>
+                        
 
                         
                     </div>
@@ -1177,16 +1207,50 @@
                 function category_change(element){
                     let category_id = element.value
                     let product_subcategory = document.getElementById('product_subcategory')
+                    while (product_subcategory.firstChild) {
+                        product_subcategory.removeChild(product_subcategory.firstChild);
+                    }
+                    let product_name = document.getElementById('product_name')
+                    while (product_name.firstChild) {
+                        product_name.removeChild(product_name.firstChild);
+                    }
                     fetch('profile/getsubcategories/'+category_id).then(function(res) {
                         res.json().then(function(data){
+                            <!-- while (product_subcategory.firstChild) {
+                                product_subcategory.removeChild(product_subcategory.firstChild);
+                            } -->
+                            const option1 = document.createElement('option');
+                            option1.value = ''
+                            option1.textContent = ''
+                            product_subcategory.appendChild(option1)
                             data.forEach(function(subcategory) {
                             const option = document.createElement('option');
                                     option.value = subcategory.id
                                     option.textContent = subcategory.name;
-                                    while (product_subcategory.firstChild) {
-                                        product_subcategory.removeChild(product_subcategory.firstChild);
-                                    }
+                                    
                                     product_subcategory.appendChild(option)
+                            })
+                        })
+                        }) 
+
+
+                }
+
+                function subsubcategory_change(element){
+                    let subcategory_id = element.value
+                    let product_name = document.getElementById('product_name')
+                    while (product_name.firstChild) {
+                        product_name.removeChild(product_name.firstChild);
+                    }
+                    fetch('profile/getproducts/'+subcategory_id).then(function(res) {
+                        res.json().then(function(data){
+                            console.log(data)
+                            data.forEach(function(product) {
+                            const option = document.createElement('option');
+                                    option.value = product.id
+                                    option.textContent = product.name;
+                                    
+                                    product_name.appendChild(option)
                             })
                         })
                         }) 
@@ -1310,36 +1374,21 @@
                     inputElement.name = id
                     <!-- inputElement.name = "award_"+inputElement.parentElement.parentElement.parentElement.rowIndex  -->
                     inputElement.parentElement.parentElement.children[0].replaceWith(inputElement.value.split('\\')[2]) 
-                    const file = inputElement.files[0];
-                    const awardId = inputElement.getAttribute('data-award-id');
-
-                    if (file) {
-                        const formData = new FormData();
-                        formData.append('file', file);
-                        formData.append('award_id', awardId);
-
-                        fetch('/update_award_attachment', {
-                            method: 'POST',
-                            body: formData
-                        }).then(function(response) {
-                            if (response.ok) {
-                                return response.json();
-                            } else {
-                                throw new Error('File upload failed');
-                            }
-                        }).then(function(data) {
-                            console.log('File uploaded successfully:', data);
-                            // Optionally refresh the page or update the UI to reflect the new file
-                        }).catch(function(error) {
-                            console.error('Error:', error);
-                        });
-                    }
+                    
                 }
 
                 function openDeleteAward(element){
                     element.parentElement.parentElement.remove()
                 }
 
+                function showProductLeads(element){
+                    var productId = element.getAttribute('data-product-id');
+                    fetch('profile/getproductleads/'+productId).then(function(res){
+                        
+                    })
+                    
+                }
+                
 
                 
             </script>

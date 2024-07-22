@@ -54,7 +54,7 @@ class HomepageController(http.Controller):
     def get_subcategories(self, category_id):
         subcategories = request.env['product.subcategories'].sudo().search([('category_id', '=', int(category_id))])
         subcategory_list = [{'id': subcategory.id, 'name': subcategory.name} for subcategory in subcategories]
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
 
         return {'subcategories': subcategory_list}
         
@@ -172,15 +172,30 @@ class HomepageController(http.Controller):
 
 
     @http.route('/profile/supplier', auth='public', website=True)
-    def supplier_profile(self, **kwargs):
+    def supplier_profile(self,page=1, **kwargs):
         # import wdb;wdb.set_trace()
         user = request.env.user
         partner_id = user.partner_id
+        # items_per_page = 10
+        # offset = (page - 1) * items_per_page
         products = request.env['product.customer.images'].sudo().search([('partner_id','=',7)])
+
+        # total_enquiries = partner_id.product_enquiries.sudo().search_count([])
+        product_enquiries = partner_id.product_enquiries.sudo().search([], order='create_date desc')
+
+        # pager = request.website.pager(
+        #     url='/profile/supplier',
+        #     total=total_enquiries,
+        #     page=page,
+        #     step=items_per_page
+        # )
 
         vals = {
             "products": products,
-            'partner':partner_id
+            'partner':partner_id,
+            'product_enquiries':product_enquiries,
+            # 'pager':pager
+
             }
 
 
@@ -189,11 +204,17 @@ class HomepageController(http.Controller):
 
     @http.route(['/profile/updatedocuments'], method=["POST"], type="http", auth="user", website=True)
     def UpdateDocuments(self, **kw):
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
+        
+ 
         
         user = request.env.user
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
+            update_award_id = None
+            for key, value in kw.items():
+                if key.startswith('updated_update_award_'):
+                    update_award_id = int(key.split('_')[-1])
             award_list = []
             for rec in kw:
                 if "award" in rec:
@@ -265,12 +286,18 @@ class HomepageController(http.Controller):
             # Extract form data
             product_image = kw.get('upload_product').read()
             product_description = kw.get('product_description')
+            product = kw.get('product_name')
+            product_variety_name = kw.get('product_variety')
+
 
             if product_image:
                 partner_id.product_images.sudo().create({
                     'partner_id': partner_id.id,
                     'product_image':base64.b64encode(product_image),
-                    'product_description':product_description
+                    'product_description':product_description,
+                    'product_variety_name':product_variety_name,
+                    'product_id':product,
+
                 })
 
             return request.redirect("/profile")

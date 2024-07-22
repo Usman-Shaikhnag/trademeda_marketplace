@@ -12,6 +12,7 @@
                 <field name="product_images">
                     <tree editable="bottom">
                         <field name="product_id"/>
+                        <field name="product_variety_name"/>
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image"  style="width:100px;height:100px;"/>
@@ -26,6 +27,7 @@
                     </tree>
                     <form>
                         <field name="product_id"/>
+                        <field name="product_variety_name"/>
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image" style="width:100px;height:100px;"/>
@@ -157,6 +159,31 @@
                         <field name="employee_designation"/>
                         <field name="employee_contact"/>
                         <field name="employee_email"/>
+                    </form>
+                </field>
+            </page>
+            <page string="Product Enquiries" name="product_enquiry_page">
+                <field name="product_enquiries">
+                    <tree editable="bottom">
+                        <field name="user_name"/>
+                        <field name="message"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="product_id"/>
+                        <field name="product"/>
+                        <field name="country"/>
+
+
+                    </tree>
+                    <form>
+                        <field name="user_name"/>
+                        <field name="message"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="product_id"/>
+                        <field name="product"/>
+                        <field name="country"/>
+
                     </form>
                 </field>
             </page>

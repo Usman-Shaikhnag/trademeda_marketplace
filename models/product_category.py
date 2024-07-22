@@ -5,7 +5,7 @@ class ProductCategory(models.Model):
     _description = 'Product Category'
 
     name = fields.Char(string='Name', required=True)
-    subcategories_lines = fields.One2many('product.subcategories.lines', 'category_id', string='SubCategories')
+    subcategories_lines = fields.One2many('product.subcategories', 'category_id', string='SubCategories')
 
 
 
@@ -19,10 +19,7 @@ class ProductSubCategoryLines(models.Model):
     
 
 
-class ProductTemplateInherited(models.Model):
-    _inherit = 'product.template'
+# class ProductTemplateInherited(models.Model):
+#     _inherit = 'product.template'
 
-    subcategory_id = fields.Many2many('product.subcategories', string='Subcategory')
-
-    
-
+#     subcategory_id = fields.Many2many('product.subcategories', string='Subcategory')

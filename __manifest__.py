@@ -16,15 +16,15 @@
         'views/customer_inherited.xml',
         'views/product_inherited.xml',
 
-
+        
+        'views/portal/header.xml',
         'views/portal/homepage.xml',
         'views/portal/signup.xml',
         'views/portal/signin.xml',
         'views/portal/user_profile.xml',
         'views/portal/product_details.xml',
         'views/portal/supplier_profile.xml',
-
-
+        'views/portal/wishlist.xml',
 
 
 

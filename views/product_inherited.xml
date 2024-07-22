@@ -8,8 +8,10 @@
         <xpath expr="//page[@name='general_information']" position="after">
             
            
-            <page string="SubCategories" name="subcategories_page">
-                <field name="subcategory_id" widget="many2many_tags "/>
+            <page string="Sub-Subcategories" name="subcategories_page">
+                <field name="subsubcategory_id"/>
+                        <!-- <field name="name"/>
+                </field> -->
             </page>
 
             

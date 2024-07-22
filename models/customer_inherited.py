@@ -10,6 +10,7 @@ class ResPartner(models.Model):
     awards = fields.One2many('customer.awards', 'partner_id', string='Awards')
     certificates = fields.One2many('customer.certificates', 'partner_id', string='Certificates')
     customer_employees = fields.One2many('customer.employees','partner_id',string="Employees")
+    product_enquiries = fields.One2many('product.enquiries','partner_id',string='Product Enquiries')
 
     member_type = fields.Selection([
         ('buyer','Buyer'),
@@ -105,7 +106,7 @@ class ProductCustomerImages(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
     product_id = fields.Many2one('product.template', string="Product")
-    product_variety_name = fields.Char("Product Variety")
+    product_variety_name = fields.Char("Product Variety / Grade")
     product_description  = fields.Text("Product Description")
     product_image = fields.Binary('Image')
     image_name = fields.Char("Image Name")  
@@ -156,3 +157,16 @@ class CustomerEmployees(models.Model):
     employee_contact  = fields.Char("Employee Contact")
     employee_email  = fields.Char("Employee Email")
 
+class ProductEnquiries(models.Model):
+    _name = "product.enquiries"
+    _description = "Product Enquiries"
+
+    partner_id = fields.Many2one('res.partner', string="Customer")
+    
+    user_name = fields.Char("Name")
+    message = fields.Text(string="Message")
+    email = fields.Char(string="Email")
+    phone = fields.Char(string="Phone")
+    product = fields.Char(string="Product")
+    product_id = fields.Many2one('product.template', string="Product")
+    country = fields.Many2one('res.country', string="Country")

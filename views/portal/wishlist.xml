@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <template id="wishlist_page" name="Wishlist">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/wishlist.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            </xpath>
+            <t t-call="trademeda.header">
+                
+            </t>
+            <main class="">
+                <div class="main">
+                    <div class="wishlist">
+                        <b class="">Your Wishlist</b>
+                    </div>
+                    <t t-foreach="products" t-as="product">
+                        <div class="product-card">
+                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                            <!-- <img src="/trademeda/static/src/img/company.png" alt="" class="product-image"/> -->
+                            <div class="product-details">
+                                <h2 class="product-name"><t t-esc="product.product_id.name"/></h2>
+                                <p class="product-seller">Seller: <span t-esc="product.partner_id.name"></span></p>
+                                <p class="product-description"><t t-esc="product.product_description"/></p>
+                                
+                                
+                                
+                            </div>
+                            <div class="action-buttons">
+                                <button class="remove"><i class="fas fa-trash" style="color:#b32f2d"></i></button>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </main>
+            <script>
+
+            </script>
+        </template>
+    </data>
+</odoo>
+    

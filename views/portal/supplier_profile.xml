@@ -5,6 +5,14 @@
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/supplier_profile.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
+            <script>
+                function close_enquiry_form(){
+                    document.getElementById('product-enquiry-form').style.display = 'none'
+                }
+                
+            </script>
+            <t t-set="partner_id" t-value="partner.id"/>
+
             <div class="header">
                     <div class="logo-container">
                         <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="profile photo" class="logo"/>
@@ -110,7 +118,7 @@
                         <div id="content1" class="content active">
                             <div class="company-detail-header">
                                 <h3>Our Company</h3>
-                                <span style="color:#8fb15f">Supplier From <t t-esc="partner.country_id.name" /></span>
+                                <span style="color:#8fb15f">Supplier From <t t-esc="partner.country_id.name" /> <img src="/trademeda/static/src/img/flag.png" alt="" style="height:1.5rem;"/></span>
                                 <span class="product-date">Jul-05-23</span>
                                 <!-- <button id="contact_us">Contact Us</button> -->
                             </div>
@@ -126,18 +134,18 @@
                                 <!-- <details class="">
                                     <summary class="">Click to View</summary>
                                     <p class="details-text">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+                                        <t t-esc="partner.details"/>
                                     </p>
                                 </details> -->
                             </div>
                         </div>
                         <div id="content2" class="content" style="position:relative;">
                                 
-                                <t t-foreach="request.env['product.customer.images'].sudo().search([('partner_id','=',7)])" t-as="product">
+                                <t t-foreach="request.env['product.customer.images'].sudo().search([('partner_id','=',7)])" t-as="product"> 
                                     <div class="product-card">
                                         <div class="product-header">
                                             <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#8fb15f;text-decoration:none;"></a></h3>
-                                            <span style="color:#8fb15f">Supplier from <t t-esc="partner.country_id.name" /></span>
+                                            <span style="color:#8fb15f;display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="Country Flag" style="height:0.9rem;"/></span>
                                             <span class="product-date">Jul-05-23</span>
                                         </div>
                                         <div class="product-content">
@@ -149,18 +157,20 @@
                                                 <i class="fa fa-envelope"></i> Inquire Now
                                             </a>
                                             <!-- t-attf-href="/add-to-favourites/{{product.id}}"  -->
-                                            <a  onclick="add_to_favourites(product.id)" class="add-to-favorites">
-                                                <i class="fa fa-heart"></i> Add to Favorites
+                                            <a  onclick="add_to_wishlist(this)" t-att-data-product-id="product.id" class="add-to-favorites">
+                                                <i class="fa fa-heart"></i> Add to Wishlist
                                             </a>
                                         </div>
                                     </div>
                                             <!-- enquiry popup start  -->
-                                    <form action="/supplier/sendenquiry" method="post" enctype="multipart/form-data" class="">
+                                    <form id="enquiryForm" action="/supplier/sendproductenquiry" method="post" enctype="multipart/form-data" class="">
                                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                                         <div class="contact-us" style="" id="product-enquiry-form">
                                             <div class="company_name" style="display:flex;justify-content:center;">
-                                                <h1>Sending Inquiry For: <t t-esc="product.product_id.name"/> </h1>
+                                                <h1>Sending Inquiry For: <span class="" t-esc="product.product_id.name"></span> </h1>
                                             </div>
+                                            <input type="hidden" id="product_id" name="product_id" t-att-value="product.product_id.id" />
+
                                             <div class="text-input">
                                                 <div class="">
                                                     <span class="">Message</span>
@@ -197,13 +207,20 @@
                                                 <div class="">
                                                     <span class="">Country</span>
                                                 </div>
-                                                <div class="">
-                                                    <input email="buyer_country" id="enquiry_user_country"/>
+                                                <div class="select-container">           
+                                                    <select id="buyer_country" name="buyer_country" class="form-control">
+                                                        <t t-foreach="request.env['res.country'].sudo().search([])" t-as="country">
+                                                            <option t-att-value="country.id">
+                                                                <t t-esc="country.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
                                                 </div>
+                                                
                                             </div>
                                             <div class="btn-container">
-                                                <button type="submit" class="">Send Enquiry</button>
-                                                <button onclick="close_enquiry_form()" id="close_enquiry_form" class="">Close</button>
+                                                <button type="button" class="" t-att-data-partner-id="partner.id" onclick="send_product_enquiry(this)">Send Enquiry</button>
+                                                <button onclick="close_enquiry_form()" type="button" id="close_enquiry_form_btn" class="">Close</button>
                                             </div>
                                         </div>
                                     </form>
@@ -235,8 +252,9 @@
                             <h1 class="">Certificates</h1>
                             <div class="certificate_award_container">
                                 <t t-foreach="partner.certificates" t-as="certificate">
-                                    <div class="inner_award_cert_container">
-                                        <div class="award_certificate_doc">
+                                    
+                                    <div class="award-certificate-card">
+                                        <div class="award-certificate-image">
                                             <t t-if="certificate.certificate_attachment">
                                                 <t t-if="certificate.file_name and (certificate.file_name.endswith('.png') or certificate.file_name.endswith('.jpg') or certificate.file_name.endswith('.jpeg'))">
                                                     <img t-att-src="'data:image/png;base64,' + certificate.certificate_attachment.decode('utf-8')" alt="Certificate Image" class="certificate_award_image"/>
@@ -249,17 +267,13 @@
                                                 </t>
                                             </t>
                                         </div>
-                                        <div class="award_certificate_details">
-                                            <div class="award_certificate_name">
-                                                <h3 class=""><span class="" t-esc="certificate.certificate_name"></span></h3>
-                                            </div>
-                                            <div class="">
-                                                <p class=""><span t-esc="certificate.certificate_description"/></p>
-                                            </div>
+                                        <div class="award-certificate-details">
+                                            <h1><span class="" t-esc="certificate.certificate_name"/></h1>
+                                            <h3>Award Description</h3>
+                                            <p><span t-esc="certificate.certificate_description"/></p>
                                         </div>
+                                        
                                     </div>
-                                
-                                    <span class="divider" style="margin-top: 5px;"></span>
                                     
 
                                 </t>
@@ -272,18 +286,27 @@
                         <div id="content5" style="color:#8fb15f" class="content">
                             <h1 class="">Awards</h1>
                             <t t-foreach="partner.awards" t-as="award">
-                                <h3 class=""><span class="" t-esc="award.award_description"></span></h3>
-                                <t t-if="award.award_attachment">
-                                    <t t-if="award.file_name and (award.file_name.endswith('.png') or award.file_name.endswith('.jpg') or award.file_name.endswith('.jpeg'))">
-                                        <img t-att-src="'data:image/png;base64,' + award.award_attachment.decode('utf-8')" alt="award Image" class="certificate_award_image"/>
-                                    </t>
-                                    <!-- If the file is a PDF -->
-                                    <t t-elif="award.file_name and award.file_name.endswith('.pdf')">
-                                        <a t-att-href="'data:application/pdf;base64,' + award.award_attachment.decode('utf-8')" t-att-download="award.file_name">
-                                            Download PDF
-                                        </a>
-                                    </t>
-                                </t>
+                                <div class="award-certificate-card">
+                                        <div class="award-certificate-image">
+                                            <t t-if="award.award_attachment">
+                                                <t t-if="certificate.file_name and (award.file_name.endswith('.png') or award.file_name.endswith('.jpg') or award.file_name.endswith('.jpeg'))">
+                                                    <img t-att-src="'data:image/png;base64,' + award.award_attachment.decode('utf-8')" alt="Award Image" class="certificate_award_image"/>
+                                                </t>
+                                                <!-- If the file is a PDF -->
+                                                <t t-elif="award.file_name and award.file_name.endswith('.pdf')">
+                                                    <a t-att-href="'data:application/pdf;base64,' + award.award_attachment.decode('utf-8')" t-att-download="award.file_name">
+                                                        Download PDF
+                                                    </a>
+                                                </t>
+                                            </t>
+                                        </div>
+                                        <div class="award-certificate-details">
+                                            <h1><span class="" t-esc="award.award_name"/></h1>
+                                            <h3>Award Description</h3>
+                                            <p><span t-esc="award.award_description"/></p>
+                                        </div>
+                                        
+                                    </div>
                             </t>
                         </div>
                         <!-- News Management  -->
@@ -336,19 +359,42 @@
                         </div>
                         <!-- members only  -->
                         <div id="content7" class="content">
-                        
-                            <div class="enquiry-card">
-                                <div class="enquiry-card-header">
-                                </div>
-                                <div class="enquiry-card-body">
-                                    <div class="contact_details">
-                                    
-                                    </div>
-                                    <div class="message">
-                                    
-                                    </div>
-                                </div>
+                            <div class="tab-buttons">
+                                <button onclick="product_enquiries(this)" class="active">Product Enquiry</button>
+                                <button onclick="contact_enquiries(this)" class="">Contact Us</button>
+
                             </div>
+                            <!-- to be added partner id in url and controller  -->
+                            <form action="/supplier/download_product_enquiries" method="get">
+                                <div class="download-btn">
+                                    <button type="submit">Download</button>
+                                </div>
+                            </form>
+                            <!-- <div class="download-btn"><button onclick="download_product_enquiries(this)">Download</button></div> -->
+                            <t t-foreach="product_enquiries" t-as="enquiry">
+                                <div class="enquiry-card">
+                                    <div class="enquiry-card-header">
+                                        <h3 class=""><t t-esc="enquiry.user_name"/></h3>
+                                        <p class=""><t t-esc="enquiry.phone"/></p>
+                                        <p class=""><t t-esc="enquiry.country.name"/></p>
+
+
+                                    </div>
+                                    <span class="divider" style="margin-top: 5px;"></span>
+
+                                    <div class="enquiry-card-body">
+                                        
+                                        <p class="" style="color:blue;"><t t-esc="enquiry.email"/></p>
+                                        <p class=""><t t-esc="enquiry.message"/></p>
+                                        
+                                    </div>
+                                </div>
+                            </t>
+                            <!-- <div class="pager">
+                                <t t-call="website.pager">
+                                    <t t-set="pager" t-value="pager"/>
+                                </t>
+                            </div> -->
                         </div>
 
 
@@ -446,9 +492,7 @@
                 function open_enquiry_form(element){
                     document.getElementById('product-enquiry-form').style.display = 'flex'
                 }
-                function close_enquiry_form(){
-                    document.getElementById('product-enquiry-form').style.display = 'none'
-                }
+                
                 var rating = 4.2; // Replace this with the actual rating value
                 var starContainer = document.getElementById('star-container');
                 function fillStars(rating) {
@@ -499,6 +543,68 @@
                     
 
                 }
+                function send_product_enquiry(element){
+                    var partner_id = element.getAttribute('data-partner-id');
+                    console.log("Partner",partner_id)
+                    const name = document.getElementById('buyer_name').value
+                    const message = document.getElementById('message').value
+                    const email = document.getElementById('buyer_email').value
+                    const phone = document.getElementById('buyer_phone').value
+                    const product = document.getElementById('product_id').value
+                    const country = document.getElementById('buyer_country').value
+                    const data = {
+                        'name':name,
+                        'message':message,
+                        'email':email,
+                        'phone':phone,
+                        'country':country,
+                        'product':product
+                    }
+                    
+
+                    fetch('/supplier/sendproductenquiry/'+partner_id,{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the request headers
+                        },
+                        body: JSON.stringify(data),
+                    }).then(function(res) {
+                        document.getElementById('product-enquiry-form').style.display = 'none'
+                    })
+                }
+                function product_enquiries(element){
+                    element.classList.add('active')
+                    element.nextElementSibling.classList.remove('active')
+                }
+                function contact_enquiries(element){
+                    element.classList.add('active')
+                    element.previousElementSibling.classList.remove('active')
+
+                }
+                function download_product_enquiries(element){
+                    fetch('/supplier/download_product_enquiries').then(function(res){
+                        console.log(res)
+                    }).catch(function(err){
+                        console.log(err)
+                    })
+                }
+
+                function add_to_wishlist(element){
+                    var product_id = element.getAttribute('data-product-id');
+                    fetch('/is_logged_in').then(function(res){
+                        return res.json();
+                    }).then(function(data){
+                        if(data.logged_in == true){
+                           fetch('/add-to-wishlist/'+product_id).then(function(res){
+                            console.log("res",res)
+                           })
+                        }
+                        else{
+                            
+                        }
+                    })
+                }
+                
                 
             </script>
           
