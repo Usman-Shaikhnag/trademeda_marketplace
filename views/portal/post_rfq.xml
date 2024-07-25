@@ -1,0 +1,185 @@
+<odoo>
+    <data>
+        <template id="rfq_page" name="RFQ">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/rfq_page.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            </xpath>
+            <t t-call="trademeda.header">
+                
+            </t>
+
+            <main>
+                <div class="container">
+                    <h2 style="display:flex;justify-content:center;font-size:2rem;color:#b32f2d;">Request for Quotation</h2>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Request Type</span>
+                        </div>
+                        <div class="select-container">
+                            
+                            <select id="request_type" name="request_type">
+                                <option value="product">Product</option>
+                                <option value="service">Service</option>                  
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display:flex;">
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Product</span>
+                            </div>
+                            <div class="select-container">
+                                
+                                <select id="product" name="product">
+                                    <option value=""></option>
+
+                                    <t t-foreach="env['product.template'].sudo().search([])" t-as="option">
+                                        <option t-att-value="option.id">
+                                            <t t-esc="option.name"/>
+                                        </option>
+                                    </t>    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-input" style="width:30%">
+                            <div class="">
+                                <span class="">Quantity</span>
+                            </div>
+                            <div class="">
+                                <input type="number" placeholder="1" name="quantity"/>
+                            </div>
+                        </div>
+                        <div class="text-input" style="width:20%">
+                            <div class="">
+                                <span class="">Unit</span>
+                            </div>
+                            <div class="select-container">
+                                
+                                <select id="product" name="product">
+                                    <option value=""></option>
+
+                                    <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                        <option t-att-value="option.id">
+                                            <t t-esc="option.name"/>
+                                        </option>
+                                    </t>    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Product Specification</span>
+                        </div>
+                        <div class="">
+                            <textarea name="product_specification"/>
+                            
+                        </div>
+                    </div>
+                    <div style="display:flex;">        
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Target Price</span>
+                            </div>
+                            <div class="">
+                                <input type="number" placeholder="1" name="target_price"/>
+                            </div>
+                        </div>
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Destination</span>
+                            </div>
+                            <div class="select-container">
+                                
+                                <select id="destination" name="destination">
+                                    <option value=""></option>
+
+                                    <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                        <option t-att-value="option.id">
+                                            <t t-esc="option.name"/>
+                                        </option>
+                                    </t>    
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div style="display:flex;">
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Shipping Terms</span>
+                            </div>
+                            <div class="select-container">
+                                
+                                <select id="shipping_terms" name="shipping_terms">
+                                    <option value="fob">FOB (Free on Board)</option>
+                                    <option value="fca">FCA (Free Carrier)</option> 
+                                    <option value="exw">EXW (Ex Works)</option>                  
+                                    <option value="fas">FAS (Free Alongside Ship)</option>                  
+                                    <option value="dap">DAP (Delivered at Place)</option>                  
+                                    <option value="dat">DAT (Delivered at Terminal)</option>                  
+                                    <option value="cif">CIF (Cost, Insurance and Freight)</option>                  
+                                    <option value="cip">CIP (Carriage and Insurance Paid to)</option>                  
+                                    <option value="cfr">CFR (Cost and Freight)</option>                  
+                                    <option value="ddp">DDP (Delivery Duty Paid)</option>  
+                                    <option value="cpt">CPT (Carriage paid to)</option>                  
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Payment Terms</span>
+                            </div>
+                            <div class="">
+                                <input type="text" name="payment_terms"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;">
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Looking for Suppliers from</span>
+                            </div>
+                            <div class="select-container">
+                                
+                                <select id="supplier_country" name="supplier_country">
+                                    <option value="">Worldwide</option>
+
+                                    <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                        <option t-att-value="option.id">
+                                            <t t-esc="option.name"/>
+                                        </option>
+                                    </t>    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-input" style="width:50%">
+                            <div class="">
+                                <span class="">Contact Person</span>
+                            </div>
+                            <div class="">
+                                <input type="text" name="contact_person"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Message</span>
+                        </div>
+                        <div class="">
+                            <textarea name="message"/>
+                            
+                        </div>
+                    </div>
+                    <div class="post_rfq">
+                        <button class="">Post RFQ</button>
+                    </div>
+                    
+                </div>
+            </main>
+
+
+        </template>
+    </data>
+</odoo>

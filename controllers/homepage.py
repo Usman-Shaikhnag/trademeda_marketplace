@@ -28,11 +28,12 @@ class HomepageController(http.Controller):
     def product(self, **kwargs):
         return request.render('trademeda.product_details')
     
-    @http.route('/profile', auth='public', website=True)
+    @http.route('/profile', auth='user', website=True)
     def UserProfile(self, **kwargs):
 
         user = request.env.user
         partner_id = user.partner_id
+        # print("Partnerrrrr",partner_id)
         categories = request.env['product.categories'].sudo().search([])
         subcategories = request.env['product.subcategories'].sudo().search([])
         products = request.env['product.template'].sudo().search([])

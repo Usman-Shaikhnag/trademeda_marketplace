@@ -7,31 +7,76 @@ import xlsxwriter
 from io import BytesIO
 class ProductController(http.Controller):
 
-    @http.route(['/add-to-wishlist/<int:product_id>',], type="http", auth="public", website=True)
-    def AddToWishlist(self,product_id, **kwargs):
-        # import wdb;wdb.set_trace()
+    @http.route(['/add-to-wishlist/<int:product_id>'], type="http", auth="user", website=True)
+    def AddToWishlist(self, product_id, **kwargs):
         user = request.env.user
         partner_id = user.partner_id
-        customer_product = request.env['product.customer.images'].sudo().search([('id','=',product_id)])
-        request.env['user.wishlist'].sudo().create({
-            'partner_id':partner_id,
-            'product_id':customer_product
-        })
+        customer_product = request.env['product.customer.images'].sudo().browse(product_id)
+        
+        if customer_product.exists():
+            # Check if the product is already in the wishlist
+            existing_wishlist_item = request.env['user.wishlist'].sudo().search([
+                ('partner_id', '=', partner_id.id),
+                ('product_id', '=', customer_product.id)
+            ], limit=1)
+            
+            if not existing_wishlist_item:
+                # If not in wishlist, create a new entry
+                request.env['user.wishlist'].sudo().create({
+                    'partner_id': partner_id.id,
+                    'product_id': customer_product.id
+                })
+        
+        return request.render('trademeda.wishlist_page')
+    
+
+    @http.route(['/addToWishlistDatabase'], methods=["POST"], type="json", auth="public", website=True)
+    def AddToWishlistDatabase(self, **kw):
+        user = request.env.user
+        partner_id = user.partner_id
+        import wdb;wdb.set_trace()
+        data = request.httprequest.get_json()
+        
+        
+        
         return request.render('trademeda.wishlist_page')
        
         
     
 
-    @http.route(['/wishlist',], type="http", auth="user", website=True)
+    @http.route(['/wishlist',], type="http", auth="public", website=True)
     def GoToWishlist(self, **kwargs):
         user = request.env.user
         partner_id = user.partner_id
-        wishlist_products = request.env['product.customer.images'].sudo().search([('partner_id','=',partner_id.id)])
+        # import wdb;wdb.set_trace()
+
+        
+        wishlists = request.env['user.wishlist'].sudo().search([('partner_id', '=', partner_id.id)])
+        product_ids = [wishlist.product_id.id for wishlist in wishlists]
+        
+        actual_products = request.env['product.customer.images'].sudo().search([('id', 'in', product_ids)])
+        
         vals = {
-            'products':wishlist_products
+            'products': actual_products
         }
 
         return request.render('trademeda.wishlist_page',vals)
+    
+    @http.route(['/removeFromWishlist/<int:productId>'], type="http", auth="public", website=True)
+    def RemoveFromWishlist(self, productId, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
+
+        wishlist_item = request.env['user.wishlist'].sudo().search([
+            ('partner_id', '=', partner_id.id),
+            ('product_id', '=', productId)
+        ], limit=1)
+        
+        if wishlist_item:
+            wishlist_item.sudo().unlink()
+
+        return request.redirect('/wishlist')
+
     
 
     @http.route(['/is_logged_in',], type="http", auth="public", website=True)

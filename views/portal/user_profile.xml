@@ -82,16 +82,21 @@
                             <span class="divider"></span>
                         </div>
                         <div class="sidemenu">
-                            <div class="menu-item" onclick="enable_add_new_product(this)" id="new-product-menu">
-                                <!-- <img src="/trademeda/static/src/img/more.png" alt="" class="icons"/> -->
-                                <i class="fas fa-plus" /> 
-                                <span class="">Add New Product</span>
-                            </div>
-                            <div class="menu-item" onclick="enable_product_management(this)" id="product-management-menu">
-                                <!-- <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/> -->
-                                <i class="fas fa-layer-group" /> 
-                                <span class="">Product Management</span>
-                            </div>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_add_new_product(this)" id="new-product-menu">
+                                    <!-- <img src="/trademeda/static/src/img/more.png" alt="" class="icons"/> -->
+                                    <i class="fas fa-plus" /> 
+                                    <span class="">Add New Product</span>
+                                </div>
+                            </t>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+
+                                <div class="menu-item" onclick="enable_product_management(this)" id="product-management-menu">
+                                    <!-- <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/> -->
+                                    <i class="fas fa-layer-group" /> 
+                                    <span class="">Product Management</span>
+                                </div>
+                            </t>
                             <div class="menu-item" onclick="enable_documents(this)" id="documents-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-file-lines" /> 
@@ -102,10 +107,12 @@
                                 <i class="fas fa-users" /> 
                                 <span class="">Employee management</span>
                             </div>
-                            <div class="menu-item" onclick="enable_news(this)" id="news-menu">
-                                <i class="fas fa-newspaper" /> 
-                                <span class="">News</span>
-                            </div>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_news(this)" id="news-menu">
+                                    <i class="fas fa-newspaper" /> 
+                                    <span class="">News</span>
+                                </div>
+                            </t>
                             <div class="menu-item" onclick="enable_queries(this)" id="queries-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-clipboard-question" /> 
@@ -162,10 +169,47 @@
                                             <span class="">Company Details</span>
                                         </div>
                                         <div class="">
-                                            <textarea placeholder="Company Details" t-esc="partner.company_details" name="company_details" id="company_details" class="form-control"/>
-
+                                            <textarea style="white-space: nowrap;" placeholder="Company Details" name="company_details" id="company_details" class="form-control">
+                                                <t t-esc="partner.company_details"/>
+                                            </textarea>
                                         </div>
                                     </div>
+                                    <t t-if="partner.member_type == 'buyer' or partner.member_type == 'both'">
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Buyer Products</span>
+                                            </div>
+                                            <div class="">
+                                                <textarea style="white-space: nowrap;" placeholder="Company Details" name="buyer_products" id="buyer_products" class="form-control">
+                                                    <t t-esc="partner.buyer_products"/>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Seller Products</span>
+                                            </div>
+                                            <div class="">
+                                                <textarea style="white-space: nowrap;" placeholder="Company Details" name="supplier_products" id="supplier_products" class="form-control">
+                                                    <t t-esc="partner.supplier_products"/>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-if="partner.member_type == 'both'">
+                                        <div class="text-input">
+                                            <div class="">
+                                                <span class="">Buyer Products</span>
+                                            </div>
+                                            <div class="">
+                                                <textarea style="white-space: nowrap;" placeholder="Company Details" name="trader_products" id="trader_products" class="form-control">
+                                                    <t t-esc="partner.trader_products"/>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </t>
                                     <div class="multi-input">
                                         <div class="text-input">
                                             <div class="">
@@ -774,7 +818,7 @@
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteAward(this)">
+                                                            <button type="button" style="background: transparent;border: none;" t-att-data-award-id="hello" onclick="openDeleteAward(this)">
                                                         
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
@@ -811,6 +855,79 @@
                                                                 <div class="file-upload-wrapper">
                                                                     <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this)" />
                                                                     <label t-att-for="'update_award_' + str(award_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
+                                                                    
+                                                                    
+                                                                </div>
+                                                            
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <!-- certificates  -->
+                                <div class="">
+                                    <t>
+                                        <div class="document_upload_table">
+                                        <div >
+                                            <button type="button" class="button" style="margin-bottom:3px;" onclick="showAwardPopup(this)">Add</button>
+                                        </div>
+                                        <table id="certificate_table" name="certificate_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Name of the Certificate</th>
+                                                    <th>File</th>
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                            <!-- here  -->
+                                                <t t-foreach="enumerate(partner.certificates)" t-as="certificate_tuple">
+                                                    <tr>
+                                                        <td>
+                                                            
+                                                            <button type="button" style="background: transparent;border: none;" t-att-data-certificate-id="123" onclick="openDeleteCertificate(this)">
+                                                        
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
+                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
+                                                                </svg>
+                                                            </button>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                                <t t-esc="certificate_tuple[1].certificate_description"  />
+                                                        </td>
+                                                        <!-- <td>
+                                                                <t t-out="award.award_attachment" name="award_${i}"/>
+                                                        </td> -->
+                                                        <td>
+                                                            <t t-if="certificate_tuple[1].certificate_attachment">
+                                                                <a t-att-href="'data:application/octet-stream;base64,' + certificate_tuple[1].certificate_attachment.decode('utf-8')" t-att-download="certificate_tuple[1].file_name" >
+                                                                    <t t-esc="'Download ' + certificate_tuple[1].file_name" />
+                                                                </a>
+                                                                <!-- <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
+
+
+                                                                <div class="file-upload-wrapper">
+                                                                    <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this)" />
+                                                                    <label t-att-for="'update_award_' + str(certificate_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
+                                                                    
+                                                                    
+                                                                </div>
+                                                            </t>
+                                                            <t t-else="">
+                                                                No file available
+                                                                <!-- <input type="file" t-att-id="certificate_tuple[1].id" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this,1)" /> -->
+
+                                                                <div class="file-upload-wrapper">
+                                                                    <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this)" />
+                                                                    <label t-att-for="'update_award_' + str(certificate_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
                                                                     
                                                                     
                                                                 </div>
@@ -999,7 +1116,7 @@
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="openDeleteAward(this)">
+                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" >
                                                         
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
@@ -1313,8 +1430,9 @@
                     const deleteButton = document.createElement('button');
                     deleteButton.type = 'button';
                     deleteButton.style = 'background:transparent;border:none;';
+                    deleteButton.setAttribute('data-award-id', '123');
                     deleteButton.onclick = function() {
-                        openDeleteAward(this);
+                        openDeleteAward(deleteButton);
                     };
 
                     // Create the SVG icon and append it to the button
@@ -1377,7 +1495,23 @@
                     
                 }
 
+                function updateCertificateFile(inputElement) {
+                    let id = inputElement.id 
+                    id = "updated_"+id
+                    inputElement.name = id
+                    <!-- inputElement.name = "award_"+inputElement.parentElement.parentElement.parentElement.rowIndex  -->
+                    inputElement.parentElement.parentElement.children[0].replaceWith(inputElement.value.split('\\')[2]) 
+                    
+                }
+
                 function openDeleteAward(element){
+                    var awardId = element.getAttribute('data-award-id');
+                    console.log("Awardd",awardId)
+                    element.parentElement.parentElement.remove()
+                }
+                function openDeleteCertificate(element){
+                    let certificateId = element.getAttribute('data-certificate-id');
+                    console.log("Awardd",certificateId)
                     element.parentElement.parentElement.remove()
                 }
 

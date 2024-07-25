@@ -6,53 +6,28 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         </xpath>
             <!-- <t t-call="website.layout"> -->
-                <header>
-                   
-                        <!-- <i class="fas fa-bars menu-icon"></i> -->
-                        <div class="logo">
-                            <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="Trademeda Logo"/>
-                        </div>
-                        <div>
-                            <input type="text" class="search-bar" placeholder="Find Buyers and Suppliers"/>
-                        </div>
-                        <div class="buttons">
-                            <button class="button-primary">Find Buyers</button>
-                            <button class="button-primary">Find Suppliers</button>
-                            <a href="tel:+911231231234" class="phone-number">+91 123 123 1234</a>
-                            <i id="menu" class="fas fa-bars menu-icon">
-                                <!-- <ul class="menu-list">
-                                    <li>Buyer</li>
-                                    <li>Supplier</li>
-                                </ul> -->
-                            </i>
-                            <!-- <div class="menu">
-                            <ul>
-                                <li><a>Buyer</a></li>
-                                <li><a>Seller</a></li>
-                            </ul>
-                            </div> -->
-                        </div>
-                    
-                </header>
+                <t t-call="trademeda.header">
+                
+                </t>
                 <main>
                     <div class="main-content">
-                        <div class="left-sidebar" style="width: 40%;">
-                        <h2>Top Categories</h2>
-                        <t t-foreach="product_categories" t-as="category">
-                            <div class="category-item">
-                                <!-- <i t-out="category.x_studio_icon"></i> -->
-                                <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
-                                 <t t-out="category.name"/>
-                            </div>
+                        <div class="left-sidebar">
+                            <h2>Top Categories</h2>
+                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=8)" t-as="category">
+                                <div class="category-item" style="cursor:pointer;">
+                                    <!-- <i t-out="category.x_studio_icon"></i> -->
+                                    <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
+                                    <t t-out="category.name"/>
+                                </div>
+                                
+                            </t>
                             
-                        </t>
-                        
-                        <a href="#" class="view-all">View All Categories </a>
+                            <a href="#" class="view-all">View All Categories </a>
                         </div>
                        
-                        <div style="display:flex;flex-direction:column;gap:20px;">
+                        <div class="right-container">
                         
-                            <div class="container catalogs" style="width: 95%;">
+                            <div class="container catalogs" >
 
                                 
                                 <!-- <i class="fas fa-book" style="width:50px;height:50%;"></i> -->
@@ -66,33 +41,15 @@
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
-                                    <line x1="8" y1="0" x2="8" y2="50" stroke="grey" stroke-width="2"/>
+                                    <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
 
                                 <div>
 
                                 
-                                    <p>Trademeda</p>
+                                    <p style="margin-bottom: 4px;">Trademeda</p>
 
-                                    <p>Ready To Ship</p>
-
-                                </div>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                    <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
-                                    <line x1="8" y1="0" x2="8" y2="50" stroke="grey" stroke-width="2"/>
-                                </svg>
-
-                                <div>
-
-                                    
-
-                                    <p>Trademeda</p>
-
-                                    <p>Buy Leads</p>
+                                    <p style="margin-top: 0px;">Ready To Ship</p>
 
                                 </div>
 
@@ -101,16 +58,16 @@
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
-                                    <line x1="8" y1="0" x2="8" y2="50" stroke="grey" stroke-width="2"/>
+                                    <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
 
                                 <div>
 
                                     
 
-                                    <p>Trademeda</p>
+                                    <p style="margin-bottom: 4px;">Trademeda</p>
 
-                                    <p>Membership Plans</p>
+                                    <p style="margin-top: 0px;">Buy Leads</p>
 
                                 </div>
 
@@ -119,15 +76,33 @@
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
-                                    <line x1="8" y1="0" x2="8" y2="50" stroke="grey" stroke-width="2"/>
+                                    <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
 
                                 <div>
 
                                     
-                                    <p>Trademeda</p>
 
-                                    <p>Book Domain</p>
+                                    <p style="margin-bottom: 4px;">Trademeda</p>
+
+                                    <p style="margin-top: 0px;">Membership Plans</p>
+
+                                </div>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                    <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
+                                    <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
+                                    <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
+                                </svg>
+
+                                <div>
+
+                                    
+                                    <p style="margin-bottom: 4px;">Trademeda</p>
+
+                                    <p style="margin-top: 0px;">Book Domain</p>
 
                                 </div>
 
@@ -137,29 +112,24 @@
                                 </svg>
 
                             </div>
-                            <!-- <div style="display: flex;">
-                                <div class="'right-content"  style="width: 70%;">
-                                    <img src="/trademeda/static/src/img/Cover.png" style="width: 100%;"/>
-                                </div>
-                                <div style="display: flex;flex-direction: column; justify-content: flex-start;margin: 10px;gap: 10px;">
-                                    <div class="cta-card" style="width: 90%;">
-                                    <h3>Looking For A Product?</h3>
-                                    <button class="cta-button">Post Buy Requirement</button>
-                                    </div>
-                                    <div class="cta-card" style="width: 90%;">
-                                    <h3>Want To Grow Business?</h3>
-                                    <button class="cta-button">Sell On Trademeda</button>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="right-contentt">
+                            
+                            <div class="right-content">
                                 <div class="banner">
                                     <img src="/trademeda/static/src/img/Cover.png" alt=""/>
                                 </div>
-                                <div class="right-images">
-                                    <div class=""><img src="/trademeda/static/src/img/buy.png" alt=""/></div>
-                                    <div class=""><img src="/trademeda/static/src/img/sell.png" alt=""/></div>
+                                <div class="right-sections">
+                                    <div class="rfq card">
+                                        <a href="/post_rfq_page"><img src="/trademeda/static/src/img/buy.png" alt=""/></a>
+                                        <!-- <p class="">Looking for a Product?</p>
+                                        <button class="">Post Buy Requirement</button> -->
+                                    </div>
+                                    <div class="sell-product card">
+                                        <a href=""><img src="/trademeda/static/src/img/sell.png" alt=""/></a>
+                                        <!-- <p class="">Want To Grow Business?</p>
+                                        <button class="">Sell on Trademeda</button> -->
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

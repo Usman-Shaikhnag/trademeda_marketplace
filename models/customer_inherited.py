@@ -23,9 +23,9 @@ class ResPartner(models.Model):
         ('female','Female'),
     ],string="Gender")
 
-    supplier_products = fields.Text("Supplier Proucts")
-    buyer_products = fields.Text("Buyer Proucts")
-    trader_products = fields.Text("Trader Proucts")
+    supplier_products = fields.Text("Supplier Products")
+    buyer_products = fields.Text("Buyer Products")
+    trader_products = fields.Text("Trader Products")
 
     primary_business = fields.Selection([
         ('buying_agent','Buying Agent'),

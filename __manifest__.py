@@ -15,6 +15,9 @@
         'views/menuitems.xml',
         'views/customer_inherited.xml',
         'views/product_inherited.xml',
+        'views/country_inherited.xml',
+        'views/rfq.xml',
+
 
         
         'views/portal/header.xml',
@@ -25,6 +28,8 @@
         'views/portal/product_details.xml',
         'views/portal/supplier_profile.xml',
         'views/portal/wishlist.xml',
+        'views/portal/post_rfq.xml',
+
 
 
 

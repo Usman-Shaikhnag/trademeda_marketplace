@@ -13,33 +13,9 @@
             </script>
             <t t-set="partner_id" t-value="partner.id"/>
 
-            <div class="header">
-                    <div class="logo-container">
-                        <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="profile photo" class="logo"/>
-                    </div>
-                    <!-- <div class="search-bar">
-                        
-                    </div> -->
-                    <div class="search-container">
-                        <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
-                        <button class="search_btn">Find Buyers</button>
-                        <button class="search_btn">Find Suppliers</button>
-                    </div>
-                    
-                    <div class="">
-                        <span class="" style="color:#f6f6f6">+91 1234567890</span>
-                        <img src="/trademeda/static/src/img/profile.png" alt="profile" style="height:30px"/>
-                        
-                    </div>
-                    <div class="">
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
-
-                    </div>
-                   
-
-                </div>
+            <t t-call="trademeda.header">
+                
+            </t>
 
             <main class="">
                 
@@ -145,7 +121,7 @@
                                     <div class="product-card">
                                         <div class="product-header">
                                             <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#8fb15f;text-decoration:none;"></a></h3>
-                                            <span style="color:#8fb15f;display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="Country Flag" style="height:0.9rem;"/></span>
+                                            <span style="color:#8fb15f;display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="" style="height:0.9rem;"/></span>
                                             <span class="product-date">Jul-05-23</span>
                                         </div>
                                         <div class="product-content">
@@ -597,10 +573,15 @@
                         if(data.logged_in == true){
                            fetch('/add-to-wishlist/'+product_id).then(function(res){
                             console.log("res",res)
+                            element.style.display = 'none'
                            })
                         }
                         else{
-                            
+                            let products = JSON.parse(localStorage.getItem('product_id')) || [];
+                            if (!products.includes(product_id)) {
+                                products.push(product_id);
+                                localStorage.setItem('product_id', JSON.stringify(products));
+                            }
                         }
                     })
                 }

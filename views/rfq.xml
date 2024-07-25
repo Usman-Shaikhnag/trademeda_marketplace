@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="trademeda_rfq_view" model="ir.ui.view">
+            <field name="name">trademeda.rfq.form</field>
+            <field name="model">trademeda.rfq</field>
+            <field name="arch" type="xml">
+                <form string="RFQ">
+                    <group>
+                        <group >
+                            <field name="rfq_no"/>
+                            <field name="request_type"/>
+                            <field name="rfq_date"/>
+                            <field name="product_name"/>
+                            <field name="unit"/>
+                            <field name="target_price"/>
+                            <field name="product_description"/>
+                            <field name="contact_person_designation"/>
+                            <field name="company_name"/>
+                            <field name="phone_number"/>
+                            <field name="website"/>
+                        </group>
+
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="sample_policy"/>
+                            <field name="quantity"/>
+                            <field name="packaging_requirements"/>
+                            <field name="payment_terms"/>
+                            <field name="shipping_terms"/>
+                            <field name="contact_person_name"/>
+                            <field name="company_address"/>
+                            <field name="email_id"/>
+                        </group>
+                    </group>
+                </form>
+                
+            </field>
+        </record>
+
+    <record id="view_tree_trademeda_rfq" model="ir.ui.view">
+        <field name="name">trademeda.rfq.tree</field>
+        <field name="model">trademeda.rfq</field>
+        <field name="arch" type="xml">
+            <tree string="Product Category">
+                <field name="rfq_no"/>
+            </tree>
+        </field>
+    </record>
+
+
+    </data>
+</odoo>

@@ -27,14 +27,23 @@
                                 
                             </div>
                             <div class="action-buttons">
-                                <button class="remove"><i class="fas fa-trash" style="color:#b32f2d"></i></button>
+                                <button onclick='removeFromWishlist(this)' t-att-data-product-id="product.id" class="remove"><i class="fas fa-trash" style="color:#b32f2d"></i></button>
                             </div>
                         </div>
                     </t>
                 </div>
             </main>
             <script>
-
+                function removeFromWishlist(element){
+                    const productId = element.getAttribute('data-product-id');
+                    fetch('/removeFromWishlist/'+productId).then(function(res){
+                        if (res.ok) {
+                            location.reload(); // Reload the page on success
+                        } else {
+                            alert('Failed to remove item from wishlist.');
+                        }
+                    })
+                }
             </script>
         </template>
     </data>
