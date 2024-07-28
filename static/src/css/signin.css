@@ -102,18 +102,14 @@ main {
     font-size: 1.1rem;
     cursor: pointer;
 }
-.signup-btn:hover {
+.signup-btn:hover button{
     
     background-color: #f6f6f6;
     color: navy;
     outline: 2px solid #f6f6f6;
 
 }
-.signup-btn:hover button{
-    
-    color: navy;
 
-}
 
 .text-input input,textarea,select{
     height: 50px;

@@ -58,13 +58,13 @@
                                         <span class="">We are:</span>
                                     </div>
                                     <div class="radio-group">
-                                        <input type="radio" id="buyer" name="role" value="buyer" checked="true"/>
+                                        <input type="radio" id="buyer" name="role" value="buyer" onchange="role_changed()" checked="true"/>
                                         <label for="buyer">Buyer</label>
 
-                                        <input type="radio" id="supplier" name="role" value="supplier"/>
+                                        <input type="radio" id="supplier" name="role" onchange="role_changed()" value="supplier"/>
                                         <label for="supplier">Supplier</label>
 
-                                        <input type="radio" id="both" name="role" value="both"/>
+                                        <input type="radio" id="both" name="role" onchange="role_changed()"  value="both"/>
                                         <label for="both">Both</label>
                                     </div>
                                 </div>
@@ -321,14 +321,14 @@
                                         <span class="">Confirm Password</span>
                                     </div>
                                     <div class="">
-                                        <input type="password" name="confirm_password" required="required"/>
+                                        <input type="password" name="confirm_password"  required="required"/>
                                     </div>
                                 </div>
                                 <div class="">
                                     <div class="" style="margin-top:1rem;">
                     
 
-                                        <input type="checkbox" id="agree" name="agree" style="color:green;"/>
+                                        <input type="checkbox" id="agree" name="agree" style="color:green;" required="required"/>
                                         <label for="agree" >I agree to the <a onclick="open_tnc()" style="text-decoration: underline;">Terms and Conditions</a></label>
                                     </div>
                                     
@@ -398,6 +398,34 @@
 
             </main>
             <script>
+
+            buyer = document.getElementById('buyer')
+            supplier = document.getElementById('supplier')
+            both = document.getElementById('both')
+
+            function role_changed(){
+                if(buyer.checked == true){
+                    document.getElementById('buyer_textarea').parentElement.parentElement.style.display = 'block'
+                    document.getElementById('supplier_textarea').parentElement.parentElement.style.display = 'none'
+                    document.getElementById('trader_textarea').parentElement.parentElement.style.display = 'none'
+
+                }
+                if(supplier.checked == true){
+                    document.getElementById('supplier_textarea').parentElement.parentElement.style.display = 'block'
+                    document.getElementById('buyer_textarea').parentElement.parentElement.style.display = 'none'
+                    document.getElementById('trader_textarea').parentElement.parentElement.style.display = 'none'
+                }
+                if(both.checked == true){
+                    document.getElementById('buyer_textarea').parentElement.parentElement.style.display = 'block'
+                    document.getElementById('supplier_textarea').parentElement.parentElement.style.display = 'block'
+                    document.getElementById('trader_textarea').parentElement.parentElement.style.display = 'block'
+                }
+            }
+
+            
+
+
+
                 function close_tnc(){
                     document.getElementById('terms_condition_container').style.display = 'none'
                     

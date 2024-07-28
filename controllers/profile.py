@@ -34,7 +34,7 @@ class ProductController(http.Controller):
     def AddToWishlistDatabase(self, **kw):
         user = request.env.user
         partner_id = user.partner_id
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
         data = request.httprequest.get_json()
         
         
@@ -247,3 +247,25 @@ class ProductController(http.Controller):
         
         user = request.env.user
         partner_id = user.partner_id
+
+
+    @http.route(['/profile/getProduct/<int:product_id>'], type="http", auth="user", website=True)
+    def getProduct(self, product_id, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
+        product = request.env['product.customer.images'].sudo().search([('id','=',product_id)])
+        if product:
+            product_image_base64 = base64.b64encode(product.product_image or b'').decode('utf-8')
+            vals = {
+                'product_name':product.product_id.name,
+                'variety':product.product_variety_name,
+                'quantity':product.product_quantity,
+                'product_description':product.product_description,
+                'product_image':product_image_base64
+
+            }
+            return json.dumps(vals)
+
+
+
+        

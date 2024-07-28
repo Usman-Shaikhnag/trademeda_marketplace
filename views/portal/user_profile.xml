@@ -1008,13 +1008,96 @@
                                         </div>
                                         <div class="product-icons">
                                            
-                                            <span><i class="fa-solid fa-pen"></i></span>
+                                            <span onclick="edit_product(this)" t-att-productId="product.id"><i class="fa-solid fa-pen"></i></span>
                                             <span><i class="fa-solid fa-trash"></i></span>
                                         </div>
                                     </div>
                                     <div class="">
                         
                                         <span class="divider"></span>
+                                    </div>
+                                    <div class="inner-card" id="editProduct">
+                                        <div class="productImage">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
+                                            <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                                <input onchange="news_image_change(this)" type="file" id="update_product_image" name="update_product_image" data-file-name="update_product_image" data-delete-btn="update_update_product_image"/>
+                                                <button type="button"><label for="update_product_image"><i class="fas fa-camera"></i>Update Photo</label></button>
+                                                <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="editproductDetails">
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Variety / Grade</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Product Variety" name="product_variety" id="edit-product_variety" t-att-value="product.product_variety_name" />
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Description</span>
+                                                </div>
+                                                <div class="">
+                                                    <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit-product_description" t-att-value="product.product_description">
+                                                        <t t-esc="product.product_description"/>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Quantity</span>
+                                                </div>
+                                                <div class="">
+                                                    <input placeholder="Product Quantity" name="edit-product_quantity" id="edit-product_quantity" t-att-value="product.product_quantity"/>
+                                                </div>
+                                            </div>
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Packaging Requirement</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input placeholder="Packaging Requirement" name="edit-packaging_requirement" id="edit-packaging_requirement" t-att-value="product.packaging_requirement" />
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Delivery Days</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input name="edit-delivery_days" id="edit-delivery_days" t-att-value="product.delivery_days" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Price (in USD)</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input name="edit-product_price_usd" id="edit-product_price_usd" t-att-value="product.product_price_usd" />
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Payment Mode</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input name="edit-payment_mode" id="edit-payment_mode" t-att-value="product.payment_mode" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Sample Policy</span>
+                                                </div>
+                                                <div class="">
+                                                    <input name="edit-sample_policy" id="edit-sample_policy" t-att-value="product.sample_policy" />
+                                                </div>
+                                            </div>
+                                                
+                                        </div>
                                     </div>
                                 </t>
                                 
@@ -1199,7 +1282,13 @@
 
 
 
-                
+                function edit_product(element){
+                    if(element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display == 'flex'){
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'none'
+                    }else{
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'flex'
+                    }
+                }
 
                 function enable_profile_detail(){
                     document.getElementById('documents').style.display = 'none'
@@ -1319,6 +1408,9 @@
                     if (fileInput) {
                         fileInput.value = '';
                     }
+                }
+                function product_image_delete(element){
+                    element.parentElement.previousElementSibling.src = ''
                 }
 
                 function category_change(element){

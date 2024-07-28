@@ -34,7 +34,7 @@
 .right-content{
   display: grid;
   gap: 1rem;
-  grid-template-columns: 60% 35%;
+  grid-template-columns: 70% 26%;
 
 }
 .banner img {

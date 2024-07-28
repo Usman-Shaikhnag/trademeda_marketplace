@@ -19,7 +19,7 @@
                             <h5>It's absolutely Free</h5>
                         </div>
                         <div class="signup-btn">
-                            <button class=""><a style="text-decoration: none;" t-attf-href="/signup">Sign up</a></button>
+                            <button class="" onclick="redirect_signup()">Signup</button>
                         </div>
 
 
@@ -57,7 +57,9 @@
                 
             </main>
             <script>
-                
+                    function redirect_signup(){
+                        window.location.href = '/signup'
+                    }
             </script>
         </template>
     </data>

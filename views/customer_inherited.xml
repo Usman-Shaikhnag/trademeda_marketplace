@@ -44,6 +44,7 @@
             <page string="User Information" name="user_information_page">
                 <group>
                     <group>
+                        <field name="user_name"/>
                         <field name="member_type" />
                         <field name="supplier_products" />
                         <field name="trader_products" />
@@ -55,6 +56,7 @@
 
                     </group>
                     <group>
+                        <field name="designation"/>
                         <field name="primary_business" />
                         <field name="buyer_products" />
                         <field name="annual_sales" />

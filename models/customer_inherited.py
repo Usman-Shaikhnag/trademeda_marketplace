@@ -55,6 +55,8 @@ class ResPartner(models.Model):
         ('more_than_1000','More than 1000'),
         
     ])
+    user_name = fields.Char("Name")
+    designation = fields.Char("Designation")
     company_address = fields.Text("Company Address")
     area_code = fields.Char("Area Code")
     company_email = fields.Char("Company Email")

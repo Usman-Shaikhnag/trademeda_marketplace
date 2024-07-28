@@ -73,6 +73,7 @@ class HomepageController(http.Controller):
             password = kw.get("password")
             confirm_password = kw.get("confirm_password")
 
+
             # Basic validation
             if not all([name, city, zip_code, state, phone, email, password, confirm_password]):
                 return request.redirect("/signup?error=missing_fields")
@@ -85,7 +86,9 @@ class HomepageController(http.Controller):
             user_data = {
                 "login": email,
                 'password': password,
-                'name': name,
+                'name': kw.get('company_name'),
+                
+
                 'groups_id': [(6, 0, [portal_group.id])]
                 # 'sel_groups_1_10_11':'[10]'
                 
@@ -96,12 +99,34 @@ class HomepageController(http.Controller):
             try:
                 # Create the user
                 request.env['res.users'].sudo().create(user_data)
+                # import wdb;wdb.set_trace()
+
                 request.env['res.partner'].sudo().create({
-                    'name':name,
+                    'name':kw.get('company_name'),
                     'membership_state':'free',
-                    'free_member':True,
-                    'member_type':kw.get('role')
-                    # 'x_studio_member_type':
+                    # 'free_member':True,
+                    'company_type':'company',
+                    'member_type':kw.get('role'),
+                    'supplier_products':kw.get('supplier_textarea'),
+                    'buyer_products':kw.get('buyer_textarea'),
+                    'buyer_products':kw.get('buyer_textarea'),
+                    'trader_products':kw.get('trader_textarea'),
+                    'primary_business':kw.get('business-type'),
+                    'establishment_year':kw.get('establishment_year'),
+                    'annual_sales':kw.get('annual-sales'),
+                    'no_of_employees':kw.get('employees'),
+                    'user_name':kw.get('name'),
+                    'designation':kw.get('designation'),
+                    'street':kw.get('address'),
+                    # 'country_id':kw.get('country'),
+                    # 'state_id':kw.get('state'),
+                    'city':kw.get('city'),
+                    'zip':kw.get('zip_code'),
+                    # country code remaining 
+                    'phone':kw.get('phone_number'),
+                    'area_code':kw.get('area_code'),
+                    'email':kw.get('company_email'),
+                    'website':kw.get('website'),
                 })
                 
                 return request.redirect("/signin")
