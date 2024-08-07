@@ -134,7 +134,7 @@ body {
     height: 20px;
     border: 2px solid navy; /* Border color */
     border-radius: 50%; /* Circle shape */
-    background-color: white; /* Background color */
+    background-color: #fdfdfd; /* Background color */
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
 }
 
@@ -153,7 +153,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%; /* Circle shape */
-    background-color: white; /* Inner dot color */
+    background-color: #fdfdfd; /* Inner dot color */
     opacity: 0; /* Hidden by default */
     transition: opacity 0.3s; /* Smooth transition */
 }

@@ -8,15 +8,22 @@
             <field name="model">trademeda.rfq</field>
             <field name="arch" type="xml">
                 <form string="RFQ">
+                    <header>
+                        <field readonly="1" name="state" widget="statusbar"/>
+                    </header>
                     <group>
                         <group >
-                            <field name="rfq_no"/>
+                            <field name="rfq_no" readonly="1"/>
                             <field name="request_type"/>
                             <field name="rfq_date"/>
+                            <field name="subcategory" />
                             <field name="product_name"/>
-                            <field name="unit"/>
+                            <field name="product_image" filename="file_name"/>
+                            <field name="file_name" invisible="1" />
                             <field name="target_price"/>
+                            <field name="unit"/>
                             <field name="product_description"/>
+                            <field name="suppliers_country"/>
                             <field name="contact_person_designation"/>
                             <field name="company_name"/>
                             <field name="phone_number"/>
@@ -24,17 +31,32 @@
                         </group>
 
                         <group>
+                            <field name="active" invisible="1"/>
                             <field name="partner_id"/>
                             <field name="sample_policy"/>
                             <field name="quantity"/>
+                            <field name="product_subsubcategory" />
                             <field name="packaging_requirements"/>
+                            <field name="currency"/>
                             <field name="payment_terms"/>
                             <field name="shipping_terms"/>
+                            <field name="destination"/>
                             <field name="contact_person_name"/>
                             <field name="company_address"/>
                             <field name="email_id"/>
                         </group>
                     </group>
+                    <field name="quotations">
+                        <tree editable='bottom'>
+                            <field name="quotation_no" readonly="1"/>
+                            <field name="partner_id" />
+                            <field name="company_name" />
+                            <field name="contact_name" />
+                            <field name="email" />
+                            <field name="phone" />
+                            <field name="country_id" />
+                        </tree>
+                    </field>
                 </form>
                 
             </field>

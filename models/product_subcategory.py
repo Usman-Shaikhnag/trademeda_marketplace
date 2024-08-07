@@ -8,4 +8,6 @@ class ProductSubCategory(models.Model):
 
     name = fields.Char(string='Name', required=True)
     category_id = fields.Many2one('product.categories',string="Category")
-    subsubcategories_lines = fields.One2many('product.subsubcategories', 'subcategory_id', string='Sub-Subcategories')
+    subsubcategories_lines = fields.One2many('product.template', 'subcategory_id', string='Sub-Subcategories')
+
+

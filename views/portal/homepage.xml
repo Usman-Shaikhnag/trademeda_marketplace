@@ -13,7 +13,7 @@
                     <div class="main-content">
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
-                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=8)" t-as="category">
+                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=10)" t-as="category">
                                 <div class="category-item" style="cursor:pointer;">
                                     <!-- <i t-out="category.x_studio_icon"></i> -->
                                     <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
@@ -36,10 +36,10 @@
                                 </div>
 
                                 <!-- <button style="background-color:orange;border-radius:50px;height:20px;width:20px;"></button> -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
+                                </svg> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -53,10 +53,10 @@
 
                                 </div>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
+                                </svg> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -71,10 +71,10 @@
 
                                 </div>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
+                                </svg> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -89,10 +89,10 @@
 
                                 </div>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
+                                </svg> -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -106,10 +106,10 @@
 
                                 </div>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg>
+                                </svg> -->
 
                             </div>
                             
@@ -132,6 +132,40 @@
 
                             </div>
                         </div>
+                    </div>
+                    <div class="rfq-container">
+                        <t t-foreach="env['product.subcategories'].sudo().search([('name','=','Agricultural Products - Grains, Fruits, etc.')],limit=5)" t-as="subcategory">
+                            <div class="rfq-container-header">
+                                <h2><t t-esc="subcategory.name" /></h2>
+                                <button class="btn-seeMore">See More</button>
+                            </div>
+                    
+                            <div class="rfq-list">
+                                <t t-foreach="env['trademeda.rfq'].sudo().search([('subcategory.id','=',subcategory.id)],limit=4)" t-as="rfq">
+                                    <div class="rfq-card">
+                                        <div class="rfq-heading">
+                                            <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                        </div>
+                                        <div class="rfq-subheading">
+                                            <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                            <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                        <div class="rfq-content">
+                                            <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                            <p><t t-esc="rfq.product_description"/></p>
+                                        </div>
+                                        <div class="rfq-buttons">
+                                            <button class="btn-wishlist">Add to Wishlist</button>
+                                            <button class="btn-enquire">Enquire Now</button>
+                                        </div>
+                                    </div>
+                                </t>
+
+                                
+                            </div>
+                        </t>
+
+                        
                     </div>
                 </main>
 

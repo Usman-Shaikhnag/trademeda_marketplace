@@ -14,5 +14,5 @@ class ProductInherited(models.Model):
     _inherit = 'product.template'
     _description = 'Product'
 
-    subsubcategory_id = fields.Many2many('product.subsubcategories', string='Sub-Subcategory')
+    subcategory_id = fields.Many2one('product.subcategories', string='Subcategory')
 

@@ -1,16 +1,24 @@
 body {
     background-color: #f6f6f6;
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 main{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+h2 {
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+}
 .container {
     height: fit-content;
+    position: relative;
     padding-bottom: 1rem;
     width: 70%;
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 10px;
     margin-top: 1.5rem;
     padding-left: 1rem;
@@ -35,11 +43,14 @@ main{
     background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-    outline: 2px solid #b32f2d;
+    /* outline: 2px solid #b32f2d; */
+    outline: 2px solid  rgb(199,8,8);
+    outline: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 
 }
 .text-input span {
-    color: #b32f2d;
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 
 }
 .flex {
@@ -49,17 +60,144 @@ main{
 }
 
 .post_rfq button {
-    background-color: #b32f2d;
+    background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     width: 100%;
     height: 50px;
     margin-top: 1rem;
     border: none;
     border-radius: 5px;
+    font-size: inherit;
 }
 
 .post_rfq button:hover{
     outline: 2px solid #b32f2d;
-    color: #b32f2d;
+    color: #fff;
     background-color: transparent;
+}
+
+.payment_terms_info{
+    display: flex;
+    position: absolute;
+    bottom:100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+    width: 95%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.radio-group {
+    display: flex; /* Arrange radio buttons in a row */
+    gap: 20px; /* Space between radio buttons */
+    margin-top: 5px;
+}
+
+.radio-group input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+/* Custom styles for radio button labels */
+.radio-group label {
+    position: relative;
+    padding-left: 30px; /* Space for custom radio button */
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    user-select: none; /* Prevent text selection */
+}
+
+/* Create custom radio button */
+.radio-group label::before {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b32f2d; /* Border color */
+    border-radius: 50%; /* Circle shape */
+    background-color: #fdfdfd; /* Background color */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+
+/* Style for selected radio button */
+.radio-group input[type="radio"]:checked + label::before {
+    background-color: rgb(199,8,8);
+    background-color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    border-color: rgb(199,8,8);
+    border-color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); /* Border color for selected state */
+}
+
+/* Inner dot for selected radio button */
+.radio-group label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Circle shape */
+    background-color: #fdfdfd; /* Inner dot color */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+/* Show inner dot when checked */
+.radio-group input[type="radio"]:checked + label::after {
+    opacity: 1; /* Show inner dot */
+}
+
+.add-product {
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    padding-top: 8px;
+    padding-bottom: 30px;
+    margin-right: 8px;
+    width: 88%;
+    margin-top: 1rem;
+}
+
+.image-file-label {
+    display: inline-flex;
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    text-align: center;
+    padding: 10px 30px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    border: 2px dotted #b32f2d;
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input[type="file"] {
+    display: none;  /* Hide the default file input */
+}
+
+.file-name {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+    vertical-align: middle;  /* Align text with the middle of the button */
+    max-width: 300px;  /* Limit the width of the file name display */
+    white-space: nowrap;  /* Prevent text wrapping */
+    overflow: hidden;  /* Hide overflow text */
+    text-overflow: ellipsis;  /* Display ellipsis for overflow text */
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+}
+
+.file-delete {
+    margin-left: 1rem;
+    color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }

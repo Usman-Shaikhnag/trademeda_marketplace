@@ -5,6 +5,10 @@ import json
 import io
 import xlsxwriter
 from io import BytesIO
+import xlrd
+import logging
+
+_logger = logging.getLogger(__name__)
 class ProductController(http.Controller):
 
     @http.route(['/add-to-wishlist/<int:product_id>'], type="http", auth="user", website=True)
@@ -267,5 +271,143 @@ class ProductController(http.Controller):
             return json.dumps(vals)
 
 
+    @http.route(['/profile/updateProduct/<int:product_id>'], methods=["POST"], type="json", auth="user", website=True)
+    def updateProduct(self, product_id, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
+        product = request.env['product.customer.images'].sudo().search([('id','=',product_id),('partner_id','=',partner_id.id)],limit=1)
+        # import wdb;wdb.set_trace()
+
+        body = request.httprequest.get_json()
+        if body:
+            try:
+                product.sudo().write({
+                    'product_variety':body['product_variety'],
+                    'product_description':body['product_description'],
+                    'product_quantity':body['product_quantity'],
+                    'packaging_requirement':body['packaging_requirement'],
+                    'delivery_days':body['delivery_days'],
+                    'payment_mode':body['payment_mode'],
+                    'sample_policy':body['sample_policy'],
+                    # 'ready_to_ship':body['ready_to_ship'],
+                    'rts_quantity':body['rts_quantity']
+                })
+                vals = {
+                        'success':True
+                    }
+                return json.dumps(vals)
+            except:
+                vals = {
+                        'success':False
+                    }
+                return json.dumps(vals)
+                
+    
+    @http.route(['/profile/uploadtemp'], methods=["POST"], type="http", auth="user", website=True)
+    def uploadTemp(self, **kw):
+        _logger.info('Upload subcategories started.')
+
+        file_content = kw.get("upload_temp").read()
+        workbook = xlrd.open_workbook(file_contents=file_content)
+        worksheet = workbook.sheet_by_index(2)  # Third sheet
+
+        # Read the header row to get the subcategory names
+        header_row = worksheet.row_values(0)
+        _logger.info(f'Header row: {header_row}')
+        
+        # Dictionary to store subcategory objects for quick lookup
+        subcategory_dict = {}
+
+        # Iterate through the rows to get the sub-subcategories for each subcategory
+        for row_num in range(1, worksheet.nrows):
+            row = worksheet.row_values(row_num)
+            _logger.info(f'Processing row {row_num}: {row}')
+            for col_num, cell_value in enumerate(row):
+                if cell_value.strip():  # Check if cell value is not empty
+                    subcategory_name = header_row[col_num].strip()
+                    subsubcategory_name = cell_value.strip()
+
+                    _logger.info(f'Processing subcategory: {subcategory_name}, subsubcategory: {subsubcategory_name}')
+
+                    if subcategory_name not in subcategory_dict:
+                        # Search for the subcategory
+                        subcategory = request.env['product.subcategories'].sudo().search([('name', '=', subcategory_name)], limit=1)
+                        if subcategory:
+                            subcategory_dict[subcategory_name] = subcategory
+                            _logger.info(f'Subcategory found: {subcategory_name}')
+                        else:
+                            # If the subcategory does not exist, skip to the next cell
+                            _logger.info(f'Subcategory not found: {subcategory_name}')
+                            continue
+                    else:
+                        subcategory = subcategory_dict[subcategory_name]
+
+                    # Create sub-subcategory under the subcategory
+                    request.env['product.template'].sudo().create({
+                        'name': subsubcategory_name,
+                        'subcategory_id': subcategory.id,
+                    })
+                    _logger.info(f'Subsubcategory created: {subsubcategory_name}')
+
+        _logger.info('Upload subcategories finished.')
+
+        return 
 
         
+    @http.route(['/submitRfq'], method=["POST"], type="http", auth="user", website=True)
+    def submitRfq(self, **kw):
+        user = request.env.user
+        partner_id = user.partner_id
+
+        # import wdb;wdb.set_trace()
+        if request.httprequest.method == 'POST':
+
+            request_type = kw.get('request_type')
+            subcategories = request.env['product.subcategories'].sudo().search([('id','=',int(kw.get('product_subcategory')))])
+            subsubcategories = request.env['product.template'].sudo().search([('id','=',int(kw.get('product_subsubcategory')))])  
+            product = kw.get('product')
+            quantity = kw.get('quantity')
+            unit = request.env['uom.uom'].sudo().search([('id','=',kw.get('unit'))])
+            product_specification = kw.get('product_specification')
+            target_price = kw.get('target_price')
+            shipping_terms = kw.get('shipping_terms')
+            payment_terms = kw.get('payment_terms')
+            if kw.get('supplier_country') != '':
+                supplier_country = request.env['res.country'].sudo().search([('id','=',kw.get('supplier_country'))]).id
+            else:
+                supplier_country = False
+            if kw.get('destination') != '':
+                destination = request.env['res.country'].sudo().search([('id','=',kw.get('destination'))]).id
+            else:
+                destination = False
+            if kw.get('currency') != '':
+                currency = request.env['res.country'].sudo().search([('id','=',kw.get('currency'))]).id
+            else:
+                currency = False
+            if kw.get('upload_product'):
+                product_image = kw.get('upload_product').read()
+            else:
+                product_image = ''
+            contact_person = kw.get('contact_person')
+
+            request.env['trademeda.rfq'].sudo().create({
+                'request_type':request_type,
+                'partner_id':partner_id.id,
+                'subcategory':subcategories.id,
+                'product_subsubcategory':subsubcategories.id,
+                'product_name':product,
+                'quantity':quantity,
+                'unit':unit.id,
+                'product_description':product_specification,
+                'target_price':target_price,
+                'currency':currency,
+                'destination':destination,
+                'shipping_terms':shipping_terms,
+                'payment_terms':payment_terms,
+                'suppliers_country':supplier_country,
+                'contact_person_name':contact_person,
+                'product_image':base64.b64encode(product_image),
+
+            })
+            return request.render('trademeda.homepage')
+

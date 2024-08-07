@@ -15,7 +15,7 @@ main {
 }
 .left {
     margin-right: 1rem;
-    background-color: white;
+    background-color: #fdfdfd;
 }
 .header {
     display: flex;
@@ -180,7 +180,7 @@ main {
     border-radius: 8px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     flex-direction: column;
-    background-color: white;
+    background-color: #fdfdfd;
     padding: 1rem;
     gap: 8px;
     overflow: auto; /* Enable scrolling if content overflows */
@@ -281,7 +281,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     padding: 5%;
-    background-color: white;
+    background-color: #fdfdfd;
     gap: 1rem;
     font-family: 'Times New Roman', Times, serif;
 }

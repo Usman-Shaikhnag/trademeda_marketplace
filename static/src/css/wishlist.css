@@ -41,7 +41,10 @@ main {
     font-size: 1.2rem;
     font-weight: bold;
     margin: 0;
-    color: #b32f2d;
+    /* color: #b32f2d; */
+    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .product-description {
@@ -69,7 +72,10 @@ main {
 .action-buttons button {
     background: none;
     border: none;
-    color: #b32f2d;
+    /* color: #b32f2d; */
+    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     cursor: pointer;
     font-weight: bold;
 }
@@ -86,11 +92,14 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    background-color: white;
+    background-color: #fdfdfd;
     margin-top: 2rem;
     margin-bottom: 1rem;
     border-radius: 5px;
-    color:#b32f2d;
+    /* color:#b32f2d; */
+    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
 }

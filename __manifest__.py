@@ -8,6 +8,7 @@
     'category': 'Category',
     'depends': ['base','stock','contacts'],  # List your dependencies here
     'data': [
+        'data/sequence_data.xml',
         'security/groups.xml',
         'security/ir.model.access.csv',
 
@@ -17,6 +18,7 @@
         'views/product_inherited.xml',
         'views/country_inherited.xml',
         'views/rfq.xml',
+        'views/quotation.xml',
 
 
         
@@ -29,6 +31,7 @@
         'views/portal/supplier_profile.xml',
         'views/portal/wishlist.xml',
         'views/portal/post_rfq.xml',
+        'views/portal/quotation_details.xml',
 
 
 

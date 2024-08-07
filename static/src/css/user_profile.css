@@ -1,10 +1,13 @@
 body {
     margin: 0;
+    
 }
 main {
     padding-left: 5%;
     padding-right: 5%;
-    background-color: #8fb15f;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #f2f2f2;
     margin: 0;
 
 }
@@ -12,6 +15,8 @@ main {
     display: grid;
     grid-template-columns: 25% 75%;
     background-color: #f2f2f2;
+    /* background-color: rgb(199,8,8);
+    background-color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
     border-radius: 8px;
     gap: 15px;
     padding: 2%;
@@ -20,7 +25,7 @@ main {
 .left {
     height: 100vh;
     border-radius: 8px;
-    background-color: white;
+    background-color: #fdfdfd;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -44,7 +49,7 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 2%;
-    background-color: white;
+    background-color: #fdfdfd;
 }
 
 
@@ -52,24 +57,28 @@ main {
 .edit-profile-text{
     display: flex;
     flex-direction: column;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
 .update-btn {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    
 }
 
 .update-btn:hover button{
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     background: transparent;
-    outline: 2px solid #8fb15f;
+    outline: 2px solid rgb(199,8,8);
 }
 
 .update-btn button{
     color: #f6f6f6;
-    background-color: #8fb15f;
+    background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     height: 55px;
     width: 150px;
     border-radius: 5px;
@@ -80,7 +89,7 @@ main {
 .inner-card {
     display: none;
     flex-direction: column;
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 8px;
     margin-top: 1rem;
     width: 100%;
@@ -91,7 +100,8 @@ main {
     justify-content: center;
 }
 .heading h2 {
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
 .text-input{
@@ -113,11 +123,12 @@ main {
     background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-    outline: 2px solid #8fb15f;
+    outline: 2px solid rgb(199,8,8);
 
 }
 .text-input span {
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 
 }
 
@@ -165,17 +176,18 @@ main {
     align-items: center;
 }
 .username span {
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     font-weight: 900;
     
 }
-.divider {
+.divider-line {
     margin-top: 1rem;
     display: inline-block;
     width: 90%;
     height: 2px;
     border-radius: 5px;
-    background-color: #e0e0e0;
+    background-color: #f0f0f0;
     margin-left: 8px;
 }
 .menu-item {
@@ -184,7 +196,8 @@ main {
     align-items: center;
     gap: 10px;
     margin: 1.5rem 1rem;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     cursor: pointer;
     transition: 0.2s ease;
 }
@@ -244,7 +257,8 @@ input[type="file"] {
 .file-label {
     display: inline-block;
     color: #f6f6f6;
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -256,9 +270,10 @@ input[type="file"] {
 
 
 .file-label:hover {
-    background-color: white;
-    color: #8fb15f;
-    outline: 2px solid #8fb15f;
+    background-color: #fdfdfd;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    outline: 2px solid rgb(199,8,8);
 }
 #new_product {
     display: block;
@@ -278,7 +293,8 @@ input[type="file"] {
     white-space: nowrap;  /* Prevent text wrapping */
     overflow: hidden;  /* Hide overflow text */
     text-overflow: ellipsis;  /* Display ellipsis for overflow text */
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
 .file-delete {
@@ -305,14 +321,14 @@ input[type="file"] {
     border-radius: 8px;
 }
 .general {
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 8px;
     padding-left: 8px;
     padding-top: 8px;
     padding-bottom: 30px;
 }
 .delivery {
-    background-color: white;
+    background-color: #fdfdfd;
     margin-top: 1rem;
     border-radius: 8px;
     padding-left: 8px;
@@ -320,7 +336,7 @@ input[type="file"] {
     padding-bottom: 30px;
 }
 .add-product {
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 8px;
     padding-top: 8px;
     padding-bottom: 30px;
@@ -332,7 +348,8 @@ input[type="file"] {
 
 .image-file-label {
     display: inline-flex;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -340,13 +357,13 @@ input[type="file"] {
     border-radius: 5px;
     transition: background-color 0.3s ease;
     margin-top: 1rem;
-    border: 2px dotted #8fb15f;
+    border: 2px dotted rgb(199,8,8);
     height: 80px;
     flex-direction: column;
     justify-content: center;
 }
 .money-related {
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 8px;
     padding-top: 8px;
     padding-bottom: 30px;
@@ -365,7 +382,8 @@ input[type="file"] {
 .button-container button{
     padding: 1rem;
     width: 150px;
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
     border: none;
@@ -373,8 +391,9 @@ input[type="file"] {
 }
 .button-container button:hover{
     background-color: transparent;
-    color: #8fb15f;
-    outline: 2px solid #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    outline: 2px solid rgb(199,8,8);
 }
 
 
@@ -405,12 +424,13 @@ input[type="file"] {
 .product-details {
     display: flex;
     flex-direction: column;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     
 }
 
 .product-details h1,h2,h3,p{
-    margin: 0 1rem;;
+    margin: 1rem 1rem;;
 
 }
 
@@ -420,7 +440,8 @@ input[type="file"] {
     justify-content: flex-start;
     align-items: center;
     gap:1rem;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
 .product-icons i{
@@ -438,7 +459,7 @@ input[type="file"] {
     flex-direction: column;
     justify-content: flex-start;
     padding: 5%;
-    background-color: white;
+    background-color: #fdfdfd;
     gap: 1rem;
 }
 #news_management form {
@@ -450,13 +471,15 @@ input[type="file"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     
 }
 .news-heading input{
     font-size: 2.5rem;
     margin-bottom: 0px;
-    color: #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     border: none;
     width: 100%;
     text-align: center;
@@ -473,7 +496,8 @@ input[type="file"] {
     border-radius: 5px;
 }
 .news-image-container button{
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -484,8 +508,9 @@ input[type="file"] {
 
 .news-image-container button:hover{
     background-color: transparent;
-    color: #8fb15f;
-    outline: 2px solid #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    outline: 2px solid rgb(199,8,8);
 }
 .news-content textarea{
     border-radius: 5px;
@@ -493,7 +518,8 @@ input[type="file"] {
     height: 8rem;
 }
 .news-submit button{
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -505,14 +531,16 @@ input[type="file"] {
 
 .news-submit button:hover{
     background-color: transparent;
-    color: #8fb15f;
-    outline: 2px solid #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    outline: 2px solid rgb(199,8,8);
 
 }
 .divider-vertical {
     height: 80%;
     width: 2px;
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     border-radius: 5px;
 }
 .document_upload_table{
@@ -522,7 +550,7 @@ input[type="file"] {
 }
 table {
     width: 100%;
-    border: 1px solid #8fb15f;
+    border: 1px solid rgb(199,8,8);
     border-collapse: collapse;
     font-size: 12px;
     
@@ -535,18 +563,20 @@ th {
     border: 1px solid black;
     padding: 5px;
     vertical-align: top;
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
 }
 
 td {
-    border: 1px solid #8fb15f;
+    border: 1px solid rgb(199,8,8);
     padding: 5px;
     vertical-align: top;
 }
 
 .button{
-    background-color: #8fb15f;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -555,8 +585,9 @@ td {
 
 .button:hover{
     background-color: transparent;
-    color: #8fb15f;
-    outline: 2px solid #8fb15f;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    outline: 2px solid rgb(199,8,8);
 
 }
 
@@ -567,7 +598,7 @@ td {
     left: 45%;
     width: 25%;
     z-index: 100;
-    background-color: white;
+    background-color: #fdfdfd;
     border-radius: 5px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     flex-direction: column;
@@ -587,3 +618,83 @@ td {
     max-height: 100%;
     border-radius: 5px;
 }   
+.submit-edit-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.submit-edit-product button{
+    display: block;
+    width: 100%;
+    background-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    padding: 1rem;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    margin: 8px;
+}
+.submit-edit-product button:hover{
+    outline: 2px solid rgb(199,8,8);
+    background-color: transparent;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+}
+
+
+input[type="checkbox"] {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  }
+  
+.rfq-container{
+    display: grid;
+    grid-template-columns: 90% 10%;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    margin-top: 1rem;
+}
+.rfq-details{
+    display: grid;
+    padding-left: 2%;
+    grid-template-columns: 50% 50%;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+}
+.rfq-details p{
+    color: black;
+}
+
+
+#editProduct{
+    position: relative;
+}
+.readyToBuyPopup{
+    display: none;
+    position: absolute;
+    top:15vh;
+    left: 1%;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: #fdfdfd;
+    padding: 2%;
+    color: rgb(199,8,8);
+  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    width: 75%;
+
+}
+
+.seller-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+}
+
+.seller-response-card{
+    border-bottom: 2px solid #f0f0f0;
+}

@@ -30,35 +30,11 @@
             </script>
            
 
-        
+            <t t-call="trademeda.header">
+                
+                </t>
             <main> 
-                <div class="header">
-                    <div class="logo-container">
-                        <img src="/trademeda/static/src/img/trademeda_white_logo.png" alt="profile photo" class="logo"/>
-                    </div>
-                    <!-- <div class="search-bar">
-                        
-                    </div> -->
-                    <div class="search-container">
-                        <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
-                        <button class="search_btn">Find Buyers</button>
-                        <button class="search_btn">Find Suppliers</button>
-                    </div>
-                    
-                    <div class="">
-                        <span class="" style="color:#f6f6f6">+91 1234567890</span>
-                        <img src="/trademeda/static/src/img/profile.png" alt="profile" style="height:30px"/>
-                        
-                    </div>
-                    <div class="">
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
-                        <span class="divider" style="margin-top: 5px;"></span>
-
-                    </div>
-                   
-
-                </div>
+                
                 <div class="outer">
                     <div class="left">
                         <div class="profile-detail">
@@ -71,7 +47,7 @@
                             <div class="username">
                                 <b><span t-att-value="partner.name" /></b>
                                 <div class="">
-                                    <span class="" style="color:#8fb15f;margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
+                                    <span class="" style="color:rgb(199,8,8);margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
 
                                 </div>
                             </div>
@@ -79,7 +55,7 @@
                         </div>
                         <div class="">
                         
-                            <span class="divider"></span>
+                            <span class="divider-line"></span>
                         </div>
                         <div class="sidemenu">
                             <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
@@ -108,6 +84,24 @@
                                 <span class="">Employee management</span>
                             </div>
                             <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_rfq(this)" id="rfq-menu">
+                                    <i class="fa-solid fa-envelope-circle-check"/>
+                                    <span class="">RFQs</span>
+                                </div>
+                            </t>
+                            <!-- <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_seller_responses(this)" id="seller-response-menu">
+                                    <i class="fa-solid fa-envelope-circle-check"/>
+                                    <span class="">Seller Responses</span>
+                                </div>
+                            </t> -->
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_readyToShip(this)" id="readyToShip-menu">
+                                    <i class="fas fa-truck" /> 
+                                    <span class="">Ready to Buy</span>
+                                </div>
+                            </t>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
                                 <div class="menu-item" onclick="enable_news(this)" id="news-menu">
                                     <i class="fas fa-newspaper" /> 
                                     <span class="">News</span>
@@ -121,7 +115,7 @@
                         </div>
                         <div class="">
                         
-                            <span class="divider"></span>
+                            <span class="divider-line"></span>
                         </div>
                         <div class="sidemenu">
                             <div class="menu-item">
@@ -497,7 +491,7 @@
                                                     </div>
                                                     
                                                     <div class="select-container">           
-                                                        <select id="product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="subsubcategory_change(this)">
+                                                        <select id="product_subsubcategory" name="product_subsubcategory" class="form-control">
                                                             <option value=''></option>
                                                             
                                                         </select>
@@ -510,20 +504,11 @@
                                                     <!-- <div class="">
                                                         <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
                                                     </div> -->
-                                                    <div class="select-container">           
-                                                        <select id="product_name" name="product_name" class="form-control">
-                                                            
-                                                        </select>
+                                                    <div class="">
+                                                        <input placeholder="Product Name" name="product_name" id="product_name" class="form-control" />
                                                     </div>
                                                 </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Product Variety / Grade</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input placeholder="Product Variety" name="product_variety" id="product_variety" class="form-control" />
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="text-input">
                                                     <div class="">
                                                         <span class="">Product Description</span>
@@ -611,9 +596,20 @@
                                                     <div class="">
                                                         <span class="">Mode of Payment</span>
                                                     </div>
-                                                    <div class="">
-                                                        <input placeholder="Mode of Payment"  name="payment_code" id="payment_code" class="form-control"/>
-
+                                                    <div class="select-container">
+                                    
+                                                        <select id="payment_terms" name="payment_terms">
+                                                            <option value="cash_advance">Cash in Advance</option>
+                                                            <option value="letter_of_credit">Letter of Credit</option> 
+                                                            <option value="documentary_collection">Documentary Collection</option>                  
+                                                            <option value="open_account">Open Account</option>                  
+                                                            <option value="advance_payment">Advance Payment</option>                  
+                                                            <option value="consignment">Consignment</option>                  
+                                                            <option value="cash_on_delivery">Cash on Delivery (COD)</option>                  
+                                                            <option value="payment_in_installments">Payment in Installments</option>                  
+                                                            <option value="bill_of_exchange">Bill of Exchange</option>                  
+                                                            <option value="telegraphic_transfer">Telegraphic transfer</option>  
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="text-input">
@@ -820,7 +816,7 @@
                                                             
                                                             <button type="button" style="background: transparent;border: none;" t-att-data-award-id="hello" onclick="openDeleteAward(this)">
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
                                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
                                                                 </svg>
@@ -893,7 +889,7 @@
                                                             
                                                             <button type="button" style="background: transparent;border: none;" t-att-data-certificate-id="123" onclick="openDeleteCertificate(this)">
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
                                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
                                                                 </svg>
@@ -994,7 +990,7 @@
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
                                             <span style="margin-top: 0.7rem;">
                                                 <t t-set="enquiry_count" t-value="env['product.enquiries'].sudo().search_count([('product_id', '=', product.id)])"/>
-                                                <a t-att-data-product-id="product.id" onclick="showProductLeads(this)" style="color:#8fb15f"><t t-esc="enquiry_count"/> Enquiries</a>
+                                                <a t-att-data-product-id="product.id" onclick="showProductLeads(this)" style="color:rgb(199,8,8)"><t t-esc="enquiry_count"/> Enquiries</a>
                                             </span>
                                         </div>
                                         <div class="product-details">
@@ -1014,26 +1010,19 @@
                                     </div>
                                     <div class="">
                         
-                                        <span class="divider"></span>
+                                        <span class="divider-line"></span>
                                     </div>
                                     <div class="inner-card" id="editProduct">
                                         <div class="productImage">
-                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" id="edit-product_image" alt="Product Image"/>
                                             <div class="file-upload-wrapper" style="align-self: flex-end;">
                                                 <input onchange="news_image_change(this)" type="file" id="update_product_image" name="update_product_image" data-file-name="update_product_image" data-delete-btn="update_update_product_image"/>
                                                 <button type="button"><label for="update_product_image"><i class="fas fa-camera"></i>Update Photo</label></button>
-                                                <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                                <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                             </div>
                                         </div>
                                         <div class="editproductDetails">
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Variety / Grade</span>
-                                                </div>
-                                                <div class="">
-                                                    <input placeholder="Product Variety" name="product_variety" id="edit-product_variety" t-att-value="product.product_variety_name" />
-                                                </div>
-                                            </div>
+                                            
                                             <div class="text-input">
                                                 <div class="">
                                                     <span class="">Product Description</span>
@@ -1088,6 +1077,24 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Ready to Buy</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="checkbox" onclick="ready_to_buy_popup(this)" name="edit-ready_to_buy" id="edit-ready_to_buy" t-att-value="product.ready_to_ship"/>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Ready to Buy Quantity</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input name="edit-rts_quantity" id="edit-rts_quantity" t-att-value="product.rts_quantity" />
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="text-input">
                                                 <div class="">
                                                     <span class="">Sample Policy</span>
@@ -1096,7 +1103,33 @@
                                                     <input name="edit-sample_policy" id="edit-sample_policy" t-att-value="product.sample_policy" />
                                                 </div>
                                             </div>
+                                            <div class="submit-edit-product">
+                                                <button class="" onclick="save_edited_product(this)" t-att-productId="product.id">Save</button>
+                                            </div>  
+                                            <div class="readyToBuyPopup" id="readyToBuyPopup">
+
+                                                <div class="">
+                                                    <span class="">Requirements</span>
+                                                    <ul>
+                                                        <li><span class="">The supplier must be both a registered user and a subscriber on Trademeda to participate in the Ready to buy program.</span></li>
+                                                        <li><span class="">The supplier must commit to not requiring any lead time for manufacturing, since the product is already produced and available for immediate purchase.</span></li>
+                                                    </ul>
+                                                    
+                                                </div>
                                                 
+                                                <div class="">
+                                                    <span class="">Do you meet these Requirements?</span>
+                                                </div>
+                                                <div class="select-container">
+                                                    <select id="ready_to_buy_requirements" name="ready_to_buy_requirements">
+                                                        <option value="yes">YES</option>
+                                                        <option value="no">No</option> 
+                                                    </select>
+                                                </div>
+                                                <div class="submit-edit-product">
+                                                    <button class="" onclick="rtb_requirements_save(this)">Save</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </t>
@@ -1118,7 +1151,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news1" name="update_news1" data-file-name="update_news1_name" data-delete-btn="update_news1_delete"/>
                                         <button type="button"><label for="update_news1"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news1_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                        <span id="update_news1_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 2  -->
@@ -1127,7 +1160,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news2" name="update_news2" data-file-name="update_news2_name" data-delete-btn="update_news2_delete"/>
                                         <button type="button"><label for="update_news2"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news2_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                        <span id="update_news2_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 3  -->
@@ -1136,7 +1169,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news3" name="update_news3" data-file-name="update_news3_name" data-delete-btn="update_news3_delete"/>
                                         <button type="button"><label for="update_news3"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 4  -->
@@ -1145,7 +1178,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news4" name="update_news4" data-file-name="update_news4_name" data-delete-btn="update_news4_delete"/>
                                         <button type="button"><label for="update_news4"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 5  -->
@@ -1154,7 +1187,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news5" name="update_news5" data-file-name="update_news5_name" data-delete-btn="update_news5_delete"/>
                                         <button type="button"><label for="update_news5"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #8fb15f;cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <div class="news-content">
@@ -1201,7 +1234,7 @@
                                                             
                                                             <button type="button" style="background: transparent;border: none;"  data-toggle="modal" >
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
                                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
                                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
                                                                 </svg>
@@ -1261,6 +1294,304 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Ready to ship  -->
+                        <div class="inner-card" id="readyToShip_management" style="margin-top: -1rem;">
+                            <div>
+                                <div class="edit-profile-text" style="text-align: center;">
+                                    <h1>Ready to Buy Products</h1>
+                                </div>
+                            </div>
+                            <div class="inner-card" style="display:flex;">
+                                <t t-foreach="user_products" t-as="product">
+                                    <t t-if="product.ready_to_ship">
+                                        <div class="product-container">
+                                            <div class="product-container-img">
+                                                <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
+                                                <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+                                                
+                                            </div>
+                                            <div class="product-details">
+                                                <span style="display:flex;justify-content: space-between;align-items:center;">
+                                                    <h2 style="display: inline;" t-esc="product.product_id.name"/>
+                                                    <!-- $<p style="display: inline; margin-left: -4px;" t-esc="product.product_price_usd"/> -->
+                                                    <span class="">Quantity <t t-esc="product.rts_quantity"/></span>
+                                                </span>
+                                                
+                                                <h3 >Product Description</h3>
+                                                <p t-esc="product.product_description"/>
+                                                
+                                            </div>
+                                            <div class="product-icons">
+                                            
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="">
+                            
+                                            <span class="divider-line"></span>
+                                        </div>
+
+
+                                    </t>
+                                </t>
+                            </div>
+
+                        </div>
+
+                        <div class="inner-card" id="rfq_management" style="margin-top: -1rem;">
+                            <div>
+                                <div class="edit-profile-text" style="text-align: center;">
+                                    <h1>RFQs</h1>
+                                </div>
+                            </div>
+                            <div class="inner-card" style="display:flex;">
+                                <t t-foreach="rfqs" t-as="rfq">
+                                    <div class="rfq-container">
+                                        <div class="rfq-heading">
+                                            <h3 class=""><t t-esc="rfq.rfq_no" /></h3>
+
+                                            <div class="rfq-details">
+                                                <div class="">
+                                                    <h4 class="">Product: <t t-esc="rfq.product_name" /></h4>
+                                                    <p class="">Destination: <t t-esc="rfq.destination.name" /></p>
+                                                    <p class="">Quantity: <t t-esc="rfq.quantity" /></p>
+                                                </div>
+                                                <div class="">
+                                                    <h4 class="">Sub-Subcategory: <t t-esc="rfq.product_subsubcategory.name" /></h4>
+                                                    <p class="">Payment Terms:
+                                                        <t t-if="rfq.payment_terms == 'cash_advance'" >Cash in Advance</t>
+                                                        <t t-if="rfq.payment_terms == 'letter_of_credit'" >Letter of Credit</t>
+                                                        <t t-if="rfq.payment_terms == 'documentary_collection'" >Documentary Collection</t>
+                                                        <t t-if="rfq.payment_terms == 'open_account'" >Open Account</t>
+                                                        <t t-if="rfq.payment_terms == 'advance_payment'" >Advance Payment</t>
+                                                        <t t-if="rfq.payment_terms == 'consignment'" >Consignment</t>
+                                                        <t t-if="rfq.payment_terms == 'cash_on_delivery'" >Cash on Delivery (COD)</t>
+                                                        <t t-if="rfq.payment_terms == 'payment_in_installments'" >Payment in Installments</t>
+                                                        <t t-if="rfq.payment_terms == 'bill_of_exchange'" >Bill of Exchange</t>
+                                                        <t t-if="rfq.payment_terms == 'telegraphic_transfer'" >Telegraphic transfer</t>
+
+                                                    
+                                                    </p>
+                                                    <p class="">Shipping Terms:
+                                                        <t t-if="rfq.shipping_terms == 'fob'" >FOB (Free on Board)</t>
+                                                        <t t-if="rfq.shipping_terms == 'fca'" >FCA (Free Carrier)</t>
+                                                        <t t-if="rfq.shipping_terms == 'exw'" >EXW (Ex Works)</t>
+                                                        <t t-if="rfq.shipping_terms == 'fas'" >FAS (Free Alongside Ship)</t>
+                                                        <t t-if="rfq.shipping_terms == 'dap'" >DAP (Delivered at Place)</t>
+                                                        <t t-if="rfq.shipping_terms == 'dat'" >DAT (Delivered at Terminal)</t>
+                                                        <t t-if="rfq.shipping_terms == 'cif'" >CIF (Cost, Insurance and Freight)</t>
+                                                        <t t-if="rfq.shipping_terms == 'cip'" >CIP (Carriage and Insurance Paid to)</t>
+                                                        <t t-if="rfq.shipping_terms == 'cfr'" >CFR (Cost and Freight)</t>
+                                                        <t t-if="rfq.shipping_terms == 'ssp'" >DDP (Delivery Duty Paid)</t>
+                                                        <t t-if="rfq.shipping_terms == 'cpt'" >CPT (Carriage paid to)</t>
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="product-icons">
+                                            <span class="" onclick="view_seller_responses(this)">View Responses</span>
+                                            <span onclick="edit_rfq(this)" t-att-productId="rfq.id"><i class="fa-solid fa-pen"></i></span>
+                                            <span><i class="fa-solid fa-trash"></i></span>
+                                        </div>
+                                    </div>                                       
+                                        
+                                    <div class="">
+                                        <span class="divider-line"></span>
+                                    </div>
+                                    <div class="inner-card" id="editRfq">
+                                        
+                                        <div class="editRfqDetails">
+                                            
+                                            <div class="text-input">
+                                                <div class="">
+                                                    <span class="">Product Description</span>
+                                                </div>
+                                                <div class="">
+                                                    <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit_rfq_product_description" t-att-value="product.product_description">
+                                                        <t t-esc="rfq.product_description"/>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Quantity</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input placeholder="Quantity" name="edit_rfq_quantity" id="edit_rfq_quantity" t-att-value="rfq.quantity"/>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Unit</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                    
+                                                        <select id="edit_rfq_unit" name="edit_rfq_unit">
+                                                            <option t-att-value="rfq.unit.id"><t t-esc="rfq.unit.name"/></option>
+
+                                                            <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                                                <option t-att-value="option.id">
+                                                                    <t t-esc="option.name"/>
+                                                                </option>
+                                                            </t>    
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Price</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input name="edit_rfq_product_price" id="edit_rfq_product_price" t-att-value="rfq.target_price" />
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Currency</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                
+                                                        <select id="edit_rfq_currency" name="edit_rfq_currency">
+                                                            <option t-att-value="rfq.currency.id"><t t-esc="rfq.currency.name"/></option>
+
+                                                            <t t-foreach="env['res.currency'].sudo().search([])" t-as="option">
+                                                                <option t-att-value="option.id">
+                                                                    <t t-esc="option.name"/>
+                                                                </option>
+                                                            </t>    
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Payment Terms</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                    
+                                                        <select id="edit_rfq_payment_terms" name="edit_rfq_payment_terms">
+                                                            <t t-foreach="rfq._fields['payment_terms'].selection" t-as="option">
+                                                                <option t-att-value="option[0]" t-att-selected="option[0] == rfq.payment_terms and 'selected'">
+                                                                    <t t-esc="option[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="multi-input">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Shipping Terms</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                    
+                                                        <select id="edit_rfq_shipping_terms" name="edit_rfq_shipping_terms">
+                                                            <t t-foreach="rfq._fields['shipping_terms'].selection" t-as="option">
+                                                                <option t-att-value="option[0]" t-att-selected="option[0] == rfq.shipping_terms and 'selected'">
+                                                                    <t t-esc="option[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Destination</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                
+                                                        <select id="edit_rfq_destination" name="edit_rfq_destination">
+                                                            <option t-att-value="rfq.destination.id"><t t-esc="rfq.destination.name"/></option>
+
+                                                            <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                                                <option t-att-value="option.id">
+                                                                    <t t-esc="option.name"/>
+                                                                </option>
+                                                            </t>    
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Looking for Suppliers From</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                
+                                                        <select id="edit_rfq_suppliers_country" name="edit_rfq_suppliers_country">
+                                                            <option t-att-value="rfq.suppliers_country.id"><t t-esc="rfq.suppliers_country.name"/></option>
+
+                                                            <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                                                <option t-att-value="option.id">
+                                                                    <t t-esc="option.name"/>
+                                                                </option>
+                                                            </t> 
+                                                            <option value="">WorldWide</option>   
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="submit-edit-product">
+                                                <button class="" onclick="save_edited_rfq(this)" t-att-rfqId="rfq.id">Save</button>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="inner-card" id="seller_responses_management">
+                                        
+                                        <t t-foreach="env['rfq.quotations'].sudo().search([])" t-as="quotation">
+                                            <div class="seller-response-card">
+                                                <div class="seller-details">
+                                                    <span class=""><t t-esc="quotation.partner_id.name"/></span>
+                                                    <span class=""><t t-esc="quotation.partner_id.country_id.name"/></span>
+                                                    <span class=""><t t-esc="quotation.create_date.strftime('%d-%b-%Y')"/></span>
+
+                                                </div>
+                                                <div class="seller-details">
+                                                    <span class=""><t t-esc="quotation.contact_name"/></span>
+                                                    <span class=""><t t-esc="quotation.email"/></span>
+                                                    <span class=""><t t-esc="quotation.phone"/></span>
+
+                                                </div>
+                                                <div class="seller-details">
+                                                    <span class=""><t t-esc="quotation.message"/></span>
+
+                                                </div>
+                                            </div>
+                                        </t>
+
+
+                                    </div> 
+                                </t>
+                                
+                            </div>
+                            
+
+                        </div>
+
+
+                                     
+
+                        <!-- <div>
+                            <form action="/profile/uploadtemp" method="post" enctype="multipart/form-data" class="">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                <input type="file" name="upload_temp" style="display:block;" class=""/>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div> -->
                         
 
                         
@@ -1275,14 +1606,63 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
 
 
                 
+                function save_edited_product(element){
+                    const productId = element.getAttribute('ProductId')
+                    const product_variety = document.getElementById('edit-product_variety').value
+                    const product_description = document.getElementById('edit-product_description').value
+                    const product_quantity = document.getElementById('edit-product_quantity').value
+                    const packaging_requirement = document.getElementById('edit-packaging_requirement').value
+                    const delivery_days = document.getElementById('edit-delivery_days').value
+                    const product_price_usd = document.getElementById('edit-product_price_usd').value
+                    const payment_mode = document.getElementById('edit-payment_mode').value
+                    const ready_to_ship = document.getElementById('edit-ready_to_ship').value
+                    const rts_quantity = document.getElementById('edit-rts_quantity').value
+                    const product_image = document.getElementById('edit-product_image').src.split(',')[1]
+                    const update_product_image = document.getElementById('update_product_image')
+                    const sample_policy = document.getElementById('edit-sample_policy').value
 
+                    const vals = {
+                        
+                        'product_variety':product_variety,
+                        'product_description':product_description,
+                        'product_quantity':product_quantity,
+                        'packaging_requirement':packaging_requirement,
+                        'delivery_days':delivery_days,
+                        'product_price_usd':product_price_usd,
+                        'payment_mode':payment_mode,
+                        'ready_to_ship':ready_to_ship,
+                        'rts_quantity':rts_quantity,
+                        'product_image':product_image,
+                        'sample_policy':sample_policy
+                    }
+
+                    fetch('/profile/updateProduct/'+productId,{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(vals),
+                    }).then(function(res){
+                        console.log(res)
+                    })
+                }
 
 
                 function edit_product(element){
+                    if(element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display == 'flex'){
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'none'
+                    }else{
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'flex'
+                    }
+                }
+
+                function edit_rfq(element){
                     if(element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display == 'flex'){
                         element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'none'
                     }else{
@@ -1296,6 +1676,7 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
                     document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
 
 
                     document.getElementById('company_details').style.display = 'flex'
@@ -1310,6 +1691,25 @@
                     
 
                 }
+                function view_seller_responses(element){
+                    
+                    <!-- document.getElementById('seller_responses_management').style.display = 'flex' -->
+
+                    <!-- if(document.getElementById('seller_responses_management').style.display == 'flex'){
+                        document.getElementById('seller_responses_management').style.display = 'none'
+                    }else{
+                        document.getElementById('seller_responses_management').style.display = 'flex'
+                    } -->
+
+                    if(element.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display == 'flex'){
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none'
+                    }else{
+                        element.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'flex'
+                    }
+
+                }
+
+
                 function enable_add_new_product(element){
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('company_details').style.display = 'none'
@@ -1318,7 +1718,8 @@
                     document.getElementById('add_new_product_form').style.display = 'flex'
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
-
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
 
 
                     
@@ -1338,6 +1739,8 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
                     document.getElementById('product_management').style.display = 'flex'
 
 
@@ -1359,7 +1762,8 @@
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
-
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
 
 
                 }
@@ -1370,7 +1774,40 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'flex'
+                    document.getElementById('rfq_management').style.display = 'none'
+
+
+                }
+
+                function enable_readyToShip(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'flex'
+
+                    
+
+                }
+
+                function enable_rfq(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'flex'
+
+                    
 
                 }
 
@@ -1445,46 +1882,27 @@
 
                 }
 
-                function subsubcategory_change(element){
+               
+                function subcategory_change(element){
                     let subcategory_id = element.value
-                    let product_name = document.getElementById('product_name')
-                    while (product_name.firstChild) {
-                        product_name.removeChild(product_name.firstChild);
+                    let product_subsubcategory = document.getElementById('product_subsubcategory')
+                    while (product_subsubcategory.firstChild) {
+                        product_subsubcategory.removeChild(product_subsubcategory.firstChild);
                     }
                     fetch('profile/getproducts/'+subcategory_id).then(function(res) {
                         res.json().then(function(data){
-                            console.log(data)
-                            data.forEach(function(product) {
+                            data.forEach(function(subcategory) {
                             const option = document.createElement('option');
-                                    option.value = product.id
-                                    option.textContent = product.name;
+                                    option.value = subcategory.id
+                                    option.textContent = subcategory.name;
                                     
-                                    product_name.appendChild(option)
+                                    product_subsubcategory.appendChild(option)
                             })
                         })
                         }) 
 
 
                 }
-                <!-- function subcategory_change(element){
-                    let subcategory_id = element.value
-                    let product_subcategory = document.getElementById('product_subcategory')
-                    fetch('profile/getsproducts/'+subcategory_id).then(function(res) {
-                        res.json().then(function(data){
-                            data.forEach(function(subcategory) {
-                            const option = document.createElement('option');
-                                    option.value = subcategory.id
-                                    option.textContent = subcategory.name;
-                                    while (product_subcategory.firstChild) {
-                                        product_subcategory.removeChild(product_subcategory.firstChild);
-                                    }
-                                    product_subcategory.appendChild(option)
-                            })
-                        })
-                        }) 
-
-
-                } -->
                 
                 function file_change(element){
                     element.parentElement.getElementsByClassName('file-name')[0].innerText = element.value.split('\\').reverse()[0] 
@@ -1529,7 +1947,7 @@
 
                     // Create the SVG icon and append it to the button
                     deleteButton.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8fb15f" class="bi bi-trash" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
                         </svg>
@@ -1613,6 +2031,23 @@
                         
                     })
                     
+                }
+
+                function ready_to_buy_popup(element){
+                    const ready_to_buy = element.checked
+                    if(ready_to_buy == true){
+                        document.getElementById('readyToBuyPopup').style.display = 'block'
+                    }
+                }
+                function rtb_requirements_save(element){
+                    const requirements = document.getElementById('ready_to_buy_requirements').value
+                    if(requirements == 'yes'){
+                        document.getElementById('readyToBuyPopup').style.display = 'none'
+                    }else{
+                        document.getElementById('readyToBuyPopup').style.display = 'none'
+                        document.getElementById('edit-ready_to_buy').value = 'False'
+                        document.getElementById('edit-ready_to_buy').checked = false
+                    }
                 }
                 
 

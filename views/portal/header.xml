@@ -7,21 +7,21 @@
             </xpath>
                 <div class="header">
                     <div class="logo-container">
-                        <a t-attf-href="/home"><img src="/trademeda/static/src/img/trademeda_logo1.png" alt="Logo photo" class="logo"/></a>
+                        <a t-attf-href="/home"><img src="/trademeda/static/src/img/trademeda_white_logo.png" alt="Logo photo" class="logo"/></a>
                     </div>
                     <!-- <div class="search-bar">
                         
                     </div> -->
                     <div class="search-container">
                         <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
-                        <button class="search_btn">Find Buyers</button>
-                        <button class="search_btn">Find Suppliers</button>
+                        <button class="search_btn"><b>Find Buyers</b></button>
+                        <button class="search_btn"><b>Find Suppliers</b></button>
                     </div>
                     <div style="display:flex;align-items:center;gap:1rem;margin-bottom:6px;">
                         <div class="">
-                            <a  onclick="wishlistPage(this)" id="wishlist-link" style="margin-right: 8px;"><i class="fas fa-heart" style="color:#b32f2d"></i></a>
+                            <a  onclick="wishlistPage(this)" id="wishlist-link" style="margin-right: 8px;"><i class="fas fa-heart" style="color:#fff"></i></a>
 
-                            <a t-attf-href="/profile"><i class="fas fa-user" style="color:#b32f2d"></i></a>
+                            <a t-attf-href="/profile"><i class="fas fa-user" style="color:#fff"></i></a>
                             
                         </div>
                         <div class="hamburger-menu">

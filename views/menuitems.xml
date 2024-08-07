@@ -67,6 +67,17 @@
         </field>
     </record>
 
+    <record id="action_quotations" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rfq.quotations</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Quotations</p>
+        </field>
+    </record>
+
     <!-- Menu structure -->
     <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
     <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
@@ -75,6 +86,9 @@
     <menuitem id="submenu_product_subsubcategory" name="Product Sub-Subcategories" parent="submenu_products" action="action_product_subsubcategory" sequence="11"/>
     <menuitem id="submenu_product_template" name="Products" parent="submenu_products" action="action_product_template" sequence="12"/>
     <menuitem id="submenu_country" name="Countries" parent="submenu_products" action="action_countries" sequence="19"/>
-    <menuitem id="submenu_rfq" name="RFQ" parent="menu_trademeda" action="action_rfq" sequence="20"/>
+    <menuitem id="menu_rfq" name="RFQ" parent="menu_trademeda" sequence="20"/>
+    <menuitem id="submenu_rfq" name="RFQ" parent="menu_rfq" action="action_rfq" sequence="10"/>
+    <menuitem id="submenu_quotations" name="Quotations" parent="menu_rfq" action="action_quotations" sequence="20"/>
+
 
 </odoo>

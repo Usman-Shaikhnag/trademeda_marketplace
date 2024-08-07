@@ -9,7 +9,7 @@
             
            
             <page string="Sub-Subcategories" name="subcategories_page">
-                <field name="subsubcategory_id"/>
+                <field name="subcategory_id"/>
                         <!-- <field name="name"/>
                 </field> -->
             </page>

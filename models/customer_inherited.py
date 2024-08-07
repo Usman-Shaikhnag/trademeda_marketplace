@@ -66,21 +66,32 @@ class ResPartner(models.Model):
 
     company_registration = fields.Binary(string="Company Registration")
     company_registration_name = fields.Char(string="Company Registration Name")
+    company_registration_verified = fields.Boolean(string="")
+
 
     company_address_proof = fields.Binary(string="Company Address Proof")
     company_address_proof_name = fields.Char(string="Company Address Proof Name")
+    company_address_proof_verified = fields.Boolean(string="")
+
 
     identity_proof = fields.Binary(string="Identity Proof")
     identity_proof_name = fields.Char(string="Identity Proof Name")
+    identity_proof_verified = fields.Boolean(string="")
+
 
     trading_license = fields.Binary(string="Trading License")
     trading_license_name = fields.Char(string="Trading License Name")
+    trading_license_verified = fields.Boolean(string="")
+
 
     prior_import_export = fields.Binary(string="Prior Import / Export")
     prior_import_export_name = fields.Char(string="Prior Import / Export Name")
+    prior_import_export_verified = fields.Boolean(string="")
+
 
     tax_id_proof = fields.Binary(string="Tax Id Proof")
     tax_id_proof_name = fields.Char(string="Tax Id Proof Name")
+    tax_id_proof_verified = fields.Boolean(string="")
 
 
     news_title = fields.Char("News Title")
@@ -107,8 +118,8 @@ class ProductCustomerImages(models.Model):
     _description = "Customer Product Images"
 
     partner_id = fields.Many2one('res.partner', string="Customer")
-    product_id = fields.Many2one('product.template', string="Product")
-    product_variety_name = fields.Char("Product Variety / Grade")
+    product_id = fields.Many2one('product.template', string="Sub-Subcategory")
+    product_name = fields.Char("Product Name")
     product_description  = fields.Text("Product Description")
     product_image = fields.Binary('Image')
     image_name = fields.Char("Image Name")  
@@ -117,9 +128,22 @@ class ProductCustomerImages(models.Model):
     packaging_requirement = fields.Char("Packaging Requirements")
     delivery_days = fields.Integer("Delivery in Days")
     product_price_usd = fields.Float("Price (in USD)")
-    payment_mode = fields.Char("Payment Mode")
+    payment_mode = fields.Selection([
+        ('cash_advance','Cash in Advance'),
+        ('letter_of_credit','Letter of Credit'),
+        ('documentary_collection','Documentary Collection'),
+        ('open_account','Open Account'),
+        ('advance_payment','Advance Payment'),
+        ('consignment','Consignment'),
+        ('cash_on_delivery','Cash on Delivery (COD)'),
+        ('payment_in_installments','Payment in Installments'),
+        ('bill_of_exchange','Bill of Exchange'),
+        ('telegraphic_transfer','Telegraphic transfer')
+    ],string="Payment Terms")
     sample_policy = fields.Char("Sample Policy")
     upload_date = fields.Datetime("Upload Date")
+    ready_to_ship = fields.Boolean("Ready to Ship")
+    rts_quantity = fields.Integer("Ready to Ship Quantity")
 
 
 class CustomerAwards(models.Model):
@@ -131,7 +155,8 @@ class CustomerAwards(models.Model):
     award_name  = fields.Char("Award Name")
     award_description  = fields.Text("Award Description")
     award_attachment = fields.Binary('Award')
-    file_name = fields.Char("File Name") 
+    file_name = fields.Char("File Name")
+    award_verified = fields.Boolean(string="")
     public_display = fields.Boolean("Public Display")
 
 
@@ -144,7 +169,8 @@ class CustomerCertificates(models.Model):
     certificate_name  = fields.Char("Certificate Name")
     certificate_description  = fields.Text("Certificate Description")
     certificate_attachment = fields.Binary('Certificate')
-    file_name = fields.Char("File Name") 
+    file_name = fields.Char("File Name")
+    certification_verified = fields.Boolean(string="")
     public_display = fields.Boolean("Public Display")
 
 

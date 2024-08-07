@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <template id="view_quotation" name="View Quotation">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/quotation_details.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+            </xpath>
+            <t t-call="trademeda.header"/>
+                
+            <main class="">
+                <div class="container">
+                    <div class="heading">
+                        <h2 style="margin-bottom: 0;">Required: <t t-esc="rfq.product_name"/></h2>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="buyer-details">
+                        <div class=""><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>Buyer from <t t-esc="rfq.partner_id.country_id.name"/></div>
+                        <div class=""><span style="color:#009900"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span></div>
+                        <div class=""><i class="fa-solid fa-hourglass-start"></i>Expires in 100 Days</div>
+                    </div>
+                    <!-- product image  -->
+                    <div class="image-container">
+                        <t t-if="rfq.product_image">
+                            
+                            <img t-att-src="'data:image/png;base64,' + rfq.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+                        </t>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="post-details">
+                        <div class="">
+                            <p class=""><b class=""><i class="fa-solid fa-location-dot" style="margin-right:1rem;"></i>Destination: </b><t t-esc="rfq.destination.name"/></p>
+                            <p class=""><b class=""><i class="fa-solid fa-wallet" style="margin-right:1rem;"></i>Target Price: </b><t t-esc="rfq.target_price"/></p>
+                            <p class=""><b class=""><i class="fa-regular fa-credit-card" style="margin-right:1rem;"></i>Payment Terms: </b>
+                            
+                                <t t-if="rfq.payment_terms == 'cash_advance'" >Cash in Advance</t>
+                                <t t-if="rfq.payment_terms == 'letter_of_credit'" >Letter of Credit</t>
+                                <t t-if="rfq.payment_terms == 'documentary_collection'" >Documentary Collection</t>
+                                <t t-if="rfq.payment_terms == 'open_account'" >Open Account</t>
+                                <t t-if="rfq.payment_terms == 'advance_payment'" >Advance Payment</t>
+                                <t t-if="rfq.payment_terms == 'consignment'" >Consignment</t>
+                                <t t-if="rfq.payment_terms == 'cash_on_delivery'" >Cash on Delivery (COD)</t>
+                                <t t-if="rfq.payment_terms == 'payment_in_installments'" >Payment in Installments</t>
+                                <t t-if="rfq.payment_terms == 'bill_of_exchange'" >Bill of Exchange</t>
+                                <t t-if="rfq.payment_terms == 'telegraphic_transfer'" >Telegraphic transfer</t>
+                            
+                            </p>
+
+                        </div>
+                        <div class="">
+                            <p class=""><b class=""><i class="fa-solid fa-calendar-days" style="margin-right:1rem;"></i>Date:</b><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                            <p class=""><b class=""><i class="fa-solid fa-cart-shopping" style="margin-right:1rem;"></i>Quantity Required: </b><t t-esc="rfq.quantity"/> <t t-esc="rfq.unit.name"/></p>
+                            <p class=""><b class=""><i class="fa-solid fa-ship" style="margin-right:1rem;"></i>Shipping Terms: </b>
+                                <t t-if="rfq.shipping_terms == 'fob'" >FOB (Free on Board)</t>
+                                <t t-if="rfq.shipping_terms == 'fca'" >FCA (Free Carrier)</t>
+                                <t t-if="rfq.shipping_terms == 'exw'" >EXW (Ex Works)</t>
+                                <t t-if="rfq.shipping_terms == 'fas'" >FAS (Free Alongside Ship)</t>
+                                <t t-if="rfq.shipping_terms == 'dap'" >DAP (Delivered at Place)</t>
+                                <t t-if="rfq.shipping_terms == 'dat'" >DAT (Delivered at Terminal)</t>
+                                <t t-if="rfq.shipping_terms == 'cif'" >CIF (Cost, Insurance and Freight)</t>
+                                <t t-if="rfq.shipping_terms == 'cip'" >CIP (Carriage and Insurance Paid to)</t>
+                                <t t-if="rfq.shipping_terms == 'cfr'" >CFR (Cost and Freight)</t>
+                                <t t-if="rfq.shipping_terms == 'ssp'" >DDP (Delivery Duty Paid)</t>
+                                <t t-if="rfq.shipping_terms == 'cpt'" >CPT (Carriage paid to)</t>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h4>Product Description</h4>
+                        <t t-esc="rfq.product_description"/>
+                    </div>
+                    <div class="contact_buyer">
+                        <button type="button" onclick="open_popup(this)" id="btn_contact_buyer" class="">Contact Buyer</button>
+                    </div>
+
+                    <div class="responses">
+                        <h2 class="">Seller Responses</h2>
+                            <t t-foreach="env['rfq.quotations'].sudo().search([],limit=5)" t-as="quotation">
+                                <div class="response-body">
+                                    <div class="quotation-details">
+                                        <div class=""><img t-att-src="quotation.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><b><t t-esc="quotation.contact_name"/></b></div><span><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i></span>
+                                    </div>
+                                    <div class="membership-details">
+                                        Free Member, Supplier From <t t-esc="quotation.partner_id.country_id.name"/>
+                                    </div>
+                                </div>
+                                <!-- <div class="">
+                                    <span class="divider-line"></span>
+                                </div> -->
+                            </t>
+                    </div>
+                </div>
+            <!-- </div> -->
+            <div class="contact_buyer_form" id="contact_buyer_form">
+                <div class="heading">
+                    <h2 style="margin-bottom: 0;">Contact Buyer</h2>
+                    
+                </div>
+                <div class="supplier-details">
+                    <input type="hidden" name="rfq_id" id="rfqId" t-att-rfqId="rfq.id" t-att-value="rfq.id"/>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Company Name</span>
+                        </div>
+                        <div class="">
+                            <input type="text" name="company_name" id="user_company_name"/>
+                        </div>
+                    </div>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Name</span>
+                        </div>
+                        <div class="">
+                            <input type="text" name="name" id="user_name"/>
+                        </div>
+                    </div>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Email</span>
+                        </div>
+                        <div class="">
+                            <input type="text" name="email" id="user_email"/>
+                        </div>
+                    </div>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Phone</span>
+                        </div>
+                        <div class="">
+                            <input type="text" name="phone" id="user_phone"/>
+                        </div>
+                    </div>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Country</span>
+                        </div>
+                        <div class="select-container">
+                                
+                            <select id="supplier_country" name="supplier_country">
+                                <option value=""></option>
+
+                                <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                    <option t-att-value="option.id">
+                                        <t t-esc="option.name"/>
+                                    </option>
+                                </t>    
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-input" style="">
+                        <div class="">
+                            <span class="">Message</span>
+                        </div>
+                        <div class="">
+                            <textarea id="message" name="message"/>
+                        </div>
+                    </div>
+                    <div class="contact_buyer">
+                        <button type="button" onclick="send_enquiry()" id="btn_contact_buyer_form" class="">Contact Buyer</button>
+                    </div>
+                    <button type="button" onclick="close_popup(this)" id="btn_close_quotation_form" class="close_popup">X</button>
+                </div>
+            </div>
+            
+            </main>
+            <script>
+
+                function open_popup(element){
+                    document.getElementById('contact_buyer_form').style.display = 'block'
+                }
+                function close_popup(element){
+                    document.getElementById('contact_buyer_form').style.display = 'none'
+                }
+                function send_enquiry(){
+                    const rfq_id = document.getElementById('rfqId').getAttribute('rfqId')
+                    const company_name = document.getElementById('user_company_name').value
+                    const name = document.getElementById('user_name').value
+                    const email = document.getElementById('user_email').value
+                    const phone = document.getElementById('user_phone').value
+                    const country = document.getElementById('supplier_country').value
+                    const message = document.getElementById('message').value
+
+                    const vals = {
+                        'company_name':company_name,
+                        'name':name,
+                        'email':email,
+                        'phone':phone,
+                        'country':country,
+                        'message':message
+                    }
+
+                    fetch('/send_enquiry/'+rfq_id,{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(vals),
+                    
+                    }).then(function(res){
+                        <!-- console.log(res) -->
+                        <!-- json().then(function(data){
+                            debugger;
+                        }) -->
+                            document.getElementById('contact_buyer_form').style.display = 'none'
+                        
+                    })
+
+                }
+            </script>
+
+        </template>
+
+    
+    </data>
+    
+
+</odoo>

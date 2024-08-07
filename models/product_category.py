@@ -7,6 +7,11 @@ class ProductCategory(models.Model):
     name = fields.Char(string='Name', required=True)
     subcategories_lines = fields.One2many('product.subcategories', 'category_id', string='SubCategories')
 
+    category_type = fields.Selection([
+        ('product','Product'),
+        ('service','Service')
+    ],string="Request Type")
+
 
 
 

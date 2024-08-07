@@ -1,6 +1,8 @@
 from odoo import http
 from odoo.http import request
 import base64
+import json
+
 class HomepageController(http.Controller):
 
     @http.route('/home', auth='public', website=True)
@@ -38,6 +40,8 @@ class HomepageController(http.Controller):
         subcategories = request.env['product.subcategories'].sudo().search([])
         products = request.env['product.template'].sudo().search([])
         user_products = request.env['product.customer.images'].sudo().search([('partner_id','=',partner_id.id)])
+        rfqs = request.env['trademeda.rfq'].sudo().search([('partner_id','=',partner_id.id)])
+
 
         vals = {
             'user':user,
@@ -46,7 +50,7 @@ class HomepageController(http.Controller):
             'subcategories':subcategories,
             'products':products,
             'user_products':user_products,
-            't_product_id':1
+            'rfqs':rfqs
 
         }
         return request.render('trademeda.user_profile',vals)
@@ -310,10 +314,10 @@ class HomepageController(http.Controller):
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
             # Extract form data
+            product_name = kw.get('product_name')
             product_image = kw.get('upload_product').read()
             product_description = kw.get('product_description')
-            product = kw.get('product_name')
-            product_variety_name = kw.get('product_variety')
+            product = kw.get('product_subsubcategory')
 
 
             if product_image:
@@ -321,9 +325,27 @@ class HomepageController(http.Controller):
                     'partner_id': partner_id.id,
                     'product_image':base64.b64encode(product_image),
                     'product_description':product_description,
-                    'product_variety_name':product_variety_name,
+                    'product_name':product_name,
                     'product_id':product,
 
                 })
 
             return request.redirect("/profile")
+        
+    @http.route('/get_categories/<string:dataId>', type='http', auth='user',website=True)
+    def get_categoriess(self,dataId, **kw):
+        categories = request.env['product.categories'].sudo().search([('category_type', '=', dataId)])
+        # import wdb;wdb.set_trace()
+        # categories_data = [{'id': category.id, 'name': category.name} for category in categories]
+        # return Response(json.dumps(categories_data), content_type='application/json', status=200)
+
+        categories = request.env['product.categories'].sudo().search([('category_type', '=', dataId)])
+        category_list = [{
+            'id': cat.id,
+            'name': cat.name,
+            # Add more fields as needed
+        } for cat in categories]
+
+        # Return JSON response
+
+        return json.dumps(category_list)
