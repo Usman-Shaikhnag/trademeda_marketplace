@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields,api
+import math
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -108,6 +109,35 @@ class ResPartner(models.Model):
     news_image_name5 = fields.Char("Image Name5")
 
     news_text = fields.Text("News")
+
+    supplier_rating = fields.Float("Rating",compute="_compute_supplier_rating",digits=(16,1))
+
+    @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')
+    def _compute_supplier_rating(self):
+        for record in self:
+            count=0
+            if(record.company_registration_verified):
+                count = count+1
+            if(record.company_address_proof_verified):
+                count = count+1
+            if(record.identity_proof_verified):
+                count = count+1
+            if(record.trading_license_verified):
+                count = count+1
+            if(record.prior_import_export_verified):
+                count = count+1
+            if(record.tax_id_proof_verified):
+                count = count+1
+            # if(record.awards):
+            #     count = count+1
+            # if(record.certificates):
+            #     count = count+1
+            if(count !=0):
+                record.supplier_rating = round((0.83*count),1)
+            else:
+                record.supplier_rating = 0
+
+
 
 
 

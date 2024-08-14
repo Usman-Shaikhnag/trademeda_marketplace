@@ -211,6 +211,9 @@
                 </field>
             </page>
         </xpath>
+        <xpath expr="//field[@name='category_id']" position="after">
+            <field name="supplier_rating" />
+        </xpath>
     </field>
 </record>
 </odoo>

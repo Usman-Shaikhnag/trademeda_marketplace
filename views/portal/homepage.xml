@@ -278,6 +278,7 @@
                                 window.location.href = '/findSuppliersByCategory/'+searchQuery
                             }
                     }
+                    showBuyers(document.getElementById('tab1'))
                 </script>
             <!-- </t> -->
         </template>
