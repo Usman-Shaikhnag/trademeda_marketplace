@@ -13,9 +13,15 @@
                         
                     </div> -->
                     <div class="search-container">
-                        <input placeholder="Find Buyers and Suppliers" name="search-bar" id="search-bar" class="form-control"/>
-                        <button class="search_btn"><b>Find Buyers</b></button>
-                        <button class="search_btn"><b>Find Suppliers</b></button>
+                        <input placeholder="Find Buyers and Suppliers" list="product_list" name="search-bar" id="search-bar" class="form-control"/>
+                        <datalist id="product_list">
+                            <t t-foreach="env['product.template'].sudo().search([])" t-as="options">
+                                <option><t t-esc="options.name"/></option> 
+                            </t>
+
+                        </datalist>
+                        <button class="search_btn" onclick="findBuyers(this)"><b>Find Buyers</b></button>
+                        <button class="search_btn" onclick="findSuppliers(this)"><b>Find Suppliers</b></button>
                     </div>
                     <div style="display:flex;align-items:center;gap:1rem;margin-bottom:6px;">
                         <div class="">
@@ -65,6 +71,23 @@
                         }
                         
                         
+                    }
+
+                    function findSuppliers(element){
+                        const supplierSearchQuery = document.getElementById('search-bar').value
+                        console.log('Search',supplierSearchQuery)
+                        if(supplierSearchQuery != null){
+
+                            window.location.href = '/findSuppliers/'+supplierSearchQuery
+                        }
+                    }
+                    function findBuyers(element){
+                        const searchQuery = document.getElementById('search-bar').value
+                        console.log('Search',searchQuery)
+                        if(searchQuery != null){
+
+                            window.location.href = '/findBuyers/'+searchQuery
+                        }
                     }
                 </script>
         </template>

@@ -6,39 +6,13 @@
             <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/product_details.css"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         </xpath>
-        <header>
-            <div class="container">
-
-                <div class="logo">
-
-                <img src="/trademeda/static/src/img/trademeda_logo1.png" alt="Trademeda Logo"/>
-
-                </div>
-
-                <div class="search">
-
-                <input type="text" placeholder="Search for a product, category or service"/>
-
-                <button><i class="fas fa-search"></i></button>
-
-                </div>
-
-                <div class="actions">
-
-                <button>Login</button>
-
-                <button>Sign Up</button>
-
-                <button class="menu"><i class="fas fa-bars"></i></button>
-
-                </div>
-
-            </div>
-        </header>
+        <t t-call="trademeda.header">
+                
+        </t>
         <main> 
             <div class="product-section">
                 <div class="product-details">
-                    <h2>Shampoo</h2>
+                    <h2><t t-esc="product.product_name"/></h2>
                     <div class="rating-container">
                         <div class="star-svg">
                             <span>
@@ -72,29 +46,29 @@
 
                     </div>
                 <div>
-                    <img src="/trademeda/static/src/img/product_shampoo.png"/>
+                    <!-- <img src="/trademeda/static/src/img/product_shampoo.png"/> -->
+                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
                 </div>
                 <div class="product-details">
                     <h3>Product Details</h3>
                     <span class="bar"></span>
                     <p>
-                        We are engaged in providing superior quality Di Ethylene Glycol to our most reliable clients.
-                        These Di Ethylene Glycol are appreciated by large number of clients due to high quality and durability.
-                        These products are available in market at most competitive rates.
+                        <t t-esc="product.product_description"/>
                     </p>
 
-                    <h3>Seller Details</h3>
+                    <!-- <h3>Seller Details</h3> -->
                     <!-- <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                             <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
                         </svg>
                     </span> -->
-                    <span class="bar"></span>
+                    <!-- <span class="bar"></span>
                     <p>
                         We are engaged in providing superior quality Di Ethylene Glycol to our most reliable clients.
                         These Di Ethylene Glycol are appreciated by large number of clients due to high quality and durability.
                         These products are available in market at most competitive rates.
-                    </p>
+                    </p> -->
                 </div>
             </div>
             <div class="contact-section">

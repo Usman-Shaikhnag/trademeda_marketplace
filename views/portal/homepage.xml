@@ -9,15 +9,26 @@
                 <t t-call="trademeda.header">
                 
                 </t>
-                <main>
+                <script>
+                    function main_clicked(element){
+                        document.getElementsByClassName('category-products').display = 'none'
+                    }
+                </script>
+                <main onclick="main_clicked(this)">
                     <div class="main-content">
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
                             <t t-foreach="env['product.subcategories'].sudo().search([],limit=10)" t-as="category">
-                                <div class="category-item" style="cursor:pointer;">
+                                <div onmouseover="show_products(this)" class="category-item" style="cursor:pointer;">
                                     <!-- <i t-out="category.x_studio_icon"></i> -->
                                     <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
                                     <t t-out="category.name"/>
+                                    <t t-foreach="category.subsubcategories_lines" t-as="product">
+                                        
+                                        <div class="category-products">
+                                            <t t-esc="product.name"/>
+                                        </div>
+                                    </t>
                                 </div>
                                 
                             </t>
@@ -133,14 +144,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rfq-container">
-                        <t t-foreach="env['product.subcategories'].sudo().search([('name','=','Agricultural Products - Grains, Fruits, etc.')],limit=5)" t-as="subcategory">
+                    <div class="tabs">
+                        <span id="tab1" onclick="showBuyers(this)" class="tab active">Buyers</span>
+                        <span id="tab2" onclick="showSuppliers(this)" class="tab">Suppliers</span>
+                    </div>
+                    <t t-foreach="env['product.subcategories'].sudo().search([('name','ilike','Agri')],limit=5)" t-as="subcategory">
+                        <div class="rfq-container">
                             <div class="rfq-container-header">
                                 <h2><t t-esc="subcategory.name" /></h2>
-                                <button class="btn-seeMore">See More</button>
+                                <button onclick="getProductsByCategory(this)" t-att-subcategoryName="subcategory.name" class="btn-seeMore">See More</button>
                             </div>
                     
-                            <div class="rfq-list">
+                            <div id="buyers-tab" class="rfq-list content active">
                                 <t t-foreach="env['trademeda.rfq'].sudo().search([('subcategory.id','=',subcategory.id)],limit=4)" t-as="rfq">
                                     <div class="rfq-card">
                                         <div class="rfq-heading">
@@ -163,10 +178,55 @@
 
                                 
                             </div>
-                        </t>
+                            
 
-                        
-                    </div>
+                            <div id="suppliers-tab" class="supplier-container content">
+                                <t t-foreach="env['product.customer.images'].sudo().search([('product_id.subcategory_id.id','=',subcategory.id)],limit=4)" t-as="product">
+                                    
+                                
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-header">
+                                                <div class="product-title">
+                                                    <span class="flag-icon"></span>
+                                                    <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                                </div>
+                                                <div class="status-icons">
+                                                    <span class="status-icon"></span>
+                                                    <span class="info-icon"></span>
+                                                </div>
+                                            </div>
+                                            <div class="product-supplier">
+                                                <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <div class="rating">
+                                                    <span>⭐⭐⭐⭐⭐</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-description">
+                                                <p><t t-esc="product.product_description"/></p>
+                                            </div>
+                                            <div class="product-actions">
+                                                <button class="favourites-button">Add To Favourites</button>
+                                                <button class="enquiry-button">Enquire Now</button>
+                                            </div>
+                                        </div>
+                                        <div class="product-date">
+                                            <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+
+                            
+                        </div>
+                    </t>
+                    
+                    
                 </main>
 
                 <footer>
@@ -174,6 +234,51 @@
                         <p>2023 Trademeda. All rights reserved.</p>
                     </div>
                 </footer>
+                <script>
+                    
+                    function showBuyers(element){
+                        element.classList.add('active');
+                        element.nextElementSibling.classList.remove('active');
+
+                        const rfqtabs = document.getElementsByClassName('rfq-list');
+                        const suppliers = document.getElementsByClassName('supplier-container');
+
+                        // Convert HTMLCollection to Array and use forEach
+                        Array.from(suppliers).forEach(function(c) { 
+                            c.style.display = 'none'; 
+                        });
+                        Array.from(rfqtabs).forEach(function(c) { 
+                            c.style.display = 'flex'; 
+                        });
+
+                    }
+                    function showSuppliers(element){
+                        element.classList.add('active');
+                        element.previousElementSibling.classList.remove('active');
+
+                        const rfqtabs = document.getElementsByClassName('rfq-list');
+                        const suppliers = document.getElementsByClassName('supplier-container');
+
+                        // Convert HTMLCollection to Array and use forEach
+                        Array.from(suppliers).forEach(function(c) { 
+                            c.style.display = 'flex'; 
+                        });
+                        Array.from(rfqtabs).forEach(function(c) { 
+                            c.style.display = 'none'; 
+                        });
+
+                    }
+                    function show_products(element){
+                        element.children[1].style.display = 'none'
+                    }
+                    function getProductsByCategory(element){
+                        const searchQuery = element.getAttribute('subcategoryName')
+                        if(searchQuery != null){
+
+                                window.location.href = '/findSuppliersByCategory/'+searchQuery
+                            }
+                    }
+                </script>
             <!-- </t> -->
         </template>
     </data>

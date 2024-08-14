@@ -51,3 +51,6 @@ class RFQController(http.Controller):
         })
 
         return json.dumps({'status':'ok'})
+
+
+    

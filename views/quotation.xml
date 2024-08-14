@@ -22,8 +22,11 @@
                             <field name="phone"/>
                             <field name="country_id"/>
                         </group>
+                    </group>
+                    <group>
                         <field name="message" />
                     </group>
+
                     
                 </form>
                 

@@ -7,6 +7,7 @@ class HomepageController(http.Controller):
 
     @http.route('/home', auth='public', website=True)
     def home(self, **kwargs):
+        # import wdb;wdb.set_trace()
         product_categories = request.env['product.categories'].sudo().search([])
         vals = {"product_categories": product_categories}
         return request.render('trademeda.homepage',vals)
@@ -26,9 +27,13 @@ class HomepageController(http.Controller):
         
         return request.render('trademeda.signin')
     
-    @http.route('/product', auth='public', website=True)
-    def product(self, **kwargs):
-        return request.render('trademeda.product_details')
+    @http.route('/product/<int:productId>', auth='public', website=True)
+    def product(self,productId, **kwargs):
+        product = request.env['product.customer.images'].sudo().search([('id','=',productId)])
+        vals = {
+            'product':product
+        }
+        return request.render('trademeda.product_details',vals)
     
     @http.route('/profile', auth='user', website=True)
     def UserProfile(self, **kwargs):
@@ -40,7 +45,7 @@ class HomepageController(http.Controller):
         subcategories = request.env['product.subcategories'].sudo().search([])
         products = request.env['product.template'].sudo().search([])
         user_products = request.env['product.customer.images'].sudo().search([('partner_id','=',partner_id.id)])
-        rfqs = request.env['trademeda.rfq'].sudo().search([('partner_id','=',partner_id.id)])
+        rfqs = request.env['trademeda.rfq'].sudo().search([('partner_id','=',partner_id.id),('state','!=','deleted')])
 
 
         vals = {
@@ -349,3 +354,19 @@ class HomepageController(http.Controller):
         # Return JSON response
 
         return json.dumps(category_list)
+    
+    
+
+    
+    
+    
+    @http.route('/deleterfq/<int:rfqId>',method=['POST'],type='json', auth='user', website=True)
+    def deleteRfq(self, **kwargs):
+        import wdb;wdb.set_trace()
+        # user = request.env.user
+        # partner_id = user.partner_id
+
+        # rfq = request.env['trademeda.rfq'].sudo().search([('id','=',rfqId)])
+        # rfq.sudo().write({
+        #     'state':'deleted'
+        # })

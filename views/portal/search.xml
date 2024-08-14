@@ -1,0 +1,372 @@
+<odoo>
+    <data>
+        <template id="findSuppliers" name="Suppliers">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+            <!-- <t t-call="website.layout"> -->
+                <t t-call="trademeda.header">
+                
+                </t>
+
+                
+                <!-- <t t-foreach="suppliers" t-as="supplier">
+                <div class="">
+                
+                    <t t-esc="supplier.product_name"/>
+                </div>
+                </t> -->
+            <main class="">
+
+            
+                <div class="left-section">
+                    <t t-if="related_products">
+
+                        <ul class="related_products"><h3>Similar Products</h3></ul>
+                        
+                        <t t-foreach="related_products" t-as="product">
+                            <li onclick="getSuppliers(this)" t-att-productName="product.name"><t t-esc="product.name"/></li>
+                        </t>
+                    </t>
+                    <t t-if="related_subcategories">
+
+
+                        <ul class="related_subcategories"><h3>Related Categories</h3></ul>
+                        
+                        <t t-foreach="related_subcategories" t-as="category">
+                            <li onclick="getProductsByCategory(this)" t-att-categoryName="category"><t t-esc="category"/></li>
+                        </t>
+                    </t>
+                </div>
+                <div class="right-section">
+                    <div class="search-heading">
+                        <h2 class=""><t t-esc="query"/></h2>
+                    </div>
+                    <div class="tabs-filters">
+                        <div class="tabs">
+                        
+                            <t t-if="supplier_search">
+                                <span id="tab1" class="tab active">Suppliers</span>
+                                <span id="tab2" class="tab">Buyers</span>
+                                
+                            </t>
+                            
+                            <t t-else="">
+                                <span id="tab1" class="tab">Suppliers</span>
+                                <span id="tab2" class="tab active">Buyers</span>
+                            </t>
+                        </div>
+                        <div class="filters">
+                            <span class=""><i class="fa-solid fa-globe"></i> Countries</span>
+                            <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
+                            <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
+                            <span class=""><i class="fa-solid fa-calendar-days"></i> Date</span>
+
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="tab-content">
+                        <t t-if="supplier_search">
+                            <div id="content1" class="content active">
+                                <t t-if="not suppliers">
+                                    <h4 style="display:flex;justify-content:center;color:#333;">No Suppliers Found for <t t-esc="query"/></h4>
+                                </t>
+                                <t t-foreach="suppliers" t-as="product">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-header">
+                                                <div class="product-title">
+                                                    <span class="flag-icon"></span>
+                                                    <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                                </div>
+                                                <div class="status-icons">
+                                                    <span class="status-icon"></span>
+                                                    <span class="info-icon"></span>
+                                                </div>
+                                            </div>
+                                            <div class="product-supplier">
+                                                <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <div class="rating">
+                                                    <span>⭐⭐⭐⭐⭐</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-description">
+                                                <p><t t-esc="product.product_description"/></p>
+                                            </div>
+                                            <div class="product-actions">
+                                                <button class="favourites-button">Add To Favourites</button>
+                                                <button class="inquiry-button">Inquiry Now</button>
+                                            </div>
+                                        </div>
+                                        <div class="product-date">
+                                            <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="not searchByCategory">
+                                    <div class="pagination">
+                                        <t t-set="page" t-value="int(page)"/>
+                                        <t t-if="page &gt; 1">
+                                            <a t-attf-href="/findSuppliers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                        </t>
+                                        <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                            <a t-attf-href="/findSuppliers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                <t t-esc="p"/>
+                                            </a>
+                                        </t>
+                                        <t t-if="page &lt; total_pages">
+                                            <a t-attf-href="/findSuppliers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                        </t>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="page" t-value="int(page)"/>
+                                    <div class="pagination">
+                                        <t t-if="page &gt; 1">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                        </t>
+                                        
+                                        <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                <t t-esc="p"/>
+                                            </a>
+                                        </t>
+                                        
+                                        <t t-if="page &lt; total_pages">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                            <div id="content2" class="content">
+                                <div class="rfq-container">
+                                    <t t-if="not buyers">
+                                        <h4 style="display:flex;justify-content:center;color:#333;">No Buyers Found for <t t-esc="query"/></h4>
+                                    </t>
+                                
+                                    <t t-foreach="buyers" t-as="rfq">
+                                        <div class="rfq-card">
+                                            <div class="rfq-heading">
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                            </div>
+                                            <div class="rfq-subheading">
+                                                <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                                            </div>
+                                            <div class="rfq-content">
+                                                <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                                <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                            </div>
+                                            <div class="rfq-buttons">
+                                                <button class="btn-wishlist">Add to Wishlist</button>
+                                                <button class="btn-enquire">Enquire Now</button>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-if="not searchByCategory">
+                                        <div class="pagination">
+                                            <t t-set="page" t-value="int(page)"/>
+                                            <t t-if="page &gt; 1">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                            </t>
+                                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                    <t t-esc="p"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="page &lt; total_pages">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+
+                                        <t t-set="page" t-value="int(page)"/>
+                                        <div class="pagination">
+                                            <t t-if="page &gt; 1">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                            </t>
+                                            
+                                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                    <t t-esc="p"/>
+                                                </a>
+                                            </t>
+                                            
+                                            <t t-if="page &lt; total_pages">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                                
+                            </div>
+                                
+                        </t>
+                            
+                        <t t-else="">
+                            <div id="content1" class="content">
+                                <t t-if="not suppliers">
+                                    <h4 style="display:flex;justify-content:center;color:#333;">No Suppliers Found for <t t-esc="query"/></h4>
+                                </t>
+                                <t t-foreach="suppliers" t-as="product">
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-header">
+                                                <div class="product-title">
+                                                    <span class="flag-icon"></span>
+                                                    <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                                </div>
+                                                <div class="status-icons">
+                                                    <span class="status-icon"></span>
+                                                    <span class="info-icon"></span>
+                                                </div>
+                                            </div>
+                                            <div class="product-supplier">
+                                                <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <div class="rating">
+                                                    <span>⭐⭐⭐⭐⭐</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-description">
+                                                <p><t t-esc="product.product_description"/></p>
+                                            </div>
+                                            <div class="product-actions">
+                                                <button class="favourites-button">Add To Favourites</button>
+                                                <button class="inquiry-button">Inquiry Now</button>
+                                            </div>
+                                        </div>
+                                        <div class="product-date">
+                                            <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                            <div id="content2" class="content active">
+                                <div class="rfq-container">
+                                <t t-if="not buyers">
+                                    <h4 style="display:flex;justify-content:center;color:#333;">No Buyers Found for <t t-esc="query"/></h4>
+                                </t>
+
+                                    <t t-foreach="buyers" t-as="rfq">
+                                        <div class="rfq-card">
+                                            <div class="rfq-heading">
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                            </div>
+                                            <div class="rfq-subheading">
+                                                <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                                            </div>
+                                            <div class="rfq-content">
+                                                <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                                <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                            </div>
+                                            <div class="rfq-buttons">
+                                                <button class="btn-wishlist">Add to Wishlist</button>
+                                                <button class="btn-enquire">Enquire Now</button>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-if="not searchByCategory">
+                                        <div class="pagination">
+                                            <t t-set="page" t-value="int(page)"/>
+                                            <t t-if="page &gt; 1">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                            </t>
+                                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                    <t t-esc="p"/>
+                                                </a>
+                                            </t>
+                                            <t t-if="page &lt; total_pages">
+                                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+
+                                        <t t-set="page" t-value="int(page)"/>
+                                        <div class="pagination">
+                                            <t t-if="page &gt; 1">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                            </t>
+                                            
+                                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                    <t t-esc="p"/>
+                                                </a>
+                                            </t>
+                                            
+                                            <t t-if="page &lt; total_pages">
+                                                <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+                                
+                            </div>
+                        </t>
+                        
+                        
+                    </div>
+                    
+                
+                </div>
+            </main>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get all tab elements using the correct class selector
+                    const tabs = document.querySelectorAll('.tab');
+                    // Get all content elements using the correct class selector
+                    const contents = document.querySelectorAll('.content');
+
+                    tabs.forEach(function(tab) {
+                        tab.addEventListener('click', function() {
+                            // Remove active class from all tabs
+                            tabs.forEach(function(t) { t.classList.remove('active') });
+                            // Remove active class from all contents
+                            contents.forEach(function(c) { c.classList.remove('active') });
+
+                            // Add active class to the clicked tab
+                            this.classList.add('active');
+                            // Get the corresponding content element using the tab's ID
+                            const contentId = this.id.replace('tab', 'content');
+                            document.getElementById(contentId).classList.add('active');
+                        });
+                    });
+                });
+
+                function getSuppliers(element){
+                        const searchQuery = element.getAttribute('productName')
+                        console.log('Search',searchQuery)
+                        if(searchQuery != null){
+
+                            window.location.href = '/findSuppliers/'+searchQuery
+                        }
+                    }
+                function getProductsByCategory(element){
+                    const searchQuery = element.getAttribute('categoryName')
+                    if(searchQuery != null){
+
+                            window.location.href = '/findSuppliersByCategory/'+searchQuery
+                        }
+                }
+            
+            
+            </script>
+        </template>
+    </data>
+</odoo>

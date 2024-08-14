@@ -6,6 +6,7 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
             <script>
+
                 function enable_documents(element){
                     document.getElementById('documents').style.display = 'flex'
                     document.getElementById('company_details').style.display = 'none'
@@ -1393,9 +1394,10 @@
                                         
                                         
                                         <div class="product-icons">
-                                            <span class="" onclick="view_seller_responses(this)">View Responses</span>
+                                        
+                                            <span style="cursor:pointer;" onclick="view_seller_responses(this)">View <t t-esc="env['rfq.quotations'].sudo().search_count([('rfq_id', '=', rfq.id)])"/> Responses</span>
                                             <span onclick="edit_rfq(this)" t-att-productId="rfq.id"><i class="fa-solid fa-pen"></i></span>
-                                            <span><i class="fa-solid fa-trash"></i></span>
+                                            <span onclick="delete_rfq(this)" t-att-rfqId="rfq.id"><i class="fa-solid fa-trash"></i></span>
                                         </div>
                                     </div>                                       
                                         
@@ -1552,7 +1554,7 @@
                                     
                                     <div class="inner-card" id="seller_responses_management">
                                         
-                                        <t t-foreach="env['rfq.quotations'].sudo().search([])" t-as="quotation">
+                                        <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)])" t-as="quotation">
                                             <div class="seller-response-card">
                                                 <div class="seller-details">
                                                     <span class=""><t t-esc="quotation.partner_id.name"/></span>
@@ -1668,6 +1670,18 @@
                     }else{
                         element.parentElement.parentElement.nextElementSibling.nextElementSibling.style.display = 'flex'
                     }
+                }
+
+                function delete_rfq(element){
+                    const rfqId = element.getAttribute('rfqId')
+                    <!-- fetch('/deleterfq/'+rfqId,{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }).then(function(res){
+                        console.log(res)
+                    }) -->
                 }
 
                 function enable_profile_detail(){
@@ -2049,8 +2063,7 @@
                         document.getElementById('edit-ready_to_buy').checked = false
                     }
                 }
-                
-
+ 
                 
             </script>
         </template>

@@ -14,6 +14,7 @@
                 }
                 function main_clicked(){
                     hide_payment_terms(document.getElementById('payment_terms_info'))
+                    update_progress()
                 }
             </script>
 
@@ -100,7 +101,7 @@
                                     <span class="">Product</span>
                                 </div>
                                 <div class="">
-                                    <input type="text" name="product"/>
+                                    <input type="text" onchange="update_progress()" id="product_name" name="product"/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:30%">
@@ -108,7 +109,7 @@
                                     <span class="">Quantity</span>
                                 </div>
                                 <div class="">
-                                    <input type="number" placeholder="1" name="quantity"/>
+                                    <input type="number" id="quantity" placeholder="1" name="quantity"/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:20%">
@@ -134,7 +135,7 @@
                                 <span class="">Product Specification</span>
                             </div>
                             <div class="">
-                                <textarea name="product_specification"/>
+                                <textarea onchange="update_progress()" id="product_specification" name="product_specification"/>
                                 
                             </div>
                         </div>
@@ -144,7 +145,7 @@
                                     <span class="">Target Price</span>
                                 </div>
                                 <div class="">
-                                    <input type="number" placeholder="1" name="target_price"/>
+                                    <input type="number" onchange="update_progress()" id="target_price" placeholder="1" name="target_price"/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:15%">
@@ -268,7 +269,7 @@
                                     <span class="">Contact Person</span>
                                 </div>
                                 <div class="">
-                                    <input type="text" name="contact_person"/>
+                                    <input type="text" id="contact_person" name="contact_person"/>
                                 </div>
                             </div>
                         </div>
@@ -277,8 +278,14 @@
                             <button class="">Post RFQ</button>
                         </div>
                     </form>
-                    
+                    <div class="progress-container">
+                        <div id="circular-progress" class="circular-progress">
+                            <span id="progress-value" class="progress-value">0%</span>
+                        </div>
+                        <span class="progress-text">Completed</span>
+                    </div>
                 </div>
+                
             </main>
 
             <script>
@@ -292,6 +299,63 @@
                         console.log(res)
                     })
                 } -->
+                function update_progress(){
+                    let progress = 6.25
+                    if(document.getElementById('product').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('upload_product').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('category').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('product_subcategory').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('product_subsubcategory').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('product_name').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('quantity').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('unit').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('product_specification').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('target_price').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('currency').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('destination').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('shipping_terms').value != '') {
+                        progress = progress + 6.25
+                    }
+                    if(document.getElementById('payment_terms').value != '') {
+                        progress = progress + 6.25
+                    }
+                    <!-- if(document.getElementById('supplier_country').value != '') {
+                        progress = progress + 6.25
+                    } -->
+                    if(document.getElementById('contact_person').value != '') {
+                        progress = progress + 6.25
+                    }
+                    const progressBar = progress*3.6 + 'deg'
+                    console.log(progressBar)
+                    document.getElementById('progress-value').innerText = progress + '%'
+                    document.getElementById('circular-progress').style.background = `conic-gradient(rgb(199,8,8) ${progressBar}, #ededed 0deg)`;
+                    <!-- document.getElementById('circular-progress').style.background = 'conic-gradient(red progressBar,#ededed 0deg)' -->
+
+                }
 
                 function request_type_change(element) {
                     var requestType = element.value;
@@ -317,6 +381,7 @@
                             })
                         })
                     })
+                    update_progress()
                 }
 
                 function category_change(element){
@@ -328,9 +393,7 @@
                     
                     fetch('profile/getsubcategories/'+category_id).then(function(res) {
                         res.json().then(function(data){
-                            <!-- while (product_subcategory.firstChild) {
-                                product_subcategory.removeChild(product_subcategory.firstChild);
-                            } -->
+                           
                             const option1 = document.createElement('option');
                             option1.value = ''
                             option1.textContent = ''
@@ -345,11 +408,12 @@
                         })
                         }) 
 
-
+                    update_progress()
                 }
 
                 function file_change(element){
                     element.parentElement.getElementsByClassName('file-name')[0].innerText = element.value.split('\\').reverse()[0] 
+                    update_progress()
                 }
 
                 function clear_file(element){
@@ -359,6 +423,7 @@
                         e.innerHTML = 'No file Chosen'
                     }
                     })
+                    update_progress()
                 }
 
                 function subcategory_change(element){
@@ -379,13 +444,10 @@
                         })
                         }) 
 
-
+                    update_progress()
                 }
 
-                <!-- function payment_terms_change(element){
-                    document.getElementById('payment_terms_value').value = element.value
-                    document.querySelector('[data-payment-terms]') = element.value
-                } -->
+               
                 function payment_terms_change(element) {
                     var selectedValue = element.value;
                     document.getElementById('payment_terms_value').value = selectedValue;
@@ -402,12 +464,14 @@
                     if (selectedItem) {
                         selectedItem.style.display = 'list-item';
                     }
+                    update_progress()
                 }
                 
                 document.addEventListener('DOMContentLoaded', function () {
                     payment_terms_change(document.getElementById('payment_terms'));
                     var requestTypeValue = document.getElementById('request_type_value').value;
                     request_type_change({value: requestTypeValue});
+                    update_progress()
                 });
                 
             </script>

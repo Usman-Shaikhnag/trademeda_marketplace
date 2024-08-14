@@ -68,7 +68,8 @@ class RequestForQuotation(models.Model):
     state = fields.Selection([
         ('active','Active'),
         ('closed','Closed'),
-        ('expired','Expired')
+        ('expired','Expired'),
+        ('deleted','Deleted')
     ],string="State",default="active")
 
     quotations = fields.One2many('rfq.quotations','rfq_id',string="Quotations")

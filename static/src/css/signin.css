@@ -9,7 +9,7 @@ main {
     display: grid;
     place-items: center;
     height: 100vh; /* Full viewport height */
-    background-color: #8fb15f /* Background color */
+    background-color: #8fb15f 
 }
 
 .outer {

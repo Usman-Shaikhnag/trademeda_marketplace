@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 main {
@@ -15,7 +16,7 @@ main {
     display: grid;
     grid-template-columns: 25% 75%;
     background-color: #f2f2f2;
-    /* background-color: rgb(199,8,8);
+    /* background-color: rgb(212, 37, 5);
     background-color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
     border-radius: 8px;
     gap: 15px;
@@ -57,7 +58,7 @@ main {
 .edit-profile-text{
     display: flex;
     flex-direction: column;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
@@ -69,21 +70,24 @@ main {
 }
 
 .update-btn:hover button{
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     background: transparent;
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
+    
 }
 
 .update-btn button{
     color: #f6f6f6;
-    background: rgb(199,8,8);
+    background: rgb(212, 37, 5);
     background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     height: 55px;
     width: 150px;
     border-radius: 5px;
     cursor: pointer;
     border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
 .inner-card {
@@ -100,7 +104,7 @@ main {
     justify-content: center;
 }
 .heading h2 {
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
@@ -123,12 +127,11 @@ main {
     background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 
 }
 .text-input span {
-    color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color:rgb(212, 37, 5);
 
 }
 
@@ -176,8 +179,7 @@ main {
     align-items: center;
 }
 .username span {
-    color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color:rgb(212, 37, 5);
     font-weight: 900;
     
 }
@@ -196,7 +198,7 @@ main {
     align-items: center;
     gap: 10px;
     margin: 1.5rem 1rem;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     cursor: pointer;
     transition: 0.2s ease;
@@ -257,7 +259,7 @@ input[type="file"] {
 .file-label {
     display: inline-block;
     color: #f6f6f6;
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     text-align: center;
     padding: 10px 30px;
@@ -271,9 +273,9 @@ input[type="file"] {
 
 .file-label:hover {
     background-color: #fdfdfd;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 }
 #new_product {
     display: block;
@@ -293,7 +295,7 @@ input[type="file"] {
     white-space: nowrap;  /* Prevent text wrapping */
     overflow: hidden;  /* Hide overflow text */
     text-overflow: ellipsis;  /* Display ellipsis for overflow text */
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
@@ -348,7 +350,7 @@ input[type="file"] {
 
 .image-file-label {
     display: inline-flex;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     text-align: center;
     padding: 10px 30px;
@@ -357,7 +359,7 @@ input[type="file"] {
     border-radius: 5px;
     transition: background-color 0.3s ease;
     margin-top: 1rem;
-    border: 2px dotted rgb(199,8,8);
+    border: 2px dotted rgb(212, 37, 5);
     height: 80px;
     flex-direction: column;
     justify-content: center;
@@ -382,7 +384,7 @@ input[type="file"] {
 .button-container button{
     padding: 1rem;
     width: 150px;
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
@@ -391,9 +393,9 @@ input[type="file"] {
 }
 .button-container button:hover{
     background-color: transparent;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 }
 
 
@@ -424,7 +426,7 @@ input[type="file"] {
 .product-details {
     display: flex;
     flex-direction: column;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     
 }
@@ -440,7 +442,7 @@ input[type="file"] {
     justify-content: flex-start;
     align-items: center;
     gap:1rem;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
@@ -471,14 +473,14 @@ input[type="file"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     
 }
 .news-heading input{
     font-size: 2.5rem;
     margin-bottom: 0px;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     border: none;
     width: 100%;
@@ -496,7 +498,7 @@ input[type="file"] {
     border-radius: 5px;
 }
 .news-image-container button{
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
@@ -508,9 +510,9 @@ input[type="file"] {
 
 .news-image-container button:hover{
     background-color: transparent;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 }
 .news-content textarea{
     border-radius: 5px;
@@ -518,7 +520,7 @@ input[type="file"] {
     height: 8rem;
 }
 .news-submit button{
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
@@ -531,15 +533,15 @@ input[type="file"] {
 
 .news-submit button:hover{
     background-color: transparent;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 
 }
 .divider-vertical {
     height: 80%;
     width: 2px;
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     border-radius: 5px;
 }
@@ -550,7 +552,7 @@ input[type="file"] {
 }
 table {
     width: 100%;
-    border: 1px solid rgb(199,8,8);
+    border: 1px solid rgb(212, 37, 5);
     border-collapse: collapse;
     font-size: 12px;
     
@@ -563,19 +565,19 @@ th {
     border: 1px solid black;
     padding: 5px;
     vertical-align: top;
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
 }
 
 td {
-    border: 1px solid rgb(199,8,8);
+    border: 1px solid rgb(212, 37, 5);
     padding: 5px;
     vertical-align: top;
 }
 
 .button{
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: white;
     border-radius: 5px;
@@ -585,9 +587,9 @@ td {
 
 .button:hover{
     background-color: transparent;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
 
 }
 
@@ -627,7 +629,7 @@ td {
 .submit-edit-product button{
     display: block;
     width: 100%;
-    background-color: rgb(199,8,8);
+    background-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     padding: 1rem;
     border: none;
@@ -637,9 +639,9 @@ td {
     margin: 8px;
 }
 .submit-edit-product button:hover{
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid rgb(212, 37, 5);
     background-color: transparent;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 
@@ -647,14 +649,14 @@ td {
 input[type="checkbox"] {
     width: 1.15rem;
     height: 1.15rem;
-    accent-color: rgb(199,8,8);
+    accent-color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
   }
   
 .rfq-container{
     display: grid;
     grid-template-columns: 90% 10%;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     margin-top: 1rem;
 }
@@ -662,7 +664,7 @@ input[type="checkbox"] {
     display: grid;
     padding-left: 2%;
     grid-template-columns: 50% 50%;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
 .rfq-details p{
@@ -681,7 +683,7 @@ input[type="checkbox"] {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     background-color: #fdfdfd;
     padding: 2%;
-    color: rgb(199,8,8);
+    color: rgb(212, 37, 5);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     width: 75%;
 
@@ -697,4 +699,10 @@ input[type="checkbox"] {
 
 .seller-response-card{
     border-bottom: 2px solid #f0f0f0;
+}
+h4 {
+    color: rgb(37, 36, 63);
+}
+h1{
+    color:rgb(212, 37, 5);
 }
