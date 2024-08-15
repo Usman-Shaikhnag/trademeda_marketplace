@@ -58,7 +58,16 @@
                             </t>
                         </div>
                         <div class="filters">
-                            <span class=""><i class="fa-solid fa-globe"></i> Countries</span>
+                            <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-globe"></i> Countries
+                                <div id="countries_filter" class="countries_filter">
+                                    <ul>
+                                        <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
+                                            
+                                            <li><t t-esc="country.name"/></li>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </span>
                             <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
                             <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
                             <span class=""><i class="fa-solid fa-calendar-days"></i> Date</span>
@@ -363,6 +372,14 @@
 
                             window.location.href = '/findSuppliersByCategory/'+searchQuery
                         }
+                }
+                function toggle_countries(element){
+                    if(element.children[1].style.display == 'flex'){
+                        element.children[1].style.display = 'none'
+                    }
+                    else{
+                        element.children[1].style.display = 'flex'
+                    }
                 }
             
             

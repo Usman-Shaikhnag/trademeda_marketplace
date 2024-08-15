@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <template id="subcategories" name="Trademeda Subcategories">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/subcategories.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+        <div class="back-container">
+            <a t-attf-href="/categories"><button class="back-btn">&lt;</button></a>
+            <h1 class=""><t t-esc="category.name"/></h1>
+        </div>
+        <main class="">
+            <t t-foreach="products" t-as="product">
+                
+                <div class="categories-container">
+                    <a t-attf-href="/findSuppliers/{{product.name}}"><h4 class=""><t t-esc="product.name"/></h4></a>
+                    
+                </div>
+            </t>
+        </main>
+        </template>
+    </data>
+</odoo>

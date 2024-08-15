@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <template id="categories" name="Trademeda Categories">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/categories.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+        <main class="">
+            <t t-foreach="env['product.subcategories'].sudo().search([],order='name asc')" t-as="category">
+                
+                <div class="categories-container">
+                    <a t-attf-href="/findSuppliersByCategory/{{category.name}}"><h2 class=""><t t-esc="category.name"/></h2></a>
+                    <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=5)" t-as="product">
+                        <span class=""><t t-esc="product.name"/></span>
+                    </t>
+                    <a t-attf-href="/categories/{{category.id}}" class="">...See more</a>
+                </div>
+            </t>
+        </main>
+        </template>
+    </data>
+</odoo>

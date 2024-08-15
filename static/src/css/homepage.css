@@ -1,6 +1,7 @@
 main {
   background-color: #f6f6f6;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  position: relative;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif'
 }
 button {
   cursor: pointer;
@@ -170,15 +171,48 @@ button {
   color: rgb(199,8,8);
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
 }
-.category-item{
-  position: relative;
+/* .category-item>a{
+  text-decoration: none;
+  color: #333;
+} */
+.category-item:hover {
+  color: rgb(199,8,8);
+  
+}
+.outer-product-container {
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  height: 350px;
+  width: 50%;
+  top: 110px;
+  left: 20%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  color: #333;
+
+}
+.outer-product-container>a {
+  text-decoration: none;
+  color: #333;
+}
+
+.outer-product-container>a:hover{
+  color: rgb(199,8,8);
 }
 .category-products{
   display: none;
+  position: absolute;
   background-color: #fdfdfd;
   border-radius: 5px;
   padding: 2%;
   max-height: 50vh;
+  flex-wrap: wrap;
+  margin-right: 100%;
 }
 
 .category-products .active{

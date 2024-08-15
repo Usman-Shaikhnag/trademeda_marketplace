@@ -352,7 +352,7 @@
                     const progressBar = progress*3.6 + 'deg'
                     console.log(progressBar)
                     document.getElementById('progress-value').innerText = progress + '%'
-                    document.getElementById('circular-progress').style.background = `conic-gradient(rgb(199,8,8) ${progressBar}, #ededed 0deg)`;
+                    document.getElementById('circular-progress').style.background = `conic-gradient(#d52805 ${progressBar}, #ededed 0deg)`;
                     <!-- document.getElementById('circular-progress').style.background = 'conic-gradient(red progressBar,#ededed 0deg)' -->
 
                 }

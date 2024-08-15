@@ -33,7 +33,8 @@
         'views/portal/post_rfq.xml',
         'views/portal/quotation_details.xml',
         'views/portal/search.xml',
-
+        'views/portal/categories.xml',
+        'views/portal/subcategories.xml',
 
 
 

@@ -224,7 +224,7 @@ input[type="file"] {
         height: 125px;
         width: 125px;
         border-radius: 50%;
-        background: conic-gradient(rgb(199,8,8) 3.6deg,#ededed 0deg);
+        background: conic-gradient(#d52805 3.6deg,#ededed 0deg);
         display: flex;
         align-items: center;
         justify-content: center;

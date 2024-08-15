@@ -19,21 +19,22 @@
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
                             <t t-foreach="env['product.subcategories'].sudo().search([],limit=10)" t-as="category">
-                                <div onmouseover="show_products(this)" class="category-item" style="cursor:pointer;">
-                                    <!-- <i t-out="category.x_studio_icon"></i> -->
-                                    <!-- <img t-attf-src="data:image/png; base64, {{category.x_studio_icon}}" class="icons"/> -->
+                                <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
                                     <t t-out="category.name"/>
-                                    <t t-foreach="category.subsubcategories_lines" t-as="product">
-                                        
-                                        <div class="category-products">
-                                            <t t-esc="product.name"/>
-                                        </div>
-                                    </t>
+                                    <div class="outer-product-container">
+                                        <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=25)" t-as="product">
+                                            
+                                            <!-- <div class="category-products"> -->
+                                                <a t-attf-href="/findSuppliers/{{product.name}}"><t t-esc="product.name"/></a>
+                                            <!-- </div> -->
+                                        </t>
+                                        <a t-attf-href="/categories/{{category.id}}" style="text-decoration:underline;color:rgb(199,8,8);">See more</a>
+                                    </div>
                                 </div>
                                 
                             </t>
                             
-                            <a href="#" class="view-all">View All Categories </a>
+                            <a href="/categories" class="view-all">View All Categories </a>
                         </div>
                        
                         <div class="right-container">
@@ -269,7 +270,18 @@
 
                     }
                     function show_products(element){
-                        element.children[1].style.display = 'none'
+                        <!-- element.children[0].style.display = 'none' -->
+                        element.children[0].style.display = 'flex'
+                        
+                    }
+                    function hide_products(element){
+                        element.children[0].style.display = 'none'
+                    }
+                    function show_categories(element){
+                        const category = element.getAttribute('category')
+                        if(category != ''){
+                            window.location.href = 'findSuppliersByCategory/'+category
+                        }
                     }
                     function getProductsByCategory(element){
                         const searchQuery = element.getAttribute('subcategoryName')

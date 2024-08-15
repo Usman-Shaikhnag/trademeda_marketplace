@@ -370,3 +370,18 @@ class HomepageController(http.Controller):
         # rfq.sudo().write({
         #     'state':'deleted'
         # })
+
+    @http.route('/categories', auth='public', website=True)
+    def categoriesPage(self, **kwargs):
+        return request.render('trademeda.categories')
+    
+
+    @http.route('/categories/<int:category_id>', auth='public', website=True)
+    def subcategoriesPage(self,category_id, **kwargs):
+        products = request.env['product.template'].sudo().search([('subcategory_id.id','=',category_id)])
+        category = request.env['product.subcategories'].sudo().search([('id','=',category_id)],limit=1)
+        vals = {
+            'products':products,
+            'category':category
+        }
+        return request.render('trademeda.subcategories',vals)
