@@ -71,6 +71,7 @@ class RequestForQuotation(models.Model):
         ('expired','Expired'),
         ('deleted','Deleted')
     ],string="State",default="active")
+    views = fields.Integer('Views')
 
     quotations = fields.One2many('rfq.quotations','rfq_id',string="Quotations")
     

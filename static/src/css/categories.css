@@ -9,10 +9,11 @@ main {
 }
 
 .categories-container {
-    background-color: #fdfdfd;
+    background-color: #fafafa;
     border-radius: 5px;
     padding: 1rem;
     cursor: pointer;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.1);
 }
 h2 {
     color: rgb(199,8,8);

@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+        <template id="footer" name="Footer">
+            <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/footer.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+            </xpath>
+            <footer class="">
+                <div class="footer-items">
+                    <div class="">About Us <span class="vertical-bar"></span></div>
+                    <div class="">Contact Us <span class="vertical-bar"></span></div>
+                    <div class="">Your Feedback <span class="vertical-bar"></span></div>
+                    <div class="">Trust Score <span class="vertical-bar"></span></div>
+                    <div class="">Terms of Use <span class="vertical-bar"></span></div>
+                    <div class="">Privacy Policy <span class="vertical-bar"></span></div>
+                    <div class="">Product Listing Policy <span class="vertical-bar"></span></div>
+                    <div class="">Customer <span class="vertical-bar"></span></div>
+                    <div class="">Support</div>
+                </div>
+                <div class="footer-social-media">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div class="copyright">
+                    <p>2023 Trademeda. All rights reserved.</p>
+                </div>
+            </footer>
+        </template>
+    </data>
+</odoo>

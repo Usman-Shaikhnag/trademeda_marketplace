@@ -2,6 +2,9 @@
     <data>
         <template id="user_profile" name="User Profile">
             <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/user_profile.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
@@ -641,17 +644,7 @@
                                     <h2>Your Documents</h2>
                                 </div>
                                 <div class="multi-input">
-                                    <!-- <div class="text-input">
-                                        <div class="">
-                                            <span class="">Company Registration</span>
-                                        </div>
-                                        <div class="file-upload-wrapper">
-                                            <input type="file" id="company_registration" name="company_registration" class="file-input" data-file-name="company_registration_name" data-delete-btn="company_registration_delete"/>
-                                            <label for="company_registration" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
-                                            <span id="company_registration_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
-                                            <span id="company_registration_name" class="file-name">No file chosen</span>
-                                        </div>
-                                    </div> -->
+                                   
                                     <div class="text-input">
                                         <div class="">
                                             <span class="">Company Registration</span>
@@ -805,6 +798,7 @@
                                                 <tr>
                                                     <th>Action</th>
                                                     <th>Name of the Award</th>
+                                                    <th>Award Description</th>
                                                     <th>File</th>
                                                 </tr>
                                                 
@@ -812,50 +806,37 @@
                                             <tbody>
                                             <!-- here  -->
                                                 <t t-foreach="enumerate(partner.awards)" t-as="award_tuple">
+                                                
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;" t-att-data-award-id="hello" onclick="openDeleteAward(this)">
+                                                            <button type="button" style="background: transparent;border: none;" t-att-data-award-id="award_tuple[1].id" onclick="deleteAwardFile(this)">
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
-                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
-                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
-                                                                </svg>
+                                                                <i class="fa-solid fa-trash" style="color:red;"></i>
                                                             </button>
                                                             
                                                         </td>
                                                         <td>
+                                                                <t t-esc="award_tuple[1].award_name"  />
+                                                        </td>
+
+                                                        <td>
                                                                 <t t-esc="award_tuple[1].award_description"  />
                                                         </td>
-                                                        <!-- <td>
-                                                                <t t-out="award.award_attachment" name="award_${i}"/>
-                                                        </td> -->
+                                                       
                                                         <td>
                                                             <t t-if="award_tuple[1].award_attachment">
                                                                 <a t-att-href="'data:application/octet-stream;base64,' + award_tuple[1].award_attachment.decode('utf-8')" t-att-download="award_tuple[1].file_name" >
                                                                     <t t-esc="'Download ' + award_tuple[1].file_name" />
                                                                 </a>
-                                                                <!-- <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
 
 
-                                                                <div class="file-upload-wrapper">
-                                                                    <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this)" />
-                                                                    <label t-att-for="'update_award_' + str(award_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
-                                                                    
-                                                                    
-                                                                </div>
+                                                               
                                                             </t>
                                                             <t t-else="">
                                                                 No file available
-                                                                <!-- <input type="file" t-att-id="award_tuple[1].id" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
 
-                                                                <div class="file-upload-wrapper">
-                                                                    <input type="file" t-att-id="'update_award_' + str(award_tuple[0])" t-att-data-award-id="award_tuple[1].id" onchange="updateAwardFile(this)" />
-                                                                    <label t-att-for="'update_award_' + str(award_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
-                                                                    
-                                                                    
-                                                                </div>
-                                                            
+                                                               
                                                             </t>
                                                         </td>
                                                     </tr>
@@ -871,13 +852,14 @@
                                     <t>
                                         <div class="document_upload_table">
                                         <div >
-                                            <button type="button" class="button" style="margin-bottom:3px;" onclick="showAwardPopup(this)">Add</button>
+                                            <button type="button" class="button" style="margin-bottom:3px;" onclick="showCertificatePopup(this)">Add</button>
                                         </div>
                                         <table id="certificate_table" name="certificate_table">
                                             <thead>
                                                 <tr>
                                                     <th>Action</th>
                                                     <th>Name of the Certificate</th>
+                                                    <th>Certificate Description</th>
                                                     <th>File</th>
                                                 </tr>
                                                 
@@ -885,50 +867,37 @@
                                             <tbody>
                                             <!-- here  -->
                                                 <t t-foreach="enumerate(partner.certificates)" t-as="certificate_tuple">
+                                                
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;" t-att-data-certificate-id="123" onclick="openDeleteCertificate(this)">
+                                                            <button type="button" style="background: transparent;border: none;" t-att-data-certificate-id="certificate_tuple[1].id" onclick="deletecertificateFile(this)">
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
-                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
-                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
-                                                                </svg>
+                                                                <i class="fa-solid fa-trash" style="color:red;"></i>
                                                             </button>
                                                             
                                                         </td>
                                                         <td>
+                                                                <t t-esc="certificate_tuple[1].certificate_name"  />
+                                                        </td>
+
+                                                        <td>
                                                                 <t t-esc="certificate_tuple[1].certificate_description"  />
                                                         </td>
-                                                        <!-- <td>
-                                                                <t t-out="award.award_attachment" name="award_${i}"/>
-                                                        </td> -->
+                                                       
                                                         <td>
                                                             <t t-if="certificate_tuple[1].certificate_attachment">
                                                                 <a t-att-href="'data:application/octet-stream;base64,' + certificate_tuple[1].certificate_attachment.decode('utf-8')" t-att-download="certificate_tuple[1].file_name" >
                                                                     <t t-esc="'Download ' + certificate_tuple[1].file_name" />
                                                                 </a>
-                                                                <!-- <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateAwardFile(this,1)" /> -->
 
 
-                                                                <div class="file-upload-wrapper">
-                                                                    <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this)" />
-                                                                    <label t-att-for="'update_award_' + str(certificate_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
-                                                                    
-                                                                    
-                                                                </div>
+                                                               
                                                             </t>
                                                             <t t-else="">
                                                                 No file available
-                                                                <!-- <input type="file" t-att-id="certificate_tuple[1].id" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this,1)" /> -->
 
-                                                                <div class="file-upload-wrapper">
-                                                                    <input type="file" t-att-id="'update_award_' + str(certificate_tuple[0])" t-att-data-award-id="certificate_tuple[1].id" onchange="updateCertificateFile(this)" />
-                                                                    <label t-att-for="'update_award_' + str(certificate_tuple[1].id)" class="file-label"><i class="fa-solid fa-upload"></i> Update</label>
-                                                                    
-                                                                    
-                                                                </div>
-                                                            
+                                                               
                                                             </t>
                                                         </td>
                                                     </tr>
@@ -954,6 +923,15 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
+                                        <span class="">Award Description</span>
+                                    </div>
+                                    <div class="">
+                                        <textarea placeholder="" name="award_description" id="award_description" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
                                         <span class="">Attach Document</span>
                                     </div>
                                     <div class="file-upload-wrapper">
@@ -971,6 +949,49 @@
                                 <div class="buttons">
                                     <button style="height: 2.5rem;" onclick="addAward(this)" class="button">Add</button>
                                     <button style="height: 2.5rem;" onclick="closeAward(this)" class="button">Close</button>
+                                </div>
+                            </div>
+                            <div class="add-certificate-popup" id="addCertificatePopup">
+                                <div class="heading">
+                                    <h2>Add Certificate</h2>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Certificate Name</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="certificate_name" id="certificate_name" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">certificate Description</span>
+                                    </div>
+                                    <div class="">
+                                        <textarea placeholder="" name="certificate_description" id="certificate_description" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Attach Document</span>
+                                    </div>
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" id="add_certificate" name="add_certificate" class="file-input" data-file-name="add_certificate_name" data-delete-btn="add_certificate_delete" onchange="file_change(this)"/>
+                                        <label for="add_certificate" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
+                                        
+                                        <t>
+                                            <span id="add_certificate_name" class="file-name">No file chosen</span>
+                                        </t>
+                                    </div>
+
+                                    
+
+                                </div>
+                                <div class="buttons">
+                                    <button style="height: 2.5rem;" onclick="addCertificate(this)" class="button">Add</button>
+                                    <button style="height: 2.5rem;" onclick="closeCertificate(this)" class="button">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -1260,38 +1281,41 @@
                                     </t>
                                 </div>
                             </form>
-                            <div class="add-award-popup" id="addAwardPopup">
+                            <div class="add-user-popup" id="addUserPopup">
                                 <div class="heading">
-                                    <h2>Add Award</h2>
+                                    <h2>Add User</h2>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Award Name</span>
+                                        <span class="">User Name</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="" name="award_name" id="award_name" class="form-control"/>
+                                        <input placeholder="" name="user_name" id="user_name" class="form-control"/>
 
                                     </div>
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Attach Document</span>
+                                        <span class="">User Designation</span>
                                     </div>
-                                    <div class="file-upload-wrapper">
-                                        <input type="file" id="add_award" name="add_award" class="file-input" data-file-name="add_award_name" data-delete-btn="add_award_delete" onchange="file_change(this)"/>
-                                        <label for="add_award" class="file-label"><i class="fa-solid fa-upload"></i> Upload File</label>
-                                        
-                                        <t>
-                                            <span id="add_award_name" class="file-name">No file chosen</span>
-                                        </t>
+                                    <div class="">
+                                        <input placeholder="" name="user_designation" id="user_designation" class="form-control"/>
+
                                     </div>
-
-                                    
-
                                 </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Contact</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="user_contact" id="user_contact" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                
                                 <div class="buttons">
-                                    <button style="height: 2.5rem;" onclick="addAward(this)" class="button">Add</button>
-                                    <button style="height: 2.5rem;" onclick="closeAward(this)" class="button">Close</button>
+                                    <button style="height: 2.5rem;" onclick="addUser(this)" class="button">Add</button>
+                                    <button style="height: 2.5rem;" onclick="closeUserPopup(this)" class="button">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -1348,235 +1372,239 @@
                             </div>
                             <div class="inner-card" style="display:flex;">
                                 <t t-foreach="rfqs" t-as="rfq">
-                                    <div class="rfq-container">
-                                        <div class="rfq-heading">
-                                            <h3 class=""><t t-esc="rfq.rfq_no" /></h3>
+                                    <t t-if="rfq.state != 'deleted'">
+                                        <div class="rfq-container">
+                                            <div class="rfq-heading">
+                                                <h3 class=""><t t-esc="rfq.rfq_no" /></h3>
 
-                                            <div class="rfq-details">
-                                                <div class="">
-                                                    <h4 class="">Product: <t t-esc="rfq.product_name" /></h4>
-                                                    <p class="">Destination: <t t-esc="rfq.destination.name" /></p>
-                                                    <p class="">Quantity: <t t-esc="rfq.quantity" /></p>
+                                                <div class="rfq-details">
+                                                    <div class="">
+                                                        <h4 class="">Product: <t t-esc="rfq.product_name" /></h4>
+                                                        <p class="">Destination: <t t-esc="rfq.destination.name" /></p>
+                                                        <p class="">Quantity: <t t-esc="rfq.quantity" /></p>
+                                                    </div>
+                                                    <div class="">
+                                                        <h4 class="">Sub-Subcategory: <t t-esc="rfq.product_subsubcategory.name" /></h4>
+                                                        <p class="">Payment Terms:
+                                                            <t t-if="rfq.payment_terms == 'cash_advance'" >Cash in Advance</t>
+                                                            <t t-if="rfq.payment_terms == 'letter_of_credit'" >Letter of Credit</t>
+                                                            <t t-if="rfq.payment_terms == 'documentary_collection'" >Documentary Collection</t>
+                                                            <t t-if="rfq.payment_terms == 'open_account'" >Open Account</t>
+                                                            <t t-if="rfq.payment_terms == 'advance_payment'" >Advance Payment</t>
+                                                            <t t-if="rfq.payment_terms == 'consignment'" >Consignment</t>
+                                                            <t t-if="rfq.payment_terms == 'cash_on_delivery'" >Cash on Delivery (COD)</t>
+                                                            <t t-if="rfq.payment_terms == 'payment_in_installments'" >Payment in Installments</t>
+                                                            <t t-if="rfq.payment_terms == 'bill_of_exchange'" >Bill of Exchange</t>
+                                                            <t t-if="rfq.payment_terms == 'telegraphic_transfer'" >Telegraphic transfer</t>
+
+                                                        
+                                                        </p>
+                                                        <p class="">Shipping Terms:
+                                                            <t t-if="rfq.shipping_terms == 'fob'" >FOB (Free on Board)</t>
+                                                            <t t-if="rfq.shipping_terms == 'fca'" >FCA (Free Carrier)</t>
+                                                            <t t-if="rfq.shipping_terms == 'exw'" >EXW (Ex Works)</t>
+                                                            <t t-if="rfq.shipping_terms == 'fas'" >FAS (Free Alongside Ship)</t>
+                                                            <t t-if="rfq.shipping_terms == 'dap'" >DAP (Delivered at Place)</t>
+                                                            <t t-if="rfq.shipping_terms == 'dat'" >DAT (Delivered at Terminal)</t>
+                                                            <t t-if="rfq.shipping_terms == 'cif'" >CIF (Cost, Insurance and Freight)</t>
+                                                            <t t-if="rfq.shipping_terms == 'cip'" >CIP (Carriage and Insurance Paid to)</t>
+                                                            <t t-if="rfq.shipping_terms == 'cfr'" >CFR (Cost and Freight)</t>
+                                                            <t t-if="rfq.shipping_terms == 'ssp'" >DDP (Delivery Duty Paid)</t>
+                                                            <t t-if="rfq.shipping_terms == 'cpt'" >CPT (Carriage paid to)</t>
+
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div class="">
-                                                    <h4 class="">Sub-Subcategory: <t t-esc="rfq.product_subsubcategory.name" /></h4>
-                                                    <p class="">Payment Terms:
-                                                        <t t-if="rfq.payment_terms == 'cash_advance'" >Cash in Advance</t>
-                                                        <t t-if="rfq.payment_terms == 'letter_of_credit'" >Letter of Credit</t>
-                                                        <t t-if="rfq.payment_terms == 'documentary_collection'" >Documentary Collection</t>
-                                                        <t t-if="rfq.payment_terms == 'open_account'" >Open Account</t>
-                                                        <t t-if="rfq.payment_terms == 'advance_payment'" >Advance Payment</t>
-                                                        <t t-if="rfq.payment_terms == 'consignment'" >Consignment</t>
-                                                        <t t-if="rfq.payment_terms == 'cash_on_delivery'" >Cash on Delivery (COD)</t>
-                                                        <t t-if="rfq.payment_terms == 'payment_in_installments'" >Payment in Installments</t>
-                                                        <t t-if="rfq.payment_terms == 'bill_of_exchange'" >Bill of Exchange</t>
-                                                        <t t-if="rfq.payment_terms == 'telegraphic_transfer'" >Telegraphic transfer</t>
+                                            </div>
+                                            
+                                            
+                                            <div class="product-icons">
+                                            
+                                                <span style="cursor:pointer;" onclick="view_seller_responses(this)">View <t t-esc="env['rfq.quotations'].sudo().search_count([('rfq_id', '=', rfq.id)])"/> Responses</span>
+                                                <span onclick="edit_rfq(this)" t-att-productId="rfq.id"><i class="fa-solid fa-pen"></i></span>
+                                                <span onclick="delete_rfq(this)" t-att-rfqId="rfq.id"><i class="fa-solid fa-trash"></i></span>
+                                                <button class="end-rfq" onclick="end_rfq(this)" t-att-rfqId="rfq.id">End RFQ</button>
 
-                                                    
-                                                    </p>
-                                                    <p class="">Shipping Terms:
-                                                        <t t-if="rfq.shipping_terms == 'fob'" >FOB (Free on Board)</t>
-                                                        <t t-if="rfq.shipping_terms == 'fca'" >FCA (Free Carrier)</t>
-                                                        <t t-if="rfq.shipping_terms == 'exw'" >EXW (Ex Works)</t>
-                                                        <t t-if="rfq.shipping_terms == 'fas'" >FAS (Free Alongside Ship)</t>
-                                                        <t t-if="rfq.shipping_terms == 'dap'" >DAP (Delivered at Place)</t>
-                                                        <t t-if="rfq.shipping_terms == 'dat'" >DAT (Delivered at Terminal)</t>
-                                                        <t t-if="rfq.shipping_terms == 'cif'" >CIF (Cost, Insurance and Freight)</t>
-                                                        <t t-if="rfq.shipping_terms == 'cip'" >CIP (Carriage and Insurance Paid to)</t>
-                                                        <t t-if="rfq.shipping_terms == 'cfr'" >CFR (Cost and Freight)</t>
-                                                        <t t-if="rfq.shipping_terms == 'ssp'" >DDP (Delivery Duty Paid)</t>
-                                                        <t t-if="rfq.shipping_terms == 'cpt'" >CPT (Carriage paid to)</t>
-
-                                                    </p>
+                                            </div>
+                                        </div>                                       
+                                        
+                                        <div class="">
+                                            <span class="divider-line"></span>
+                                        </div>
+                                        <div class="inner-card" id="editRfq">
+                                            
+                                            <div class="editRfqDetails">
+                                                
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Description</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit_rfq_product_description" t-att-value="product.product_description">
+                                                            <t t-esc="rfq.product_description"/>
+                                                        </textarea>
+                                                    </div>
                                                 </div>
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Quantity</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input placeholder="Quantity" name="edit_rfq_quantity" id="edit_rfq_quantity" t-att-value="rfq.quantity"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Unit</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                        
+                                                            <select id="edit_rfq_unit" name="edit_rfq_unit">
+                                                                <option t-att-value="rfq.unit.id"><t t-esc="rfq.unit.name"/></option>
+
+                                                                <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t>    
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Product Price</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input name="edit_rfq_product_price" id="edit_rfq_product_price" t-att-value="rfq.target_price" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Currency</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                    
+                                                            <select id="edit_rfq_currency" name="edit_rfq_currency">
+                                                                <option t-att-value="rfq.currency.id"><t t-esc="rfq.currency.name"/></option>
+
+                                                                <t t-foreach="env['res.currency'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t>    
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Payment Terms</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                        
+                                                            <select id="edit_rfq_payment_terms" name="edit_rfq_payment_terms">
+                                                                <t t-foreach="rfq._fields['payment_terms'].selection" t-as="option">
+                                                                    <option t-att-value="option[0]" t-att-selected="option[0] == rfq.payment_terms and 'selected'">
+                                                                        <t t-esc="option[1]"/>
+                                                                    </option>
+                                                                </t>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Shipping Terms</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                        
+                                                            <select id="edit_rfq_shipping_terms" name="edit_rfq_shipping_terms">
+                                                                <t t-foreach="rfq._fields['shipping_terms'].selection" t-as="option">
+                                                                    <option t-att-value="option[0]" t-att-selected="option[0] == rfq.shipping_terms and 'selected'">
+                                                                        <t t-esc="option[1]"/>
+                                                                    </option>
+                                                                </t>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Destination</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                    
+                                                            <select id="edit_rfq_destination" name="edit_rfq_destination">
+                                                                <option t-att-value="rfq.destination.id"><t t-esc="rfq.destination.name"/></option>
+
+                                                                <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t>    
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Looking for Suppliers From</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                    
+                                                            <select id="edit_rfq_suppliers_country" name="edit_rfq_suppliers_country">
+                                                                <option t-att-value="rfq.suppliers_country.id"><t t-esc="rfq.suppliers_country.name"/></option>
+
+                                                                <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t> 
+                                                                <option value="">WorldWide</option>   
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="submit-edit-product">
+                                                    <button class="" onclick="save_edited_rfq(this)" t-att-rfqId="rfq.id">Save</button>
+                                                </div>  
                                             </div>
                                         </div>
-                                        
-                                        
-                                        <div class="product-icons">
-                                        
-                                            <span style="cursor:pointer;" onclick="view_seller_responses(this)">View <t t-esc="env['rfq.quotations'].sudo().search_count([('rfq_id', '=', rfq.id)])"/> Responses</span>
-                                            <span onclick="edit_rfq(this)" t-att-productId="rfq.id"><i class="fa-solid fa-pen"></i></span>
-                                            <span onclick="delete_rfq(this)" t-att-rfqId="rfq.id"><i class="fa-solid fa-trash"></i></span>
-                                        </div>
-                                    </div>                                       
-                                        
-                                    <div class="">
-                                        <span class="divider-line"></span>
-                                    </div>
-                                    <div class="inner-card" id="editRfq">
-                                        
-                                        <div class="editRfqDetails">
-                                            
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Description</span>
-                                                </div>
-                                                <div class="">
-                                                    <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit_rfq_product_description" t-att-value="product.product_description">
-                                                        <t t-esc="rfq.product_description"/>
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Quantity</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input placeholder="Quantity" name="edit_rfq_quantity" id="edit_rfq_quantity" t-att-value="rfq.quantity"/>
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Unit</span>
-                                                    </div>
-                                                    <div class="select-container">
                                     
-                                                        <select id="edit_rfq_unit" name="edit_rfq_unit">
-                                                            <option t-att-value="rfq.unit.id"><t t-esc="rfq.unit.name"/></option>
-
-                                                            <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
-                                                                <option t-att-value="option.id">
-                                                                    <t t-esc="option.name"/>
-                                                                </option>
-                                                            </t>    
-                                                            
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="inner-card" id="seller_responses_management">
                                             
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Product Price</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input name="edit_rfq_product_price" id="edit_rfq_product_price" t-att-value="rfq.target_price" />
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Currency</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                
-                                                        <select id="edit_rfq_currency" name="edit_rfq_currency">
-                                                            <option t-att-value="rfq.currency.id"><t t-esc="rfq.currency.name"/></option>
+                                            <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)])" t-as="quotation">
+                                                <div class="seller-response-card">
+                                                    <div class="seller-details">
+                                                        <span class=""><t t-esc="quotation.partner_id.name"/></span>
+                                                        <span class=""><t t-esc="quotation.partner_id.country_id.name"/></span>
+                                                        <span class=""><t t-esc="quotation.create_date.strftime('%d-%b-%Y')"/></span>
 
-                                                            <t t-foreach="env['res.currency'].sudo().search([])" t-as="option">
-                                                                <option t-att-value="option.id">
-                                                                    <t t-esc="option.name"/>
-                                                                </option>
-                                                            </t>    
-                                                            
-                                                        </select>
                                                     </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Payment Terms</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                    
-                                                        <select id="edit_rfq_payment_terms" name="edit_rfq_payment_terms">
-                                                            <t t-foreach="rfq._fields['payment_terms'].selection" t-as="option">
-                                                                <option t-att-value="option[0]" t-att-selected="option[0] == rfq.payment_terms and 'selected'">
-                                                                    <t t-esc="option[1]"/>
-                                                                </option>
-                                                            </t>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Shipping Terms</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                    
-                                                        <select id="edit_rfq_shipping_terms" name="edit_rfq_shipping_terms">
-                                                            <t t-foreach="rfq._fields['shipping_terms'].selection" t-as="option">
-                                                                <option t-att-value="option[0]" t-att-selected="option[0] == rfq.shipping_terms and 'selected'">
-                                                                    <t t-esc="option[1]"/>
-                                                                </option>
-                                                            </t>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Destination</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                
-                                                        <select id="edit_rfq_destination" name="edit_rfq_destination">
-                                                            <option t-att-value="rfq.destination.id"><t t-esc="rfq.destination.name"/></option>
+                                                    <div class="seller-details">
+                                                        <span class=""><t t-esc="quotation.contact_name"/></span>
+                                                        <span class=""><t t-esc="quotation.email"/></span>
+                                                        <span class=""><t t-esc="quotation.phone"/></span>
 
-                                                            <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
-                                                                <option t-att-value="option.id">
-                                                                    <t t-esc="option.name"/>
-                                                                </option>
-                                                            </t>    
-                                                            
-                                                        </select>
+                                                    </div>
+                                                    <div class="seller-details">
+                                                        <span class=""><t t-esc="quotation.message"/></span>
+
                                                     </div>
                                                 </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Looking for Suppliers From</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                
-                                                        <select id="edit_rfq_suppliers_country" name="edit_rfq_suppliers_country">
-                                                            <option t-att-value="rfq.suppliers_country.id"><t t-esc="rfq.suppliers_country.name"/></option>
-
-                                                            <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
-                                                                <option t-att-value="option.id">
-                                                                    <t t-esc="option.name"/>
-                                                                </option>
-                                                            </t> 
-                                                            <option value="">WorldWide</option>   
-                                                            
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            
-                                            <div class="submit-edit-product">
-                                                <button class="" onclick="save_edited_rfq(this)" t-att-rfqId="rfq.id">Save</button>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="inner-card" id="seller_responses_management">
-                                        
-                                        <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)])" t-as="quotation">
-                                            <div class="seller-response-card">
-                                                <div class="seller-details">
-                                                    <span class=""><t t-esc="quotation.partner_id.name"/></span>
-                                                    <span class=""><t t-esc="quotation.partner_id.country_id.name"/></span>
-                                                    <span class=""><t t-esc="quotation.create_date.strftime('%d-%b-%Y')"/></span>
-
-                                                </div>
-                                                <div class="seller-details">
-                                                    <span class=""><t t-esc="quotation.contact_name"/></span>
-                                                    <span class=""><t t-esc="quotation.email"/></span>
-                                                    <span class=""><t t-esc="quotation.phone"/></span>
-
-                                                </div>
-                                                <div class="seller-details">
-                                                    <span class=""><t t-esc="quotation.message"/></span>
-
-                                                </div>
-                                            </div>
-                                        </t>
+                                            </t>
 
 
-                                    </div> 
+                                        </div> 
+                                    </t>
                                 </t>
                                 
                             </div>
@@ -1601,6 +1629,8 @@
                 </div>
                 
             </main>
+            <t t-call="trademeda.footer"/>
+
             <script>
                     document.getElementById('company_details').style.display = 'flex'
                     document.getElementById('contact_details').style.display = 'flex'
@@ -1672,16 +1702,39 @@
                     }
                 }
 
-                function delete_rfq(element){
+                function end_rfq(element){
                     const rfqId = element.getAttribute('rfqId')
-                    <!-- fetch('/deleterfq/'+rfqId,{
+                    const vals = {
+                        'rfqId':rfqId
+                    }
+                    fetch('/endRfq',{
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
+                        body:JSON.stringify(vals)
+
                     }).then(function(res){
-                        console.log(res)
-                    }) -->
+                        window.location.href = '/profile'
+                    })
+                
+                }
+
+                function delete_rfq(element){
+                    const rfqId = element.getAttribute('rfqId')
+                    const vals = {
+                        'rfqId':rfqId
+                    }
+                    fetch('/deleterfq',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body:JSON.stringify(vals)
+
+                    }).then(function(res){
+                        window.location.href = '/profile'
+                    })
                 }
 
                 function enable_profile_detail(){
@@ -1734,6 +1787,8 @@
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+
 
 
                     
@@ -1791,6 +1846,8 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'flex'
                     document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+
 
 
                 }
@@ -1804,6 +1861,7 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'flex'
 
                     
@@ -1932,12 +1990,29 @@
                     })
                 }
 
+                function showUserPopup(element){
+                    document.getElementById('addUserPopup').style.display = "flex"
+                }
+                function closeUserPopup(element){
+                    document.getElementById('addUserPopup').style.display = "none"
+
+                }
+
                 function showAwardPopup(element){
                     document.getElementById('addAwardPopup').style.display = "flex"
 
                 }
                 function closeAward(element){
                     document.getElementById('addAwardPopup').style.display = "none"
+
+                }
+
+                function showCertificatePopup(element){
+                    document.getElementById('addCertificatePopup').style.display = "flex"
+
+                }
+                function closeCertificate(element){
+                    document.getElementById('addCertificatePopup').style.display = "none"
 
                 }
                 
@@ -1954,41 +2029,58 @@
                     const deleteButton = document.createElement('button');
                     deleteButton.type = 'button';
                     deleteButton.style = 'background:transparent;border:none;';
-                    deleteButton.setAttribute('data-award-id', '123');
+                    <!-- deleteButton.setAttribute('data-award-id', '123'); -->
                     deleteButton.onclick = function() {
                         openDeleteAward(deleteButton);
                     };
 
                     // Create the SVG icon and append it to the button
                     deleteButton.innerHTML = `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
-                        </svg>
+                        <i class="fa-solid fa-trash" style="color:red;"></i>
                     `;
                     const awardCell = document.createElement('td');
+                    const awardFile = document.createElement('td');
+                    const awardDescription = document.createElement('td');
+
+
                     row_cnt = Number(table_length)+1
 
                     const award_attachment = document.createElement('input');
                     award_attachment.type = 'file'
                     award_attachment.id = 'award_'+row_cnt
-                    award_attachment.name = 'award_'+row_cnt
+                    award_attachment.name = 'new_award_'+row_cnt
+                    award_attachment.style.display = 'block'
                     const fileNameSpan = document.createElement('span');
+                    const fileNameInput = document.createElement('input');
+                    fileNameInput.style.border = 'none'
+                    const fileDescriptionText = document.createElement('textarea');
+
+                    
+
+                    
 
                     const originalInput  = document.getElementById('add_award');
                     const add_award_name = document.getElementById('add_award_name');
                     const award_name = document.getElementById('award_name');
+                    const award_description = document.getElementById('award_description');
 
-                    if (originalInput.files.length &gt; 0) {
+
+                    if (originalInput.files.length &gt; 0 &amp;&amp; award_name.value != '' ) {
                         const file = originalInput.files[0];
                         const dataTransfer = new DataTransfer();
                         dataTransfer.items.add(file);
 
                         award_attachment.files = dataTransfer.files;
-                        fileNameSpan.textContent = award_name.value;
+                        <!-- fileNameSpan.textContent = award_name.value; -->
+                        fileNameInput.setAttribute('name','new_name_'+row_cnt)
+                        fileNameInput.value = award_name.value
+                        fileDescriptionText.setAttribute('name','new_description_'+row_cnt)
+                        fileDescriptionText.value = award_description.value
+
                         <!-- fileNameSpan.textContent = file.name; -->
                     } else {
                         alert('No file selected in the original input.');
+                        return
                     }
 
 
@@ -1996,36 +2088,148 @@
 
                     <!-- awardCell.textContent = 'Outstanding Achievement'; -->
                     awardCell.appendChild(award_attachment)
-                    awardCell.appendChild(fileNameSpan);
+                    <!-- awardCell.appendChild(fileNameSpan); -->
+                    awardCell.appendChild(fileNameInput);
+
+
+                    awardFile.appendChild(award_attachment);
+                    awardDescription.appendChild(fileDescriptionText);
+
+
+                    
+
+
 
                     originalInput.value = '';
                     add_award_name.textContent = 'No File Selected' 
                     award_name.value = ''
+                    award_description.value = ''
 
                     nameCell.appendChild(deleteButton);
                     newRow.appendChild(nameCell);
                     newRow.appendChild(awardCell);
+                    newRow.appendChild(awardDescription);
+                    newRow.appendChild(awardFile);
+
 
                     table_body.appendChild(newRow);
 
                 }
 
-                function updateAwardFile(inputElement) {
-                    let id = inputElement.id 
-                    id = "updated_"+id
-                    inputElement.name = id
-                    <!-- inputElement.name = "award_"+inputElement.parentElement.parentElement.parentElement.rowIndex  -->
-                    inputElement.parentElement.parentElement.children[0].replaceWith(inputElement.value.split('\\')[2]) 
-                    
+                function deleteAwardFile(element) {
+                    let awardId = element.getAttribute('data-award-id');
+                    const vals = {
+                        'awardId':awardId
+                    }
+                    console.log(vals)
+                    fetch('/deleteAward/'+awardId,{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the request headers
+                        },
+                        body:JSON.stringify(vals)
+                    }).then(function(data){
+                        window.location.href = '/profile'
+                    })
                 }
 
-                function updateCertificateFile(inputElement) {
-                    let id = inputElement.id 
-                    id = "updated_"+id
-                    inputElement.name = id
-                    <!-- inputElement.name = "award_"+inputElement.parentElement.parentElement.parentElement.rowIndex  -->
-                    inputElement.parentElement.parentElement.children[0].replaceWith(inputElement.value.split('\\')[2]) 
+                function addCertificate(element){
+                    let table_body = document.getElementById('certificate_table').children[1]
+                    let table_length = table_body.children.length
+                    const newRow = document.createElement('tr');
+                    const nameCell = document.createElement('td');
+                    <!--  -->
                     
+
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.style = 'background:transparent;border:none;';
+                    <!-- deleteButton.setAttribute('data-award-id', '123'); -->
+                    deleteButton.onclick = function() {
+                        openDeleteAward(deleteButton);
+                    };
+
+                    // Create the SVG icon and append it to the button
+                    deleteButton.innerHTML = `
+                        <i class="fa-solid fa-trash" style="color:red;"></i>
+                    `;
+                    const certificateCell = document.createElement('td');
+                    const certificateFile = document.createElement('td');
+                    const certificateDescription = document.createElement('td');
+
+
+                    row_cnt = Number(table_length)+1
+
+                    const certificate_attachment = document.createElement('input');
+                    certificate_attachment.type = 'file'
+                    certificate_attachment.id = 'certificate_'+row_cnt
+                    certificate_attachment.name = 'new_certificate_'+row_cnt
+                    certificate_attachment.style.display = 'block'
+                    const fileNameSpan = document.createElement('span');
+                    const fileNameInput = document.createElement('input');
+                    fileNameInput.style.border = 'none'
+                    const fileDescriptionText = document.createElement('textarea');
+
+                    
+
+                    
+
+                    const originalInput  = document.getElementById('add_certificate');
+                    const add_certificate_name = document.getElementById('add_certificate_name');
+                    const certificate_name = document.getElementById('certificate_name');
+                    const certificate_description = document.getElementById('certificate_description');
+
+
+                    if (originalInput.files.length &gt; 0 &amp;&amp; certificate_name.value != '' ) {
+                        const file = originalInput.files[0];
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+
+                        certificate_attachment.files = dataTransfer.files;
+                        <!-- fileNameSpan.textContent = award_name.value; -->
+                        fileNameInput.setAttribute('name','new_cert_name_'+row_cnt)
+                        fileNameInput.value = certificate_name.value
+                        fileDescriptionText.setAttribute('name','new_cert_description_'+row_cnt)
+                        fileDescriptionText.value = certificate_description.value
+
+                        <!-- fileNameSpan.textContent = file.name; -->
+                    } else {
+                        alert('No file selected in the original input.');
+                        return
+                    }
+
+
+
+
+                    <!-- certificateCell.textContent = 'Outstanding Achievement'; -->
+                    certificateCell.appendChild(certificate_attachment)
+                    <!-- certificateCell.appendChild(fileNameSpan); -->
+                    certificateCell.appendChild(fileNameInput);
+
+
+                    certificateFile.appendChild(certificate_attachment);
+                    certificateDescription.appendChild(fileDescriptionText);
+
+
+                    
+
+
+
+                    originalInput.value = '';
+                    add_certificate_name.textContent = 'No File Selected' 
+                    certificate_name.value = ''
+                    certificate_description.value = ''
+
+                    nameCell.appendChild(deleteButton);
+                    newRow.appendChild(nameCell);
+                    newRow.appendChild(certificateCell);
+                    newRow.appendChild(certificateDescription);
+                    newRow.appendChild(certificateFile);
+
+
+                    table_body.appendChild(newRow);
+
                 }
 
                 function openDeleteAward(element){

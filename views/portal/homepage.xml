@@ -2,8 +2,11 @@
     <data>
         <template id="homepage" name="Trademeda Homepage">
          <xpath expr="." position="inside">
-            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/homepage.css"/>
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/>   
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/homepage.css"/>
         </xpath>
             <!-- <t t-call="website.layout"> -->
                 <t t-call="trademeda.header">
@@ -22,7 +25,7 @@
                                 <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
                                     <t t-out="category.name"/>
                                     <div class="outer-product-container">
-                                        <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=25)" t-as="product">
+                                        <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=20)" t-as="product">
                                             
                                             <!-- <div class="category-products"> -->
                                                 <a t-attf-href="/findSuppliers/{{product.name}}"><t t-esc="product.name"/></a>
@@ -56,12 +59,12 @@
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
 
-                                <div>
+                                <div onclick="open_readytobuy(this)" style="cursor:pointer;">
 
                                 
                                     <p style="margin-bottom: 4px;">Trademeda</p>
 
-                                    <p style="margin-top: 0px;">Ready To Ship</p>
+                                    <p style="margin-top: 0px;cursor:pointer;">Ready To Ship</p>
 
                                 </div>
 
@@ -158,23 +161,25 @@
                     
                             <div id="buyers-tab" class="rfq-list content active">
                                 <t t-foreach="env['trademeda.rfq'].sudo().search([('subcategory.id','=',subcategory.id)],limit=4)" t-as="rfq">
-                                    <div class="rfq-card">
-                                        <div class="rfq-heading">
-                                            <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                    <t t-if="rfq.state == 'active'">
+                                        <div class="rfq-card">
+                                            <div class="rfq-heading">
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                            </div>
+                                            <div class="rfq-subheading">
+                                                <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                                            </div>
+                                            <div class="rfq-content">
+                                                <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                                <p><t t-esc="rfq.product_description"/></p>
+                                            </div>
+                                            <div class="rfq-buttons">
+                                                <button class="btn-wishlist">Add to Wishlist</button>
+                                                <button class="btn-enquire">Enquire Now</button>
+                                            </div>
                                         </div>
-                                        <div class="rfq-subheading">
-                                            <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
-                                            <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
-                                        </div>
-                                        <div class="rfq-content">
-                                            <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
-                                            <p><t t-esc="rfq.product_description"/></p>
-                                        </div>
-                                        <div class="rfq-buttons">
-                                            <button class="btn-wishlist">Add to Wishlist</button>
-                                            <button class="btn-enquire">Enquire Now</button>
-                                        </div>
-                                    </div>
+                                    </t>
                                 </t>
 
                                 
@@ -226,15 +231,112 @@
                             
                         </div>
                     </t>
+
+                    <!-- Featured Products  -->
+                    <div class="flex-between">
+                        <h2 class="featured-products-title">Featured Products</h2>
+                        <button class="control-buttons"><a t-attf-href="/featuredProducts">See More</a></button>
+                    </div>
+                    <div class="featured-products-container">
+                        <button class="control-buttons" id="featured-slide-left">&lt;</button>
+                        <div class="featured-products">
+                            <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
+                                
+                            <t t-foreach="env['product.customer.images'].sudo().search([],order='views desc')" t-as="product">
+                                <div class="featured-product">
+                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
+                                    <div class="">
+                                        <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                    </div>
+
+                                </div>
+                            </t>
+                        </div>
+                        
+                        <button class="control-buttons" id="featured-slide-right">&gt;</button>
+                    </div>
+
+                    <!-- New Arrivals  -->
+                    <div class="flex-between">
+
+                        <h2 class="new-arrival">New Arrivals</h2>
+                        <button class="control-buttons"><a t-attf-href="/newArrivals">See More</a></button>
+                    </div>
+                    <div class="new-arrival-container">
+                        <button class="control-buttons" id="slide-left">&lt;</button>
+                        <div class="new-products">
+                            <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
+                                
+                            <t t-foreach="env['product.customer.images'].sudo().search([])" t-as="product">
+                                <div class="new-arrival-product">
+                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
+                                    <div class="">
+                                        <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                    </div>
+
+                                </div>
+                            </t>
+                        </div>
+                        
+                        <button class="control-buttons" id="slide-right">&gt;</button>
+                    </div>
+
+                    <!-- Ready to Buy  -->
+                    <div class="flex-between">
+                        <h2 class="ready-to-buy">Ready to Buy</h2>
+                        <button onclick="open_readytobuy(this)" class="control-buttons">See More</button>
+                    </div>
+                    <div class="ready-to-buy-container">
+                        <button class="control-buttons" id="ready-to-buy-slide-left">&lt;</button>
+                        <div class="ready-to-buy-products">
+                            <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
+                                
+                            <t t-foreach="env['product.customer.images'].sudo().search([('ready_to_ship','=',True)],order='views desc',limit=10)" t-as="product">
+                                <div class="ready-to-buy-product">
+                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
+                                    <div class="">
+                                        <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                    </div>
+
+                                </div>
+                            </t>
+                        </div>
+                        
+                        <button class="control-buttons" id="ready-to-buy-slide-right">&gt;</button>
+                    </div>
+
+
+                    <!-- Popular Products  -->
+                    <div class="flex-between">
+                        <h2 class="ready-to-buy" style="margin-bottom: 0;">Popular Products</h2>
+                        
+                    </div>
+
+                    <div class="popular-products">
+                        <t t-set="rfq_counts" t-value="env['trademeda.rfq'].sudo().read_group(
+                            domain=[('product_subsubcategory', '!=', False)],
+                            fields=['product_subsubcategory', 'product_subsubcategory_count:count(product_subsubcategory)'],
+                            groupby=['product_subsubcategory'],
+                            orderby='product_subsubcategory_count desc')"/>
+                        
+
+                        <t t-foreach="rfq_counts" t-as="rfq">
+                            <t t-set="product" t-value="env['product.template'].sudo().browse(rfq['product_subsubcategory'][0])"/>
+                            <div class="popular_product">
+                                <h4><a t-attf-href="/findBuyers/{{product.name}}"><t t-esc="product.name"/></a></h4>
+                                <!-- Display other product details -->
+                            </div>
+                        </t>
+                    </div>
                     
                     
                 </main>
 
-                <footer>
-                    <div class="container">
-                        <p>2023 Trademeda. All rights reserved.</p>
-                    </div>
-                </footer>
+                <t t-call="trademeda.footer"/>
+                
                 <script>
                     
                     function showBuyers(element){
@@ -291,6 +393,87 @@
                             }
                     }
                     showBuyers(document.getElementById('tab1'))
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const leftButton = document.getElementById('slide-left');
+                        const rightButton = document.getElementById('slide-right');
+                        const newProductsContainer = document.querySelector('.new-products');
+                        
+                        const slideAmount = 200; // Adjust this value to control the sliding distance
+
+                        // Slide left
+                        leftButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: -slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+
+                        // Slide right
+                        rightButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+                    });
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const leftButton = document.getElementById('featured-slide-left');
+                        const rightButton = document.getElementById('featured-slide-right');
+                        const newProductsContainer = document.querySelector('.featured-products');
+                        
+                        const slideAmount = 200; // Adjust this value to control the sliding distance
+
+                        // Slide left
+                        leftButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: -slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+
+                        // Slide right
+                        rightButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+                    });
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const leftButton = document.getElementById('ready-to-buy-slide-left');
+                        const rightButton = document.getElementById('ready-to-buy-slide-right');
+                        const newProductsContainer = document.querySelector('.ready-to-buy-products');
+                        
+                        const slideAmount = 300; // Adjust this value for more significant sliding
+
+                        // Slide left
+                        leftButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: -slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+
+                        // Slide right
+                        rightButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+                    });
+                    function open_readytobuy(element){
+                        window.location.href = '/readytobuy'
+                    }
                 </script>
             <!-- </t> -->
         </template>

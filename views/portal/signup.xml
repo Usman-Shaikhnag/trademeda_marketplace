@@ -100,15 +100,15 @@
                                         <div class="select-container">
                                             <select id="business-type" name="business-type" required="required">
                                                 <option value="" selected="true">Select your business type</option>
-                                                <option value="buying-agent">Buying Agent</option>
-                                                <option value="dealer-reseller">Dealer / Reseller</option>
+                                                <option value="buying_agent">Buying Agent</option>
+                                                <option value="dealer_reseller">Dealer / Reseller</option>
                                                 <option value="distributor">Distributor</option>
                                                 <option value="exporter">Exporter</option>
                                                 <option value="importer">Importer</option>
                                                 <option value="manufacturer">Manufacturer</option>
-                                                <option value="not-known">Not Known</option>
+                                                <option value="not_known">Not Known</option>
                                                 <option value="retailer">Retailer</option>
-                                                <option value="service-provider">Service Provider</option>
+                                                <option value="service_provider">Service Provider</option>
                                                 <option value="trader">Trader</option>
                                             </select>
                                         </div>
@@ -130,10 +130,10 @@
                                         <div class="select-container">
                                             <select id="annual-sales" name="annual-sales" required="required">
                                                 <option value="" selected="true"></option>
-                                                <option value="less-than-1000">Less than 1000 USD</option>
-                                                <option value="less-than-10000">Less than 10000 USD</option>
-                                                <option value="less-than-1000000">Less than 1000000 USD</option>
-                                                <option value="more-than-1000000">More than 1000000 USD</option>
+                                                <option value="less_than_1000">Less than 1000 USD</option>
+                                                <option value="less_than_10000">Less than 10000 USD</option>
+                                                <option value="less_than_1000000">Less than 1000000 USD</option>
+                                                <option value="more_than_1000000">More than 1000000 USD</option>
                                                 
                                             </select>
                                         </div>
@@ -145,10 +145,10 @@
                                         <div class="select-container">
                                             <select id="employees" name="employees" required="required">
                                                 <option value="" selected="true"></option>
-                                                <option value="less-than-10">Less than 10</option>
-                                                <option value="less-than-100">Less than 100</option>
-                                                <option value="less-than-1000">Less than 1000</option>
-                                                <option value="more-than-1000">More than 1000</option>
+                                                <option value="less_than_10">Less than 10</option>
+                                                <option value="less_than_100">Less than 100</option>
+                                                <option value="less_than_1000">Less than 1000</option>
+                                                <option value="more_than_1000">More than 1000</option>
                                                 
                                             </select>
                                         </div>

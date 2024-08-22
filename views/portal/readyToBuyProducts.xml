@@ -1,0 +1,210 @@
+<odoo>
+    <data>
+        <template id="readyToBuy" name="Ready to Buy">
+         <xpath expr="." position="inside">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+            <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/readyToBuyProducts.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+            <!-- <t t-call="website.layout"> -->
+                <t t-call="trademeda.header">
+                
+                </t>
+
+                
+                <!-- <t t-foreach="suppliers" t-as="supplier">
+                <div class="">
+                
+                    <t t-esc="supplier.product_name"/>
+                </div>
+                </t> -->
+            <main class="">
+
+            
+                <div class="left-section">
+                    <t t-if="related_products">
+
+                        <ul class="related_products"><h3>Similar Products</h3></ul>
+                        
+                        <t t-foreach="related_products" t-as="product">
+                            <li onclick="getSuppliers(this)" t-att-productName="product.name"><t t-esc="product.name"/></li>
+                        </t>
+                    </t>
+                    <t t-if="related_subcategories">
+
+
+                        <ul class="related_subcategories"><h3>Related Categories</h3></ul>
+                        
+                        <t t-foreach="related_subcategories" t-as="category">
+                            <li onclick="getProductsByCategory(this)" t-att-categoryName="category"><t t-esc="category"/></li>
+                        </t>
+                    </t>
+                </div>
+                <div class="right-section">
+                    <div class="search-heading">
+                        <h2 class="">Ready to Buy</h2>
+                        <div class="search">
+
+                            <input id="search_pruduct_input" type="text" placeholder="Search for a specific product"/>
+
+                            <button onclick="search_product(this)">Search</button>
+
+                            <span class="">Showing <t t-esc="len(suppliers)"/> Results</span>
+
+                        </div>
+                        
+                    </div>
+                    <div class="tabs-filters">
+                        <div class="tabs">
+                        
+                            <t t-if="supplier_search">
+                                <span id="tab" class="tab active">Suppliers</span>
+                                
+                            </t>
+                            
+                            
+                        </div>
+                        <div class="filters">
+                            <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-globe"></i> Countries
+                                <div id="countries_filter" class="countries_filter">
+                                    <ul>
+                                        <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
+                                            
+                                            <li><t t-esc="country.name"/></li>
+                                        </t>
+                                    </ul>
+                                </div>
+                            </span>
+                            <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
+                            <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
+                            <span class=""><i class="fa-solid fa-calendar-days"></i> Date</span>
+
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="tab-content">
+                        
+                        <t t-foreach="suppliers" t-as="product">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-header">
+                                        <div class="product-title">
+                                            <span class="flag-icon"></span>
+                                            <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                        </div>
+                                        <div class="status-icons">
+                                            <span class="status-icon"></span>
+                                            <span class="info-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="product-supplier">
+                                        <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                        <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                        <div class="rating">
+                                            <span>⭐⭐⭐⭐⭐</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-description">
+                                        <p><t t-esc="product.product_description"/></p>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="favourites-button"><b>Add To Favourites</b></button>
+                                        <button class="inquiry-button"><b>Enquire Now</b></button>
+                                    </div>
+                                </div>
+                                <div class="product-date">
+                                    <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                </div>
+                            </div>
+                        </t>
+
+                        <div class="pagination">
+                            <t t-set="page" t-value="int(page)"/>
+                            <t t-if="page &gt; 1">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                            </t>
+                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                    <t t-esc="p"/>
+                                </a>
+                            </t>
+                            <t t-if="page &lt; total_pages">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                            </t>
+                        </div>
+                        
+                    </div>
+                    
+                
+                </div>
+            </main>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get all tab elements using the correct class selector
+                    const tabs = document.querySelectorAll('.tab');
+                    // Get all content elements using the correct class selector
+                    const contents = document.querySelectorAll('.content');
+
+                    tabs.forEach(function(tab) {
+                        tab.addEventListener('click', function() {
+                            // Remove active class from all tabs
+                            tabs.forEach(function(t) { t.classList.remove('active') });
+                            // Remove active class from all contents
+                            contents.forEach(function(c) { c.classList.remove('active') });
+
+                            // Add active class to the clicked tab
+                            this.classList.add('active');
+                            // Get the corresponding content element using the tab's ID
+                            const contentId = this.id.replace('tab', 'content');
+                            document.getElementById(contentId).classList.add('active');
+                        });
+                    });
+                });
+
+                function getSuppliers(element){
+                        const searchQuery = element.getAttribute('productName')
+                        console.log('Search',searchQuery)
+                        if(searchQuery != null){
+
+                            window.location.href = '/findSuppliers/'+searchQuery
+                        }
+                    }
+                function getProductsByCategory(element){
+                    const searchQuery = element.getAttribute('categoryName')
+                    if(searchQuery != null){
+
+                            window.location.href = '/findSuppliersByCategory/'+searchQuery
+                        }
+                }
+                function toggle_countries(element){
+                    if(element.children[1].style.display == 'flex'){
+                        element.children[1].style.display = 'none'
+                    }
+                    else{
+                        element.children[1].style.display = 'flex'
+                    }
+                }
+
+                function search_product(element){
+                    const search = document.getElementById('search_pruduct_input').value
+
+                    if(search != ''){
+                        window.location.href = '/readytobuy/'+search
+                    }
+                }
+            
+            
+            </script>
+        </template>
+    </data>
+</odoo>

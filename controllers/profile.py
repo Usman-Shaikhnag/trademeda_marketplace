@@ -61,7 +61,8 @@ class ProductController(http.Controller):
         actual_products = request.env['product.customer.images'].sudo().search([('id', 'in', product_ids)])
         
         vals = {
-            'products': actual_products
+            'products': actual_products,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
 
         return request.render('trademeda.wishlist_page',vals)
@@ -387,27 +388,48 @@ class ProductController(http.Controller):
             if kw.get('upload_product'):
                 product_image = kw.get('upload_product').read()
             else:
-                product_image = ''
+                product_image = None
             contact_person = kw.get('contact_person')
 
-            request.env['trademeda.rfq'].sudo().create({
-                'request_type':request_type,
-                'partner_id':partner_id.id,
-                'subcategory':subcategories.id,
-                'product_subsubcategory':subsubcategories.id,
-                'product_name':product,
-                'quantity':quantity,
-                'unit':unit.id,
-                'product_description':product_specification,
-                'target_price':target_price,
-                'currency':currency,
-                'destination':destination,
-                'shipping_terms':shipping_terms,
-                'payment_terms':payment_terms,
-                'suppliers_country':supplier_country,
-                'contact_person_name':contact_person,
-                'product_image':base64.b64encode(product_image),
+            if product_image:
 
-            })
-            return request.render('trademeda.homepage')
+                request.env['trademeda.rfq'].sudo().create({
+                    'request_type':request_type,
+                    'partner_id':partner_id.id,
+                    'subcategory':subcategories.id,
+                    'product_subsubcategory':subsubcategories.id,
+                    'product_name':product,
+                    'quantity':quantity,
+                    'unit':unit.id,
+                    'product_description':product_specification,
+                    'target_price':target_price,
+                    'currency':currency,
+                    'destination':destination,
+                    'shipping_terms':shipping_terms,
+                    'payment_terms':payment_terms,
+                    'suppliers_country':supplier_country,
+                    'contact_person_name':contact_person,
+                    'product_image':base64.b64encode(product_image),
+
+                })
+            else:
+                request.env['trademeda.rfq'].sudo().create({
+                    'request_type':request_type,
+                    'partner_id':partner_id.id,
+                    'subcategory':subcategories.id,
+                    'product_subsubcategory':subsubcategories.id,
+                    'product_name':product,
+                    'quantity':quantity,
+                    'unit':unit.id,
+                    'product_description':product_specification,
+                    'target_price':target_price,
+                    'currency':currency,
+                    'destination':destination,
+                    'shipping_terms':shipping_terms,
+                    'payment_terms':payment_terms,
+                    'suppliers_country':supplier_country,
+                    'contact_person_name':contact_person,
+
+                })
+            return request.redirect('/home')
 

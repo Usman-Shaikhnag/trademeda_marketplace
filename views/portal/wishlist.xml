@@ -33,6 +33,7 @@
                     </t>
                 </div>
             </main>
+            <t t-call="trademeda.footer"/>
             <script>
                 function removeFromWishlist(element){
                     const productId = element.getAttribute('data-product-id');

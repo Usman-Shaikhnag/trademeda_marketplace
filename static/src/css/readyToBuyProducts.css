@@ -1,0 +1,60 @@
+.main {
+  font-family: 'Helvetica', sans-serif;
+}
+h2 {
+  font-family: 'Avenir';
+}
+button {
+  font-family: 'Merriweather';
+}
+.search{
+    
+    width: 97%;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    border-radius: 5px;
+    gap: 0.5rem;
+}
+.search input {
+  
+  
+    padding: 10px;
+  
+    border: 1px solid #ddd;
+  
+    border-radius: 5px;
+    outline: none;
+    outline: none;
+    height: 2.7rem;
+    
+  }
+  .search input:focus{
+    outline: 2px solid rgb(199,8,8);
+  }
+  
+  .search button {
+  
+  
+    background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    border: none;
+  
+    cursor: pointer;
+    border-radius:5px;
+    color: #fdfdfd;
+    font-weight: 600;
+    font-size: 1.1rem;
+  
+  }
+  
+  .search button i {
+  
+    font-size: 18px;
+  
+    color: #fff;
+  
+  }
+
+  .search button:hover{
+    background-color: rgb(174, 6, 6);
+  }

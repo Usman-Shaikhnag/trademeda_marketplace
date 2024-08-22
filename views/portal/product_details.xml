@@ -80,7 +80,7 @@
                     <input type="phone" placeholder="Phone"/>
                     <input type="text" placeholder="Country"/>
                     <div class="actions">
-                        <button>Inquire now</button>
+                        <button>Enquire now</button>
                     </div>
                 </div>
 
@@ -90,6 +90,7 @@
             
             
         </main>
+        <!-- <t t-call="trademeda.footer"/> -->
 
         </template>
     </data>

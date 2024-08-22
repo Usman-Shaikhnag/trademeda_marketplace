@@ -174,6 +174,7 @@ class ProductCustomerImages(models.Model):
     upload_date = fields.Datetime("Upload Date")
     ready_to_ship = fields.Boolean("Ready to Ship")
     rts_quantity = fields.Integer("Ready to Ship Quantity")
+    views = fields.Integer("Views")
 
 
 class CustomerAwards(models.Model):
@@ -186,8 +187,19 @@ class CustomerAwards(models.Model):
     award_description  = fields.Text("Award Description")
     award_attachment = fields.Binary('Award')
     file_name = fields.Char("File Name")
-    award_verified = fields.Boolean(string="")
     public_display = fields.Boolean("Public Display")
+    state = fields.Selection([
+        ('pending_verification','Pending Verification'),
+        ('verified','Verified'),
+    ],string="State",default="pending_verification")
+
+    def action_verify(self):
+        for record in self:
+            if record.state != 'verified':
+                record.state = 'verified'
+            else:
+                return
+            
 
 
 class CustomerCertificates(models.Model):
@@ -200,8 +212,18 @@ class CustomerCertificates(models.Model):
     certificate_description  = fields.Text("Certificate Description")
     certificate_attachment = fields.Binary('Certificate')
     file_name = fields.Char("File Name")
-    certification_verified = fields.Boolean(string="")
     public_display = fields.Boolean("Public Display")
+    state = fields.Selection([
+        ('pending_verification','Pending Verification'),
+        ('verified','Verified'),
+    ],string="State",default="pending_verification")
+
+    def action_verify(self):
+        for record in self:
+            if record.state != 'verified':
+                record.state = 'verified'
+            else:
+                return
 
 
 class CustomerEmployees(models.Model):

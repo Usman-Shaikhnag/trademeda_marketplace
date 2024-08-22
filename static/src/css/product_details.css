@@ -9,10 +9,7 @@ body {
     background-color: #f6f6f6;
   
   }
-  header{
-    position: fixed;
-    width: 100%;
-  }
+ 
   
   .container {
   
@@ -30,95 +27,7 @@ body {
   
   }
   
-  .logo {
   
-    display: flex;
-  
-    align-items: center;
-  
-  }
-  
-  .logo img {
-  
-    margin: 0;
-    width: 200px;
-    height: 65px;
-  
-  }
-  
-  .logo span {
-  
-    font-size: 20px;
-  
-    font-weight: bold;
-  
-    color: orange;
-  
-  }
-  
-  .logo button, .action button{
-  
-    background-color: #ea5455;
-  
-    color: white;
-  
-    border: none;
-  
-    padding: 8px 16px;
-  
-    border-radius: 5px;
-  
-    margin-left: 10px;
-  
-    cursor: pointer;
-  
-  }
-  
-  .search {
-  
-    position: relative;
-  
-    width: 50%;
-  
-  }
-  
-  .search input {
-  
-    width: 100%;
-  
-    padding: 10px;
-  
-    border: 1px solid #ddd;
-  
-    border-radius: 5px;
-  
-  }
-  
-  .search button {
-  
-    position: absolute;
-  
-    top: 50%;
-  
-    right: 10px;
-  
-    transform: translateY(-50%);
-  
-    background-color: transparent;
-  
-    border: none;
-  
-    cursor: pointer;
-  
-  }
-  
-  .search button i {
-  
-    font-size: 18px;
-  
-    color: #ea5455;
-  
-  }
   
   .actions {
   
@@ -191,7 +100,8 @@ main > div {
 
 
 .product-section img{
-  width: 100%;
+  max-width: 100%;
+  min-width: 50%;
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 5px;
@@ -209,6 +119,7 @@ main > div {
 .contact-section {
   margin-top: 50px;
   margin-left: 50px;
+  color: rgb(199,8,8);
 }
 .contact-section button{
   margin-top: 10px;
@@ -220,4 +131,12 @@ main > div {
   height: 3px;
   border-radius: 5px;
   background-color: #ea5455;
+}
+.actions button{
+
+  background: rgb(199,8,8);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+}
+.product-details h3{
+  color: rgb(199,8,8);
 }

@@ -24,6 +24,7 @@
                         <field name="sample_policy"/>
                         <field name="ready_to_ship" />
                         <field name="rts_quantity" />
+                        <field name="views" />
 
 
                     </tree>
@@ -41,6 +42,7 @@
                         <field name="sample_policy"/>
                         <field name="ready_to_ship" />
                         <field name="rts_quantity" />
+                        <field name="views" />
                     </form>
                 </field>
             </page>
@@ -115,7 +117,7 @@
                         <field name="award_description"/>
                         <field name="award_attachment" filename="file_name"/>
                         <field name="file_name" invisible="1" />
-                        <field name="award_verified"/>
+                        <field name="state"/>
                         <field name="public_display"/>
 
                     </tree>
@@ -124,7 +126,7 @@
                         <field name="award_description"/>
                         <field name="award_attachment" filename="file_name"/>
                         <field name="file_name" invisible="1"/>
-                        <field name="award_verified"/>
+                        <field name="state"/>
                         <field name="public_display"/>
 
                     </form>
@@ -136,7 +138,7 @@
                         <field name="certificate_description"/>
                         <field name="certificate_attachment" filename="file_name"/>
                         <field name="file_name" invisible="1" />
-                        <field name="certification_verified"/>
+                        <field name="state"/>
                         <field name="public_display"/>
                     </tree>
                     <form>
@@ -144,7 +146,7 @@
                         <field name="certificate_description"/>
                         <field name="certificate_attachment" filename="file_name"/>
                         <field name="file_name" invisible="1"/>
-                        <field name="certification_verified"/>
+                        <field name="state"/>
                         <field name="public_display"/>
                     </form>
                 </field>
@@ -216,4 +218,23 @@
         </xpath>
     </field>
 </record>
+
+
+<record id="view_tree_supplier_products" model="ir.ui.view">
+        <field name="name">product.customer.images.tree</field>
+        <field name="model">product.customer.images</field>
+        <field name="arch" type="xml">
+            <tree string="Supplier Products">
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="product_name"/>
+                <field name="ready_to_ship"/>
+                <field name="views"/>
+
+            </tree>
+        </field>
+</record>
+
+
+
 </odoo>

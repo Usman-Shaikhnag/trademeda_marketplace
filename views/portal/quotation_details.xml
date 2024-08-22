@@ -36,7 +36,7 @@
                     <div class="post-details">
                         <div class="">
                             <p class=""><b class=""><i class="fa-solid fa-location-dot" style="margin-right:1rem;"></i>Destination: </b><t t-esc="rfq.destination.name"/></p>
-                            <p class=""><b class=""><i class="fa-solid fa-wallet" style="margin-right:1rem;"></i>Target Price: </b><t t-esc="rfq.target_price"/></p>
+                            <p class=""><b class=""><i class="fa-solid fa-wallet" style="margin-right:1rem;"></i>Target Price: </b><t t-esc="rfq.target_price"/> <t t-esc="rfq.currency.name"/></p>
                             <p class=""><b class=""><i class="fa-regular fa-credit-card" style="margin-right:1rem;"></i>Payment Terms: </b>
                             
                                 <t t-if="rfq.payment_terms == 'cash_advance'" >Cash in Advance</t>
@@ -89,6 +89,7 @@
                                     <div class="membership-details">
                                         Free Member, Supplier From <t t-esc="quotation.partner_id.country_id.name"/>
                                     </div>
+                                    <p class=""><t t-esc="quotation.message"/></p>
                                 </div>
                                 <!-- <div class="">
                                     <span class="divider-line"></span>
@@ -169,6 +170,7 @@
             </div>
             
             </main>
+            <t t-call="trademeda.footer"/>
             <script>
 
                 function open_popup(element){

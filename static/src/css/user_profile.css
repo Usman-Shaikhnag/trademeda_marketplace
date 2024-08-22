@@ -593,12 +593,14 @@ td {
 
 }
 
-#addAwardPopup{
+#addAwardPopup,
+#addCertificatePopup,
+#addUserPopup{
     display: none;
-    position: absolute;
-    bottom: 20%;
-    left: 45%;
-    width: 25%;
+    position: fixed;
+    top: 20vh;
+    left: 35%;
+    width: 50%;
     z-index: 100;
     background-color: #fdfdfd;
     border-radius: 5px;
@@ -684,7 +686,7 @@ input[type="checkbox"] {
     background-color: #fdfdfd;
     padding: 2%;
     color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     width: 75%;
 
 }
@@ -705,4 +707,23 @@ h4 {
 }
 h1{
     color:rgb(212, 37, 5);
+    font-family: 'Avenir';
+}
+h2 {
+    font-family: 'Avenir';
+
+}
+.end-rfq {
+    background: rgb(212, 37, 5);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #fdfdfd;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.end-rfq:hover {
+    outline: 2px solid rgb(212, 37, 5);
+    color: rgb(212, 37, 5);
+    background: transparent;
 }

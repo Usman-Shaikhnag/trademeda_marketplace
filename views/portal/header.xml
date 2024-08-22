@@ -30,16 +30,35 @@
                             <a t-attf-href="/profile"><i class="fas fa-user" style="color:#fff"></i></a>
                             
                         </div>
-                        <div class="hamburger-menu">
+                        <div onclick="toggle_menu(this)" class="hamburger-menu">
                             <span class="divider" style="margin-top: 5px;"></span>
                             <span class="divider" style="margin-top: 5px;"></span>
                             <span class="divider" style="margin-top: 5px;"></span>
+                            <div  id="menu-items" class="menu_items">
+                                    <ul>  
+                                        <t t-if="not logged_in">
+                                            <li><a t-attf-href="/signin">Signin</a></li>
+                                        </t>
+                                        <t t-else="">
+                                            <li><a t-attf-href="/signin">Logout</a></li>
+                                        </t>
+                                        <li><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></li>
 
+                                    </ul>
+                                </div>
                         </div>
                    </div>
 
                 </div>
                 <script>
+                    function toggle_menu(element){
+                    if(element.children[3].style.display == 'flex'){
+                        element.children[3].style.display = 'none'
+                    }
+                    else{
+                        element.children[3].style.display = 'flex'
+                    }
+                }
                     function wishlistPage(element){
                         let productIds = JSON.parse(localStorage.getItem('product_id')) || [];
                         let vals = {
@@ -76,7 +95,7 @@
                     function findSuppliers(element){
                         const supplierSearchQuery = document.getElementById('search-bar').value
                         console.log('Search',supplierSearchQuery)
-                        if(supplierSearchQuery != null){
+                        if(supplierSearchQuery != null &amp;&amp; supplierSearchQuery.trim() != ''){
 
                             window.location.href = '/findSuppliers/'+supplierSearchQuery
                         }
@@ -84,7 +103,7 @@
                     function findBuyers(element){
                         const searchQuery = document.getElementById('search-bar').value
                         console.log('Search',searchQuery)
-                        if(searchQuery != null){
+                        if(searchQuery != null &amp;&amp; searchQuery.trim() != ''){
 
                             window.location.href = '/findBuyers/'+searchQuery
                         }

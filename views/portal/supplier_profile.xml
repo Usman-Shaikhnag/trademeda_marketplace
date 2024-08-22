@@ -237,7 +237,7 @@
                                 <div class="award-certificate-card">
                                         <div class="award-certificate-image">
                                             <t t-if="award.award_attachment">
-                                                <t t-if="certificate.file_name and (award.file_name.endswith('.png') or award.file_name.endswith('.jpg') or award.file_name.endswith('.jpeg'))">
+                                                <t t-if="award.file_name and (award.file_name.endswith('.png') or award.file_name.endswith('.jpg') or award.file_name.endswith('.jpeg'))">
                                                     <img t-att-src="'data:image/png;base64,' + award.award_attachment.decode('utf-8')" alt="Award Image" class="certificate_award_image"/>
                                                 </t>
                                                 <!-- If the file is a PDF -->

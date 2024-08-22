@@ -28,6 +28,8 @@
                             <field name="company_name"/>
                             <field name="phone_number"/>
                             <field name="website"/>
+                            <field name="views"/>
+
                         </group>
 
                         <group>
@@ -44,6 +46,7 @@
                             <field name="contact_person_name"/>
                             <field name="company_address"/>
                             <field name="email_id"/>
+                            
                         </group>
                     </group>
                     <field name="quotations">
@@ -68,6 +71,8 @@
         <field name="arch" type="xml">
             <tree string="Product Category">
                 <field name="rfq_no"/>
+                <field name="state"/>
+                <field name="views"/>
             </tree>
         </field>
     </record>

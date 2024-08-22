@@ -45,6 +45,28 @@
         </field>
     </record>
 
+    <record id="action_supplier_products" model="ir.actions.act_window">
+        <field name="name">Supplier Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.customer.images</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Supplier Products</p>
+        </field>
+    </record>
+
+    <record id="action_customer_awards" model="ir.actions.act_window">
+        <field name="name">Awards</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.awards</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Awards</p>
+        </field>
+    </record>
+
     <record id="action_countries" model="ir.actions.act_window">
         <field name="name">Countries</field>
         <field name="type">ir.actions.act_window</field>
@@ -78,6 +100,17 @@
         </field>
     </record>
 
+    <record id="action_customer_certificates" model="ir.actions.act_window">
+        <field name="name">Certificates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.certificates</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Certificates</p>
+        </field>
+    </record>
+
     <!-- Menu structure -->
     <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
     <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
@@ -85,10 +118,16 @@
     <menuitem id="submenu_product_subcategory" name="Product Subcategories" parent="submenu_products" action="action_product_subcategory" sequence="11"/>
     <menuitem id="submenu_product_subsubcategory" name="Product Sub-Subcategories" parent="submenu_products" action="action_product_subsubcategory" sequence="11"/>
     <menuitem id="submenu_product_template" name="Products" parent="submenu_products" action="action_product_template" sequence="12"/>
+    <menuitem id="submenu_supplier_products" name="Supplier Products" parent="submenu_products" action="action_supplier_products" sequence="13"/>
     <menuitem id="submenu_country" name="Countries" parent="submenu_products" action="action_countries" sequence="19"/>
     <menuitem id="menu_rfq" name="RFQ" parent="menu_trademeda" sequence="20"/>
     <menuitem id="submenu_rfq" name="RFQ" parent="menu_rfq" action="action_rfq" sequence="10"/>
     <menuitem id="submenu_quotations" name="Quotations" parent="menu_rfq" action="action_quotations" sequence="20"/>
+    <menuitem id="menu_certificates" name="Certificates" parent="menu_trademeda" sequence="20"/>
+    <menuitem id="submenu_awards" name="Awards" parent="menu_certificates" action="action_customer_awards" sequence="10"/>
+    <menuitem id="submenu_certificates" name="Certificates" parent="menu_certificates" action="action_customer_certificates" sequence="11"/>
+
+
 
 
 </odoo>

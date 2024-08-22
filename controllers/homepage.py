@@ -2,18 +2,26 @@ from odoo import http
 from odoo.http import request
 import base64
 import json
-
+from odoo.exceptions import ValidationError
 class HomepageController(http.Controller):
 
     @http.route('/home', auth='public', website=True)
     def home(self, **kwargs):
-        # import wdb;wdb.set_trace()
+        user = request.env.user
         product_categories = request.env['product.categories'].sudo().search([])
-        vals = {"product_categories": product_categories}
+        # if user == request.env.ref('base.public_user'):
+        #     logged_in:False
+        # else:
+        #     logged_in:True
+        # import wdb;wdb.set_trace()
+        vals = {
+            "product_categories": product_categories,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
         return request.render('trademeda.homepage',vals)
     
 
-
+    
     @http.route('/signup', auth='public', website=True)
     def signup(self, **kwargs):
         # import wdb;wdb.set_trace()
@@ -27,11 +35,19 @@ class HomepageController(http.Controller):
         
         return request.render('trademeda.signin')
     
+    @http.route('/logout', auth='user', website=True)
+    def logout(self, **kwargs):
+        request.session.logout(keep_db=False)
+        # import wdb;wdb.set_trace()
+        
+        return request.render('trademeda.signin')
+    
     @http.route('/product/<int:productId>', auth='public', website=True)
     def product(self,productId, **kwargs):
         product = request.env['product.customer.images'].sudo().search([('id','=',productId)])
         vals = {
-            'product':product
+            'product':product,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render('trademeda.product_details',vals)
     
@@ -55,7 +71,8 @@ class HomepageController(http.Controller):
             'subcategories':subcategories,
             'products':products,
             'user_products':user_products,
-            'rfqs':rfqs
+            'rfqs':rfqs,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
 
         }
         return request.render('trademeda.user_profile',vals)
@@ -68,9 +85,8 @@ class HomepageController(http.Controller):
 
         return {'subcategories': subcategory_list}
         
-    @http.route(['/signup/createuser'], method=["POST"], type="http", auth="public", website=True)
+    @http.route(['/signup/createuser'], methods=["POST"], type="http", auth="public", website=True)
     def CreateUser(self, **kw):
-        # import wdb;wdb.set_trace()
         if request.httprequest.method == 'POST':
             # Extract form data
             name = kw.get("name")
@@ -82,69 +98,60 @@ class HomepageController(http.Controller):
             password = kw.get("password")
             confirm_password = kw.get("confirm_password")
 
-
             # Basic validation
             if not all([name, city, zip_code, state, phone, email, password, confirm_password]):
-                return request.redirect("/signup?error=missing_fields")
+                raise ValidationError("Not all required fields are filled")
 
             if password != confirm_password:
-                return request.redirect("/signup?error=password_mismatch")
+                raise ValidationError("Passwords do not match")
 
             portal_group = request.env.ref('base.group_portal')
-            # Prepare user data for creation
-            user_data = {
-                "login": email,
-                'password': password,
-                'name': kw.get('company_name'),
-                
-
-                'groups_id': [(6, 0, [portal_group.id])]
-                # 'sel_groups_1_10_11':'[10]'
-                
-                # Add any additional fields if needed
-            }
             
-            # 'sel_groups_1_9_10':''
             try:
+                # Create the partner first
+                partner_data = {
+                    'name': kw.get('company_name'),
+                    'membership_state': 'free',
+                    'free_member': True,
+                    'company_type': 'company',
+                    'member_type': kw.get('role'),
+                    'supplier_products': kw.get('supplier_textarea'),
+                    'buyer_products': kw.get('buyer_textarea'),
+                    'trader_products': kw.get('trader_textarea'),
+                    'primary_business': kw.get('business-type'),
+                    'establishment_year': kw.get('establishment_year'),
+                    'annual_sales': kw.get('annual-sales'),
+                    'no_of_employees': kw.get('employees'),
+                    'user_name': name,
+                    'designation': kw.get('designation'),
+                    'street': kw.get('address'),
+                    'city': city,
+                    'zip': zip_code,
+                    'phone': phone,
+                    'area_code': kw.get('area_code'),
+                    'email': kw.get('company_email'),
+                    'website': kw.get('website'),
+                }
+
+                partner = request.env['res.partner'].sudo().create(partner_data)
+                
+                # Prepare user data for creation
+                user_data = {
+                    "login": email,
+                    'password': password,
+                    'name': name,
+                    'partner_id': partner.id,  # Link the created partner
+                    'groups_id': [(6, 0, [portal_group.id])]
+                }
+
                 # Create the user
                 request.env['res.users'].sudo().create(user_data)
-                # import wdb;wdb.set_trace()
 
-                request.env['res.partner'].sudo().create({
-                    'name':kw.get('company_name'),
-                    'membership_state':'free',
-                    # 'free_member':True,
-                    'company_type':'company',
-                    'member_type':kw.get('role'),
-                    'supplier_products':kw.get('supplier_textarea'),
-                    'buyer_products':kw.get('buyer_textarea'),
-                    'buyer_products':kw.get('buyer_textarea'),
-                    'trader_products':kw.get('trader_textarea'),
-                    'primary_business':kw.get('business-type'),
-                    'establishment_year':kw.get('establishment_year'),
-                    'annual_sales':kw.get('annual-sales'),
-                    'no_of_employees':kw.get('employees'),
-                    'user_name':kw.get('name'),
-                    'designation':kw.get('designation'),
-                    'street':kw.get('address'),
-                    # 'country_id':kw.get('country'),
-                    # 'state_id':kw.get('state'),
-                    'city':kw.get('city'),
-                    'zip':kw.get('zip_code'),
-                    # country code remaining 
-                    'phone':kw.get('phone_number'),
-                    'area_code':kw.get('area_code'),
-                    'email':kw.get('company_email'),
-                    'website':kw.get('website'),
-                })
-                
                 return request.redirect("/signin")
+
             except Exception as e:
                 # Handle exceptions, such as email already existing
-                emails = request.env['res.users'].sudo().search([])
-                if(email in emails):
-                    return request.redirect("/signup?error=creation_failed")
-                
+                raise ValidationError("Something went wrong: %s" % str(e))
 
         return request.redirect("/signup")
 
@@ -172,11 +179,7 @@ class HomepageController(http.Controller):
     def signin_redirect(self, **kwargs):
         return request.render('trademeda.signin')
     
-    @http.route('/profile/updateuser', auth='public', website=True)
-    def update_profile(self, **kwargs):
-        # import wdb;wdb.set_trace()
 
-        return request.render('trademeda.user_profile')
     
 
     @http.route(['/profile/updateuser'], method=["POST"], type="http", auth="public", website=True)
@@ -192,12 +195,18 @@ class HomepageController(http.Controller):
             state = kw.get("state")
             phone = kw.get("phone_number")
             email = kw.get("email")
+            designation = kw.get('designation')
+            address = kw.get('address')
+            website = kw.get('website')
+      
+
 
             partner_id.sudo().write({
                 'phone':phone,
                 'city':city,
                 'zip':zip_code,
-                'state_id':state,
+                'country_id':int(kw.get("country")),
+                'state_id':int(state),
                 'email':email
                 
 
@@ -229,6 +238,7 @@ class HomepageController(http.Controller):
             "products": products,
             'partner':partner_id,
             'product_enquiries':product_enquiries,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
             # 'pager':pager
 
             }
@@ -236,24 +246,132 @@ class HomepageController(http.Controller):
 
         return request.render('trademeda.supplier_profile',vals)
     
+    @http.route(['/deleteAward/<int:award_id>'], methods=["POST"], type="json", auth="user", website=True)
+    def deleteAward(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        award = request.env['customer.awards'].sudo().search([('partner_id.id','=',partner_id.id),('id','=',kw.get('award_id'))])
+        award.sudo().unlink()
+        # print("Partnerrrrr",partner_id)
+        
+
+    
+    
 
     @http.route(['/profile/updatedocuments'], method=["POST"], type="http", auth="user", website=True)
     def UpdateDocuments(self, **kw):
         # import wdb;wdb.set_trace()
         
- 
-        
         user = request.env.user
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
-            update_award_id = None
-            for key, value in kw.items():
-                if key.startswith('updated_update_award_'):
-                    update_award_id = int(key.split('_')[-1])
+            # update_award_id = None
+            # for key, value in kw.items():
+            #     if key.startswith('update_award_'):
+            #         update_award_id = int(key.split('_')[-1])
             award_list = []
+            award_name_list = []
+            award_description_list = []
+
             for rec in kw:
-                if "award" in rec:
-                    award_list.append(rec)
+                if "new_award" in rec:
+                    award_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_name_" in rec:
+                    award_name_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_description_" in rec:
+                    award_description_list.append(kw.get(rec))
+
+            combined_list = []
+
+            
+            for award_file, award_name, award_description in zip(award_list, award_name_list, award_description_list):
+                # import wdb;wdb.set_trace()
+                combined_list.append({
+                    'award_file': award_file.read(),
+                    'award_name': award_name,
+                    'award_description': award_description,
+                    'file_name':award_file.filename
+            })
+
+            for award in combined_list:
+                award_file = award.get('award_file')
+                award_name = award.get('award_name')
+                file_name = award.get('file_name')
+
+                award_description = award.get('award_description')
+
+                
+                # Read the file content and encode it to base64
+                if award_file:
+                    award_file_content = award_file
+                    award_file_encoded = base64.b64encode(award_file_content)
+                else:
+                    award_file_encoded = None  # Handle cases where no file is provided
+
+                # Create the award record
+                partner_id.awards.sudo().create({
+                    'partner_id': partner_id.id,
+                    'award_name': award_name,
+                    'file_name':file_name,
+                    'award_attachment': award_file_encoded,
+                    'award_description':award_description
+                })
+            # certificates 
+            certificate_list = []
+            certificate_name_list = []
+            certificate_description_list = []
+
+            for rec in kw:
+                if "new_certificate" in rec:
+                    certificate_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_cert_name_" in rec:
+                    certificate_name_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_cert_description_" in rec:
+                    certificate_description_list.append(kw.get(rec))
+            
+
+            combined_list = []
+            # import wdb;wdb.set_trace()
+
+            
+            for certificate_file, certificate_name, certificate_description in zip(certificate_list, certificate_name_list, certificate_description_list):
+                # import wdb;wdb.set_trace()
+                combined_list.append({
+                    'certificate_file': certificate_file.read(),
+                    'certificate_name': certificate_name,
+                    'certificate_description': certificate_description,
+                    'file_name':certificate_file.filename
+            })
+
+            for certificate in combined_list:
+                certificate_file = certificate.get('certificate_file')
+                certificate_name = certificate.get('certificate_name')
+                file_name = certificate.get('file_name')
+
+                certificate_description = certificate.get('certificate_description')
+
+                
+                # Read the file content and encode it to base64
+                if certificate_file:
+                    certificate_file_content = certificate_file
+                    certificate_file_encoded = base64.b64encode(certificate_file_content)
+                else:
+                    certificate_file_encoded = None  # Handle cases where no file is provided
+
+                # Create the certificate record
+                partner_id.certificates.sudo().create({
+                    'partner_id': partner_id.id,
+                    'certificate_name': certificate_name,
+                    'file_name':file_name,
+                    'certificate_attachment': certificate_file_encoded,
+                    'certificate_description':certificate_description
+                })
+
             # Extract form data
             company_registration = kw.get("company_registration").read()
             company_registration_name = kw.get("company_registration_name")
@@ -308,6 +426,7 @@ class HomepageController(http.Controller):
                     'tax_id_proof':base64.b64encode(tax_id_proof),
                     'tax_id_proof_name':tax_id_proof_name
                 })
+            
 
             return request.redirect("/profile")
         
@@ -360,20 +479,46 @@ class HomepageController(http.Controller):
     
     
     
-    @http.route('/deleterfq/<int:rfqId>',method=['POST'],type='json', auth='user', website=True)
+    @http.route('/deleterfq', methods=['POST'], type='json', auth='user', website=True)
     def deleteRfq(self, **kwargs):
-        import wdb;wdb.set_trace()
-        # user = request.env.user
-        # partner_id = user.partner_id
+        user = request.env.user
+        partner_id = user.partner_id
+        data = request.httprequest.get_json()
+        
+        if data:
+            rfq = request.env['trademeda.rfq'].sudo().search([('id', '=', int(data['rfqId'])), ('partner_id', '=', partner_id.id)])
+            if rfq:
+                try:
+                    rfq.sudo().write({'state': 'deleted'})
+                    return request.redirect('/profile')
+                except Exception as e:
+                    return request.redirect('/profile')
 
-        # rfq = request.env['trademeda.rfq'].sudo().search([('id','=',rfqId)])
-        # rfq.sudo().write({
-        #     'state':'deleted'
-        # })
+        return {'status': 'error', 'message': 'RFQ not found or deletion failed'}
+    
+    @http.route('/endRfq', methods=['POST'], type='json', auth='user', website=True)
+    def endRfq(self, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
+        data = request.httprequest.get_json()
+        
+        if data:
+            rfq = request.env['trademeda.rfq'].sudo().search([('id', '=', int(data['rfqId'])), ('partner_id', '=', partner_id.id)])
+            if rfq:
+                try:
+                    rfq.sudo().write({'state': 'closed'})
+                    return request.redirect('/profile')
+                except Exception as e:
+                    return request.redirect('/profile')
+
+        return {'status': 'error', 'message': 'RFQ not found or operation failed'}
 
     @http.route('/categories', auth='public', website=True)
     def categoriesPage(self, **kwargs):
-        return request.render('trademeda.categories')
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render('trademeda.categories',vals)
     
 
     @http.route('/categories/<int:category_id>', auth='public', website=True)
@@ -385,3 +530,4 @@ class HomepageController(http.Controller):
             'category':category
         }
         return request.render('trademeda.subcategories',vals)
+    

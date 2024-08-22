@@ -14,6 +14,7 @@
 
         'views/product_category.xml',
         'views/menuitems.xml',
+        'views/awards_certificates.xml',
         'views/customer_inherited.xml',
         'views/product_inherited.xml',
         'views/country_inherited.xml',
@@ -23,6 +24,7 @@
 
         
         'views/portal/header.xml',
+        'views/portal/footer.xml',
         'views/portal/homepage.xml',
         'views/portal/signup.xml',
         'views/portal/signin.xml',
@@ -35,6 +37,8 @@
         'views/portal/search.xml',
         'views/portal/categories.xml',
         'views/portal/subcategories.xml',
+        'views/portal/readyToBuyProducts.xml',
+
 
 
 
@@ -45,4 +49,13 @@
     ],
     'installable': True,
     'application': True,
+
+    'assets': {
+        'web.assets_backend': [
+            'https://fonts.googleapis.com/css2?family=Matemasie:wght@400;500&display=swap'
+        ],
+        'web.assets_frontend': [
+            'https://fonts.googleapis.com/css2?family=Matemasie:wght@400;500&display=swap'
+        ],
+    },
 }

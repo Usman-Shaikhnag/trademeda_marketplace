@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tree_customer_awards" model="ir.ui.view">
+        <field name="name">customer.awards.tree</field>
+        <field name="model">customer.awards</field>
+        <field name="arch" type="xml">
+            <tree string="Awards">
+                <field name="partner_id"/>
+                <field name="award_name"/>
+                <field name="award_description"/>
+                <field name="public_display"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_form_customer_awards" model="ir.ui.view">
+        <field name="name">customer.awards.form</field>
+        <field name="model">customer.awards</field>
+        <field name="arch" type="xml">
+            <form string="Awards">
+                <header>
+                    <button string="Verify" invisible="state not in ('pending_verification')" name="action_verify" type="object" class="oe_highlight"/>
+                    <field readonly="1" name="state" widget="statusbar"/>
+
+                </header>
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="award_name"/>
+                        <field name="award_description"/>
+
+                    </group>
+                    <group>
+                        
+                        <field name="public_display"/>
+                        <field name="award_attachment"/>
+                    </group>
+                </group>
+                
+
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_form_customer_certificates" model="ir.ui.view">
+        <field name="name">customer.certificates.form</field>
+        <field name="model">customer.certificates</field>
+        <field name="arch" type="xml">
+            <form string="certificates">
+                <header>
+                    <button string="Verify" invisible="state not in ('pending_verification')" name="action_verify" type="object" class="oe_highlight"/>
+                    <field readonly="1" name="state" widget="statusbar"/>
+
+                </header>
+                <group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="certificate_name"/>
+                        <field name="certificate_description"/>
+
+                    </group>
+                    <group>
+                        
+                        <field name="public_display"/>
+                        <field name="certificate_attachment"/>
+                    </group>
+                </group>
+                
+
+
+            </form>
+        </field>
+    </record>
+    <record id="view_tree_customer_certificates" model="ir.ui.view">
+        <field name="name">customer.certificates.tree</field>
+        <field name="model">customer.certificates</field>
+        <field name="arch" type="xml">
+            <tree string="Certificates">
+                <field name="partner_id"/>
+                <field name="certificate_name"/>
+                <field name="certificate_description"/>
+                <field name="public_display"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+<record id="view_search_customer_awards" model="ir.ui.view">
+        <field name="name">customer.awards.search.view</field>
+        <field name="model">customer.awards</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" string="Customer"/>
+                <searchpanel>
+                    <field name="state" enable_counters="1" />
+                </searchpanel>
+            </search>
+        </field>
+</record>
+
+<record id="view_search_customer_certificates" model="ir.ui.view">
+        <field name="name">customer.certificates.search.view</field>
+        <field name="model">customer.certificates</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" string="Customer"/>
+                <searchpanel>
+                    <field name="state" enable_counters="1" />
+                </searchpanel>
+            </search>
+        </field>
+</record>
+
+</odoo>

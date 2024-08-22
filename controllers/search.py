@@ -101,6 +101,7 @@ class SearchController(http.Controller):
             'buyer_search': False,
             'page': page,
             'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
 
@@ -201,6 +202,7 @@ class SearchController(http.Controller):
             'buyer_search': True,
             'page': page,
             'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
     
@@ -268,6 +270,240 @@ class SearchController(http.Controller):
             'buyer_search': False,
             'page': page,
             'total_pages': total_pages,
-            'searchByCategory':True
+            'searchByCategory':True,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
+    
+
+    @http.route('/readytobuy', method=['GET'], type='http', auth='public', website=True)
+    def searchAllReadyToBuyProduct(self, page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+
+        suppliers = request.env['product.customer.images'].sudo().search(
+            [('ready_to_ship','=',True)],
+            limit=per_page, offset=offset
+        )
+        total_suppliers = request.env['product.customer.images'].sudo().search_count(
+            [('ready_to_ship','=',True)]
+        )
+
+        related_products = request.env['product.template'].sudo().search([], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'suppliers': suppliers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.readyToBuy", vals)
+    
+
+    @http.route('/readytobuy/<string:product>', method=['GET'], type='http', auth='public', website=True)
+    def searchReadyToBuyProduct(self,product, page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+
+        suppliers = request.env['product.customer.images'].sudo().search(
+             [
+                '&',
+                ('ready_to_ship', '=', True),
+                '|',
+                ('product_id.name', 'ilike', product),
+                ('product_name', 'ilike', product)
+            ],
+            limit=per_page, offset=offset
+        )
+        total_suppliers = request.env['product.customer.images'].sudo().search_count(
+            [
+                '&',
+                ('ready_to_ship', '=', True),
+                '|',
+                ('product_id.name', 'ilike', product),
+                ('product_name', 'ilike', product)
+            ]
+        )
+
+        related_products = request.env['product.template'].sudo().search([('name', 'ilike', product)], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'suppliers': suppliers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.readyToBuy", vals)
+    
+
+
+    @http.route('/newArrivals', method=['GET'], type='http', auth='public', website=True)
+    def searchAllNewArrivals(self, page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+
+        suppliers = request.env['product.customer.images'].sudo().search(
+            [],
+            order='create_date desc',
+            limit=per_page, offset=offset
+        )
+        buyers = request.env['trademeda.rfq'].sudo().search(
+            [],order='create_date desc',limit=per_page, offset=offset)
+        total_suppliers = request.env['product.customer.images'].sudo().search_count(
+            []
+        )
+        rel = request.env['trademeda.rfq'].sudo().read_group(
+                            domain=[('product_subsubcategory', '!=', False)],
+                            fields=['product_subsubcategory', 'product_subsubcategory_count:count(product_subsubcategory)'],
+                            groupby=['product_subsubcategory'],
+                            orderby='product_subsubcategory_count desc')
+        
+
+
+        related_products = request.env['product.template'].sudo().search([], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'suppliers': suppliers,
+            'buyers': buyers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.findSuppliers", vals)
+    
+
+    @http.route('/featuredProducts', method=['GET'], type='http', auth='public', website=True)
+    def searchfeaturedProducts(self, page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+
+        suppliers = request.env['product.customer.images'].sudo().search(
+            [],
+            order='views desc',
+            limit=per_page, offset=offset
+        )
+        buyers = request.env['trademeda.rfq'].sudo().search(
+            [],order='views desc',limit=per_page, offset=offset)
+        total_suppliers = request.env['product.customer.images'].sudo().search_count(
+            []
+        )
+        # rel = request.env['trademeda.rfq'].sudo().read_group(
+        #                     domain=[('product_subsubcategory', '!=', False)],
+        #                     fields=['product_subsubcategory', 'product_subsubcategory_count:count(product_subsubcategory)'],
+        #                     groupby=['product_subsubcategory'],
+        #                     orderby='product_subsubcategory_count desc')
+        # import wdb;wdb.set_trace()
+
+
+        related_products = request.env['product.template'].sudo().search([], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'suppliers': suppliers,
+            'buyers': buyers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.findSuppliers", vals)
+
+    

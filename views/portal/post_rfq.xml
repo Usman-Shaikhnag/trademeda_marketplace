@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="category" name="category" onchange="category_change(this)" >
+                                    <select id="category" name="category" onchange="category_change(this)" required='required'>
                                         <option value=""></option>
 
                                         <t t-foreach="env['product.categories'].sudo().search([('category_type','=',request_typee)])" t-as="option">
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="select-container">
                                    
-                                    <select id="product_subcategory" name="product_subcategory" class="form-control" onchange="subcategory_change(this)">
+                                    <select id="product_subcategory" name="product_subcategory" class="form-control" onchange="subcategory_change(this)" required='required'>
                                         <option value=''></option>
                                         
                                     </select>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="select-container">
                                     
-                                <select id="product_subsubcategory" name="product_subsubcategory" class="form-control">
+                                <select id="product_subsubcategory" name="product_subsubcategory" class="form-control" required='required'>
                                     <option value=''></option>
                                     
                                 </select>
@@ -101,7 +101,7 @@
                                     <span class="">Product</span>
                                 </div>
                                 <div class="">
-                                    <input type="text" onchange="update_progress()" id="product_name" name="product"/>
+                                    <input type="text" onchange="update_progress()" id="product_name" name="product" required='required'/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:30%">
@@ -109,7 +109,7 @@
                                     <span class="">Quantity</span>
                                 </div>
                                 <div class="">
-                                    <input type="number" id="quantity" placeholder="1" name="quantity"/>
+                                    <input type="number" id="quantity" placeholder="1" name="quantity" required='required'/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:20%">
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="unit" name="unit">
+                                    <select id="unit" name="unit" required='required'>
                                         <option value=""></option>
 
                                         <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
@@ -135,7 +135,7 @@
                                 <span class="">Product Specification</span>
                             </div>
                             <div class="">
-                                <textarea onchange="update_progress()" id="product_specification" name="product_specification"/>
+                                <textarea onchange="update_progress()" id="product_specification" name="product_specification" required='required'/>
                                 
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                                     <span class="">Target Price</span>
                                 </div>
                                 <div class="">
-                                    <input type="number" onchange="update_progress()" id="target_price" placeholder="1" name="target_price"/>
+                                    <input type="number" onchange="update_progress()" id="target_price" placeholder="1" name="target_price" required='required'/>
                                 </div>
                             </div>
                             <div class="text-input" style="width:15%">
@@ -154,7 +154,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="currency" name="currency">
+                                    <select id="currency" name="currency" required='required'>
                                         <option value=""></option>
 
                                         <t t-foreach="env['res.currency'].sudo().with_context(active_test=False).search([])" t-as="option">
@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="destination" name="destination">
+                                    <select id="destination" name="destination" required='required'>
                                         <option value=""></option>
 
                                         <t t-foreach="env['res.country'].sudo().search([])" t-as="option">
@@ -188,7 +188,7 @@
                         <input type="hidden" id="payment_terms_value" />
                         <div class="" style="position:relative;">
                             <div onmouseout="hide_payment_terms(this)" class="payment_terms_info" id="payment_terms_info" style="display:none;">
-                                <ul>
+                                <ul style="color:#333;">
                                     <t t-set="payment_terms_value" t-value="'cash_advance'"/>
                                     <li class="cash_advance">The purchaser makes payment for the goods or services prior to their shipment or delivery.</li>
                                     <li class="letter_of_credit">Letter of Credit (L/C) - A bank guarantees payment to the seller upon presentation of documents proving that goods have been shipped or services performed according to agreed terms.</li>
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="shipping_terms" name="shipping_terms">
+                                    <select id="shipping_terms" name="shipping_terms" required='required'>
                                         <option value="fob">FOB (Free on Board)</option>
                                         <option value="fca">FCA (Free Carrier)</option> 
                                         <option value="exw">EXW (Ex Works)</option>                  
@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="select-container">
                                     
-                                    <select id="payment_terms" name="payment_terms" onchange="payment_terms_change(this)">
+                                    <select id="payment_terms" name="payment_terms" onchange="payment_terms_change(this)" required='required'>
                                         <option value="cash_advance">Cash in Advance</option>
                                         <option value="letter_of_credit">Letter of Credit</option> 
                                         <option value="documentary_collection">Documentary Collection</option>                  
@@ -287,6 +287,8 @@
                 </div>
                 
             </main>
+            <t t-call="trademeda.footer"/>
+
 
             <script>
                 function show_payment_terms(element){
@@ -300,54 +302,52 @@
                     })
                 } -->
                 function update_progress(){
-                    let progress = 6.25
-                    if(document.getElementById('product').value != '') {
-                        progress = progress + 6.25
-                    }
+                    let progress = 5
+                   
                     if(document.getElementById('upload_product').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 10
                     }
                     if(document.getElementById('category').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 10
                     }
                     if(document.getElementById('product_subcategory').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 10
                     }
                     if(document.getElementById('product_subsubcategory').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 10
                     }
                     if(document.getElementById('product_name').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 10
                     }
                     if(document.getElementById('quantity').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('unit').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('product_specification').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('target_price').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('currency').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('destination').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('shipping_terms').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     if(document.getElementById('payment_terms').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     <!-- if(document.getElementById('supplier_country').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     } -->
                     if(document.getElementById('contact_person').value != '') {
-                        progress = progress + 6.25
+                        progress = progress + 5
                     }
                     const progressBar = progress*3.6 + 'deg'
                     console.log(progressBar)

@@ -7,7 +7,10 @@ class RFQController(http.Controller):
 
     @http.route('/post_rfq_page', auth='user', website=True)
     def rfqPage(self, **kwargs):
-        return request.render('trademeda.rfq_page')
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render('trademeda.rfq_page',vals)
     
     @http.route('/rfq/fetchCategories/<int:request_type>', auth='user', website=True)
     def getCategories(self, request_type , **kwargs):
@@ -22,7 +25,8 @@ class RFQController(http.Controller):
     def viewrfqPage(self,rfqId, **kwargs):
         rfq = request.env['trademeda.rfq'].sudo().search([('id','=',rfqId)])
         vals = {
-            'rfq':rfq
+            'rfq':rfq,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render('trademeda.view_quotation',vals)
     

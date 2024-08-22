@@ -142,3 +142,10 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .responses h2{
     color: rgb(199,8,8);
 }
+.responses p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color:#333;
+    max-height: 100px;
+    overflow-y: scroll;
+}
