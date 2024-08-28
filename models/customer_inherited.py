@@ -175,6 +175,7 @@ class ProductCustomerImages(models.Model):
     ready_to_ship = fields.Boolean("Ready to Ship")
     rts_quantity = fields.Integer("Ready to Ship Quantity")
     views = fields.Integer("Views")
+    rating = fields.Float('Rating')
 
 
 class CustomerAwards(models.Model):

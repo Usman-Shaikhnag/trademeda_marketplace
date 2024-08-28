@@ -45,7 +45,7 @@
                     </div>
 
                     </div>
-                <div>
+                <div class="image-container">
                     <!-- <img src="/trademeda/static/src/img/product_shampoo.png"/> -->
                     <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
 
@@ -57,30 +57,62 @@
                         <t t-esc="product.product_description"/>
                     </p>
 
-                    <!-- <h3>Seller Details</h3> -->
-                    <!-- <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                            <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                        </svg>
-                    </span> -->
-                    <!-- <span class="bar"></span>
-                    <p>
-                        We are engaged in providing superior quality Di Ethylene Glycol to our most reliable clients.
-                        These Di Ethylene Glycol are appreciated by large number of clients due to high quality and durability.
-                        These products are available in market at most competitive rates.
-                    </p> -->
+                   
                 </div>
+                
             </div>
             <div class="contact-section">
                 <p><b>Contact Supplier</b></p>
                 <div class="inputs">
-                    <input type="text" placeholder="Company Name"/>
-                    <input type="text" placeholder="Your Name"/>
-                    <input type="email" placeholder="Your Email"/>
-                    <input type="phone" placeholder="Phone"/>
-                    <input type="text" placeholder="Country"/>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Message</span>
+                        </div>
+                        <div class="">
+                            <textarea placeholder="Message" name="message" id="message"/>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Your Name</span>
+                        </div>
+                        <div class="">
+                            <input placeholder="Your Name" name="buyer_name" id="buyer_name"/>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Your Email</span>
+                        </div>
+                        <div class="">
+                            <input type="email" placeholder="Your Email" name="buyer_email" id="buyer_email"/>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Your Phone</span>
+                        </div>
+                        <div class="">
+                            <input type="number" placeholder="Your Phone" name="buyer_phone" id="buyer_phone"/>
+                        </div>
+                    </div>
+                    <div class="text-input">
+                        <div class="">
+                            <span class="">Country</span>
+                        </div>
+                        <div class="select-container">           
+                            <select id="buyer_country" name="buyer_country" class="form-control">
+                                <t t-foreach="request.env['res.country'].sudo().search([])" t-as="country">
+                                    <option t-att-value="country.id">
+                                        <t t-esc="country.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        
+                    </div>
                     <div class="actions">
-                        <button>Enquire now</button>
+                        <button t-att-data-partner-id="partner.id" onclick="send_product_enquiry(this)">Enquire now</button>
                     </div>
                 </div>
 
@@ -91,6 +123,37 @@
             
         </main>
         <!-- <t t-call="trademeda.footer"/> -->
+        <script>
+            function send_product_enquiry(element){
+                    var partner_id = element.getAttribute('data-partner-id');
+                    console.log("Partner",partner_id)
+                    const name = document.getElementById('buyer_name').value
+                    const message = document.getElementById('message').value
+                    const email = document.getElementById('buyer_email').value
+                    const phone = document.getElementById('buyer_phone').value
+                    const product = document.getElementById('product_id').value
+                    const country = document.getElementById('buyer_country').value
+                    const data = {
+                        'name':name,
+                        'message':message,
+                        'email':email,
+                        'phone':phone,
+                        'country':country,
+                        'product':product
+                    }
+                    
+
+                    fetch('/supplier/sendproductenquiry/'+partner_id,{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the request headers
+                        },
+                        body: JSON.stringify(data),
+                    }).then(function(res) {
+                        document.getElementById('product-enquiry-form').style.display = 'none'
+                    })
+                }
+        </script>
 
         </template>
     </data>

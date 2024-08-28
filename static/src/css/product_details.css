@@ -76,7 +76,7 @@ body {
     display: grid; /* Define the grid container */
     grid-template-columns:2fr 1fr; /* Define the width ratio of the two columns */
     gap: 10px; /* Optional: Add some space between the columns */
-    padding: 10px; /* Optional: Add some padding around the grid */
+    padding: 2%; /* Optional: Add some padding around the grid */
     padding-top: 50px;
 }
 main > div {
@@ -95,16 +95,25 @@ main > div {
   display: flex;
   flex-direction: column;
   margin: 10px;
+  justify-content: center;
 
+}
+.image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .product-section img{
-  max-width: 100%;
-  min-width: 50%;
+  max-width: 90%;
+  height: auto;
+  min-width: 40%;
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 5px;
+  object-fit: contain;
+
 }
 
 .inputs input {
@@ -118,8 +127,11 @@ main > div {
 
 .contact-section {
   margin-top: 50px;
-  margin-left: 50px;
+  margin-left: 2%;
   color: rgb(199,8,8);
+}
+.contact-section p{
+  font-size: 2rem;
 }
 .contact-section button{
   margin-top: 10px;
@@ -139,4 +151,31 @@ main > div {
 }
 .product-details h3{
   color: rgb(199,8,8);
+}
+
+.text-input{
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  padding-left: 1%;
+}
+
+.text-input input,textarea,select{
+  height: 45px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 8px;
+  box-shadow: none;
+  outline: 1px solid #e0e0e0;
+  border: none;
+  padding-left: 10px;
+  background: transparent;
+}
+.text-input input:focus,textarea:focus,select:focus{
+  outline: 2px solid #b32f2d;
+
+}
+.text-input span {
+  color: #b32f2d;
+
 }

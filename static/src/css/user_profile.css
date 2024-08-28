@@ -594,11 +594,24 @@ td {
 }
 
 #addAwardPopup,
-#addCertificatePopup,
-#addUserPopup{
+#addCertificatePopup{
     display: none;
     position: fixed;
     top: 20vh;
+    left: 35%;
+    width: 50%;
+    z-index: 100;
+    background-color: #fdfdfd;
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+#addUserPopup{
+    display: none;
+    position: fixed;
+    top: 5vh;
     left: 35%;
     width: 50%;
     z-index: 100;

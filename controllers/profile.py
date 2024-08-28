@@ -431,5 +431,121 @@ class ProductController(http.Controller):
                     'contact_person_name':contact_person,
 
                 })
+            points = subsubcategories.subcategory_id.points + 100
+            subsubcategories.subcategory_id.sudo().write({
+                'points':points
+            })
             return request.redirect('/home')
+        
+
+
+    @http.route(['/profile/updateusers'], methods=["POST"], type="http", auth="user", website=True)
+    def UpdateUsers(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        if request.httprequest.method == 'POST':
+
+            username_list = []
+            userdesignation_list = []
+            contact_list = []
+            email_list = []
+
+
+            for rec in kw:
+                if "new_user_" in rec:
+                    username_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_user_designation_" in rec:
+                    userdesignation_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_user_contact" in rec:
+                    contact_list.append(kw.get(rec))
+            for rec in kw:
+                if "new_user_email" in rec:
+                    email_list.append(kw.get(rec))
+
+            combined_list = []
+
+        for user_name, user_designation, user_contact,user_email in zip(username_list, userdesignation_list, contact_list,email_list):
+                # import wdb;wdb.set_trace()
+                combined_list.append({
+                    'user_name': user_name,
+                    'user_designation': user_designation,
+                    'user_contact':user_contact,
+                    'user_email':user_email
+
+            })
+        for user in combined_list:
+                username = user.get('user_name')
+                userdesignation = user.get('user_designation')
+                userContact = user.get('user_contact')
+                userEmail = user.get('user_email')
+
+
+
+                
+               
+                partner_id.customer_employees.sudo().create({
+                    'partner_id': partner_id.id,
+                    'employee_name': username,
+                    'employee_designation': userdesignation,
+                    'employee_contact': userContact,
+                    'employee_email': userEmail
+
+                    
+                })
+       
+        return request.redirect('/profile')
+
+    @http.route(['/profile/updateProduct/<int:productId>'], methods=["POST"], type="json", auth="user", website=True)
+    def UpdateProduct(self, productId, **kw):
+        # import wdb;wdb.set_trace()
+
+        user = request.env.user
+        partner_id = user.partner_id
+        
+        if request.httprequest.json:
+            data = request.httprequest.json
+            
+            # Extracting fields from the JSON payload
+            delivery_days = data['delivery_days']
+            packaging_requirement = data['packaging_requirement']
+            payment_mode = data['payment_mode']
+            product_description = data['product_description']
+            product_price_usd = data['product_price_usd']
+            product_quantity = data['product_quantity']
+            ready_to_ship = data['ready_to_ship']
+            rts_quantity = data['rts_quantity']
+            sample_policy = data['sample_policy']
+            product_image = data.get('product_image')
+
+            # Searching for the product associated with the current partner
+            product = request.env['product.customer.images'].sudo().search([
+                ('id', '=', productId),
+                ('partner_id', '=', partner_id.id)
+            ])
+
+            # Prepare the values to be updated
+            update_vals = {
+                'product_description': product_description,
+                'product_quantity': product_quantity,
+                'delivery_days': delivery_days,
+                'product_price_usd': product_price_usd,
+                'sample_policy': sample_policy,
+                'ready_to_ship': ready_to_ship,
+                'rts_quantity': rts_quantity,
+                'packaging_requirement': packaging_requirement,
+                'payment_mode': payment_mode
+            }
+
+            # If there's a product image, decode it from base64 and add to update_vals
+            if product_image:
+                update_vals['product_image'] = base64.b64decode(product_image)
+
+            # Updating the product record
+            product.sudo().write(update_vals)
+        else:
+            return
+
 

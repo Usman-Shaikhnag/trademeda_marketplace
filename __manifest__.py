@@ -6,7 +6,7 @@
     'author': 'eSehat Meditech Ltd',
     'license': 'LGPL-3',
     'category': 'Category',
-    'depends': ['base','stock','contacts'],  # List your dependencies here
+    'depends': ['base','web','stock','contacts'],  # List your dependencies here
     'data': [
         'data/sequence_data.xml',
         'security/groups.xml',
@@ -19,6 +19,7 @@
         'views/product_inherited.xml',
         'views/country_inherited.xml',
         'views/rfq.xml',
+        'views/customer_rating.xml',
         'views/quotation.xml',
 
 
@@ -39,10 +40,6 @@
         'views/portal/subcategories.xml',
         'views/portal/readyToBuyProducts.xml',
 
-
-
-
-
     ],
     'demo': [
         # 'demo/demo_data.xml',
@@ -51,11 +48,11 @@
     'application': True,
 
     'assets': {
-        'web.assets_backend': [
-            'https://fonts.googleapis.com/css2?family=Matemasie:wght@400;500&display=swap'
-        ],
         'web.assets_frontend': [
-            'https://fonts.googleapis.com/css2?family=Matemasie:wght@400;500&display=swap'
+            'trademeda/static/src/js/filter2.js',
+            # 'trademeda/static/src/legacy/js/public/filters.js',
+            # 'trademeda/static/**/*',
+
         ],
     },
 }

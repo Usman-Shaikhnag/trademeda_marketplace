@@ -25,6 +25,7 @@
                         <field name="ready_to_ship" />
                         <field name="rts_quantity" />
                         <field name="views" />
+                        <field name="rating"/>
 
 
                     </tree>
@@ -43,6 +44,7 @@
                         <field name="ready_to_ship" />
                         <field name="rts_quantity" />
                         <field name="views" />
+                        <field name="rating"/>
                     </form>
                 </field>
             </page>
@@ -230,6 +232,7 @@
                 <field name="product_name"/>
                 <field name="ready_to_ship"/>
                 <field name="views"/>
+                <field name="rating"/>
 
             </tree>
         </field>

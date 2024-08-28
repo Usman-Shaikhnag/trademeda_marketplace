@@ -148,9 +148,9 @@ main{
 
 .product-image img {
     border-radius: 10px;
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
 }
 
 .product-info {

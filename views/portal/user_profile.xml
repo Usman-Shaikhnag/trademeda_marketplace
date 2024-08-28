@@ -812,7 +812,7 @@
                                                             
                                                             <button type="button" style="background: transparent;border: none;" t-att-data-award-id="award_tuple[1].id" onclick="deleteAwardFile(this)">
                                                         
-                                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                                                <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
                                                             </button>
                                                             
                                                         </td>
@@ -873,7 +873,7 @@
                                                             
                                                             <button type="button" style="background: transparent;border: none;" t-att-data-certificate-id="certificate_tuple[1].id" onclick="deletecertificateFile(this)">
                                                         
-                                                                <i class="fa-solid fa-trash" style="color:red;"></i>
+                                                                <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
                                                             </button>
                                                             
                                                         </td>
@@ -1038,7 +1038,7 @@
                                         <div class="productImage">
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" id="edit-product_image" alt="Product Image"/>
                                             <div class="file-upload-wrapper" style="align-self: flex-end;">
-                                                <input onchange="news_image_change(this)" type="file" id="update_product_image" name="update_product_image" data-file-name="update_product_image" data-delete-btn="update_update_product_image"/>
+                                                <input onchange="product_image_change(this)" type="file" id="update_product_image" name="update_product_image" data-file-name="update_product_image" data-delete-btn="update_update_product_image"/>
                                                 <button type="button"><label for="update_product_image"><i class="fas fa-camera"></i>Update Photo</label></button>
                                                 <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                             </div>
@@ -1094,8 +1094,20 @@
                                                     <div class="">
                                                         <span class="">Payment Mode</span>
                                                     </div>
-                                                    <div class="">
-                                                        <input name="edit-payment_mode" id="edit-payment_mode" t-att-value="product.payment_mode" />
+                                                    <div class="select-container">
+                                    
+                                                        <select id="edit-payment_mode" name="payment_mode">
+                                                            <option value="cash_advance">Cash in Advance</option>
+                                                            <option value="letter_of_credit">Letter of Credit</option> 
+                                                            <option value="documentary_collection">Documentary Collection</option>                  
+                                                            <option value="open_account">Open Account</option>                  
+                                                            <option value="advance_payment">Advance Payment</option>                  
+                                                            <option value="consignment">Consignment</option>                  
+                                                            <option value="cash_on_delivery">Cash on Delivery (COD)</option>                  
+                                                            <option value="payment_in_installments">Payment in Installments</option>                  
+                                                            <option value="bill_of_exchange">Bill of Exchange</option>                  
+                                                            <option value="telegraphic_transfer">Telegraphic transfer</option>  
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1224,7 +1236,7 @@
                         </div>
 
                         <div class="inner-card" id="user_management">
-                            <form action="/profile/updatedocuments" method="post" enctype="multipart/form-data" class="">
+                            <form action="/profile/updateusers" method="post" enctype="multipart/form-data" class="">
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                                 
                                 <div class="heading">
@@ -1244,6 +1256,7 @@
                                                     <th>Name</th>
                                                     <th>Designation</th>
                                                     <th>Contact</th>
+                                                    <th>Email</th>
 
                                                 </tr>
                                                 
@@ -1254,12 +1267,9 @@
                                                     <tr>
                                                         <td>
                                                             
-                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" >
+                                                            <button type="button" style="background: transparent;border: none;"  data-toggle="modal" onclick="deleteAwardFile(this)">
                                                         
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(199,8,8)" class="bi bi-trash" viewBox="0 0 16 16">
-                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"></path>
-                                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"></path>
-                                                                </svg>
+                                                                <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
                                                             </button>
                                                             
                                                         </td>
@@ -1273,10 +1283,16 @@
                                                         <td>
                                                             <t t-esc="employee.employee_contact"  />
                                                         </td>
+                                                        <td>
+                                                            <t t-esc="employee.employee_email"  />
+                                                        </td>
                                                     </tr>
                                                 </t>
                                             </tbody>
                                         </table>
+                                        <div class="button-container">
+                                            <button type="submit">Save</button>
+                                        </div>
                                         </div>
                                     </t>
                                 </div>
@@ -1309,6 +1325,15 @@
                                     </div>
                                     <div class="">
                                         <input placeholder="" name="user_contact" id="user_contact" class="form-control"/>
+
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Email</span>
+                                    </div>
+                                    <div class="">
+                                        <input placeholder="" name="user_email" id="user_email" class="form-control"/>
 
                                     </div>
                                 </div>
@@ -1644,24 +1669,23 @@
 
 
                 
-                function save_edited_product(element){
+                <!-- function save_edited_product(element){
                     const productId = element.getAttribute('ProductId')
-                    const product_variety = document.getElementById('edit-product_variety').value
                     const product_description = document.getElementById('edit-product_description').value
                     const product_quantity = document.getElementById('edit-product_quantity').value
                     const packaging_requirement = document.getElementById('edit-packaging_requirement').value
                     const delivery_days = document.getElementById('edit-delivery_days').value
                     const product_price_usd = document.getElementById('edit-product_price_usd').value
                     const payment_mode = document.getElementById('edit-payment_mode').value
-                    const ready_to_ship = document.getElementById('edit-ready_to_ship').value
+                    const ready_to_ship = document.getElementById('edit-ready_to_buy').value
                     const rts_quantity = document.getElementById('edit-rts_quantity').value
                     const product_image = document.getElementById('edit-product_image').src.split(',')[1]
                     const update_product_image = document.getElementById('update_product_image')
                     const sample_policy = document.getElementById('edit-sample_policy').value
 
+
                     const vals = {
                         
-                        'product_variety':product_variety,
                         'product_description':product_description,
                         'product_quantity':product_quantity,
                         'packaging_requirement':packaging_requirement,
@@ -1683,6 +1707,98 @@
                     }).then(function(res){
                         console.log(res)
                     })
+                } -->
+                function product_image_change(element) {
+                    console.log("Image file selected");
+                    debugger;
+                    const file = element.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const imgElement = element.parentNode.previousElementSibling;
+                            if (imgElement &amp;&amp; imgElement.tagName === 'IMG') {
+                                imgElement.src = e.target.result;
+                                console.log("Image source updated to:", e.target.result);
+                            } else {
+                                console.log("Image element not found or not an IMG tag.");
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        console.log("No file selected.");
+                    }
+                }
+
+
+                function save_edited_product(element) {
+                    const productId = element.getAttribute('ProductId');
+                    const product_description = document.getElementById('edit-product_description').value;
+                    const product_quantity = document.getElementById('edit-product_quantity').value;
+                    const packaging_requirement = document.getElementById('edit-packaging_requirement').value;
+                    const delivery_days = document.getElementById('edit-delivery_days').value;
+                    const product_price_usd = document.getElementById('edit-product_price_usd').value;
+                    const payment_mode = document.getElementById('edit-payment_mode').value;
+                    const ready_to_ship = document.getElementById('edit-ready_to_buy').checked;
+                    const rts_quantity = document.getElementById('edit-rts_quantity').value;
+                    const sample_policy = document.getElementById('edit-sample_policy').value;
+                    
+                    const product_image_input = document.getElementById('update_product_image');
+                    let product_image = null;
+
+                    if (product_image_input.files &amp;&amp; product_image_input.files[0]) {
+                        const reader = new FileReader();
+                        reader.onloadend = function() {
+                            product_image = reader.result.split(',')[1]; // Get base64 encoded image
+
+                            const vals = {
+                                'product_description': product_description,
+                                'product_quantity': product_quantity,
+                                'packaging_requirement': packaging_requirement,
+                                'delivery_days': delivery_days,
+                                'product_price_usd': product_price_usd,
+                                'payment_mode': payment_mode,
+                                'ready_to_ship': ready_to_ship,
+                                'rts_quantity': rts_quantity,
+                                'sample_policy': sample_policy,
+                                'product_image': product_image
+                            };
+
+                            fetch('/profile/updateProduct/' + productId, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(vals),
+                            }).then(function(res) {
+                                console.log(res);
+                                // handle response or reload page
+                            });
+                        };
+                        reader.readAsDataURL(product_image_input.files[0]);
+                    } else {
+                        const vals = {
+                            'product_description': product_description,
+                            'product_quantity': product_quantity,
+                            'packaging_requirement': packaging_requirement,
+                            'delivery_days': delivery_days,
+                            'product_price_usd': product_price_usd,
+                            'payment_mode': payment_mode,
+                            'ready_to_ship': ready_to_ship,
+                            'rts_quantity': rts_quantity,
+                            'sample_policy': sample_policy
+                        };
+
+                        fetch('/profile/updateProduct/' + productId, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(vals),
+                        }).then(function(res) {
+                            console.log(res);
+                            // handle response or reload page
+                        });
+                    }
                 }
 
 
@@ -1894,6 +2010,7 @@
                 }
                 function news_image_change(element){
                     const file = element.files[0];
+                    debugger;
                     if (file) {
                         const reader = new FileReader();
                         reader.onload = function(e) {
@@ -2015,7 +2132,97 @@
                     document.getElementById('addCertificatePopup').style.display = "none"
 
                 }
-                
+                function addUser(element){
+                    let table_body = document.getElementById('employee_table').children[1]
+                    let table_length = table_body.children.length
+                    const newRow = document.createElement('tr');
+
+                    const deleteCell = document.createElement('td');
+                    const nameCell = document.createElement('td');
+                    const designationCell = document.createElement('td');
+                    const contactCell = document.createElement('td');
+                    const emailCell = document.createElement('td');
+
+
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.style = 'background:transparent;border:none;';
+                    deleteButton.onclick = function() {
+                        openDeleteUser(deleteButton);
+                    };
+
+                    // Create the SVG icon and append it to the button
+                    deleteButton.innerHTML = `
+                        <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
+                    `;
+
+
+
+                    row_cnt = Number(table_length)+1
+
+                    const userName = document.createElement('input');
+                    userName.type = 'text'
+                    userName.id = 'user_'+row_cnt
+                    userName.name = 'new_user_'+row_cnt
+                    userName.style.display = 'block'
+                    
+                    const userDesignation = document.createElement('input');
+                    userDesignation.type = 'text'
+                    userDesignation.id = 'user_designation_'+row_cnt
+                    userDesignation.name = 'new_user_designation_'+row_cnt
+                    userDesignation.style.display = 'block'
+
+                    const userContact = document.createElement('input');
+                    userContact.type = 'text'
+                    userContact.id = 'user_contact_'+row_cnt
+                    userContact.name = 'new_user_contact'+row_cnt
+                    userContact.style.display = 'block'
+
+                    const userEmail = document.createElement('input');
+                    userEmail.type = 'text'
+                    userEmail.id = 'user_email_'+row_cnt
+                    userEmail.name = 'new_user_email'+row_cnt
+                    userEmail.style.display = 'block'
+
+
+                    
+                    const user_name  = document.getElementById('user_name');
+                    const user_designation = document.getElementById('user_designation');
+                    const user_contact = document.getElementById('user_contact');
+                    const user_email = document.getElementById('user_email');
+
+
+
+                    if(user_name.value.trim() != '' &amp;&amp; user_contact.value.trim() != '' &amp;&amp; user_name != null &amp;&amp; user_contact != null){
+                        userName.value = user_name.value
+                        userDesignation.value = user_designation.value
+                        userContact.value = user_contact.value
+                        userEmail.value = user_email.value
+
+
+                    }
+                    else{
+                        alert("Name or contact cannot be empty.")
+                    }
+                    deleteCell.appendChild(deleteButton)
+                    nameCell.appendChild(userName)
+                    designationCell.appendChild(userDesignation)
+                    contactCell.appendChild(userContact)
+                    emailCell.appendChild(userEmail)
+
+
+                    newRow.appendChild(deleteCell)
+                    newRow.appendChild(nameCell)
+                    newRow.appendChild(designationCell)
+                    newRow.appendChild(contactCell)
+                    newRow.appendChild(emailCell)
+
+
+                    table_body.appendChild(newRow);
+                    
+
+                }
 
                 function addAward(element){
                     let table_body = document.getElementById('award_table').children[1]
@@ -2036,7 +2243,7 @@
 
                     // Create the SVG icon and append it to the button
                     deleteButton.innerHTML = `
-                        <i class="fa-solid fa-trash" style="color:red;"></i>
+                        <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
                     `;
                     const awardCell = document.createElement('td');
                     const awardFile = document.createElement('td');
@@ -2133,6 +2340,23 @@
                     })
                 }
 
+                function deleteUser(element) {
+                    let userId = element.getAttribute('data-award-id');
+                    const vals = {
+                        'userId':userId
+                    }
+                    console.log(vals)
+                    fetch('/deleteUser/'+userId,{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the request headers
+                        },
+                        body:JSON.stringify(vals)
+                    }).then(function(data){
+                        window.location.href = '/profile'
+                    })
+                }
+
                 function addCertificate(element){
                     let table_body = document.getElementById('certificate_table').children[1]
                     let table_length = table_body.children.length
@@ -2152,7 +2376,7 @@
 
                     // Create the SVG icon and append it to the button
                     deleteButton.innerHTML = `
-                        <i class="fa-solid fa-trash" style="color:red;"></i>
+                        <i class="fa-solid fa-trash" style="rgba(199,8,8,1);"></i>
                     `;
                     const certificateCell = document.createElement('td');
                     const certificateFile = document.createElement('td');
@@ -2234,12 +2458,15 @@
 
                 function openDeleteAward(element){
                     var awardId = element.getAttribute('data-award-id');
-                    console.log("Awardd",awardId)
                     element.parentElement.parentElement.remove()
                 }
                 function openDeleteCertificate(element){
                     let certificateId = element.getAttribute('data-certificate-id');
-                    console.log("Awardd",certificateId)
+                    element.parentElement.parentElement.remove()
+                }
+
+                function openDeleteUser(element){
+                    var awardId = element.getAttribute('data-user-id');
                     element.parentElement.parentElement.remove()
                 }
 

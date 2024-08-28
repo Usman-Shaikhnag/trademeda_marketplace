@@ -34,15 +34,15 @@
                             <span class="divider" style="margin-top: 5px;"></span>
                             <span class="divider" style="margin-top: 5px;"></span>
                             <span class="divider" style="margin-top: 5px;"></span>
-                            <div  id="menu-items" class="menu_items">
+                            <div style="display:none;" id="menu-items" class="menu_items">
                                     <ul>  
                                         <t t-if="not logged_in">
-                                            <li><a t-attf-href="/signin">Signin</a></li>
+                                            <a t-attf-href="/signin"><li>Signin</li></a>
                                         </t>
                                         <t t-else="">
-                                            <li><a t-attf-href="/signin">Logout</a></li>
+                                            <a t-attf-href="/signin"><li>Logout</li></a>
                                         </t>
-                                        <li><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></li>
+                                        <a t-attf-href="/post_rfq_page"><li>Post Buy Requirements</li></a>
 
                                     </ul>
                                 </div>

@@ -44,10 +44,19 @@ class HomepageController(http.Controller):
     
     @http.route('/product/<int:productId>', auth='public', website=True)
     def product(self,productId, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
         product = request.env['product.customer.images'].sudo().search([('id','=',productId)])
+
+        subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',product.product_id.subcategory_id.name)],limit=1)
+        points = subcategory.points + 2
+        subcategory.sudo().write({
+            'points':points
+        })
         vals = {
             'product':product,
-            'logged_in':request.env.user != request.env.ref('base.public_user')
+            'logged_in':request.env.user != request.env.ref('base.public_user'),
+            'partner':partner_id
         }
         return request.render('trademeda.product_details',vals)
     
@@ -215,14 +224,15 @@ class HomepageController(http.Controller):
 
 
 
-    @http.route('/profile/supplier', auth='public', website=True)
-    def supplier_profile(self,page=1, **kwargs):
+    @http.route('/profile/supplier/<int:supplier_id>', auth='public', website=True)
+    def supplier_profile(self,supplier_id,page=1, **kwargs):
         # import wdb;wdb.set_trace()
         user = request.env.user
-        partner_id = user.partner_id
+        # partner_id = user.partner_id
         # items_per_page = 10
         # offset = (page - 1) * items_per_page
-        products = request.env['product.customer.images'].sudo().search([('partner_id','=',7)])
+        products = request.env['product.customer.images'].sudo().search([('partner_id','=',supplier_id)])
+        partner_id = request.env['res.partner'].sudo().search([('id','=',supplier_id)])
 
         # total_enquiries = partner_id.product_enquiries.sudo().search_count([])
         product_enquiries = partner_id.product_enquiries.sudo().search([], order='create_date desc')
@@ -255,7 +265,13 @@ class HomepageController(http.Controller):
         award.sudo().unlink()
         # print("Partnerrrrr",partner_id)
         
-
+    @http.route(['/deleteUser/<int:user_id>'], methods=["POST"], type="json", auth="user", website=True)
+    def deleteUser(self, **kw):
+        # import wdb;wdb.set_trace()
+        user = request.env.user
+        partner_id = user.partner_id
+        user = request.env['customer.employees'].sudo().search([('partner_id.id','=',partner_id.id),('id','=',kw.get('user_id'))])
+        user.sudo().unlink()
     
     
 

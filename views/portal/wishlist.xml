@@ -33,7 +33,9 @@
                     </t>
                 </div>
             </main>
-            <t t-call="trademeda.footer"/>
+            <footer style="padding:0;">
+                <t t-call="trademeda.footer"/>
+            </footer>
             <script>
                 function removeFromWishlist(element){
                     const productId = element.getAttribute('data-product-id');
@@ -44,6 +46,9 @@
                             alert('Failed to remove item from wishlist.');
                         }
                     })
+                }
+                function fetchFromLocalStorage(){
+                    
                 }
             </script>
         </template>

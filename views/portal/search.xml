@@ -2,6 +2,7 @@
     <data>
         <template id="findSuppliers" name="Suppliers">
          <xpath expr="." position="inside">
+            <script type="text/javascript" src="/trademeda/static/src/js/filter2.js"></script>
             <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         </xpath>
@@ -17,8 +18,19 @@
                     <t t-esc="supplier.product_name"/>
                 </div>
                 </t> -->
+            <script>
+                function select_country(element){
+                    const val = element.getAttribute('countryId')
+                    console.log("Val",val)
+                    let country_array = document.getElementById('country_ids_input').getAttribute('countryArray')
+                    console.log(country_array)
+                    country_array.append(val)
+                    console.log(country_array)
+                }
+                
+            </script>
             <main class="">
-
+                
             
                 <div class="left-section">
                     <t t-if="related_products">
@@ -41,10 +53,14 @@
                 </div>
                 <div class="right-section">
                     <div class="search-heading">
-                        <h2 class=""><t t-esc="query"/></h2>
+                        <h2 class="searched_heading"><t t-esc="query"/></h2>
+                        <t t-set="country_ids" t-value="[]"/>
                         <!-- <span class=""><t t-esc="len(suppliers)"/> Suppliers and <t t-esc="len(buyers)"/> Buyers found for <t t-esc="query"/></span> -->
                         <span id="search1" class="search active"><t t-esc="len(suppliers)"/> Suppliers found for <t t-esc="query"/></span>
                         <span id="search2" class="search"><t t-esc="len(buyers)"/> Buyers found for <t t-esc="query"/></span>
+                        <!-- <input type="hidden" style="display:none;" id="country_ids_input" t-att-countryArray="country_ids"/> -->
+
+                        <input type="hidden" style="display:none;" id="country_ids_input" />
 
                     </div>
                     <div class="tabs-filters">
@@ -63,17 +79,18 @@
                         </div>
                         <div class="filters">
                             <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-globe"></i> Countries
-                                <div id="countries_filter" class="countries_filter">
+                                <div id="countries_filters" class="countries_filter">
                                     <t t-set="country_ids" t-value="[]"/>
                                     <ul>
                                         <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
                                             
-                                            <li><t t-esc="country.name"/><input type="checkbox" onclick="select_country(this)" id="country.id"/></li>
+                                            <li><t t-esc="country.name"/><input name="countries123" class="country_checkbox"  type="checkbox" t-att-data-country-id="country.id" t-att-data-country-name="country.name"/></li>
                                         </t>
                                     </ul>
 
                                 </div>
                             </span>
+                            <button class="abrakadabra" id="abrakadabra">Abrakadabra</button>
                             <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
                             <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
                             <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-calendar-days"></i> Date
@@ -122,10 +139,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-supplier">
-                                                        <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                        <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
                                                         <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
-                                                        <div class="rating">
-                                                            <span>⭐⭐⭐⭐⭐</span>
+                                                        <div onload="fill_stars(this)" t-att-stars="partner.supplier_rating" class="rating">
+                                                            <!-- <span>⭐⭐⭐⭐⭐</span> -->
+                                                            <span></span>
+
                                                         </div>
                                                     </div>
                                                     <div class="product-description">
@@ -267,7 +286,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-supplier">
-                                                <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
                                                 <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
                                                 <div class="rating">
                                                     <span>⭐⭐⭐⭐⭐</span>
@@ -361,12 +380,74 @@
             <t t-call="trademeda.footer"/>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.rating').forEach(function(el) {
+                        fill_stars(el);
+                    });
+                });
+
+
+                function  updateCountryFilter(checkbox) {
+
+                    const checkboxes = document.querySelectorAll('input[type="checkbox"].country-checkbox') 
+                    const country_ids =  document.getElementById('country_ids_input')
+                    const searched_item = document.getElementsByClassName('searched_heading')[0].innerText
+                    var $ = function(selector) {
+                            // Implement your own selector logic or return an empty object
+                            return document.querySelector(selector);
+                        };
+                    const selectedCountries = [];
+
+                    var filters = {
+                        "searched_item":searched_item,
+                        "country_ids":country_ids
+                    }
+
+                    
+
+                    checkboxes.forEach(function(checkbox) {
+                        if (checkbox.checked) {
+                            var country_id = checkbox.getAttribute('data-country-id')
+                            selectedCountries.push(parseInt(country_id));
+                        }
+                    });
+
+
+
+
+                    country_ids.value = JSON.stringify(selectedCountries);
+
+                    $.ajax({
+                        url: "/findSuppliers/filters",
+                        data: JSON.stringify(filters),
+                        type: "POST",
+                        contentType: 'application/json',
+                        success: function(response) {
+                            debugger
+                            var data = JSON.parse(response.result);
+                            // Handle the data as needed
+                            console.log(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX Error: " + status + error);
+                        }
+                    });
+
+                    <!-- debugger
+                    var data = JSON.parse(response.result) -->
+                    
+
+                
+                };
+                
+                document.addEventListener('DOMContentLoaded', function() {
                     // Get all tab elements
                     const tabs = document.querySelectorAll('.tab');
                     // Get all content elements
                     const contents = document.querySelectorAll('.content');
                     // Get all search elements
                     const searchs = document.querySelectorAll('.search');
+
+                    
 
                     tabs.forEach(function(tab) {
                         tab.addEventListener('click', function() {
@@ -433,8 +514,107 @@
                         }
                     })
                 }
+
+                function fill_stars(element) {
+                    const rating = element.getAttribute('stars')
+                    console.log("Stars called",rating)
+                    const roundedRating = Math.round(rating * 2) / 2; // Round to nearest 0.5
+                    const starContainer = element; // Assuming 'starContainer' is your container element
+                    starContainer.innerHTML = ''; // Clear existing stars
+
+                    for (var i = 1; i &lt;= 5; i++) {
+                        var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        star.setAttribute("width", "24");
+                        star.setAttribute("height", "24");
+                        star.setAttribute("viewBox", "0 0 24 24");
+
+                        var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                        polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                        if (i &lt;= Math.floor(roundedRating)) {
+                            polygon.setAttribute("fill", "gold"); // Full star
+                        } else if (i === Math.ceil(roundedRating) &amp;&amp; roundedRating % 1 !== 0) {
+                            // Create a gradient for half-star
+                            var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                            var linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+                            linearGradient.setAttribute("id", "half");
+                            linearGradient.setAttribute("x1", "0%");
+                            linearGradient.setAttribute("x2", "100%");
+                            linearGradient.setAttribute("y1", "0%");
+                            linearGradient.setAttribute("y2", "0%");
+
+                            var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop1.setAttribute("offset", "50%");
+                            stop1.setAttribute("stop-color", "gold");
+
+                            var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop2.setAttribute("offset", "50%");
+                            stop2.setAttribute("stop-color", "gray");
+
+                            linearGradient.appendChild(stop1);
+                            linearGradient.appendChild(stop2);
+                            defs.appendChild(linearGradient);
+                            star.appendChild(defs);
+
+                            polygon.setAttribute("fill", "url(#half)"); // Half star
+                        } else {
+                            polygon.setAttribute("fill", "gray"); // Empty star
+                        }
+
+                        star.appendChild(polygon);
+                        starContainer.appendChild(star);
+                    }
+                }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    const countryCheckboxes = document.querySelectorAll('.country-checkbox');
+                    let countryIds = [];
+
+                    countryCheckboxes.forEach(function(checkbox) {
+                        checkbox.addEventListener('change', function() {
+                            const countryId = parseInt(this.getAttribute('data-country-id'));
+                            if (this.checked) {
+                                // Add the country ID to the array
+                                countryIds.push(countryId);
+                            } else {
+                                // Remove the country ID from the array
+                                countryIds = countryIds.filter(function(id){ id !== countryId });
+                            }
+                            console.log(countryIds); // To see the updated array in the console
+                        });
+                    });
+                });
+
+
+                
+
+
+
+                    <!-- const countryId = checkbox.getAttribute('data-country-id');
+
+                    if (checkbox.checked) {
+                        selectedCountries.push(countryId);
+                    } else {
+                        selectedCountries = selectedCountries.filter(function(id) { id !== countryId });
+                    }
+
+                    const vals = {
+                        'country_ids':selectedCountries
+                    }
+                    fetch(window.location.href,{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json', // Set the request headers
+                        },
+                        body:JSON.stringify(vals)
+                    }).then(function(res){
+                        console.log(res)
+                    }) -->
             
+
+                
             
+               
             </script>
         </template>
     </data>

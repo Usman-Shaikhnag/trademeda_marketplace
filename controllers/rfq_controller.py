@@ -23,9 +23,16 @@ class RFQController(http.Controller):
     
     @http.route('/view_rfq/<int:rfqId>', auth='user', website=True)
     def viewrfqPage(self,rfqId, **kwargs):
+        user = request.env.user
+        partner_id = user.partner_id
         rfq = request.env['trademeda.rfq'].sudo().search([('id','=',rfqId)])
+        views = int(rfq.views) +1 
+        rfq.sudo().write({
+            'views':views
+        })
         vals = {
             'rfq':rfq,
+            'partner':partner_id,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render('trademeda.view_quotation',vals)

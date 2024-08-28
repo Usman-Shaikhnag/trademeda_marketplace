@@ -5,6 +5,9 @@
     
         <template id="view_quotation" name="View Quotation">
             <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/>   
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/quotation_details.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
             </xpath>
@@ -74,6 +77,15 @@
                     <div class="description">
                         <h4>Product Description</h4>
                         <t t-esc="rfq.product_description"/>
+                    </div>
+
+                    <div class="contact-details">
+                        <h4>Contact Person</h4>
+                        <p class=""><t t-esc="rfq.contact_person_name"/></p>
+                        <t t-if="partner.membership_state == 'free'">
+                            <p><t t-esc="rfq.partner_id.email"/></p>
+                            <p><t t-esc="rfq.partner_id.phone"/></p>
+                        </t>
                     </div>
                     <div class="contact_buyer">
                         <button type="button" onclick="open_popup(this)" id="btn_contact_buyer" class="">Contact Buyer</button>

@@ -111,6 +111,17 @@
         </field>
     </record>
 
+    <record id="action_customer_testimony" model="ir.actions.act_window">
+        <field name="name">Testimony</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.testimony</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Testimony</p>
+        </field>
+    </record>
+
     <!-- Menu structure -->
     <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
     <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
@@ -126,6 +137,7 @@
     <menuitem id="menu_certificates" name="Certificates" parent="menu_trademeda" sequence="20"/>
     <menuitem id="submenu_awards" name="Awards" parent="menu_certificates" action="action_customer_awards" sequence="10"/>
     <menuitem id="submenu_certificates" name="Certificates" parent="menu_certificates" action="action_customer_certificates" sequence="11"/>
+    <menuitem id="submenu_customer_testimony" name="Customer Testimony" parent="submenu_products" action="action_customer_testimony" sequence="14"/>
 
 
 

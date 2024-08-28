@@ -29,10 +29,16 @@
         <field name="model">product.subcategories</field>
         <field name="arch" type="xml">
             <form string="Product Subcategory">
+                <header>
+
+                    <button string="Calculate Ranking" name="action_calculate_ranking" type="object" class="oe_highlight"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="category_id"/>
+                        <field name="ranking"/>
+                        <field name="points"/>
 
                     </group>
                     <notebook>
@@ -58,10 +64,13 @@
         <field name="model">product.subsubcategories</field>
         <field name="arch" type="xml">
             <form string="Product Subcategory">
+                
                 <sheet>
                     <group>
                         <field name="name"/>
                         <field name="subcategory_id"/>
+                        
+
 
                     </group>
                     <notebook>
@@ -88,6 +97,19 @@
         <field name="arch" type="xml">
             <tree string="Product Category">
                 <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tree_product_subcategory" model="ir.ui.view">
+        <field name="name">product.subcategory.tree</field>
+        <field name="model">product.subcategories</field>
+        <field name="arch" type="xml">
+            <tree string="Product Subcategory">
+                <field name="name"/>
+                <field name="ranking"/>
+                <field name="points"/>
+
             </tree>
         </field>
     </record>

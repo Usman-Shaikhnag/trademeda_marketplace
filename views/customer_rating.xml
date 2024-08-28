@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view for customer.rating -->
+    <!-- <record id="customer_rating_form" model="ir.ui.view">
+        <field name="name">customer.rating.form</field>
+        <field name="model">customer.rating</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="rating"/>
+                    <field name="comment"/>
+                </group>
+            </form>
+        </field>
+    </record> -->
+
+    <!-- Form view for customer.testimony -->
+    <record id="customer_testimony_form" model="ir.ui.view">
+        <field name="name">customer.testimony.form</field>
+        <field name="model">customer.testimony</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="rating"/>
+                    <field name="testimony"/>
+                    <field name="display"/>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for customer.testimony -->
+    <record id="customer_testimony_tree" model="ir.ui.view">
+        <field name="name">customer.testimony.tree</field>
+        <field name="model">customer.testimony</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="rating"/>
+                <field name="testimony"/>
+                <field name="display"/>
+
+                
+            </tree>
+        </field>
+    </record>
+</odoo>

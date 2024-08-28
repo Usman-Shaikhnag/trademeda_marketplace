@@ -4,7 +4,8 @@
          <xpath expr="." position="inside">
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
             <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
-            <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/>   
+            <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+            <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
             <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/homepage.css"/>
         </xpath>
@@ -21,7 +22,7 @@
                     <div class="main-content">
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
-                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=10)" t-as="category">
+                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=12,order='ranking')" t-as="category">
                                 <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
                                     <t t-out="category.name"/>
                                     <div class="outer-product-container">
@@ -132,19 +133,39 @@
                                 <div class="banner">
                                     <img src="/trademeda/static/src/img/Cover.png" alt=""/>
                                 </div>
-                                <div class="right-sections">
+                                <!-- <div class="right-sections">
                                     <div class="rfq card">
                                         <a href="/post_rfq_page"><img src="/trademeda/static/src/img/buy.png" alt=""/></a>
-                                        <!-- <p class="">Looking for a Product?</p>
-                                        <button class="">Post Buy Requirement</button> -->
+
                                     </div>
                                     <div class="sell-product card">
                                         <a href=""><img src="/trademeda/static/src/img/sell.png" alt=""/></a>
-                                        <!-- <p class="">Want To Grow Business?</p>
-                                        <button class="">Sell on Trademeda</button> -->
-                                    </div>
-                                </div>
 
+                                    </div>
+                                </div> -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-between">
+                        <h2 class="featured-products-title">More Value Adds</h2>
+                    </div>
+                    <div class="more-values">
+                        <div class="values-container">
+                            <div class="value-card">
+                                <b><p class=""><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></p></b>
+                            </div>
+                            <div class="value-card">
+                                <b><p class="">Sell on Trademeda</p></b>
+                            </div>
+                            <div class="value-card">
+                                <b><p class="">Trademeda Catalogs</p></b>
+                            </div>
+                            <div class="value-card">
+                                <b><p class="">Trademeda Membership Plans</p></b>
+                            </div>
+                            <div class="value-card">
+                                <b><p class="">Advertise with us</p></b>
                             </div>
                         </div>
                     </div>
@@ -152,7 +173,7 @@
                         <span id="tab1" onclick="showBuyers(this)" class="tab active">Buyers</span>
                         <span id="tab2" onclick="showSuppliers(this)" class="tab">Suppliers</span>
                     </div>
-                    <t t-foreach="env['product.subcategories'].sudo().search([('name','ilike','Agri')],limit=5)" t-as="subcategory">
+                    <t t-foreach="env['product.subcategories'].sudo().search([],limit=5,order='ranking')" t-as="subcategory">
                         <div class="rfq-container">
                             <div class="rfq-container-header">
                                 <h2><t t-esc="subcategory.name" /></h2>
@@ -207,7 +228,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-supplier">
-                                                <b><a t-attf-href="/profile/supplier" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
                                                 <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
                                                 <div class="rating">
                                                     <span>⭐⭐⭐⭐⭐</span>
@@ -217,7 +238,7 @@
                                                 <p><t t-esc="product.product_description"/></p>
                                             </div>
                                             <div class="product-actions">
-                                                <button class="favourites-button">Add To Favourites</button>
+                                                <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id"  class="favourites-button">Add To Favourites</button>
                                                 <button class="enquiry-button">Enquire Now</button>
                                             </div>
                                         </div>
@@ -247,7 +268,7 @@
                                     <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                     <div class="">
                                         <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                        <span class=""><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
                                     </div>
 
                                 </div>
@@ -273,7 +294,7 @@
                                     <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                     <div class="">
                                         <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                        <span class=""><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
                                     </div>
 
                                 </div>
@@ -298,7 +319,7 @@
                                     <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                     <div class="">
                                         <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                        <span class=""><a t-attf-href="/profile/supplier" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
+                                        <span class=""><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.partner_id.name"/></a></span>
                                     </div>
 
                                 </div>
@@ -306,6 +327,54 @@
                         </div>
                         
                         <button class="control-buttons" id="ready-to-buy-slide-right">&gt;</button>
+                    </div>
+
+                    <!-- suppliers by country  -->
+                    <div class="flex-between">
+                        <h2 class="ready-to-buy" style="margin-bottom: 0;">Buyers And Suppliers By Country</h2>
+
+                    </div>
+                    <div class="tabs">
+                        <button id="countryTab1" onclick="showBuyersCountry(this)" class="tab active">Buyers</button>
+                        <button id="countryTab2" onclick="showSuppliersCountry(this)" class="tab">Suppliers</button>
+                    </div>
+                    <div class="country-container">
+                        <div id="buyers-country-tab" class="buyer-contries content active">
+                            <t t-set="countries_with_suppliers" t-value="[]"/>
+                            <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
+                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['buyer', 'both'])])"/>
+                                <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                            </t>
+
+                            <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[1], reverse=True)[:12]"/>
+
+                            <div class="countries-container">
+                                <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
+                                    <div class="country">
+                                        <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
+                                        <a t-attf-href="/findBuyers/Country/{{country_tuple[0].name}}"><t t-esc="country_tuple[0].name"/></a>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <div id="suppliers-country-tab" class="supplier-contries content">
+                            <t t-set="countries_with_suppliers" t-value="[]"/>
+                            <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
+                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['seller', 'both'])])"/>
+                                <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                            </t>
+
+                            <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[1], reverse=True)[:12]"/>
+
+                            <div class="countries-container">
+                                <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
+                                    <div class="country">
+                                        <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
+                                        <a t-attf-href="/findSuppliers/Country/{{country_tuple[0].name}}"><t t-esc="country_tuple[0].name"/></a>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -331,6 +400,32 @@
                             </div>
                         </t>
                     </div>
+
+
+                    <!-- New Arrivals  -->
+                    <div class="flex-between">
+
+                        <h2 class="new-arrival">Our Customers Testimonies</h2>
+                    </div>
+                    <div class="customer-testimonies">
+                        <button class="control-buttons" id="testimony-slide-left">&lt;</button>
+                        <t t-foreach="env['customer.testimony'].sudo().search([('display','=',True)])" t-as="testimony">
+                            <div class="testimony">
+                                <img t-att-src="'data:image/png;base64,' + testimony.partner_id.image_1920.decode('utf-8')" alt="Customer Image"/>
+                                <div class="testimony-contents">
+                                    <div t-att-stars="testimony.rating" class="rating">
+                                        <span></span>
+                                    </div>
+                                    <span class=""><t t-esc="testimony.testimony"/></span>
+
+
+                                </div>
+                            </div>
+
+                        </t>
+                        <button class="control-buttons" id="testimony-slide-right">&gt;</button>
+                    </div>
+                   
                     
                     
                 </main>
@@ -369,6 +464,23 @@
                         Array.from(rfqtabs).forEach(function(c) { 
                             c.style.display = 'none'; 
                         });
+
+                    }
+                    function showBuyersCountry(element){
+                        element.classList.add('active');
+                        element.nextElementSibling.classList.remove('active');
+
+                        document.getElementById('suppliers-country-tab').classList.remove('active');
+                        document.getElementById('buyers-country-tab').classList.add('active');
+
+
+                    }
+                    function showSuppliersCountry(element){
+                        element.classList.add('active');
+                        element.previousElementSibling.classList.remove('active');
+
+                        document.getElementById('buyers-country-tab').classList.remove('active');
+                        document.getElementById('suppliers-country-tab').classList.add('active');
 
                     }
                     function show_products(element){
@@ -419,6 +531,88 @@
                             });
                         });
                     });
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const leftButton = document.getElementById('testimony-slide-left');
+                        const rightButton = document.getElementById('testimony-slide-right');
+                        const newProductsContainer = document.querySelector('.testimony');
+                        
+                        const slideAmount = 800; // Adjust this value to control the sliding distance
+
+                        // Slide left
+                        leftButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: -slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+
+                        // Slide right
+                        rightButton.addEventListener('click', function() {
+                            newProductsContainer.scrollBy({
+                                top: 0,
+                                left: slideAmount,
+                                behavior: 'smooth'
+                            });
+                        });
+                    });
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.querySelectorAll('.rating').forEach(function(el) {
+                            fill_stars(el);
+                        });
+                    });
+
+                    function fill_stars(element) {
+                        const rating = element.getAttribute('stars')
+                        console.log("Stars called",rating)
+                        const roundedRating = Math.round(rating * 2) / 2; // Round to nearest 0.5
+                        const starContainer = element; // Assuming 'starContainer' is your container element
+                        starContainer.innerHTML = ''; // Clear existing stars
+
+                        for (var i = 1; i &lt;= 5; i++) {
+                            var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                            star.setAttribute("width", "24");
+                            star.setAttribute("height", "24");
+                            star.setAttribute("viewBox", "0 0 24 24");
+
+                            var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                            polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                            if (i &lt;= Math.floor(roundedRating)) {
+                                polygon.setAttribute("fill", "gold"); // Full star
+                            } else if (i === Math.ceil(roundedRating) &amp;&amp; roundedRating % 1 !== 0) {
+                                // Create a gradient for half-star
+                                var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                                var linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+                                linearGradient.setAttribute("id", "half");
+                                linearGradient.setAttribute("x1", "0%");
+                                linearGradient.setAttribute("x2", "100%");
+                                linearGradient.setAttribute("y1", "0%");
+                                linearGradient.setAttribute("y2", "0%");
+
+                                var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                                stop1.setAttribute("offset", "50%");
+                                stop1.setAttribute("stop-color", "gold");
+
+                                var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                                stop2.setAttribute("offset", "50%");
+                                stop2.setAttribute("stop-color", "gray");
+
+                                linearGradient.appendChild(stop1);
+                                linearGradient.appendChild(stop2);
+                                defs.appendChild(linearGradient);
+                                star.appendChild(defs);
+
+                                polygon.setAttribute("fill", "url(#half)"); // Half star
+                            } else {
+                                polygon.setAttribute("fill", "gray"); // Empty star
+                            }
+
+                            star.appendChild(polygon);
+                            starContainer.appendChild(star);
+                        }
+                    }
 
                     document.addEventListener('DOMContentLoaded', function() {
                         const leftButton = document.getElementById('featured-slide-left');
@@ -473,6 +667,27 @@
                     });
                     function open_readytobuy(element){
                         window.location.href = '/readytobuy'
+                    }
+
+                    function add_to_wishlist(element){
+                        var product_id = element.getAttribute('data-product-id');
+                        fetch('/is_logged_in').then(function(res){
+                            return res.json();
+                        }).then(function(data){
+                            if(data.logged_in == true){
+                            fetch('/add-to-wishlist/'+product_id).then(function(res){
+                                console.log("res",res)
+                                element.style.display = 'none'
+                            })
+                            }
+                            else{
+                                let products = JSON.parse(localStorage.getItem('product_id')) || [];
+                                if (!products.includes(product_id)) {
+                                    products.push(product_id);
+                                    localStorage.setItem('product_id', JSON.stringify(products));
+                                }
+                            }
+                        })
                     }
                 </script>
             <!-- </t> -->
