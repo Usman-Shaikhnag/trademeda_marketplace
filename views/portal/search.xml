@@ -2,7 +2,7 @@
     <data>
         <template id="findSuppliers" name="Suppliers">
          <xpath expr="." position="inside">
-            <script type="text/javascript" src="/trademeda/static/src/js/filter2.js"></script>
+            <!-- <script type="text/javascript" src="/trademeda/static/src/js/filter2.js"></script> -->
             <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
         </xpath>
@@ -19,18 +19,44 @@
                 </div>
                 </t> -->
             <script>
-                function select_country(element){
-                    const val = element.getAttribute('countryId')
-                    console.log("Val",val)
-                    let country_array = document.getElementById('country_ids_input').getAttribute('countryArray')
-                    console.log(country_array)
-                    country_array.append(val)
-                    console.log(country_array)
+                let countries = [];
+
+                function select_country(element) {
+                    const val = element.getAttribute('data-country-id');
+                    const input_country_ids = document.getElementById('input_country_ids').value;
+
+                    if (input_country_ids != '') {
+                        const input_country_ids_array = JSON.parse(input_country_ids);
+                        if (input_country_ids_array.length &gt; 0) {
+                            for (let i = 0; i &lt; input_country_ids_array.length; i++) {
+                                countries.push(parseInt(input_country_ids_array[i]));
+                            }
+                        }
+                    }
+
+                    if (element.checked) {
+                        countries.push(parseInt(val));
+                    } else {
+                        const index = countries.indexOf(parseInt(val));
+                        if (index &gt; -1) {
+                            countries.splice(index, 1);
+                        }
+                    }
+
+                    const url = new URL(window.location.href);
+                    let newQuery = '';
+
+                    if (countries.length &gt; 0) {
+                        newQuery = `country_ids=[${countries.join(',')}]`;
+                    }
+
+                    url.search = newQuery;
+                    window.location.href = url.toString();
                 }
                 
             </script>
             <main class="">
-                
+                <input type="hidden" id="input_country_ids" t-att-value="country_ids" class=""/>
             
                 <div class="left-section">
                     <t t-if="related_products">
@@ -54,13 +80,10 @@
                 <div class="right-section">
                     <div class="search-heading">
                         <h2 class="searched_heading"><t t-esc="query"/></h2>
-                        <t t-set="country_ids" t-value="[]"/>
                         <!-- <span class=""><t t-esc="len(suppliers)"/> Suppliers and <t t-esc="len(buyers)"/> Buyers found for <t t-esc="query"/></span> -->
                         <span id="search1" class="search active"><t t-esc="len(suppliers)"/> Suppliers found for <t t-esc="query"/></span>
                         <span id="search2" class="search"><t t-esc="len(buyers)"/> Buyers found for <t t-esc="query"/></span>
-                        <!-- <input type="hidden" style="display:none;" id="country_ids_input" t-att-countryArray="country_ids"/> -->
 
-                        <input type="hidden" style="display:none;" id="country_ids_input" />
 
                     </div>
                     <div class="tabs-filters">
@@ -80,17 +103,19 @@
                         <div class="filters">
                             <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-globe"></i> Countries
                                 <div id="countries_filters" class="countries_filter">
-                                    <t t-set="country_ids" t-value="[]"/>
                                     <ul>
                                         <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
                                             
-                                            <li><t t-esc="country.name"/><input name="countries123" class="country_checkbox"  type="checkbox" t-att-data-country-id="country.id" t-att-data-country-name="country.name"/></li>
+                                            <li>
+                                                <a style="text-decoration:none;color:inherit;" t-attf-href="/findSuppliers/country/{{country.id}}"><t t-esc="country.name"/>
+                                                    <input name="countries123" onclick="select_country(this)" class="country_checkbox"  type="checkbox" t-att-data-country-id="country.id" t-att-data-country-name="country.name"  t-att-checked="'checked' if country.id in country_ids else None"/>
+                                                </a>
+                                            </li>
                                         </t>
                                     </ul>
 
                                 </div>
                             </span>
-                            <button class="abrakadabra" id="abrakadabra">Abrakadabra</button>
                             <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
                             <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
                             <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-calendar-days"></i> Date
@@ -120,47 +145,45 @@
                                 </t>
 
                                 <t t-foreach="suppliers" t-as="product">
-                                    <!-- <t t-foreach="country_ids" t-as="country_id">
-                                        <t t-if="product.partner_id.country_id.id == country_id"> -->
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+                                    
+                                    <div class="product-card">
+                                        <div class="product-image">
+                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
 
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-header">
+                                                <div class="product-title">
+                                                    <span class="flag-icon"></span>
+                                                    <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
                                                 </div>
-                                                <div class="product-info">
-                                                    <div class="product-header">
-                                                        <div class="product-title">
-                                                            <span class="flag-icon"></span>
-                                                            <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
-                                                        </div>
-                                                        <div class="status-icons">
-                                                            <span class="status-icon"></span>
-                                                            <span class="info-icon"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-supplier">
-                                                        <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
-                                                        <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
-                                                        <div onload="fill_stars(this)" t-att-stars="partner.supplier_rating" class="rating">
-                                                            <!-- <span>⭐⭐⭐⭐⭐</span> -->
-                                                            <span></span>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-description">
-                                                        <p><t t-esc="product.product_description"/></p>
-                                                    </div>
-                                                    <div class="product-actions">
-                                                        <button class="favourites-button">Add To Favourites</button>
-                                                        <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id" class="inquiry-button">Enquire Now</button>
-                                                    </div>
-                                                </div>
-                                                <div class="product-date">
-                                                    <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                                <div class="status-icons">
+                                                    <span class="status-icon"></span>
+                                                    <span class="info-icon"></span>
                                                 </div>
                                             </div>
-                                        <!-- </t>
-                                    </t> -->
+                                            <div class="product-supplier">
+                                                <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <div onload="fill_stars(this)" t-att-stars="product.partner_id.supplier_rating" class="rating">
+                                                    <!-- <span>⭐⭐⭐⭐⭐</span> -->
+                                                    <span></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="product-description">
+                                                <p><t t-esc="product.product_description"/></p>
+                                            </div>
+                                            <div class="product-actions">
+                                                <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id" class="favourites-button">Add To Favourites</button>
+                                                <a t-attf-href="/product/{{product.id}}" ><button class="btn-enquire">Enquire Now</button></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-date">
+                                            <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                    </div>
+                                        
                                 </t>
                                 <t t-if="not searchByCategory">
                                     <div class="pagination">
@@ -218,7 +241,7 @@
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
-                                                <button class="btn-enquire">Enquire Now</button>
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
                                         </div>
                                     </t>
@@ -327,7 +350,7 @@
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
-                                                <button class="btn-enquire">Enquire Now</button>
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
                                         </div>
                                     </t>
@@ -386,58 +409,7 @@
                 });
 
 
-                function  updateCountryFilter(checkbox) {
-
-                    const checkboxes = document.querySelectorAll('input[type="checkbox"].country-checkbox') 
-                    const country_ids =  document.getElementById('country_ids_input')
-                    const searched_item = document.getElementsByClassName('searched_heading')[0].innerText
-                    var $ = function(selector) {
-                            // Implement your own selector logic or return an empty object
-                            return document.querySelector(selector);
-                        };
-                    const selectedCountries = [];
-
-                    var filters = {
-                        "searched_item":searched_item,
-                        "country_ids":country_ids
-                    }
-
-                    
-
-                    checkboxes.forEach(function(checkbox) {
-                        if (checkbox.checked) {
-                            var country_id = checkbox.getAttribute('data-country-id')
-                            selectedCountries.push(parseInt(country_id));
-                        }
-                    });
-
-
-
-
-                    country_ids.value = JSON.stringify(selectedCountries);
-
-                    $.ajax({
-                        url: "/findSuppliers/filters",
-                        data: JSON.stringify(filters),
-                        type: "POST",
-                        contentType: 'application/json',
-                        success: function(response) {
-                            debugger
-                            var data = JSON.parse(response.result);
-                            // Handle the data as needed
-                            console.log(data);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("AJAX Error: " + status + error);
-                        }
-                    });
-
-                    <!-- debugger
-                    var data = JSON.parse(response.result) -->
-                    
-
                 
-                };
                 
                 document.addEventListener('DOMContentLoaded', function() {
                     // Get all tab elements
@@ -585,35 +557,7 @@
                     });
                 });
 
-
-                
-
-
-
-                    <!-- const countryId = checkbox.getAttribute('data-country-id');
-
-                    if (checkbox.checked) {
-                        selectedCountries.push(countryId);
-                    } else {
-                        selectedCountries = selectedCountries.filter(function(id) { id !== countryId });
-                    }
-
-                    const vals = {
-                        'country_ids':selectedCountries
-                    }
-                    fetch(window.location.href,{
-                        method:'POST',
-                        headers: {
-                            'Content-Type': 'application/json', // Set the request headers
-                        },
-                        body:JSON.stringify(vals)
-                    }).then(function(res){
-                        console.log(res)
-                    }) -->
-            
-
-                
-            
+  
                
             </script>
         </template>

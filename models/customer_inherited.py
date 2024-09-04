@@ -111,6 +111,14 @@ class ResPartner(models.Model):
     news_text = fields.Text("News")
 
     supplier_rating = fields.Float("Rating",compute="_compute_supplier_rating",digits=(16,1))
+    trust_score = fields.Float("Trust Score",compute="_compute_trust_score",digits=(16,1))
+
+    company_image = fields.Binary('Company Image')
+    company_image_name = fields.Char("Image Name") 
+
+    logo_image = fields.Binary('logo Image')
+    logo_image_name = fields.Char("Image Name") 
+
 
     @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')
     def _compute_supplier_rating(self):
@@ -136,6 +144,31 @@ class ResPartner(models.Model):
                 record.supplier_rating = round((0.83*count),1)
             else:
                 record.supplier_rating = 0
+
+    @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')
+    def _compute_trust_score(self):
+        for record in self:
+            count=0
+            if(record.company_registration_verified):
+                count = count+1
+            if(record.company_address_proof_verified):
+                count = count+1
+            if(record.identity_proof_verified):
+                count = count+1
+            if(record.trading_license_verified):
+                count = count+1
+            if(record.prior_import_export_verified):
+                count = count+1
+            if(record.tax_id_proof_verified):
+                count = count+1
+            # if(record.awards):
+            #     count = count+1
+            # if(record.certificates):
+            #     count = count+1
+            if(count !=0):
+                record.trust_score = round((0.83*count),1)
+            else:
+                record.trust_score = 0
 
 
 

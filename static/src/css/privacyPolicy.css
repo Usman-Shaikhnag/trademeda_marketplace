@@ -1,0 +1,18 @@
+body{
+    font-family: 'Source Sans Pro';
+    color: #333;
+}
+main {
+    padding: 2%;
+}
+h1 {
+    font-family: 'Avenir';
+    color: rgb(199,8,8);
+}
+h2 {
+    font-family: 'Avenir';
+    color:rgb(199,8,8);
+}
+.list-item {
+    margin-left: 1.5rem;
+}

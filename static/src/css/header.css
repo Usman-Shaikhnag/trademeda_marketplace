@@ -76,6 +76,15 @@ body{
 i {
     cursor: pointer;
 }
+#search-bar{
+    max-height: 150px;
+}
+#product_list{
+    max-height: 100px;
+}
+
+
+
 .menu_items>ul {
     display: flex;
     flex-direction: column;

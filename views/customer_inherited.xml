@@ -217,7 +217,14 @@
         </xpath>
         <xpath expr="//field[@name='category_id']" position="after">
             <field name="supplier_rating" />
+            <field name="company_image" filename="company_image_name"/>
+            <field name="company_image_name" invisible="1"/>
+            <field name="logo_image" filename="logo_image_name"/>
+            <field name="logo_image_name" invisible="1"/>
+
+
         </xpath>
+        
     </field>
 </record>
 

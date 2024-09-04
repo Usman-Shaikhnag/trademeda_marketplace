@@ -43,13 +43,17 @@
                     <div class="left">
                         <div class="profile-detail">
                             <div class="profile-pic-avatar">
-                                <img src="/trademeda/static/src/img/user.png" alt="profile photo" class=""/>
-                                <!-- <img src="/trademeda/static/src/img/edit.png" alt="edit photo" class="edit-profile-pic"/> -->
+                                <!-- <img src="/trademeda/static/src/img/user.png" alt="profile photo" class=""/> -->
 
-                                <i class="fas fa-edit" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
+                                <!-- <img src="/trademeda/static/src/img/edit.png" alt="edit photo" class="edit-profile-pic"/> -->
+                                <t t-if="partner.logo_image">
+                                    <img t-att-src="('data:image/' + ('jpeg' if partner.logo_image_name.endswith('.jpeg') || partner.logo_image_name.endswith('.jpg')  else 'png') + ';base64,' + partner.logo_image.decode('utf-8'))" alt="Product Image" class="product-image"/>
+                                    
+                                </t>
+                                <i class="fas fa-edit" onclick="enable_profile_detail()" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
                             </div>
                             <div class="username">
-                                <b><span t-att-value="partner.name" /></b>
+                                <b><span><t t-esc="partner.name"/></span></b>
                                 <div class="">
                                     <span class="" style="color:rgb(199,8,8);margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
 
@@ -136,7 +140,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <form action="/profile/updateuser" method="post" enctype="multipart/form-data" class="">
+                        <form action="/profile/updateuserprofile" method="post" enctype="multipart/form-data" class="">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                                 <div class="edit-profile" id="edit_profile_form">
                                     <div class="edit-profile-text">
@@ -297,6 +301,35 @@
                                             </div>
                                             <div class="">
                                                 <input placeholder="" t-att-value="partner.website" name="company_website"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="multi-input">
+
+                                        <div class="text-input" style="margin-top:2px">
+                                            <div class="">
+                                                <span class="">Upload Company Logo</span>
+                                            </div>
+                                            <div class="file-upload-wrapper">
+                                                <input onchange="file_change(this)" type="file" id="upload_company_logo" name="upload_company_logo" class="file-input" data-file-name="upload_company_logo_name" data-delete-btn="upload_company_logo_delete" accept=".png, .jpeg, .jpg"/>
+                                                <label for="upload_company_logo" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                <span id="upload_company_logo_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                <span id="upload_company_logo_name" class="file-name">No file chosen</span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="text-input" style="margin-top:2px">
+                                            <div class="">
+                                                <span class="">Upload Company Image</span>
+                                            </div>
+                                            <div class="file-upload-wrapper">
+                                                <input onchange="file_change(this)" type="file" id="upload_company_image" name="upload_company_image" class="file-input" data-file-name="upload_company_image_name" data-delete-btn="upload_company_image_delete"/>
+                                                <label for="upload_company_image" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                <span id="upload_company_image_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                <span id="upload_company_image_name" class="file-name">No file chosen</span>
                                             </div>
                                         </div>
                                     </div>

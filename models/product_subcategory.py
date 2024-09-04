@@ -26,6 +26,5 @@ class ProductSubCategory(models.Model):
         for subcategory in sorted_subcategories:
             subcategory.sudo().write({
                 'ranking': ranking,
-                'points': 0,  # Reset points to 0
             })
             ranking += 1

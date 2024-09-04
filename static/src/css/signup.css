@@ -1,7 +1,14 @@
 body {
     /* background-color: cadetblue; */
-    background:#8fb15f
+    background:#8fb15f;
+    font-family: 'Source Sans Pro', sans-serif;
 
+}
+
+
+h1, h2{
+    font-family: 'Avenir';
+  
 }
 
 .outer {

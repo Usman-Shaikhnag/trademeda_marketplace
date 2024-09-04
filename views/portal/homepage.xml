@@ -131,7 +131,17 @@
                             
                             <div class="right-content">
                                 <div class="banner">
-                                    <img src="/trademeda/static/src/img/Cover.png" alt=""/>
+                                    <button class="control-buttons" id="banner-slide-left">&lt;</button>
+
+                                    <div class="banner-track">
+                                        <t t-foreach="env['trademeda.banners'].sudo().search([],order='slide_no')" t-as="banner">
+                                            <t t-if="banner.get_image_src()">
+                                                <img t-att-src="banner.get_image_src()" alt="Banner Image" class="banner-image"/>
+                                            </t>
+                                        </t>
+                                    </div>
+
+                                    <button class="control-buttons" id="banner-slide-right">&gt;</button>
                                 </div>
                                 <!-- <div class="right-sections">
                                     <div class="rfq card">
@@ -148,7 +158,7 @@
                         </div>
                     </div>
                     <div class="flex-between">
-                        <h2 class="featured-products-title">More Value Adds</h2>
+                        <h2 class="featured-products-title">Discover More Values</h2>
                     </div>
                     <div class="more-values">
                         <div class="values-container">
@@ -165,7 +175,7 @@
                                 <b><p class="">Trademeda Membership Plans</p></b>
                             </div>
                             <div class="value-card">
-                                <b><p class="">Advertise with us</p></b>
+                                <a t-attf-href="/advertisingPlans"><b><p class="">Advertise with us</p></b></a>
                             </div>
                         </div>
                     </div>
@@ -197,7 +207,7 @@
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
-                                                <button class="btn-enquire">Enquire Now</button>
+                                                <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
                                         </div>
                                     </t>
@@ -352,7 +362,7 @@
                                 <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
                                     <div class="country">
                                         <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
-                                        <a t-attf-href="/findBuyers/Country/{{country_tuple[0].name}}"><t t-esc="country_tuple[0].name"/></a>
+                                        <a t-attf-href="/findBuyers/country/{{country_tuple[0].id}}"><t t-esc="country_tuple[0].name"/></a>
                                     </div>
                                 </t>
                             </div>
@@ -370,7 +380,7 @@
                                 <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
                                     <div class="country">
                                         <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
-                                        <a t-attf-href="/findSuppliers/Country/{{country_tuple[0].name}}"><t t-esc="country_tuple[0].name"/></a>
+                                        <a t-attf-href="/findSuppliers/country/{{country_tuple[0].id}}"><t t-esc="country_tuple[0].name"/></a>
                                     </div>
                                 </t>
                             </div>
@@ -406,24 +416,43 @@
                     <div class="flex-between">
 
                         <h2 class="new-arrival">Our Customers Testimonies</h2>
+
                     </div>
                     <div class="customer-testimonies">
-                        <button class="control-buttons" id="testimony-slide-left">&lt;</button>
                         <t t-foreach="env['customer.testimony'].sudo().search([('display','=',True)])" t-as="testimony">
                             <div class="testimony">
-                                <img t-att-src="'data:image/png;base64,' + testimony.partner_id.image_1920.decode('utf-8')" alt="Customer Image"/>
+                                <div class="testimony-top">
+                                    <span class="quote-icon">“</span>
+                                    <!-- <img t-att-src="'data:image/png;base64,' + testimony.partner_id.image_1920.decode('utf-8')" alt="Customer Photo" class="customer-photo"/> -->
+                                </div>
                                 <div class="testimony-contents">
+                                    <span class="customer-name"><t t-esc="testimony.partner_id.name"/></span>
                                     <div t-att-stars="testimony.rating" class="rating">
                                         <span></span>
                                     </div>
-                                    <span class=""><t t-esc="testimony.testimony"/></span>
-
-
+                                    <span class="testimony-text">
+                                        <t t-if="len(testimony.testimony) &gt; 100">
+                                            <t t-esc="testimony.testimony[:100]"/>...
+                                            <a href="#" class="see-more" onclick="showFullTestimony(this)">See More</a>
+                                            <span class="full-text" style="display:none;">
+                                                <t t-esc="testimony.testimony"/>
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-esc="testimony.testimony"/>
+                                        </t>
+                                    </span>
+                                    <div class="social-links">
+                                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
                                 </div>
                             </div>
-
                         </t>
-                        <button class="control-buttons" id="testimony-slide-right">&gt;</button>
+                    </div>
+                    <div class="mobile-app">
+                        <img src="/trademeda/static/src/img/M111.jpg" alt=""/>
                     </div>
                    
                     
@@ -433,6 +462,52 @@
                 <t t-call="trademeda.footer"/>
                 
                 <script>
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                    var track = document.querySelector('.banner-track');
+                    var slides = Array.from(track.children);
+                    var nextButton = document.querySelector('#banner-slide-right');
+                    var prevButton = document.querySelector('#banner-slide-left');
+                    var currentSlide = 0;
+
+                    function updateSlidePosition() {
+                        track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+                    }
+
+                    function nextSlide() {
+                        if (currentSlide &lt; slides.length - 1) {
+                            currentSlide++;
+                        } else {
+                            currentSlide = 0;  // Loop back to the first slide
+                        }
+                        updateSlidePosition();
+                    }
+
+                    function prevSlide() {
+                        if (currentSlide &gt; 0) {
+                            currentSlide--;
+                        } else {
+                            currentSlide = slides.length - 1;  // Loop back to the last slide
+                        }
+                        updateSlidePosition();
+                    }
+
+                    nextButton.addEventListener('click', nextSlide);
+                    prevButton.addEventListener('click', prevSlide);
+
+                    // Automatically slide every 5 seconds
+                    setInterval(nextSlide, 5000);
+                });
+
+                    function showFullTestimony(element) {
+                        var fullText = element.nextElementSibling;  // Get the full text span
+                        var parent = element.parentNode; // Get the parent span
+
+                        if (fullText &amp;&amp; fullText.style.display === 'none') {
+                            fullText.style.display = 'inline';  // Show the full text
+                            element.style.display = 'none';  // Hide the "See More" link
+                        }
+                    }
                     
                     function showBuyers(element){
                         element.classList.add('active');

@@ -3,29 +3,35 @@ from odoo.http import request
 import base64
 import json
 import math
+import ast
 
 class SearchController(http.Controller):
 
 
     @http.route('/findSuppliers/<string:product>', method=['GET'], type='http', auth='public', website=True)
-    def searchSupplierProduct(self, product, page=1, **kw):
+    def searchSupplierProduct(self, product,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page
+
+        
+        supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        buyer_domain = ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
+        # import wdb;wdb.set_trace()
+        if country_ids:
+            country_ids = ast.literal_eval(country_ids)
+            country_ids = list(set(country_ids))
+            supplier_domain = ['&', ('partner_id.country_id.id', 'in', country_ids)] + supplier_domain
+            buyer_domain = ['&', ('partner_id.country_id.id', 'in', country_ids)] + buyer_domain
+        
         
         user = request.env.user
         partner_id = user.partner_id
 
         if product:
-            suppliers = request.env['product.customer.images'].sudo().search(
-                ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)],
-                limit=per_page, offset=offset
+            suppliers = request.env['product.customer.images'].sudo().search(supplier_domain,limit=per_page, offset=offset
             )
-            total_suppliers = request.env['product.customer.images'].sudo().search_count(
-                ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
-            )
-            buyers = request.env['trademeda.rfq'].sudo().search(
-                ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
-            )
+            total_suppliers = request.env['product.customer.images'].sudo().search_count(supplier_domain)
+            buyers = request.env['trademeda.rfq'].sudo().search(buyer_domain)
         else:
             suppliers = request.env['product.customer.images'].sudo().search([], limit=per_page, offset=offset)
             total_suppliers = request.env['product.customer.images'].sudo().search_count([])
@@ -65,90 +71,31 @@ class SearchController(http.Controller):
             'page': page,
             'total_pages': total_pages,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
 
-    # country Filter
-    @http.route('/findSuppliers/filters', method=['POST'], type='json', auth='public', website=True)
-    def searchSupplierProductByCountry(self, product, page=1, country_ids=None, **kw):
-        per_page = 20  # Number of suppliers per page
-        offset = (int(page) - 1) * per_page
-
-        user = request.env.user
-        partner_id = user.partner_id
-        # import wdb;wdb.set_trace()
-        domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
-        
-        data = request.httprequest.get_json()
-        if data:
-            domain.append(('partner_id.country_id', 'in', data))
-
-        suppliers = request.env['product.customer.images'].sudo().search(domain, limit=per_page, offset=offset)
-        total_suppliers = request.env['product.customer.images'].sudo().search_count(domain)
-
-        buyers = request.env['trademeda.rfq'].sudo().search(
-            ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
-        )
-
-        related_products = request.env['product.template'].sudo().search([('name', 'ilike', product)], limit=10)
-        unique_subcategories = set()
-        related_subcategories = []
-
-        for rel_product in related_products:
-            category = rel_product.subcategory_id.category_id
-            if category:
-                subcategories_in_category = request.env['product.subcategories'].sudo().search(
-                    [('category_id', '=', category.id)]
-                )
-
-                for subcategory in subcategories_in_category:
-                    subcategory_name = subcategory.name
-                    if subcategory_name and subcategory_name not in unique_subcategories:
-                        unique_subcategories.add(subcategory_name)
-                        related_subcategories.append({'name': subcategory_name})
-                    if len(unique_subcategories) >= 5:
-                        break
-            if len(unique_subcategories) >= 5:
-                break
-
-        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
-
-        vals = {
-            'suppliers': suppliers,
-            'buyers': buyers,
-            'query': product,
-            'related_products': related_products,
-            'related_subcategories': unique_subcategories,
-            'supplier_search': True,
-            'buyer_search': False,
-            'page': page,
-            'total_pages': total_pages,
-            'partner':partner_id,
-            'logged_in': request.env.user != request.env.ref('base.public_user')
-        }
-        return request.render("trademeda.findSuppliers", vals)
-
+    
 
     @http.route('/findBuyers/<string:product>', method=['GET'], type='http', auth='public', website=True)
-    def searchBuyerProduct(self, product, page=1, **kw):
+    def searchBuyerProduct(self, product,country_ids=[], page=1, **kw):
         per_page = 20  # Number of buyers per page
         offset = (int(page) - 1) * per_page
+
+        
+        supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        buyer_domain = ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
 
         user = request.env.user
         partner_id = user.partner_id
 
         if product:
-            suppliers = request.env['product.customer.images'].sudo().search(
-                ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
-            )
-            buyers = request.env['trademeda.rfq'].sudo().search(
-                ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)],
-                limit=per_page, offset=offset
-            )
-            total_buyers = request.env['trademeda.rfq'].sudo().search_count(
-                ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
-            )
+            country_ids = ast.literal_eval(country_ids)
+            country_ids = list(set(country_ids))
+            suppliers = request.env['product.customer.images'].sudo().search(supplier_domain)
+            buyers = request.env['trademeda.rfq'].sudo().search(buyer_domain,limit=per_page, offset=offset)
+            total_buyers = request.env['trademeda.rfq'].sudo().search_count(buyer_domain)
         else:
             suppliers = request.env['product.customer.images'].sudo().search([])
             buyers = request.env['trademeda.rfq'].sudo().search([], limit=per_page, offset=offset)
@@ -189,6 +136,7 @@ class SearchController(http.Controller):
             'page': page,
             'total_pages': total_pages,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
@@ -197,7 +145,7 @@ class SearchController(http.Controller):
     
 
     @http.route('/findSuppliersByCategory/<string:category>', method=['GET'], type='http', auth='public', website=True)
-    def searchSupplierByCategory(self, category, page=1, **kw):
+    def searchSupplierByCategory(self, category,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page  # Calculate the offset
 
@@ -244,13 +192,14 @@ class SearchController(http.Controller):
             'total_pages': total_pages,
             'searchByCategory':True,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
     
 
     @http.route('/readytobuy', method=['GET'], type='http', auth='public', website=True)
-    def searchAllReadyToBuyProduct(self, page=1, **kw):
+    def searchAllReadyToBuyProduct(self,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page
 
@@ -297,6 +246,7 @@ class SearchController(http.Controller):
             'buyer_search': False,
             'page': page,
             'total_pages': total_pages,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user'),
             'partner':partner_id
         }
@@ -304,7 +254,7 @@ class SearchController(http.Controller):
     
 
     @http.route('/readytobuy/<string:product>', method=['GET'], type='http', auth='public', website=True)
-    def searchReadyToBuyProduct(self,product, page=1, **kw):
+    def searchReadyToBuyProduct(self,product,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page
 
@@ -363,6 +313,7 @@ class SearchController(http.Controller):
             'page': page,
             'total_pages': total_pages,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.readyToBuy", vals)
@@ -370,7 +321,7 @@ class SearchController(http.Controller):
 
 
     @http.route('/newArrivals', method=['GET'], type='http', auth='public', website=True)
-    def searchAllNewArrivals(self, page=1, **kw):
+    def searchAllNewArrivals(self,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page
 
@@ -428,13 +379,14 @@ class SearchController(http.Controller):
             'page': page,
             'total_pages': total_pages,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
     
 
     @http.route('/featuredProducts', method=['GET'], type='http', auth='public', website=True)
-    def searchfeaturedProducts(self, page=1, **kw):
+    def searchfeaturedProducts(self,country_ids=[], page=1, **kw):
         per_page = 20  # Number of suppliers per page
         offset = (int(page) - 1) * per_page
 
@@ -492,8 +444,124 @@ class SearchController(http.Controller):
             'page': page,
             'total_pages': total_pages,
             'partner':partner_id,
+            'country_ids':country_ids,
             'logged_in':request.env.user != request.env.ref('base.public_user')
         }
         return request.render("trademeda.findSuppliers", vals)
 
+    @http.route('/findBuyers/country/<int:country_id>', method=['GET'], type='http', auth='public', website=True)
+    def searchBuyersByCountry(self,country_id,product="None", page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+        # import wdb;wdb.set_trace()
+        # print("Productt",product)
+
+        user = request.env.user
+        partner_id = user.partner_id
+        # import wdb;wdb.set_trace()
+        domain = [('partner_id.country_id.id', '=', country_id)]
+        if product != "None":
+            domain = ['|'] + domain + [('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
+        
+        data = request.httprequest.get_json()
+        if data:
+            domain.append(('partner_id.country_id', 'in', data))
+
+        total_buyers = request.env['trademeda.rfq'].sudo().search_count(domain)
+
+        buyers = request.env['trademeda.rfq'].sudo().search(domain)
+
+        related_products = request.env['product.template'].sudo().search([], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_buyers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'buyers': buyers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'partner':partner_id,
+            'country_id':country_id,
+            'logged_in': request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.searchBuyersByCountry", vals)
     
+    @http.route('/findSuppliers/country/<int:country_id>', method=['GET'], type='http', auth='public', website=True)
+    def searchSuppliersByCountry(self,country_id,product="None", page=1, **kw):
+        per_page = 20  # Number of suppliers per page
+        offset = (int(page) - 1) * per_page
+
+        user = request.env.user
+        partner_id = user.partner_id
+        # import wdb;wdb.set_trace()
+        domain = [('partner_id.country_id.id','=',country_id)]
+        if product != 'None':
+             domain = ['|'] + domain + [('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        
+        
+        data = request.httprequest.get_json()
+        if data:
+            domain.append(('partner_id.country_id', 'in', data))
+
+        suppliers = request.env['product.customer.images'].sudo().search(domain, limit=per_page, offset=offset)
+        total_suppliers = request.env['product.customer.images'].sudo().search_count(domain)
+
+
+        related_products = request.env['product.template'].sudo().search([], limit=10)
+        unique_subcategories = set()
+        related_subcategories = []
+
+        for rel_product in related_products:
+            category = rel_product.subcategory_id.category_id
+            if category:
+                subcategories_in_category = request.env['product.subcategories'].sudo().search(
+                    [('category_id', '=', category.id)]
+                )
+
+                for subcategory in subcategories_in_category:
+                    subcategory_name = subcategory.name
+                    if subcategory_name and subcategory_name not in unique_subcategories:
+                        unique_subcategories.add(subcategory_name)
+                        related_subcategories.append({'name': subcategory_name})
+                    if len(unique_subcategories) >= 5:
+                        break
+            if len(unique_subcategories) >= 5:
+                break
+
+        total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+
+        vals = {
+            'suppliers': suppliers,
+            'related_products': related_products,
+            'related_subcategories': unique_subcategories,
+            'supplier_search': True,
+            'buyer_search': False,
+            'page': page,
+            'total_pages': total_pages,
+            'partner':partner_id,
+            'country_id':country_id,
+            'logged_in': request.env.user != request.env.ref('base.public_user')
+        }
+        return request.render("trademeda.searchSuppliersByCountry", vals)

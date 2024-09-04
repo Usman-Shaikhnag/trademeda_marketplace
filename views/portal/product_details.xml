@@ -14,33 +14,9 @@
                 <div class="product-details">
                     <h2><t t-esc="product.product_name"/></h2>
                     <div class="rating-container">
-                        <div class="star-svg">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                                </svg>
-                            </span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                                </svg>
-                            </span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                                </svg>
-                            </span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                                </svg>
-                            </span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                    <polygon points="12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10" fill="gold"/>
-                                </svg>
-                            </span>
-                            <span><p>(5.0)</p></span>
+                        <div onload="fill_stars(this)" t-att-stars="partner.supplier_rating" class="rating">
+                            <span></span>
+
                         </div>
                     </div>
 
@@ -124,6 +100,13 @@
         </main>
         <!-- <t t-call="trademeda.footer"/> -->
         <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.rating').forEach(function(el) {
+                        fill_stars(el);
+                    });
+            });
+
             function send_product_enquiry(element){
                     var partner_id = element.getAttribute('data-partner-id');
                     console.log("Partner",partner_id)
@@ -152,6 +135,58 @@
                     }).then(function(res) {
                         document.getElementById('product-enquiry-form').style.display = 'none'
                     })
+                }
+
+
+                function fill_stars(element) {
+                    const rating = element.getAttribute('stars')
+                    console.log("Stars called",rating)
+                    const roundedRating = Math.round(rating * 2) / 2; // Round to nearest 0.5
+                    const starContainer = element; // Assuming 'starContainer' is your container element
+                    starContainer.innerHTML = ''; // Clear existing stars
+
+                    for (var i = 1; i &lt;= 5; i++) {
+                        var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        star.setAttribute("width", "24");
+                        star.setAttribute("height", "24");
+                        star.setAttribute("viewBox", "0 0 24 24");
+
+                        var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                        polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                        if (i &lt;= Math.floor(roundedRating)) {
+                            polygon.setAttribute("fill", "gold"); // Full star
+                        } else if (i === Math.ceil(roundedRating) &amp;&amp; roundedRating % 1 !== 0) {
+                            // Create a gradient for half-star
+                            var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                            var linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+                            linearGradient.setAttribute("id", "half");
+                            linearGradient.setAttribute("x1", "0%");
+                            linearGradient.setAttribute("x2", "100%");
+                            linearGradient.setAttribute("y1", "0%");
+                            linearGradient.setAttribute("y2", "0%");
+
+                            var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop1.setAttribute("offset", "50%");
+                            stop1.setAttribute("stop-color", "gold");
+
+                            var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop2.setAttribute("offset", "50%");
+                            stop2.setAttribute("stop-color", "gray");
+
+                            linearGradient.appendChild(stop1);
+                            linearGradient.appendChild(stop2);
+                            defs.appendChild(linearGradient);
+                            star.appendChild(defs);
+
+                            polygon.setAttribute("fill", "url(#half)"); // Half star
+                        } else {
+                            polygon.setAttribute("fill", "gray"); // Empty star
+                        }
+
+                        star.appendChild(polygon);
+                        starContainer.appendChild(star);
+                    }
                 }
         </script>
 

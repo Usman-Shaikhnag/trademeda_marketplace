@@ -15,7 +15,7 @@
                     <div class="">Your Feedback <span class="vertical-bar"></span></div>
                     <div class="">Trust Score <span class="vertical-bar"></span></div>
                     <div class="">Terms of Use <span class="vertical-bar"></span></div>
-                    <div class="">Privacy Policy <span class="vertical-bar"></span></div>
+                    <div class=""><a t-attf-href="/privacyPolicy">Privacy Policy </a><span class="vertical-bar"></span></div>
                     <div class="">Product Listing Policy <span class="vertical-bar"></span></div>
                     <div class="">Customer <span class="vertical-bar"></span></div>
                     <div class="">Support</div>

@@ -39,6 +39,9 @@
         'views/portal/categories.xml',
         'views/portal/subcategories.xml',
         'views/portal/readyToBuyProducts.xml',
+        'views/portal/searchByCountry.xml',
+        'views/portal/banner_application.xml',
+        'views/portal/privacy_policy.xml',
 
     ],
     'demo': [
@@ -49,7 +52,7 @@
 
     'assets': {
         'web.assets_frontend': [
-            'trademeda/static/src/js/filter2.js',
+            # 'trademeda/static/src/js/filter2.js',
             # 'trademeda/static/src/legacy/js/public/filters.js',
             # 'trademeda/static/**/*',
 

@@ -3,6 +3,11 @@
         <template id="signin" name="Trademeda Signin">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/signin.css"/>
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
+                
             </xpath>
            
 
@@ -19,7 +24,7 @@
                             <h5>It's absolutely Free</h5>
                         </div>
                         <div class="signup-btn">
-                            <button class="" onclick="redirect_signup()">Signup</button>
+                            <button class="" onclick="redirect_signup()">Sign Up</button>
                         </div>
 
 
@@ -27,8 +32,8 @@
                     </div>
                     <div class="signin"> <!-- Signin Form -->
                         <h1>Sign In</h1>
-                        <h2>Sign In to continue with trademeda</h2>
-                        <form  action="/custom_login" method="post" enctype="multipart/form-data">
+                        <h2>to continue...</h2>
+                        <form  action="/custom_login" method="post" style="margin-bottom:0;" enctype="multipart/form-data">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                             
                             <div class="text-input">

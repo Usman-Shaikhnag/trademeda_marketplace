@@ -32,7 +32,7 @@ body {
   .actions {
   
     display: flex;
-  
+    margin-top: 1rem;
     align-items: center;
   
   }
@@ -100,7 +100,7 @@ main > div {
 }
 .image-container{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -131,7 +131,7 @@ main > div {
   color: rgb(199,8,8);
 }
 .contact-section p{
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
 .contact-section button{
   margin-top: 10px;

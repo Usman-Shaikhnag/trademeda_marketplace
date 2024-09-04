@@ -110,7 +110,7 @@
                                     <div class="product-supplier">
                                         <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
                                         <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
-                                        <div class="rating" t-att-stars="partner.supplier_rating">
+                                        <div class="rating" t-att-stars="product.partner_id.supplier_rating">
                                             <!-- <span>⭐⭐⭐⭐⭐</span> -->
                                             <span class=""></span>
                                         </div>

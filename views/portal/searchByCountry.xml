@@ -1,0 +1,545 @@
+<odoo>
+    <data>
+        <template id="searchSuppliersByCountry" name="Search Suppliers by Country">
+            <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/readyToBuyProducts.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            </xpath>
+            <!-- <t t-call="website.layout"> -->
+                <t t-call="trademeda.header">
+                
+                </t>
+
+                
+                <!-- <t t-foreach="suppliers" t-as="supplier">
+                <div class="">
+                
+                    <t t-esc="supplier.product_name"/>
+                </div>
+                </t> -->
+            <main class="">
+
+            
+                <div class="left-section">
+                    <t t-if="related_products">
+
+                        <ul class="related_products"><h3>Similar Products</h3></ul>
+                        
+                        <t t-foreach="related_products" t-as="product">
+                            <li onclick="getSuppliers(this)" t-att-productName="product.name"><t t-esc="product.name"/></li>
+                        </t>
+                    </t>
+                    <t t-if="related_subcategories">
+
+
+                        <ul class="related_subcategories"><h3>Related Categories</h3></ul>
+                        
+                        <t t-foreach="related_subcategories" t-as="category">
+                            <li onclick="getProductsByCategory(this)" t-att-categoryName="category"><t t-esc="category"/></li>
+                        </t>
+                    </t>
+                </div>
+                <div class="right-section">
+                    <div class="search-heading">
+                        <t t-set="country" t-value="env['res.country'].sudo().search([('id', '=', country_id)])"/>
+                        <h2 class="">Showing Suppliers from <t t-esc="country.name"/></h2>
+                        <div class="search">
+
+                            <input id="search_product_input" type="text" placeholder="Search for a specific product"/>
+
+                            <button onclick="search_product(this)">Search</button>
+
+                            <span id="search1" class="search active"><t t-esc="len(suppliers)"/> Suppliers found in <t t-esc="country.name"/></span>
+
+                        </div>
+                        
+                    </div>
+                    <div class="tabs-filters">
+                        <div class="tabs">
+                        
+                            <t t-if="supplier_search">
+                                <span id="tab" class="tab active">Suppliers</span>
+                                
+                            </t>
+                            
+                            
+                        </div>
+                        <div class="filters">
+                            
+                            <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
+                            <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
+                            <span class=""><i class="fa-solid fa-calendar-days"></i> Date</span>
+
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="tab-content">
+                        
+                        <t t-foreach="suppliers" t-as="product">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
+
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-header">
+                                        <div class="product-title">
+                                            <span class="flag-icon"></span>
+                                            <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                        </div>
+                                        <div class="status-icons">
+                                            <span class="status-icon"></span>
+                                            <span class="info-icon"></span>
+                                        </div>
+                                    </div>
+                                    <div class="product-supplier">
+                                        <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                        <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                        <div class="rating" t-att-stars="product.partner_id.supplier_rating">
+                                            <!-- <span>⭐⭐⭐⭐⭐</span> -->
+                                            <span class=""></span>
+                                        </div>
+                                    </div>
+                                    <div class="product-description">
+                                        <p><t t-esc="product.product_description"/></p>
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="favourites-button"><b>Add To Favourites</b></button>
+                                        <button class="inquiry-button"><b>Enquire Now</b></button>
+                                    </div>
+                                </div>
+                                <div class="product-date">
+                                    <p><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></p>
+                                </div>
+                            </div>
+                        </t>
+
+                        <div class="pagination">
+                            <t t-set="page" t-value="int(page)"/>
+                            <t t-if="page &gt; 1">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                            </t>
+                            <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                    <t t-esc="p"/>
+                                </a>
+                            </t>
+                            <t t-if="page &lt; total_pages">
+                                <a t-attf-href="/findBuyers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                            </t>
+                        </div>
+                        
+                    </div>
+                    
+                
+                </div>
+            </main>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.rating').forEach(function(el) {
+                        fill_stars(el);
+                    });
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get all tab elements
+                    const tabs = document.querySelectorAll('.tab');
+                    // Get all content elements
+                    const contents = document.querySelectorAll('.content');
+                    // Get all search elements
+                    const searchs = document.querySelectorAll('.search');
+
+                    
+
+                    tabs.forEach(function(tab) {
+                        tab.addEventListener('click', function() {
+                            // Remove active class from all tabs
+                            tabs.forEach(function(t) { t.classList.remove('active') });
+                            // Remove active class from all contents
+                            contents.forEach(function(c) { c.classList.remove('active') });
+                            // Remove active class from all search elements
+                            searchs.forEach(function(s) { s.classList.remove('active') });
+
+                            // Add active class to the clicked tab
+                            this.classList.add('active');
+                            // Get the corresponding content element using the tab's ID
+                            const contentId = this.id.replace('tab', 'content');
+                            document.getElementById(contentId).classList.add('active');
+                            // Get the corresponding search element using the tab's ID
+                            const searchId = this.id.replace('tab', 'search');
+                            document.getElementById(searchId).classList.add('active');
+                        });
+                    });
+                });
+
+                function getSuppliers(element){
+                        const searchQuery = element.getAttribute('productName')
+                        console.log('Search',searchQuery)
+                        if(searchQuery != null){
+
+                            window.location.href = '/findSuppliers/'+searchQuery
+                        }
+                    }
+                function getProductsByCategory(element){
+                    const searchQuery = element.getAttribute('categoryName')
+                    if(searchQuery != null){
+
+                            window.location.href = '/findSuppliersByCategory/'+searchQuery
+                        }
+                }
+                function toggle_countries(element){
+                    if(element.children[1].style.display == 'flex'){
+                        element.children[1].style.display = 'none'
+                    }
+                    else{
+                        element.children[1].style.display = 'flex'
+                    }
+                }
+
+                function search_product(element){
+                    
+                    const search = document.getElementById('search_product_input').value
+                    console.log('search',search)
+
+                    if(search != ''){
+                        window.location.href = window.location.href+'?product='+search
+                    }
+                }
+                function fill_stars(element) {
+                    const rating = element.getAttribute('stars')
+                    console.log("Stars called",rating)
+                    const roundedRating = Math.round(rating * 2) / 2; // Round to nearest 0.5
+                    const starContainer = element; // Assuming 'starContainer' is your container element
+                    starContainer.innerHTML = ''; // Clear existing stars
+
+                    for (var i = 1; i &lt;= 5; i++) {
+                        var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        star.setAttribute("width", "24");
+                        star.setAttribute("height", "24");
+                        star.setAttribute("viewBox", "0 0 24 24");
+
+                        var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                        polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                        if (i &lt;= Math.floor(roundedRating)) {
+                            polygon.setAttribute("fill", "gold"); // Full star
+                        } else if (i === Math.ceil(roundedRating) &amp;&amp; roundedRating % 1 !== 0) {
+                            // Create a gradient for half-star
+                            var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                            var linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+                            linearGradient.setAttribute("id", "half");
+                            linearGradient.setAttribute("x1", "0%");
+                            linearGradient.setAttribute("x2", "100%");
+                            linearGradient.setAttribute("y1", "0%");
+                            linearGradient.setAttribute("y2", "0%");
+
+                            var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop1.setAttribute("offset", "50%");
+                            stop1.setAttribute("stop-color", "gold");
+
+                            var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop2.setAttribute("offset", "50%");
+                            stop2.setAttribute("stop-color", "gray");
+
+                            linearGradient.appendChild(stop1);
+                            linearGradient.appendChild(stop2);
+                            defs.appendChild(linearGradient);
+                            star.appendChild(defs);
+
+                            polygon.setAttribute("fill", "url(#half)"); // Half star
+                        } else {
+                            polygon.setAttribute("fill", "gray"); // Empty star
+                        }
+
+                        star.appendChild(polygon);
+                        starContainer.appendChild(star);
+                    }
+                }
+            
+            
+            </script>
+        </template>
+
+
+
+        <template id="searchBuyersByCountry" name="Search by Country">
+            <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/search.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/readyToBuyProducts.css"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            </xpath>
+            <!-- <t t-call="website.layout"> -->
+                <t t-call="trademeda.header">
+                
+                </t>
+
+                
+                <!-- <t t-foreach="suppliers" t-as="supplier">
+                <div class="">
+                
+                    <t t-esc="supplier.product_name"/>
+                </div>
+                </t> -->
+            <main class="">
+
+            
+                <div class="left-section">
+                    <t t-if="related_products">
+
+                        <ul class="related_products"><h3>Similar Products</h3></ul>
+                        
+                        <t t-foreach="related_products" t-as="product">
+                            <li onclick="getSuppliers(this)" t-att-productName="product.name"><t t-esc="product.name"/></li>
+                        </t>
+                    </t>
+                    <t t-if="related_subcategories">
+
+
+                        <ul class="related_subcategories"><h3>Related Categories</h3></ul>
+                        
+                        <t t-foreach="related_subcategories" t-as="category">
+                            <li onclick="getProductsByCategory(this)" t-att-categoryName="category"><t t-esc="category"/></li>
+                        </t>
+                    </t>
+                </div>
+                <div class="right-section">
+                    <div class="search-heading">
+                        <t t-set="country" t-value="env['res.country'].sudo().search([('id', '=', country_id)])"/>
+                        <h2 class="">Showing Buyers from <t t-esc="country.name"/></h2>
+                        <div class="search">
+
+                            <input id="search_pruduct_input" type="text" placeholder="Search for a specific product"/>
+
+                            <button onclick="search_product(this)">Search</button>
+
+                            <span id="search2" class="search"><t t-esc="len(buyers)"/> Buyers found in <t t-esc="country.name"/></span>
+
+                        </div>
+                        
+                    </div>
+                    <div class="tabs-filters">
+                        <div class="tabs">
+                        
+                            <t t-if="supplier_search">
+                                <span id="tab" class="tab active">Buyers</span>
+                                
+                            </t>
+                            
+                            
+                        </div>
+                        <div class="filters">
+                            
+                            <span class=""><i class="fa-solid fa-credit-card"></i> Membership</span>
+                            <span class=""><i class="fa-solid fa-clipboard-list"></i> Listing Type</span>
+                            <span class=""><i class="fa-solid fa-calendar-days"></i> Date</span>
+
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="divider-line"></span>
+                    </div>
+                    <div class="tab-content">
+                        
+                        <div id="content2" class="content active">
+                            <div class="rfq-container">
+                                <t t-if="not buyers">
+                                    <h4 style="display:flex;justify-content:center;color:#333;">No Buyers Found for <t t-esc="query"/></h4>
+                                </t>
+                            
+                                <t t-foreach="buyers" t-as="rfq">
+                                    <div class="rfq-card">
+                                        <div class="rfq-heading">
+                                            <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
+                                        </div>
+                                        <div class="rfq-subheading">
+                                            <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                            <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
+                                        </div>
+                                        <div class="rfq-content">
+                                            <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                            <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                        </div>
+                                        <div class="rfq-buttons">
+                                            <button class="btn-wishlist">Add to Wishlist</button>
+                                            <button class="btn-enquire">Enquire Now</button>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="not searchByCategory">
+                                    <div class="pagination">
+                                        <t t-set="page" t-value="int(page)"/>
+                                        <t t-if="page &gt; 1">
+                                            <a t-attf-href="/findBuyers/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                        </t>
+                                        <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                            <a t-attf-href="/findBuyers/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                <t t-esc="p"/>
+                                            </a>
+                                        </t>
+                                        <t t-if="page &lt; total_pages">
+                                            <a t-attf-href="/findBuyers/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                        </t>
+                                    </div>
+                                </t>
+                                <t t-else="">
+
+                                    <t t-set="page" t-value="int(page)"/>
+                                    <div class="pagination">
+                                        <t t-if="page &gt; 1">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page - 1 }}" class="prev-page">Previous</a>
+                                        </t>
+                                        
+                                        <t t-foreach="range(1, total_pages + 1)" t-as="p">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ p }}" t-att-class="'page-link ' + ('active' if p == page else '')">
+                                                <t t-esc="p"/>
+                                            </a>
+                                        </t>
+                                        
+                                        <t t-if="page &lt; total_pages">
+                                            <a t-attf-href="/findSuppliersByCategory/{{ query }}?page={{ page + 1 }}" class="next-page">Next</a>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                
+                </div>
+            </main>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.rating').forEach(function(el) {
+                        fill_stars(el);
+                    });
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get all tab elements
+                    const tabs = document.querySelectorAll('.tab');
+                    // Get all content elements
+                    const contents = document.querySelectorAll('.content');
+                    // Get all search elements
+                    const searchs = document.querySelectorAll('.search');
+
+                    
+
+                    tabs.forEach(function(tab) {
+                        tab.addEventListener('click', function() {
+                            // Remove active class from all tabs
+                            tabs.forEach(function(t) { t.classList.remove('active') });
+                            // Remove active class from all contents
+                            contents.forEach(function(c) { c.classList.remove('active') });
+                            // Remove active class from all search elements
+                            searchs.forEach(function(s) { s.classList.remove('active') });
+
+                            // Add active class to the clicked tab
+                            this.classList.add('active');
+                            // Get the corresponding content element using the tab's ID
+                            const contentId = this.id.replace('tab', 'content');
+                            document.getElementById(contentId).classList.add('active');
+                            // Get the corresponding search element using the tab's ID
+                            const searchId = this.id.replace('tab', 'search');
+                            document.getElementById(searchId).classList.add('active');
+                        });
+                    });
+                });
+
+                function getSuppliers(element){
+                        const searchQuery = element.getAttribute('productName')
+                        console.log('Search',searchQuery)
+                        if(searchQuery != null){
+
+                            window.location.href = '/findSuppliers/'+searchQuery
+                        }
+                    }
+                function getProductsByCategory(element){
+                    const searchQuery = element.getAttribute('categoryName')
+                    if(searchQuery != null){
+
+                            window.location.href = '/findSuppliersByCategory/'+searchQuery
+                        }
+                }
+                function toggle_countries(element){
+                    if(element.children[1].style.display == 'flex'){
+                        element.children[1].style.display = 'none'
+                    }
+                    else{
+                        element.children[1].style.display = 'flex'
+                    }
+                }
+
+                function search_product(element){
+                    const search = document.getElementById('search_pruduct_input').value
+
+                    if(search != ''){
+                        window.location.href = window.location.href+'?product='+search
+                    }
+                }
+                function fill_stars(element) {
+                    const rating = element.getAttribute('stars')
+                    console.log("Stars called",rating)
+                    const roundedRating = Math.round(rating * 2) / 2; // Round to nearest 0.5
+                    const starContainer = element; // Assuming 'starContainer' is your container element
+                    starContainer.innerHTML = ''; // Clear existing stars
+
+                    for (var i = 1; i &lt;= 5; i++) {
+                        var star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        star.setAttribute("width", "24");
+                        star.setAttribute("height", "24");
+                        star.setAttribute("viewBox", "0 0 24 24");
+
+                        var polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                        polygon.setAttribute("points", "12,2 15,10 23,10 17,15 19,22 12,17 5,22 7,15 1,10 9,10");
+
+                        if (i &lt;= Math.floor(roundedRating)) {
+                            polygon.setAttribute("fill", "gold"); // Full star
+                        } else if (i === Math.ceil(roundedRating) &amp;&amp; roundedRating % 1 !== 0) {
+                            // Create a gradient for half-star
+                            var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                            var linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+                            linearGradient.setAttribute("id", "half");
+                            linearGradient.setAttribute("x1", "0%");
+                            linearGradient.setAttribute("x2", "100%");
+                            linearGradient.setAttribute("y1", "0%");
+                            linearGradient.setAttribute("y2", "0%");
+
+                            var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop1.setAttribute("offset", "50%");
+                            stop1.setAttribute("stop-color", "gold");
+
+                            var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                            stop2.setAttribute("offset", "50%");
+                            stop2.setAttribute("stop-color", "gray");
+
+                            linearGradient.appendChild(stop1);
+                            linearGradient.appendChild(stop2);
+                            defs.appendChild(linearGradient);
+                            star.appendChild(defs);
+
+                            polygon.setAttribute("fill", "url(#half)"); // Half star
+                        } else {
+                            polygon.setAttribute("fill", "gray"); // Empty star
+                        }
+
+                        star.appendChild(polygon);
+                        starContainer.appendChild(star);
+                    }
+                }
+            
+            
+            </script>
+        </template>
+    </data>
+</odoo>

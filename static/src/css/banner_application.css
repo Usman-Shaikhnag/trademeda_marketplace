@@ -1,0 +1,102 @@
+
+main{
+    padding: 2%;
+}
+h1{
+    color: rgb(212, 37, 5);
+    font-family: 'Avenir';
+}
+.pricing-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.pricing-plan {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.pricing-plan.best-value {
+    border-top: 4px solid orange;
+    background-color: #e0f7ff;
+}
+.pricing-plan.best-value::before {
+    content: 'BEST VALUE';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: orange;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transform: rotate(10deg);
+}
+.pricing-plan h2 {
+    font-size: 20px;
+    margin: 0;
+}
+.pricing-plan h2 .icon {
+    color: gold;
+    margin-right: 10px;
+}
+.pricing-plan p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: gray;
+}
+.pricing-plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.pricing-plan ul li {
+    margin: 10px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pricing-plan ul li .icon {
+    font-size: 18px;
+}
+.pricing-plan .price {
+    font-size: 24px;
+    font-weight: bold;
+}
+.pricing-plan .price small {
+    font-size: 14px;
+    font-weight: normal;
+    color: gray;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 14px;
+}
+.get_started_btn{
+    color: #f6f6f6;
+    background: rgb(212, 37, 5);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.pricing-plan:hover {
+    outline: 2px solid rgb(212, 37, 5);
+}

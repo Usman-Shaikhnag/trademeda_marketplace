@@ -7,3 +7,4 @@ from . import country_inherited
 from . import rfq
 # from . import product_rating
 from . import customer_testimony
+from . import banner
