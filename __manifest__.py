@@ -42,6 +42,7 @@
         'views/portal/searchByCountry.xml',
         'views/portal/banner_application.xml',
         'views/portal/privacy_policy.xml',
+        'views/portal/membership_plans.xml',
 
     ],
     'demo': [

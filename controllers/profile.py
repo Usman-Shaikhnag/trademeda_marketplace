@@ -272,36 +272,84 @@ class ProductController(http.Controller):
             return json.dumps(vals)
 
 
-    @http.route(['/profile/updateProduct/<int:product_id>'], methods=["POST"], type="json", auth="user", website=True)
-    def updateProduct(self, product_id, **kwargs):
+    @http.route(['/profile/updateproduct/<int:product_id>'], methods=["POST"], type="http", auth="user", website=True)
+    def updateProduct(self, product_id, **kw):
         user = request.env.user
         partner_id = user.partner_id
-        product = request.env['product.customer.images'].sudo().search([('id','=',product_id),('partner_id','=',partner_id.id)],limit=1)
         # import wdb;wdb.set_trace()
+        product = request.env['product.customer.images'].sudo().search([('id','=',product_id),('partner_id','=',partner_id.id)],limit=1)
 
-        body = request.httprequest.get_json()
-        if body:
-            try:
+        for rec in kw:
+            if "update_product_image_" in rec:
+                    update_product_image = kw.get(rec).read()
+        for rec in kw:
+            if "edit_delivery_days_" in rec:
+                    edit_delivery_days = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_packaging_requirement" in rec:
+                    edit_packaging_requirement = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_payment_mode_" in rec:
+                    edit_payment_mode = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_product_description_" in rec:
+                    edit_product_description = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_product_price_usd_" in rec:
+                    edit_product_price_usd = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_product_quantity_" in rec:
+                    edit_product_quantity = kw.get(rec)
+            
+        for rec in kw:
+            if "edit_rts_quantity_" in rec:
+                    edit_rts_quantity = kw.get(rec)
+        for rec in kw:
+            if "edit_sample_policy_" in rec:
+                    edit_sample_policy = kw.get(rec)
+            
+        for rec in kw:
+            if "ready_to_buy_requirements" in rec:
+                    if kw.get(rec) == 'yes':
+                        ready_to_buy_requirements = True
+                    else:
+                        ready_to_buy_requirements = False
+
+        if product:
+            if update_product_image:
                 product.sudo().write({
-                    'product_variety':body['product_variety'],
-                    'product_description':body['product_description'],
-                    'product_quantity':body['product_quantity'],
-                    'packaging_requirement':body['packaging_requirement'],
-                    'delivery_days':body['delivery_days'],
-                    'payment_mode':body['payment_mode'],
-                    'sample_policy':body['sample_policy'],
-                    # 'ready_to_ship':body['ready_to_ship'],
-                    'rts_quantity':body['rts_quantity']
+                    'product_image':base64.b64encode(update_product_image),
+                    'image_name':update_product_image.filename,
+                    'product_description':edit_product_description,
+                    'product_quantity':edit_product_quantity,
+                    'packaging_requirement':edit_packaging_requirement,
+                    'delivery_days':edit_delivery_days,
+                    'product_price_usd':edit_product_price_usd,
+                    'payment_mode':edit_payment_mode,
+                    'sample_policy':edit_sample_policy,
+                    'rts_quantity':edit_rts_quantity,
+                    'ready_to_ship':ready_to_buy_requirements
                 })
-                vals = {
-                        'success':True
-                    }
-                return json.dumps(vals)
-            except:
-                vals = {
-                        'success':False
-                    }
-                return json.dumps(vals)
+            else:
+                 product.sudo().write({
+                    'product_description':edit_product_description,
+                    'product_quantity':edit_product_quantity,
+                    'packaging_requirement':edit_packaging_requirement,
+                    'delivery_days':edit_delivery_days,
+                    'product_price_usd':edit_product_price_usd,
+                    'payment_mode':edit_payment_mode,
+                    'sample_policy':edit_sample_policy,
+                    'rts_quantity':edit_rts_quantity,
+                    'ready_to_ship':ready_to_buy_requirements
+                })
+        return request.redirect("/profile")
+            
+            
                 
     
     @http.route(['/profile/uploadtemp'], methods=["POST"], type="http", auth="user", website=True)

@@ -49,6 +49,13 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.bannerApplication',vals)
     
+    @http.route('/membershipPlans', auth='public', website=True)
+    def membershipPlans(self, **kwargs):
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.membershipPlans',vals)
+    
     @http.route('/privacyPolicy', auth='public', website=True)
     def privacyPolicy(self, **kwargs):
         vals = {
@@ -238,13 +245,13 @@ class HomepageController(http.Controller):
             # import wdb;wdb.set_trace()
             if logo:
                 logo_filename = logo.filename
-                logo_binary  = base64.b64decode(logo.read())
+                logo_binary  = base64.b64encode(logo.read())
                 data['logo_image'] = logo_binary
                 data['logo_image_name'] = logo_filename
                 
             if company_image:
                 company_image_filename = company_image.filename
-                company_image_binary  = base64.b64decode(company_image.read())
+                company_image_binary  = base64.b64encode(company_image.read())
                 data['company_image'] = company_image_binary
                 data['company_image_name'] = company_image_filename
 

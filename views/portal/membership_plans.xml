@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="bannerApplication" name="Trademeda Advertise">
+        <template id="membershipPlans" name="Trademeda Memberships">
          <xpath expr="." position="inside">
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
             <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
@@ -12,15 +12,18 @@
 
         <t t-call="trademeda.header"/>
         <main class="">
-            <h1 class="">Advertise With Us</h1>
+            <h1 class="">Membership Plans</h1>
             <div class="pricing-table">
                 <!-- Silver Plan -->
                 <div class="pricing-plan">
-                    <h2><span class="icon">★</span>15 Days</h2>
+                    <h2><span class="icon">★</span>SILVER Membership</h2>
                     <p>Starts From</p>
-                    <div class="price">₹15000 + <small>18% GST*</small></div>
+                    <div class="price">₹18,999*<small>Total for 6 months (Only ₹3,167/month)</small></div>
                     <ul>
-                        
+                        <li>No Website <span class="icon">✖</span></li>
+                        <li>No product images <span class="icon">✖</span></li>
+                        <li>One page simple text. No images. <span class="icon">✖</span></li>
+                        <li>Medium <span class="icon">📶</span></li>
                         <li><button class="get_started_btn">Get Started</button></li>
 
                     </ul>
@@ -28,42 +31,28 @@
 
                 <!-- Gold Plan -->
                 <div class="pricing-plan best-value">
-                    <h2><span class="icon">★</span>30 Days</h2>
+                    <h2><span class="icon">★</span>GOLD Membership</h2>
                     <p>Starts From</p>
                     <div class="price">₹23,999*<small>Total for 6 months (Only ₹4,000/month)</small></div>
                     <ul>
-                        
+                        <li>No Website <span class="icon">✖</span></li>
+                        <li>Unlimited products with images <span class="icon">✔</span></li>
+                        <li>Complete profile with images <span class="icon">✔</span></li>
+                        <li>Highest <span class="icon">📶</span></li>
                         <li><button class="get_started_btn">Get Started</button></li>
                     </ul>
                 </div>
 
                 <!-- Gold+ Plan -->
                 <div class="pricing-plan">
-                    <h2><span class="icon">★</span>50 Days</h2>
+                    <h2><span class="icon">★</span>GOLD+ Membership</h2>
                     <p>Starts From</p>
                     <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
                     <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>75 days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>100 Days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        
+                        <li>Gold Membership and your own Website <span class="icon">✔</span></li>
+                        <li>Unlimited products with images <span class="icon">✔</span></li>
+                        <li>Complete profile with images <span class="icon">✔</span></li>
+                        <li>Highest <span class="icon">📶</span></li>
                         <li><button class="get_started_btn">Get Started</button></li>
                     </ul>
                 </div>

@@ -47,7 +47,8 @@
 
                                 <!-- <img src="/trademeda/static/src/img/edit.png" alt="edit photo" class="edit-profile-pic"/> -->
                                 <t t-if="partner.logo_image">
-                                    <img t-att-src="('data:image/' + ('jpeg' if partner.logo_image_name.endswith('.jpeg') || partner.logo_image_name.endswith('.jpg')  else 'png') + ';base64,' + partner.logo_image.decode('utf-8'))" alt="Product Image" class="product-image"/>
+                                    
+                                    <img t-att-src="('data:image/' + ('jpeg' if partner.logo_image_name.endswith('.jpeg') or partner.logo_image_name.endswith('.jpg')  else 'png') + ';base64,' + partner.logo_image.decode('utf-8'))" alt="Product Image" class="product-image"/>
                                     
                                 </t>
                                 <i class="fas fa-edit" onclick="enable_profile_detail()" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
@@ -1068,136 +1069,141 @@
                                         <span class="divider-line"></span>
                                     </div>
                                     <div class="inner-card" id="editProduct">
-                                        <div class="productImage">
-                                            <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" id="edit-product_image" alt="Product Image"/>
-                                            <div class="file-upload-wrapper" style="align-self: flex-end;">
-                                                <input onchange="product_image_change(this)" type="file" id="update_product_image" name="update_product_image" data-file-name="update_product_image" data-delete-btn="update_update_product_image"/>
-                                                <button type="button"><label for="update_product_image"><i class="fas fa-camera"></i>Update Photo</label></button>
-                                                <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="editproductDetails">
-                                            
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Description</span>
-                                                </div>
-                                                <div class="">
-                                                    <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit-product_description" t-att-value="product.product_description">
-                                                        <t t-esc="product.product_description"/>
-                                                    </textarea>
+                                        <form t-att-action="'/profile/updateproduct/' + str(product.id)" method="post" enctype="multipart/form-data" class="">
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                            <div class="productImage">
+                                                <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" t-att-id="'edit_product_image_' + str(product.id)" alt="Product Image"/>
+                                                <div class="file-upload-wrapper" style="align-self: flex-end;">
+                                                    <input onchange="product_image_change(this)" type="file" t-att-id="'update_product_image_' + str(product.id)" t-att-name="'update_product_image_' + str(product.id)" data-file-name="'update_product_image_' + str(product.id)" data-delete-btn="update_update_product_image"/>
+                                                    <button type="button"><label t-att-for="'update_product_image_' + str(product.id)"><i class="fas fa-camera"></i>Update Photo</label></button>
+                                                    <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
                                                 </div>
                                             </div>
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Product Quantity</span>
-                                                </div>
-                                                <div class="">
-                                                    <input placeholder="Product Quantity" name="edit-product_quantity" id="edit-product_quantity" t-att-value="product.product_quantity"/>
-                                                </div>
-                                            </div>
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Packaging Requirement</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input placeholder="Packaging Requirement" name="edit-packaging_requirement" id="edit-packaging_requirement" t-att-value="product.packaging_requirement" />
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Delivery Days</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input name="edit-delivery_days" id="edit-delivery_days" t-att-value="product.delivery_days" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Product Price (in USD)</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input name="edit-product_price_usd" id="edit-product_price_usd" t-att-value="product.product_price_usd" />
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Payment Mode</span>
-                                                    </div>
-                                                    <div class="select-container">
-                                    
-                                                        <select id="edit-payment_mode" name="payment_mode">
-                                                            <option value="cash_advance">Cash in Advance</option>
-                                                            <option value="letter_of_credit">Letter of Credit</option> 
-                                                            <option value="documentary_collection">Documentary Collection</option>                  
-                                                            <option value="open_account">Open Account</option>                  
-                                                            <option value="advance_payment">Advance Payment</option>                  
-                                                            <option value="consignment">Consignment</option>                  
-                                                            <option value="cash_on_delivery">Cash on Delivery (COD)</option>                  
-                                                            <option value="payment_in_installments">Payment in Installments</option>                  
-                                                            <option value="bill_of_exchange">Bill of Exchange</option>                  
-                                                            <option value="telegraphic_transfer">Telegraphic transfer</option>  
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="multi-input">
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Ready to Buy</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input type="checkbox" onclick="ready_to_buy_popup(this)" name="edit-ready_to_buy" id="edit-ready_to_buy" t-att-value="product.ready_to_ship"/>                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Ready to Buy Quantity</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input name="edit-rts_quantity" id="edit-rts_quantity" t-att-value="product.rts_quantity" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-input">
-                                                <div class="">
-                                                    <span class="">Sample Policy</span>
-                                                </div>
-                                                <div class="">
-                                                    <input name="edit-sample_policy" id="edit-sample_policy" t-att-value="product.sample_policy" />
-                                                </div>
-                                            </div>
-                                            <div class="submit-edit-product">
-                                                <button class="" onclick="save_edited_product(this)" t-att-productId="product.id">Save</button>
-                                            </div>  
-                                            <div class="readyToBuyPopup" id="readyToBuyPopup">
-
-                                                <div class="">
-                                                    <span class="">Requirements</span>
-                                                    <ul>
-                                                        <li><span class="">The supplier must be both a registered user and a subscriber on Trademeda to participate in the Ready to buy program.</span></li>
-                                                        <li><span class="">The supplier must commit to not requiring any lead time for manufacturing, since the product is already produced and available for immediate purchase.</span></li>
-                                                    </ul>
-                                                    
-                                                </div>
+                                            <div class="editproductDetails">
                                                 
-                                                <div class="">
-                                                    <span class="">Do you meet these Requirements?</span>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Description</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <textarea placeholder="Product Description" style="white-space: nowrap;" t-att-name="'edit_product_description_'+str(product.id)" t-att-id="'edit_product_description_'+str(product.id)" t-att-value="product.product_description">
+                                                            <t t-esc="product.product_description"/>
+                                                        </textarea>
+                                                    </div>
                                                 </div>
-                                                <div class="select-container">
-                                                    <select id="ready_to_buy_requirements" name="ready_to_buy_requirements">
-                                                        <option value="yes">YES</option>
-                                                        <option value="no">No</option> 
-                                                    </select>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Quantity</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input placeholder="Product Quantity" t-att-name="'edit_product_quantity_'+str(product.id)" t-att-id="'edit_product_quantity_'+str(product.id)" t-att-value="product.product_quantity"/>
+                                                    </div>
+                                                </div>
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Packaging Requirement</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input placeholder="Packaging Requirement" t-att-name="'edit_packaging_requirement'+str(product.id)" t-att-id="'edit_packaging_requirement_'+str(product.id)" t-att-value="product.packaging_requirement" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Delivery Days</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input t-att-name="'edit_delivery_days_'+str(product.id)" t-att-id="'edit_delivery_days_'+str(product.id)" t-att-value="product.delivery_days" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Product Price (in USD)</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input t-att-name="'edit_product_price_usd_'+str(product.id)" t-att-id="'edit_product_price_usd'+str(product.id)" t-att-value="product.product_price_usd" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Payment Mode</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                        
+                                                            <select t-att-id="'edit_payment_mode_'+str(product.id)" t-att-name="'edit_payment_mode_'+str(product.id)">
+                                                                <option value="cash_advance">Cash in Advance</option>
+                                                                <option value="letter_of_credit">Letter of Credit</option> 
+                                                                <option value="documentary_collection">Documentary Collection</option>                  
+                                                                <option value="open_account">Open Account</option>                  
+                                                                <option value="advance_payment">Advance Payment</option>                  
+                                                                <option value="consignment">Consignment</option>                  
+                                                                <option value="cash_on_delivery">Cash on Delivery (COD)</option>                  
+                                                                <option value="payment_in_installments">Payment in Installments</option>                  
+                                                                <option value="bill_of_exchange">Bill of Exchange</option>                  
+                                                                <option value="telegraphic_transfer">Telegraphic transfer</option>  
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="multi-input">
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Ready to Buy</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input type="checkbox" onclick="ready_to_buy_popup(this)" t-att-name="'edit_ready_to_buy_'+str(product.id)" t-att-id="'edit_ready_to_buy_'+str(product.id)" t-att-value="product.ready_to_ship"/>                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Ready to Buy Quantity</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input t-att-name="'edit_rts_quantity_'+str(product.id)" t-att-id="'edit_rts_quantity_'+str(product.id)" t-att-value="product.rts_quantity" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Sample Policy</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input t-att-name="'edit_sample_policy_'+str(product.id)" t-att-id="'edit_sample_policy_'+str(product.id)" t-att-value="product.sample_policy" />
+                                                    </div>
                                                 </div>
                                                 <div class="submit-edit-product">
-                                                    <button class="" onclick="rtb_requirements_save(this)">Save</button>
+                                                    <button class="" onclick="save_edited_product(this)" t-att-productId="product.id">Save</button>
+                                                </div>  
+                                                <div class="readyToBuyPopup" id="readyToBuyPopup">
+
+                                                    <div class="">
+                                                        <span class="">Requirements</span>
+                                                        <ul>
+                                                            <li><span class="">The supplier must be both a registered user and a subscriber on Trademeda to participate in the Ready to buy program.</span></li>
+                                                            <li><span class="">The supplier must commit to not requiring any lead time for manufacturing, since the product is already produced and available for immediate purchase.</span></li>
+                                                        </ul>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="">
+                                                        <span class="">Do you meet these Requirements?</span>
+                                                    </div>
+                                                    <div class="select-container">
+                                                        <select id="ready_to_buy_requirements" name="ready_to_buy_requirements">
+                                                            <option value="yes">YES</option>
+                                                            <option value="no">No</option> 
+                                                        </select>
+                                                    </div>
+                                                    <div class="submit-edit-product">
+                                                        <!-- <button class="" onclick="rtb_requirements_save(this)">Save</button> -->
+                                                        <button type="submit" class="">Save</button>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </t>
                                 
@@ -1704,7 +1710,7 @@
                 
                 <!-- function save_edited_product(element){
                     const productId = element.getAttribute('ProductId')
-                    const product_description = document.getElementById('edit-product_description').value
+                    const product_description = document.getElementById('edit_product_description').value
                     const product_quantity = document.getElementById('edit-product_quantity').value
                     const packaging_requirement = document.getElementById('edit-packaging_requirement').value
                     const delivery_days = document.getElementById('edit-delivery_days').value
@@ -1712,7 +1718,7 @@
                     const payment_mode = document.getElementById('edit-payment_mode').value
                     const ready_to_ship = document.getElementById('edit-ready_to_buy').value
                     const rts_quantity = document.getElementById('edit-rts_quantity').value
-                    const product_image = document.getElementById('edit-product_image').src.split(',')[1]
+                    const product_image = document.getElementById('edit_product_image').src.split(',')[1]
                     const update_product_image = document.getElementById('update_product_image')
                     const sample_policy = document.getElementById('edit-sample_policy').value
 
@@ -2517,16 +2523,7 @@
                         document.getElementById('readyToBuyPopup').style.display = 'block'
                     }
                 }
-                function rtb_requirements_save(element){
-                    const requirements = document.getElementById('ready_to_buy_requirements').value
-                    if(requirements == 'yes'){
-                        document.getElementById('readyToBuyPopup').style.display = 'none'
-                    }else{
-                        document.getElementById('readyToBuyPopup').style.display = 'none'
-                        document.getElementById('edit-ready_to_buy').value = 'False'
-                        document.getElementById('edit-ready_to_buy').checked = false
-                    }
-                }
+               
  
                 
             </script>

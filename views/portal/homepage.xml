@@ -101,7 +101,7 @@
 
                                     <p style="margin-bottom: 4px;">Trademeda</p>
 
-                                    <p style="margin-top: 0px;">Membership Plans</p>
+                                    <a t-attf-href="/membershipPlans" style="color: inherit; text-decoration: none;"><p style="margin-top: 0px;">Membership Plans</p></a>
 
                                 </div>
 
