@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="banner_pricelists_form_view" model="ir.ui.view">
+            <field name="name">banner.pricelists.form</field>
+            <field name="model">banner.pricelists</field>
+            <field name="arch" type="xml">
+                <form string="Banner Pricelists">
+
+                    <group>
+                        <field name="name" />
+                        <field name="suggested" />
+                        <field name="features">
+                            <tree editable="bottom">
+                                <field name="name" />
+                            </tree>
+                        </field>
+                    </group>
+
+
+                       
+                </form>
+                
+            </field>
+        </record>
+
+        <record id="view_tree_trademeda_quotations" model="ir.ui.view">
+            <field name="name">banner.pricelists.tree</field>
+            <field name="model">banner.pricelists</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="membership_pricelists_form_view" model="ir.ui.view">
+            <field name="name">membership.pricelists.form</field>
+            <field name="model">membership.pricelists</field>
+            <field name="arch" type="xml">
+                <form string="membership Pricelists">
+
+                    <group>
+                        <field name="name" />
+                        <field name="suggested" />
+                        <field name="features">
+                            <tree editable="bottom">
+                                <field name="name" />
+                            </tree>
+                        </field>
+                    </group>
+
+
+                       
+                </form>
+                
+            </field>
+        </record>
+
+        <record id="view_tree_membership_pricelists" model="ir.ui.view">
+            <field name="name">membership.pricelists.tree</field>
+            <field name="model">membership.pricelists</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

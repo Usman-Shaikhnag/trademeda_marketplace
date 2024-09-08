@@ -8,3 +8,4 @@ from . import rfq
 # from . import product_rating
 from . import customer_testimony
 from . import banner
+from . import pricing_plans
