@@ -133,6 +133,28 @@
         </field>
     </record>
 
+    <record id="action_trademeda_banner_pricing" model="ir.actions.act_window">
+        <field name="name">Banner Pricelists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">banner.pricelists</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Banner Pricelists</p>
+        </field>
+    </record>
+
+    <record id="action_trademeda_membership_pricing" model="ir.actions.act_window">
+        <field name="name">Membership Pricelists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">membership.pricelists</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Membership Pricelists</p>
+        </field>
+    </record>
+
     <!-- Menu structure -->
     <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
     <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
@@ -150,6 +172,9 @@
     <menuitem id="submenu_certificates" name="Certificates" parent="menu_certificates" action="action_customer_certificates" sequence="11"/>
     <menuitem id="submenu_customer_testimony" name="Customer Testimony" parent="submenu_products" action="action_customer_testimony" sequence="14"/>
     <menuitem id="submenu_banners" name="Banners" parent="menu_trademeda" action="action_trademeda_banner" sequence="12"/>
+    <menuitem id="submenu_pricing" name="Pricing" parent="menu_trademeda" sequence="10"/>
+    <menuitem id="submenu_banners_pricing" name="Banners" parent="submenu_pricing" action="action_trademeda_banner_pricing" sequence="1"/>
+    <menuitem id="submenu_membership_pricing" name="Membership" parent="submenu_pricing" action="action_trademeda_membership_pricing" sequence="2"/>
 
 
 

@@ -20,9 +20,12 @@ h1{
     width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
 }
 .pricing-plan.best-value {
-    border-top: 4px solid orange;
+    border-top: 4px solid rgb(199,8,8);
     background-color: #e0f7ff;
 }
 .pricing-plan.best-value::before {
@@ -30,7 +33,7 @@ h1{
     position: absolute;
     top: -10px;
     right: -10px;
-    background: orange;
+    background: rgb(199,8,8);
     color: white;
     font-size: 12px;
     padding: 5px 10px;

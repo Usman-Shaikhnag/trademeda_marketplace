@@ -11,6 +11,7 @@
 
                     <group>
                         <field name="name" />
+                        <field name="price" />
                         <field name="suggested" />
                         <field name="features">
                             <tree editable="bottom">
@@ -45,6 +46,9 @@
 
                     <group>
                         <field name="name" />
+                        <field name="price" />
+                        <field name="duration" />
+                        <field name="duration_type" />
                         <field name="suggested" />
                         <field name="features">
                             <tree editable="bottom">

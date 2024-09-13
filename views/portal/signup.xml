@@ -26,8 +26,8 @@
                             </button>
                         </div>
                         <div class="sign-in-text">
-                            <h3 style="color:#f6f6f6;">Welcome To</h3>
-                            <span style="color:#f6f6f6;font-size: 3rem;"><b>Trade</b></span><span style="color:navy;font-size: 3rem;"><b>meda</b></span>
+                            <h3>Welcome To</h3>
+                            <span style="font-size: 3rem;"><b>Trade</b></span><span style="color:rgba(199,8,8,1);font-size: 3rem;"><b>meda</b></span>
                             <div class="">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, mi vel tincidunt commodo, sapien</p>
                                 <div class=""> </div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="sign-in-btn">
-                            <button   class=""><a style="text-decoration: none;color:#f6f6f6;" t-attf-href="/signin">Sign In</a></button>
+                            <button   class=""><a t-attf-href="/signin">Sign In</a></button>
                         </div>
                     </div>
                     <div class="sign-up form-container">
@@ -66,8 +66,8 @@
                                         <input type="radio" id="buyer" name="role" value="buyer" onchange="role_changed()" checked="true"/>
                                         <label for="buyer">Buyer</label>
 
-                                        <input type="radio" id="supplier" name="role" onchange="role_changed()" value="supplier"/>
-                                        <label for="supplier">Supplier</label>
+                                        <input type="radio" id="seller" name="role" onchange="role_changed()" value="seller"/>
+                                        <label for="seller">Supplier</label>
 
                                         <input type="radio" id="both" name="role" onchange="role_changed()"  value="both"/>
                                         <label for="both">Both</label>
@@ -405,7 +405,7 @@
             <script>
 
             buyer = document.getElementById('buyer')
-            supplier = document.getElementById('supplier')
+            supplier = document.getElementById('seller')
             both = document.getElementById('both')
 
             function role_changed(){
@@ -452,7 +452,7 @@
                         document.getElementById('buyer_textarea').required  = true
                         document.getElementById('supplier_textarea').required  = false
                         document.getElementById('supplier_textarea').style.display  = 'none'
-                    }else if(document.getElementById('supplier').checked){
+                    }else if(document.getElementById('seller').checked){
                         document.getElementById('supplier_textarea').required  = true
                         document.getElementById('buyer_textarea').required  = false
                         document.getElementById('buyer_textarea').style.display  = 'none'
