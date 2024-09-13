@@ -75,7 +75,7 @@
         </record>
 
 
-        <record id="view_tree_trademeda_rfq" model="ir.ui.view">
+    <record id="view_tree_banner" model="ir.ui.view">
         <field name="name">trademeda.banners.tree</field>
         <field name="model">trademeda.banners</field>
         <field name="arch" type="xml">
