@@ -44,7 +44,7 @@ class ResPartner(models.Model):
     establishment_year = fields.Integer("Establishment Year")
     annual_sales = fields.Selection([
         ('less_than_1000','Less than 1000 USD'),
-        ('less_than_1000','Less than 10000 USD'),
+        ('less_than_10000','Less than 10000 USD'),
         ('less_than_1000000','Less than 1000000 USD'),
         ('more_than_1000000','More than 1000000 USD'),
     ],string="Annual Sales in USD")
