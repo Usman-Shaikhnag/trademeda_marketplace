@@ -495,8 +495,8 @@
                     nextButton.addEventListener('click', nextSlide);
                     prevButton.addEventListener('click', prevSlide);
 
-                    // Automatically slide every 5 seconds
-                    setInterval(nextSlide, 5000);
+                    // Automatically slide every 8 seconds
+                    setInterval(nextSlide, 8000);
                 });
 
                     function showFullTestimony(element) {
