@@ -74,5 +74,17 @@
             </field>
         </record>
 
+
+        <record id="view_tree_trademeda_rfq" model="ir.ui.view">
+        <field name="name">trademeda.banners.tree</field>
+        <field name="model">trademeda.banners</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="slide_no"/>
+            </tree>
+        </field>
+    </record>
+
     </data>
 </odoo>
