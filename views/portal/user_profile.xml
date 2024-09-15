@@ -560,13 +560,33 @@
                                                 <div class="heading">
                                                     <h2>Delivery Related</h2>
                                                 </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Quantity</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input placeholder="" name="quantity" id="quantity" class="form-control"/>
+                                                <div class="multi-input">
+                                                
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Quantity</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input type="number" placeholder="" name="quantity" id="quantity" class="form-control"/>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+
+                                                        <div class="">
+                                                            <span class="">Unit</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                            
+                                                            <select id="quantity_unit" name="quantity_unit">
+                                                                <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t>    
+                                                                
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="text-input">
@@ -578,22 +598,55 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="text-input">
-                                                    <div class="">
-                                                        <span class="">Load Ability</span>
-                                                    </div>
-                                                    <div class="">
-                                                        <input placeholder="" name="load_ability" id="load_ability" class="form-control"/>
+                                                <div class="multi-input">
 
+                                                    <div class="text-input">
+                                                        <div class="">
+                                                            <span class="">Load Ability</span>
+                                                        </div>
+                                                        <div class="">
+                                                            <input type="number" placeholder="" name="load_ability" id="load_ability" class="form-control"/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-input">
+
+                                                        <div class="">
+                                                            <span class="">Unit</span>
+                                                        </div>
+                                                        <div class="select-container">
+                                            
+                                                            <select id="load_ability_unit" name="load_ability_unit">
+                                                                <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                                                    <option t-att-value="option.id">
+                                                                        <t t-esc="option.name"/>
+                                                                    </option>
+                                                                </t>    
+                                                                
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="text-input">
                                                     <div class="">
-                                                        <span class="">Delivery (in Days)</span>
+                                                        <span class="">Delivery</span>
                                                     </div>
-                                                    <div class="">
-                                                        <input placeholder="" name="delivery_days" id="delivery_days" class="form-control"/>
-
+                                                    
+                                                    <div class="select-container">
+                                    
+                                                        <select id="delivery_days" name="delivery_days">
+                                                            <option value="fob">FOB (Free on Board)</option>
+                                                            <option value="fca">FCA (Free Carrier)</option> 
+                                                            <option value="exw">EXW (Ex Works)</option>                  
+                                                            <option value="fas">FAS (Free Alongside Ship)</option>                  
+                                                            <option value="dap">DAP (Delivered at Place)</option>                  
+                                                            <option value="dat">DAT (Delivered at Terminal)</option>                  
+                                                            <option value="cif">CIF (Cost, Insurance and Freight)</option>                  
+                                                            <option value="cip">CIP (Carriage and Insurance Paid to)</option>                  
+                                                            <option value="cfr">CFR (Cost and Freight)</option>                  
+                                                            <option value="ddp">DDP (Delivery Duty Paid)</option>  
+                                                            <option value="cpt">CPT (Carriage paid to)</option>                  
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>

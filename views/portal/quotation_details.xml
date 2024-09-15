@@ -82,10 +82,10 @@
                     <div class="contact-details">
                         <h4>Contact Person</h4>
                         <p class=""><t t-esc="rfq.contact_person_name"/></p>
-                        <t t-if="partner.membership_state == 'free'">
+                        <!-- <t t-if="partner.membership_state == 'free'">
                             <p><t t-esc="rfq.partner_id.email"/></p>
                             <p><t t-esc="rfq.partner_id.phone"/></p>
-                        </t>
+                        </t> -->
                     </div>
                     <div class="contact_buyer">
                         <button type="button" onclick="open_popup(this)" id="btn_contact_buyer" class="">Contact Buyer</button>

@@ -286,6 +286,8 @@ button {
   gap: 0.5rem;
   color: rgb(199,8,8);
   padding-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .tab {

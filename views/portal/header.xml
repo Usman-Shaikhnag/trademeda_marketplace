@@ -27,7 +27,12 @@
                         <div class="">
                             <a  onclick="wishlistPage(this)" id="wishlist-link" style="margin-right: 8px;"><i class="fas fa-heart" style="color:#fff"></i></a>
 
-                            <a t-attf-href="/profile"><i class="fas fa-user" style="color:#fff"></i></a>
+                            <t t-if="logged_in">
+                                <a t-attf-href="/profile"><i class="fas fa-user" style="color:#fff"></i></a>
+                            </t>
+                            <t t-else="">
+                                <a style="text-decoration:none;" class="login_link" t-attf-href="/signin"><b>Login</b></a>
+                            </t>
                             
                         </div>
                         <div onclick="toggle_menu(this)" class="hamburger-menu">
@@ -105,6 +110,7 @@
                         }
                     }
                     function findBuyers(element){
+                        debugger;
                         const searchQuery = document.getElementById('search-bar').value
                         console.log('Search',searchQuery)
                         if(searchQuery != null &amp;&amp; searchQuery.trim() != ''){

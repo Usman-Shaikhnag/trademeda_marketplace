@@ -27,6 +27,9 @@ body{
     display: flex;
     gap: 1rem;
 }
+.login_link{
+    color: #fdfdfd;
+}
 .search-container input{
     width: 350px;
     border-radius: 5px;

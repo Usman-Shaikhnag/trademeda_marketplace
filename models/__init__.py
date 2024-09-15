@@ -9,3 +9,4 @@ from . import rfq
 from . import customer_testimony
 from . import banner
 from . import pricing_plans
+from . import faqs
