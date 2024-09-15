@@ -5,6 +5,7 @@ class BannerPrices(models.Model):
     _description = 'Banner Pricelist'
 
     name = fields.Char("Name")
+    price = fields.Char("Price")
     features = fields.One2many('banner.pricelist.features','pricelist_id',string="Features")
     suggested = fields.Boolean("Suggested Plan")
 
@@ -26,6 +27,13 @@ class MembershipPrices(models.Model):
     _description = 'Banner Pricelist'
 
     name = fields.Char("Name")
+    price = fields.Char("Price")
+    duration = fields.Integer("Duration")
+    duration_type = fields.Selection([
+        ('months','Months'),
+        ('days','Days'),
+    ],string="Duration Type",default="months")
+
     features = fields.One2many('membership.pricelist.features','pricelist_id',string="Features")
     suggested = fields.Boolean("Suggested Plan")
 

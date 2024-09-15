@@ -22,7 +22,7 @@
                     <div class="main-content">
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
-                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=12,order='ranking')" t-as="category">
+                            <t t-foreach="env['product.subcategories'].sudo().search([],limit=13,order='ranking')" t-as="category">
                                 <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
                                     <t t-out="category.name"/>
                                     <div class="outer-product-container">
@@ -452,7 +452,7 @@
                         </t>
                     </div>
                     <div class="mobile-app">
-                        <img src="/trademeda/static/src/img/M22.jpg" alt=""/>
+                        <img src="/trademeda/static/src/img/M46.jpg" alt=""/>
                     </div>
                    
                     
@@ -495,8 +495,8 @@
                     nextButton.addEventListener('click', nextSlide);
                     prevButton.addEventListener('click', prevSlide);
 
-                    // Automatically slide every 5 seconds
-                    setInterval(nextSlide, 5000);
+                    // Automatically slide every 8 seconds
+                    setInterval(nextSlide, 8000);
                 });
 
                     function showFullTestimony(element) {

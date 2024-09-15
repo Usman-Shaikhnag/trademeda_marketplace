@@ -14,50 +14,37 @@
         <main class="">
             <h1 class="">Membership Plans</h1>
             <div class="pricing-table">
-                <!-- Silver Plan -->
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>SILVER Membership</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹18,999*<small>Total for 6 months (Only ₹3,167/month)</small></div>
-                    <ul>
-                        <li>No Website <span class="icon">✖</span></li>
-                        <li>No product images <span class="icon">✖</span></li>
-                        <li>One page simple text. No images. <span class="icon">✖</span></li>
-                        <li>Medium <span class="icon">📶</span></li>
-                        <li><button class="get_started_btn">Get Started</button></li>
+                <t t-foreach="env['membership.pricelists'].sudo().search([])" t-as="membership">
+                    <t t-if="membership.suggested">
+                        <div class="pricing-plan best-value">
+                            <h2><span class="icon">★</span>GOLD Membership</h2>
+                            <p>Starts From</p>
+                            <div class="price"><t t-esc="membership.price"/><small> Total for <t t-esc="membership.duration"/> <t t-esc="membership.duration_type"/></small></div>
+                            <ul>
+                                <t t-foreach="membership.features" t-as="feature">
+                                    <li><t t-esc="feature.name"/></li>
+                                </t>
+                            </ul>
+                            <button class="get_started_btn">Get Started</button>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="pricing-plan">
+                            <h2><span class="icon">★</span><t t-esc="membership.name"/></h2>
+                            <p>Starts From</p>
+                            <div class="price"><t t-esc="membership.price"/><small> Total for <t t-esc="membership.duration"/> <t t-esc="membership.duration_type"/></small></div>
+                            <ul>
+                                <t t-foreach="membership.features" t-as="feature">
+                                    <li><t t-esc="feature.name"/></li>
+                                </t>
 
-                    </ul>
-                </div>
-
-                <!-- Gold Plan -->
-                <div class="pricing-plan best-value">
-                    <h2><span class="icon">★</span>GOLD Membership</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹23,999*<small>Total for 6 months (Only ₹4,000/month)</small></div>
-                    <ul>
-                        <li>No Website <span class="icon">✖</span></li>
-                        <li>Unlimited products with images <span class="icon">✔</span></li>
-                        <li>Complete profile with images <span class="icon">✔</span></li>
-                        <li>Highest <span class="icon">📶</span></li>
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <!-- Gold+ Plan -->
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>GOLD+ Membership</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        <li>Gold Membership and your own Website <span class="icon">✔</span></li>
-                        <li>Unlimited products with images <span class="icon">✔</span></li>
-                        <li>Complete profile with images <span class="icon">✔</span></li>
-                        <li>Highest <span class="icon">📶</span></li>
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
+                            </ul>
+                            <button class="get_started_btn">Get Started</button>
+                        </div>
+                    </t>
+                </t>
             </div>
-
+            
         </main>
         </template>
     </data>
