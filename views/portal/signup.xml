@@ -29,7 +29,7 @@
                             <h3>Welcome To</h3>
                             <span style="font-size: 3rem;"><b>Trade</b></span><span style="color:rgba(199,8,8,1);font-size: 3rem;"><b>meda</b></span>
                             <div class="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, mi vel tincidunt commodo, sapien</p>
+                                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, mi vel tincidunt commodo, sapien</p> -->
                                 <div class=""> </div>
                                 <div class=""> </div>
                                 <div class=""> </div>
@@ -220,7 +220,15 @@
                                             <span class="">State</span>
                                         </div>
                                         <div class="">
-                                            <input placeholder="State" name="state" required="required"/>
+                                            <select id="state" name="state" class="form-control" required="required">
+                                                <option value="">Select your state</option>
+                                                <t t-foreach="env['res.country.state'].sudo().search([])" t-as="state">
+                                                    <option t-att-value="state.id">
+                                                        <t t-esc="state.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +256,15 @@
                                             <span class="">Country Code</span>
                                         </div>
                                         <div class="">
-                                            <input placeholder="Country Code" name="country_code" required="required"/>
+                                            <select id="country_code" name="country_code" class="form-control" required="required">
+                                                <option value="">Select your country code</option>
+                                                <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
+                                                    <option t-att-value="country.id">
+                                                        +<t t-esc="country.phone_code"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+
                                         </div>
                                     </div>
 

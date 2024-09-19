@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="trademeda_faqs_form_view" model="ir.ui.view">
+            <field name="name">trademeda.faqs.form</field>
+            <field name="model">trademeda.faqs</field>
+            <field name="arch" type="xml">
+                <form string="membership Pricelists">
+
+                    <group>
+                        <field name="question" />
+                        <field name="answer" />
+                        
+                    </group>
+
+
+                       
+                </form>
+                
+            </field>
+        </record>
+
+    
+
+
+        <record id="trademeda_faqs_tree_view" model="ir.ui.view">
+            <field name="name">trademeda.faqs.tree</field>
+            <field name="model">trademeda.faqs</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="question"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

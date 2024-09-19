@@ -22,6 +22,7 @@
         'views/customer_rating.xml',
         'views/quotation.xml',
         'views/pricing_plans.xml',
+        'views/faqs.xml',
 
 
         

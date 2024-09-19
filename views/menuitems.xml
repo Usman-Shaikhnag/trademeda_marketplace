@@ -155,6 +155,17 @@
         </field>
     </record>
 
+    <record id="action_trademeda_faqs" model="ir.actions.act_window">
+        <field name="name">FAQs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">trademeda.faqs</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">FAQs</p>
+        </field>
+    </record>
+
     <!-- Menu structure -->
     <menuitem id="menu_trademeda" name="Trademeda"  sequence="10"/>
     <menuitem id="submenu_products" name="Products" parent="menu_trademeda" sequence="10"/>
@@ -177,6 +188,7 @@
     <menuitem id="submenu_membership_pricing" name="Membership" parent="submenu_pricing" action="action_trademeda_membership_pricing" sequence="2"/>
 
 
+    <menuitem id="submenu_faqs" name="FAQs" parent="menu_trademeda" action="action_trademeda_faqs" sequence="11"/>
 
 
 </odoo>

@@ -82,7 +82,8 @@ class SearchController(http.Controller):
     def searchBuyerProduct(self, product,country_ids=[], page=1, **kw):
         per_page = 20  # Number of buyers per page
         offset = (int(page) - 1) * per_page
-
+        # import wdb;wdb.set_trace()
+        
         
         supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
         buyer_domain = ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
@@ -91,8 +92,11 @@ class SearchController(http.Controller):
         partner_id = user.partner_id
 
         if product:
-            country_ids = ast.literal_eval(country_ids)
-            country_ids = list(set(country_ids))
+            if country_ids:
+                country_ids = ast.literal_eval(country_ids)
+                country_ids = list(set(country_ids))
+            else:
+                country_ids = []
             suppliers = request.env['product.customer.images'].sudo().search(supplier_domain)
             buyers = request.env['trademeda.rfq'].sudo().search(buyer_domain,limit=per_page, offset=offset)
             total_buyers = request.env['trademeda.rfq'].sudo().search_count(buyer_domain)
