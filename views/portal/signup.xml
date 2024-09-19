@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="sign-in-btn">
-                            <button   class=""><a t-attf-href="/signin">Sign In</a></button>
+                            <a style="text-decoration: none;" t-attf-href="/signin"><button class="">Sign In</button></a>
                         </div>
                     </div>
                     <div class="sign-up form-container">
@@ -260,7 +260,7 @@
                                                 <option value="">Select your country code</option>
                                                 <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
                                                     <option t-att-value="country.id">
-                                                        +<t t-esc="country.phone_code"/>
+                                                        +<t t-esc="country.phone_code"/> <t t-esc="country.name"/>
                                                     </option>
                                                 </t>
                                             </select>
