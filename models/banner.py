@@ -12,6 +12,8 @@ class Banners(models.Model):
     image_name = fields.Char('Image Name')
     partner_id = fields.Many2one('res.partner',string="Customer")
     slide_no = fields.Integer('Slide No')
+    active = fields.Boolean(string="Active",default=True)
+
 
 
     @api.model

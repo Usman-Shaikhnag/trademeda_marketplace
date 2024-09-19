@@ -1557,8 +1557,9 @@
                                                         <span class="">Product Description</span>
                                                     </div>
                                                     <div class="">
-                                                        <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit_rfq_product_description" t-att-value="product.product_description">
+                                                        <textarea placeholder="Product Description" style="white-space: nowrap;" name="product_description" id="edit_rfq_product_description">
                                                             <t t-esc="rfq.product_description"/>
+
                                                         </textarea>
                                                     </div>
                                                 </div>

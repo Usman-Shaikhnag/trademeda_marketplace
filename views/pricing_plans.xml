@@ -64,6 +64,33 @@
             </field>
         </record>
 
+
+        <record id="trademeda_banners_form_view" model="ir.ui.view">
+            <field name="name">trademeda.banners.form</field>
+            <field name="model">trademeda.banners</field>
+            <field name="arch" type="xml">
+                <form string="Banners">
+                    <group>
+
+                        <group>
+                            <field name="banner_image" />
+                            <field name="partner_id" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="image_name" />
+                            <field name="slide_no" />
+                        </group>
+                    </group>
+
+
+
+                       
+                </form>
+                
+            </field>
+        </record>
+
         <record id="view_tree_membership_pricelists" model="ir.ui.view">
             <field name="name">membership.pricelists.tree</field>
             <field name="model">membership.pricelists</field>
