@@ -72,6 +72,8 @@ class RequestForQuotation(models.Model):
         ('deleted','Deleted')
     ],string="State",default="active")
     views = fields.Integer('Views')
+    message = fields.Text('message')
+
 
     quotations = fields.One2many('rfq.quotations','rfq_id',string="Quotations")
     
