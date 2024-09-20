@@ -123,7 +123,7 @@
                                             <span class="">Establishment Year</span>
                                         </div>
                                         <div class="">
-                                            <input type="number" name="establishment_year" required="required"/>
+                                            <input type="number" name="establishment_year"/>
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +301,7 @@
                                         <span class="">Company Website URL</span>
                                     </div>
                                     <div class="">
-                                        <input placeholder="www.example.com" name="website" required="required"/>
+                                        <input placeholder="www.example.com" name="website"/>
                                     </div>
                                 </div>
                                 

@@ -230,6 +230,8 @@ class HomepageController(http.Controller):
             website = kw.get('website')
             logo = kw.get("upload_company_logo")
             company_image = kw.get("upload_company_image")
+            role = kw.get('role')
+
 
             
             data = {
@@ -238,7 +240,8 @@ class HomepageController(http.Controller):
                 'zip':zip_code,
                 'country_id':int(kw.get("country")),
                 'state_id':int(state),
-                'email':email
+                'email':email,
+                'member_type':role
                 
 
             }
