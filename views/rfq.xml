@@ -29,7 +29,7 @@
                             <field name="phone_number"/>
                             <field name="website"/>
                             <field name="views"/>
-                            <field name="message"/>
+                            <!-- <field name="message"/> -->
 
 
                         </group>

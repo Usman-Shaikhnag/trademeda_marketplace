@@ -22,7 +22,7 @@
                 <div class="container">
                     <form  action="/submitRfq" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                        <h2 style="display:flex;justify-content:center;font-size:2rem;">Request for Quotation</h2>
+                        <h2 style="display:flex;justify-content:center;font-size:2rem;">Upload Your Quotation</h2>
                         <div class="text-input">
                             <div class="">
                                 <span class="">Request Type</span>

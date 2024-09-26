@@ -93,7 +93,13 @@
                                 <span class="">Employee management</span>
                             </div>
                             <t t-if="partner.member_type == 'buyer' or partner.member_type == 'both'">
-                                <div class="menu-item" onclick="enable_rfq(this)" id="rfq-menu">
+                                <div class="menu-item" onclick="enable_quotations(this)" id="quotation-menu">
+                                    <i class="fa-solid fa-envelope-circle-check"/>
+                                    <span class="">Quotations</span>
+                                </div>
+                            </t>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+                                <div class="menu-item" onclick="enable_rfq_management(this)" id="rfq-menu">
                                     <i class="fa-solid fa-envelope-circle-check"/>
                                     <span class="">RFQs</span>
                                 </div>
@@ -1496,10 +1502,10 @@
 
                         </div>
 
-                        <div class="inner-card" id="rfq_management" style="margin-top: -1rem;">
+                        <div class="inner-card" id="quotation_management" style="margin-top: -1rem;">
                             <div>
                                 <div class="edit-profile-text" style="text-align: center;">
-                                    <h1>RFQs</h1>
+                                    <h1>Quotations</h1>
                                 </div>
                             </div>
                             <div class="inner-card" style="display:flex;">
@@ -1745,6 +1751,46 @@
 
                         </div>
 
+                        <div class="inner-card" id="rfq_management" style="margin-top: -1rem;">
+                            <div>
+                                <div class="edit-profile-text" style="text-align: center;">
+                                    <h1>RFQs</h1>
+                                </div>
+                            </div>
+                            <div class="inner-card" style="display:flex;">
+                                <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
+                                    <div class="rfq-container">
+                                        <div class="rfq-heading">
+                                            <h3 class=""><t t-esc="rfq.rfq_id.rfq_no" /></h3>
+
+                                            <div class="rfq-details">
+                                                <div class="">
+                                                    <h4 class="">Quotation No: <t t-esc="rfq.quotation_no" /></h4>
+                                                </div>
+                                                <div class="">
+                                                    <p class="">Email: <t t-esc="rfq.email" /></p>
+                                                </div>
+                                                <div class="">
+                                                    <p class="">Phone: <t t-esc="rfq.phone" /></p>
+                                                </div>
+                                            </div>
+                                            <div class="rfq-details">
+                                                <div class="">
+                                                    <p class="">Message: <t t-esc="rfq.message" /></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+                                </t>
+                                
+                            </div>
+                            
+
+                        </div>
+
 
                                      
 
@@ -1772,50 +1818,11 @@
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
+                    document.getElementById('rfq_management').style.display = 'none'
 
 
-                
-                <!-- function save_edited_product(element){
-                    const productId = element.getAttribute('ProductId')
-                    const product_description = document.getElementById('edit_product_description').value
-                    const product_quantity = document.getElementById('edit-product_quantity').value
-                    const packaging_requirement = document.getElementById('edit-packaging_requirement').value
-                    const delivery_days = document.getElementById('edit-delivery_days').value
-                    const product_price_usd = document.getElementById('edit-product_price_usd').value
-                    const payment_mode = document.getElementById('edit-payment_mode').value
-                    const ready_to_ship = document.getElementById('edit-ready_to_buy').value
-                    const rts_quantity = document.getElementById('edit-rts_quantity').value
-                    const product_image = document.getElementById('edit_product_image').src.split(',')[1]
-                    const update_product_image = document.getElementById('update_product_image')
-                    const sample_policy = document.getElementById('edit-sample_policy').value
-
-
-                    const vals = {
-                        
-                        'product_description':product_description,
-                        'product_quantity':product_quantity,
-                        'packaging_requirement':packaging_requirement,
-                        'delivery_days':delivery_days,
-                        'product_price_usd':product_price_usd,
-                        'payment_mode':payment_mode,
-                        'ready_to_ship':ready_to_ship,
-                        'rts_quantity':rts_quantity,
-                        'product_image':product_image,
-                        'sample_policy':sample_policy
-                    }
-
-                    fetch('/profile/updateProduct/'+productId,{
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(vals),
-                    }).then(function(res){
-                        console.log(res)
-                    })
-                } -->
                 function product_image_change(element) {
                     console.log("Image file selected");
                     debugger;
@@ -1967,9 +1974,8 @@
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
                     document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('rfq_management').style.display = 'none'
-
-
                     document.getElementById('company_details').style.display = 'flex'
                     document.getElementById('contact_details').style.display = 'flex'
 
@@ -2010,8 +2016,33 @@
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
+
+
+
+                    
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+                function enable_rfq_management(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'flex'
 
 
 
@@ -2033,8 +2064,10 @@
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('product_management').style.display = 'flex'
+                    document.getElementById('rfq_management').style.display = 'none'
+
 
 
                     document.querySelectorAll('.menu-item').forEach(function(item) {
@@ -2056,7 +2089,9 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('rfq_management').style.display = 'none'
+
 
 
                 }
@@ -2069,8 +2104,9 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'flex'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('rfq_management').style.display = 'none'
 
 
 
@@ -2084,15 +2120,15 @@
                     document.getElementById('edit_profile_form').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'flex'
-
+                    document.getElementById('rfq_management').style.display = 'none'
                     
 
                 }
 
-                function enable_rfq(element){
+                function enable_quotations(element){
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('company_details').style.display = 'none'
                     document.getElementById('contact_details').style.display = 'none'
@@ -2101,7 +2137,8 @@
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'flex'
+                    document.getElementById('quotation_management').style.display = 'flex'
+                    document.getElementById('rfq_management').style.display = 'none'
 
                     
 
