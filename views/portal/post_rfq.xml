@@ -272,6 +272,16 @@
                                     <input type="text" id="contact_person" name="contact_person"/>
                                 </div>
                             </div>
+                            
+                        </div>
+                        <div class="text-input">
+                            <div class="">
+                                <span class="">Message</span>
+                            </div>
+                            <div class="">
+                                <textarea onchange="update_progress()" id="rfq-message" name="rfq-message"/>
+                                
+                            </div>
                         </div>
                         
                         <div type="submit" class="post_rfq">
