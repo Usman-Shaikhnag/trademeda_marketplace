@@ -585,7 +585,7 @@
                                                 
                                                     <div class="text-input">
                                                         <div class="">
-                                                            <span class="">Quantity</span>
+                                                            <span class="">Minimum Order Quantity(MOQ)</span>
                                                         </div>
                                                         <div class="">
                                                             <input type="number" placeholder="" name="quantity" id="quantity" class="form-control"/>
@@ -1758,7 +1758,7 @@
                                 </div>
                             </div>
                             <div class="inner-card" style="display:flex;">
-                                <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
+                                <!-- <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
                                     <div class="rfq-container">
                                         <div class="rfq-heading">
                                             <h3 class=""><t t-esc="rfq.rfq_id.rfq_no" /></h3>
@@ -1784,7 +1784,49 @@
                                         
                                         
                                     </div>
-                                </t>
+                                </t> -->
+                                <form action="/supplier/download_rfqs" method="get">
+                                    <div class="download-btn">
+                                        <button type="submit"><i class="fas fa-download" /> Download</button>
+                                    </div>
+                                </form>
+                                <table id="quotations_table">
+                                            <thead>
+                                                <tr>
+                                                    <!-- <th>Quotation No</th> -->
+                                                    <th>RFQ No</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Message</th>
+
+                                                </tr>
+                                                
+                                            </thead>
+                                            <tbody>
+                                            <!-- here  -->
+                                                <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
+                                                    <tr>
+                                                        <!-- <td>
+                                                            <t t-esc="rfq.quotation_no" />
+                                                 
+                                                        </td> -->
+                                                        <td>
+                                                            <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            <t t-esc="rfq.email" />
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="rfq.phone" />
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="rfq.message" />
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
                                 
                             </div>
                             

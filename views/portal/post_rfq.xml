@@ -106,7 +106,7 @@
                             </div>
                             <div class="text-input" style="width:30%">
                                 <div class="">
-                                    <span class="">Quantity</span>
+                                    <span class="">Minimum Order Quantity(MOQ)</span>
                                 </div>
                                 <div class="">
                                     <input type="number" id="quantity" placeholder="1" name="quantity" required='required'/>

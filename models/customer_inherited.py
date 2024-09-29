@@ -185,7 +185,16 @@ class ProductCustomerImages(models.Model):
     product_name = fields.Char("Product Name")
     product_description  = fields.Text("Product Description")
     product_image = fields.Binary('Image')
-    image_name = fields.Char("Image Name")  
+    image_name = fields.Char("Image Name")
+
+    product_image2 = fields.Binary('Image')
+    image_name2 = fields.Char("Image Name") 
+
+    product_image3 = fields.Binary('Image')
+    image_name3 = fields.Char("Image Name") 
+
+    product_image4 = fields.Binary('Image')
+    image_name4 = fields.Char("Image Name")   
 
     product_quantity = fields.Integer("Quantity")
     packaging_requirement = fields.Char("Packaging Requirements")

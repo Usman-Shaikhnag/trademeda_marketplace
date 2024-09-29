@@ -799,3 +799,31 @@ h2 {
 .radio-group input[type="radio"]:checked + label::after {
     opacity: 1; /* Show inner dot */
 }
+#quotations_table{
+    overflow-x: scroll;
+}
+.download-btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.download-btn:hover button{
+    color: rgb(212, 37, 5);
+    background: transparent;
+    outline: 2px solid rgb(212, 37, 5);
+    
+}
+
+.download-btn button{
+    color: #f6f6f6;
+    background: rgb(212, 37, 5);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    height: 45px;
+    width: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+}
