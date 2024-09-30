@@ -73,7 +73,7 @@
                             <div class="company-detail">
                                 <div class="">
                                     <!-- <img src="/trademeda/static/src/img/company.png" alt="" class="company-image"/> -->
-                                    <img t-att-src="('data:image/' + ('jpeg' if partner.company_image.decode('utf-8').startswith('/9j/') else 'png') + ';base64,' + partner.company_image.decode('utf-8'))" alt="Product Image" class="company-image"/>
+                                    <!-- <img t-att-src="('data:image/' + ('jpeg' if partner.company_image.decode('utf-8').startswith('/9j/') else 'png') + ';base64,' + partner.company_image.decode('utf-8'))" alt="Product Image" class="company-image"/> -->
 
                                 </div>
                                 <div class="">

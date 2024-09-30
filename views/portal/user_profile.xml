@@ -1815,7 +1815,7 @@
                                                             <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                         </td>
                                                         <td>
-                                                            <t t-esc="rfq.rfq_id.partner_id.name)" />
+                                                            <t t-esc="rfq.rfq_id.partner_id.name" />
                                                         </td>
                                                         
                                                         <td>
