@@ -1795,6 +1795,7 @@
                                                 <tr>
                                                     <!-- <th>Quotation No</th> -->
                                                     <th>RFQ No</th>
+                                                    <th>Buyer</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
                                                     <th>Message</th>
@@ -1812,6 +1813,9 @@
                                                         </td> -->
                                                         <td>
                                                             <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="rfq.rfq_id.partner_id.name)" />
                                                         </td>
                                                         
                                                         <td>
