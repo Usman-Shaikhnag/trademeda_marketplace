@@ -1561,8 +1561,8 @@
                                                 <span style="cursor:pointer;" onclick="view_seller_responses(this)">View <t t-esc="env['rfq.quotations'].sudo().search_count([('rfq_id', '=', rfq.id)])"/> Responses</span>
                                                 <span onclick="edit_rfq(this)" t-att-productId="rfq.id"><i class="fa-solid fa-pen"></i></span>
                                                 <span onclick="delete_rfq(this)" t-att-rfqId="rfq.id"><i class="fa-solid fa-trash"></i></span>
+                                                <a t-attf-href="/buyer/download_rfq_enquiries/{{rfq.id}}" style="color:inherit;"><i class="fas fa-download" /></a>
                                                 <button class="end-rfq" onclick="end_rfq(this)" t-att-rfqId="rfq.id">End RFQ</button>
-
                                             </div>
                                         </div>                                       
                                         
@@ -1785,7 +1785,7 @@
                                         
                                     </div>
                                 </t> -->
-                                <form action="/supplier/download_rfqs" method="get">
+                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
