@@ -258,7 +258,7 @@ class ProductController(http.Controller):
         workbook = xlsxwriter.Workbook(excel_buffer)
         quotation_worksheet = workbook.add_worksheet("RFQs")
 
-        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Buyer']
+        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Supplier']
         for col_num, header in enumerate(headers):
             quotation_worksheet.write(0, col_num, header)
 
@@ -274,7 +274,7 @@ class ProductController(http.Controller):
             quotation_worksheet.write(row_num, 4, quotation.phone)
             quotation_worksheet.write(row_num, 5, quotation.country_id.name)  # Assuming country_id is a Many2one field
             quotation_worksheet.write(row_num, 6 , quotation.message)
-            quotation_worksheet.write(row_num, 7 , quotation.rfq_id.partner_id.name)
+            quotation_worksheet.write(row_num, 7 , quotation.partner_id.name)
 
 
 
@@ -285,7 +285,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=product_quotations.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=rfq_quotations.xlsx;')
                                          ])
         return response
 
