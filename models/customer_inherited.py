@@ -291,5 +291,5 @@ class ProductEnquiries(models.Model):
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     product = fields.Char(string="Product")
-    product_id = fields.Many2one('product.template', string="Product")
+    product_id = fields.Many2one('product.customer.images', string="Product")
     country = fields.Many2one('res.country', string="Country")
