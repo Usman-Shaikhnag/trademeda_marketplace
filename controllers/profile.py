@@ -180,33 +180,29 @@ class ProductController(http.Controller):
     #         phone = kw.get('enquiry_user_phone')
     #         country = kw.get('country')
 
-    @http.route(['/supplier/sendproductenquiry/<int:user_id>'], methods=["POST"], type="json", auth="user", website=True, csrf=False)
-    def SendProductEnquiry(self,user_id, **kw):
+    @http.route(['/supplier/sendproductenquiry'], methods=["POST"], type="http", auth="user", website=True)
+    def SendProductEnquiry(self, **kw):
         # import wdb;wdb.set_trace()
 
-        # user = request.env.user
-        # partner_id = user.partner_id
-        partner_id = request.env['res.partner'].sudo().search([('id','=',user_id)])
-        # if data['product']:
-        #     product_id = request.env['product.template'].sudo().search([('id','=',2)])
+        user = request.env.user
+        partner_id = user.partner_id
+        
 
-
-        try:
-            data = request.httprequest.get_json()
-        except Exception as e:
-            return json.dumps({'error': 'Invalid JSON data', 'details': str(e)})
-
-    
-        partner_id.product_enquiries.sudo().create({
-            'partner_id':user_id,
-            'user_name':data['name'],
-            'message':data['message'],
-            'email':data['email'],
-            'phone':data['phone'],
-            'product_id':data['product'],
-            'country':int(data['country'])
-            
-        })
+        enquiry = request.env['product.enquiries'].sudo().search([('partner_id','=',partner_id.id),('product_id','=',int(kw.get('product_id')))])
+        if enquiry:
+            return request.redirect("/product/"+kw.get('product_id'))
+        else:
+            partner_id.product_enquiries.sudo().create({
+                'partner_id':partner_id.id,
+                'product_id':int(kw.get('product_id')),
+                'user_name':kw.get('buyer_name'),
+                'message':kw.get('message'),
+                'email':kw.get('buyer_email'),
+                'phone':kw.get('buyer_phone'),
+                'country':int(kw.get('buyer_country'))
+                
+            })
+            return request.redirect("/product/"+kw.get('product_id'))
 
         
             
@@ -286,6 +282,50 @@ class ProductController(http.Controller):
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
                                              ('Content-Disposition', 'attachment; filename=rfq_quotations.xlsx;')
+                                         ])
+        return response
+    
+
+    @http.route('/buyer/download_rtb_enquiries/<int:product_id>', type='http', auth='user', website=True)
+    def download_buyers_ready2buy_enquiries(self,product_id):
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
+
+        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country']
+        for col_num, header in enumerate(headers):
+            enquiry_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        enquiries = request.env['product.enquiries'].sudo().search([('product_id','=',product_id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, enquiry in enumerate(enquiries, 1):
+            enquiry_worksheet.write(row_num, 0, enquiry.create_date.strftime('%d-%b-%Y'))
+            enquiry_worksheet.write(row_num, 1, enquiry.product_id.product_name)
+            enquiry_worksheet.write(row_num, 2 ,enquiry.partner_id.name)
+            enquiry_worksheet.write(row_num, 3, enquiry.user_name)
+            enquiry_worksheet.write(row_num, 4, enquiry.email)
+            enquiry_worksheet.write(row_num, 5, enquiry.phone)  # Assuming country_id is a Many2one field
+            enquiry_worksheet.write(row_num, 6 ,enquiry.message)
+            enquiry_worksheet.write(row_num, 7 ,enquiry.country.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=Product_Enquiry.xlsx;')
                                          ])
         return response
 

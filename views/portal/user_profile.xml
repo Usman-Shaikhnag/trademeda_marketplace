@@ -1472,7 +1472,8 @@
                                             <div class="product-container-img">
                                                 <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
                                                 <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
-                                                
+                                                <t t-set="enquiries" t-value="env['product.enquiries'].sudo().search_count([('product_id','=',product.id)])"/>
+                                                <a style="text-decoration:none;color:rgba(199,8,8,1);margin-top:4px;" t-attf-href="/buyer/download_rtb_enquiries/{{product.id}}"><t t-esc="enquiries" /> Enquiries</a>
                                             </div>
                                             <div class="product-details">
                                                 <span style="display:flex;justify-content: space-between;align-items:center;">
