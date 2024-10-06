@@ -24,7 +24,7 @@
                     <div class="buyer-details">
                         <div class=""><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>Buyer from <t t-esc="rfq.partner_id.country_id.name"/></div>
                         <div class=""><span style="color:#009900"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span></div>
-                        <div class=""><i class="fa-solid fa-hourglass-start"></i>Expires in 100 Days</div>
+                        <div class=""><i class="fa-solid fa-hourglass-start"></i>Expires in <t t-esc="rfq.days_remaining"/> Days</div>
                     </div>
                     <!-- product image  -->
                     <div class="image-container">
@@ -93,19 +93,25 @@
 
                     <div class="responses">
                         <h2 class="">Seller Responses</h2>
-                            <t t-foreach="env['rfq.quotations'].sudo().search([],limit=5)" t-as="quotation">
-                                <div class="response-body">
-                                    <div class="quotation-details">
-                                        <div class=""><img t-att-src="quotation.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><b><t t-esc="quotation.contact_name"/></b></div><span><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i></span>
+                            <t t-set="response_count" t-value="env['rfq.quotations'].sudo().search_count([('rfq_id','=',rfq.id)])"/>
+                            <t t-if="response_count &gt; 0">
+                                <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)],limit=5)" t-as="quotation">
+                                    <div class="response-body">
+                                        <div class="quotation-details">
+                                            <div class=""><img t-att-src="quotation.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><b><t t-esc="quotation.contact_name"/></b></div><span><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i><i class="fa-sharp-duotone fa-solid fa-star"></i></span>
+                                        </div>
+                                        <div class="membership-details">
+                                            Free Member, Supplier From <t t-esc="quotation.partner_id.country_id.name"/>
+                                        </div>
+                                        <p class=""><t t-esc="quotation.message"/></p>
                                     </div>
-                                    <div class="membership-details">
-                                        Free Member, Supplier From <t t-esc="quotation.partner_id.country_id.name"/>
-                                    </div>
-                                    <p class=""><t t-esc="quotation.message"/></p>
-                                </div>
-                                <!-- <div class="">
-                                    <span class="divider-line"></span>
-                                </div> -->
+                                    <!-- <div class="">
+                                        <span class="divider-line"></span>
+                                    </div> -->
+                                </t>
+                            </t>
+                            <t t-else="">
+                                No Seller has responded to this request
                             </t>
                     </div>
                 </div>

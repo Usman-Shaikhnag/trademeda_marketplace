@@ -9,6 +9,8 @@
     'depends': ['base','web','stock','contacts'],  # List your dependencies here
     'data': [
         'data/sequence_data.xml',
+        'data/ir_cron.xml',
+
         'security/groups.xml',
         'security/ir.model.access.csv',
 

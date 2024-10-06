@@ -298,7 +298,7 @@ class ProductController(http.Controller):
         workbook = xlsxwriter.Workbook(excel_buffer)
         enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
 
-        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country']
+        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country',]
         for col_num, header in enumerate(headers):
             enquiry_worksheet.write(0, col_num, header)
 
