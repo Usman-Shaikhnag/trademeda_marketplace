@@ -82,6 +82,7 @@
                                     <span class="">Product Management</span>
                                 </div>
                             </t>
+
                             <div class="menu-item" onclick="enable_documents(this)" id="documents-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-file-lines" /> 
@@ -95,15 +96,10 @@
                             <t t-if="partner.member_type == 'buyer' or partner.member_type == 'both'">
                                 <div class="menu-item" onclick="enable_quotations(this)" id="quotation-menu">
                                     <i class="fa-solid fa-envelope-circle-check"/>
-                                    <span class="">Quotations</span>
+                                    <span class="">Quotations (RFQ)</span>
                                 </div>
                             </t>
-                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
-                                <div class="menu-item" onclick="enable_rfq_management(this)" id="rfq-menu">
-                                    <i class="fa-solid fa-envelope-circle-check"/>
-                                    <span class="">RFQs</span>
-                                </div>
-                            </t>
+                            
                             <!-- <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
                                 <div class="menu-item" onclick="enable_seller_responses(this)" id="seller-response-menu">
                                     <i class="fa-solid fa-envelope-circle-check"/>
@@ -120,6 +116,22 @@
                                 <div class="menu-item" onclick="enable_news(this)" id="news-menu">
                                     <i class="fas fa-newspaper" /> 
                                     <span class="">News</span>
+                                </div>
+                            </t>
+                            <t t-if="partner.member_type == 'buyer' or partner.member_type == 'both'">
+
+                                <div class="menu-item" onclick="enable_buyers_quotation(this)" id="buyers-quotation-management-menu">
+                                    <!-- <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/> -->
+                                    <i class="fas fa-layer-group" /> 
+                                    <span class="">Quotations (Buyer)</span>
+                                </div>
+                            </t>
+                            <t t-if="partner.member_type == 'seller' or partner.member_type == 'both'">
+
+                                <div class="menu-item" onclick="enable_suppliers_quotation(this)" id="supplier-quotation-management-menu">
+                                    <!-- <img src="/trademeda/static/src/img/layers.png" alt="" class="icons"/> -->
+                                    <i class="fas fa-layer-group" /> 
+                                    <span class="">Quotations (Seller)</span>
                                 </div>
                             </t>
                             <div class="menu-item" onclick="enable_queries(this)" id="queries-menu">
@@ -1721,26 +1733,48 @@
                                     
                                         <div class="inner-card" id="seller_responses_management">
                                             
-                                            <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)])" t-as="quotation">
-                                                <div class="seller-response-card">
-                                                    <div class="seller-details">
-                                                        <span class=""><t t-esc="quotation.partner_id.name"/></span>
-                                                        <span class=""><t t-esc="quotation.partner_id.country_id.name"/></span>
-                                                        <span class=""><t t-esc="quotation.create_date.strftime('%d-%b-%Y')"/></span>
+                                            <table id="buyer_single_quotations_received_table">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th>Quotation No</th> -->
+                                                        <th>RFQ No</th>
+                                                        <th>Supplier</th>
+                                                        <th>Date</th>
+                                                        <th>Email</th>
+                                                        <th>Phone</th>
+                                                        <th>Message</th>
 
-                                                    </div>
-                                                    <div class="seller-details">
-                                                        <span class=""><t t-esc="quotation.contact_name"/></span>
-                                                        <span class=""><t t-esc="quotation.email"/></span>
-                                                        <span class=""><t t-esc="quotation.phone"/></span>
-
-                                                    </div>
-                                                    <div class="seller-details">
-                                                        <span class=""><t t-esc="quotation.message"/></span>
-
-                                                    </div>
-                                                </div>
-                                            </t>
+                                                    </tr>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                <!-- here  -->
+                                                    <t t-foreach="env['rfq.quotations'].sudo().search([('rfq_id','=',rfq.id)])" t-as="rfq">
+                                                        <tr>
+                                                            
+                                                            <td>
+                                                                <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.create_date.strftime('%d-%b-%Y')" />
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                <t t-esc="rfq.email" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.phone" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.message" />
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
 
 
                                         </div> 
@@ -1752,89 +1786,216 @@
 
                         </div>
 
-                        <div class="inner-card" id="rfq_management" style="margin-top: -1rem;">
-                            <div>
-                                <div class="edit-profile-text" style="text-align: center;">
-                                    <h1>RFQs</h1>
-                                </div>
-                            </div>
-                            <div class="inner-card" style="display:flex;">
-                                <!-- <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
-                                    <div class="rfq-container">
-                                        <div class="rfq-heading">
-                                            <h3 class=""><t t-esc="rfq.rfq_id.rfq_no" /></h3>
 
-                                            <div class="rfq-details">
-                                                <div class="">
-                                                    <h4 class="">Quotation No: <t t-esc="rfq.quotation_no" /></h4>
-                                                </div>
-                                                <div class="">
-                                                    <p class="">Email: <t t-esc="rfq.email" /></p>
-                                                </div>
-                                                <div class="">
-                                                    <p class="">Phone: <t t-esc="rfq.phone" /></p>
-                                                </div>
-                                            </div>
-                                            <div class="rfq-details">
-                                                <div class="">
-                                                    <p class="">Message: <t t-esc="rfq.message" /></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                        
-                                    </div>
-                                </t> -->
+                        <!-- buyers quotation  -->
+                        <div class="inner-card" id="buyers_quotation_management" style="margin-top: -1rem;">
+                            <div class="tab-buttons">
+                                <button onclick="buyer_quotations_sent(this)" class="active">Sent</button>
+                                <button onclick="buyer_quotations_received(this)" class="">Received</button>
+
+                            </div>
+                            <div id="buyer_quotations_sent" class="">
                                 <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
-                                <table id="quotations_table">
-                                            <thead>
-                                                <tr>
-                                                    <!-- <th>Quotation No</th> -->
-                                                    <th>RFQ No</th>
-                                                    <th>Buyer</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
-                                                    <th>Message</th>
-
-                                                </tr>
-                                                
-                                            </thead>
-                                            <tbody>
-                                            <!-- here  -->
-                                                <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
-                                                    <tr>
-                                                        <!-- <td>
-                                                            <t t-esc="rfq.quotation_no" />
-                                                 
-                                                        </td> -->
-                                                        <td>
-                                                            <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
-                                                        </td>
-                                                        <td>
-                                                            <t t-esc="rfq.rfq_id.partner_id.name" />
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <t t-esc="rfq.email" />
-                                                        </td>
-                                                        <td>
-                                                            <t t-esc="rfq.phone" />
-                                                        </td>
-                                                        <td>
-                                                            <t t-esc="rfq.message" />
-                                                        </td>
-                                                    </tr>
-                                                </t>
-                                            </tbody>
-                                        </table>
                                 
+                                <table id="buyer_quotations_sent_table">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Quotation No</th> -->
+                                            <th>Product</th>
+                                            <th>Supplier</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Message</th>
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                    <!-- here  -->
+                                        <t t-foreach="env['product.enquiries'].sudo().search([('partner_id','=',partner.id)])" t-as="rtb">
+                                            <tr>
+                                                <!-- <td>
+                                                    <t t-esc="rfq.quotation_no" />
+                                            
+                                                </td> -->
+                                                <td>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.product_id.partner_id.name" />
+                                                </td>
+                                                
+                                                <td>
+                                                    <t t-esc="rtb.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.message" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
                             </div>
-                            
+                            <div id="buyer_quotations_received" class="">
+                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                    <div class="download-btn">
+                                        <button type="submit"><i class="fas fa-download" /> Download</button>
+                                    </div>
+                                </form>
+                                <table id="buyer_quotations_received_table">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Quotation No</th> -->
+                                            <th>RFQ No</th>
+                                            <th>Supplier</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Message</th>
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                    <!-- here  -->
+                                        <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
+                                            <tr>
+                                                <!-- <td>
+                                                    <t t-esc="rfq.quotation_no" />
+                                            
+                                                </td> -->
+                                                <td>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.name" />
+                                                </td>
+                                                
+                                                <td>
+                                                    <t t-esc="rfq.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.message" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- suppliers quotations  -->
+                        <div class="inner-card" id="suppliers_quotation_management" style="margin-top: -1rem;">
+                            <div class="tab-buttons">
+                                <button onclick="supplier_quotations_sent(this)" class="active">Sent</button>
+                                <button onclick="supplier_quotations_received(this)" class="">Received</button>
+
+                            </div>
+                            <div id="supplier_quotations_sent" class="">
+                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                    <div class="download-btn">
+                                        <button type="submit"><i class="fas fa-download" /> Download</button>
+                                    </div>
+                                </form>
+                                <table id="supplier_quotations_sent_table">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Quotation No</th> -->
+                                            <th>RFQ No</th>
+                                            <th>Buyer</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Message</th>
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                    <!-- here  -->
+                                        <t t-foreach="env['rfq.quotations'].sudo().search([('partner_id','=',partner.id)])" t-as="rfq">
+                                            <tr>
+                                                <!-- <td>
+                                                    <t t-esc="rfq.quotation_no" />
+                                            
+                                                </td> -->
+                                                <td>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.name" />
+                                                </td>
+                                                
+                                                <td>
+                                                    <t t-esc="rfq.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.message" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="supplier_quotations_received" class="">
+                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                    <div class="download-btn">
+                                        <button type="submit"><i class="fas fa-download" /> Download</button>
+                                    </div>
+                                </form>
+                                <table id="supplier_quotations_received_table">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Quotation No</th> -->
+                                            <th>Product</th>
+                                            <th>Buyer</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Message</th>
+
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody>
+                                    <!-- here  -->
+                                        <t t-foreach="env['product.enquiries'].sudo().search([('product_id.partner_id','=',partner.id)])" t-as="rtb">
+                                            <tr>
+                                                <!-- <td>
+                                                    <t t-esc="rfq.quotation_no" />
+                                            
+                                                </td> -->
+                                                <td>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.partner_id.name" />
+                                                </td>
+                                                
+                                                <td>
+                                                    <t t-esc="rtb.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.message" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
 
@@ -1867,8 +2028,45 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
 
+
+                function supplier_quotations_sent(element){
+                    document.getElementById('supplier_quotations_received').style.display = 'none'
+                    document.getElementById('supplier_quotations_sent').style.display = 'block'
+
+                    element.classList.add('active')
+                    element.nextElementSibling.classList.remove('active')
+                }
+                function supplier_quotations_received(element){
+                    document.getElementById('supplier_quotations_sent').style.display = 'none'
+                    document.getElementById('supplier_quotations_received').style.display = 'block'
+
+                    element.classList.add('active')
+                    element.previousElementSibling.classList.remove('active')
+
+                    
+                }
+
+
+
+                function buyer_quotations_sent(element){
+                    document.getElementById('buyer_quotations_received').style.display = 'none'
+                    document.getElementById('buyer_quotations_sent').style.display = 'block'
+
+                    element.classList.add('active')
+                    element.nextElementSibling.classList.remove('active')
+                }
+                function buyer_quotations_received(element){
+                    document.getElementById('buyer_quotations_sent').style.display = 'none'
+                    document.getElementById('buyer_quotations_received').style.display = 'block'
+
+                    element.classList.add('active')
+                    element.previousElementSibling.classList.remove('active')
+
+                    
+                }
 
                 function product_image_change(element) {
                     console.log("Image file selected");
@@ -2016,13 +2214,14 @@
                 }
 
                 function enable_profile_detail(){
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('product_management').style.display = 'none'
                     document.getElementById('add_new_product_form').style.display = 'none'
                     document.getElementById('edit_profile_form').style.display = 'flex'
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
                     document.getElementById('company_details').style.display = 'flex'
                     document.getElementById('contact_details').style.display = 'flex'
 
@@ -2036,14 +2235,7 @@
 
                 }
                 function view_seller_responses(element){
-                    
-                    <!-- document.getElementById('seller_responses_management').style.display = 'flex' -->
 
-                    <!-- if(document.getElementById('seller_responses_management').style.display == 'flex'){
-                        document.getElementById('seller_responses_management').style.display = 'none'
-                    }else{
-                        document.getElementById('seller_responses_management').style.display = 'flex'
-                    } -->
 
                     if(element.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display == 'flex'){
                         element.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none'
@@ -2055,6 +2247,8 @@
 
 
                 function enable_add_new_product(element){
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('company_details').style.display = 'none'
                     document.getElementById('contact_details').style.display = 'none'
@@ -2065,7 +2259,6 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
 
 
 
@@ -2078,7 +2271,9 @@
                         element.classList.add('active');
 
                 }
-                function enable_rfq_management(element){
+           
+
+                function enable_buyers_quotation(element){
                     document.getElementById('documents').style.display = 'none'
                     document.getElementById('company_details').style.display = 'none'
                     document.getElementById('contact_details').style.display = 'none'
@@ -2089,7 +2284,45 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'flex'
+                    document.getElementById('buyers_quotation_management').style.display = 'flex'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
+
+
+
+
+                    document.getElementById('buyer_quotations_received').style.display = 'none'
+                    document.getElementById('buyer_quotations_sent').style.display = 'block'
+
+
+                    
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+
+
+                function enable_suppliers_quotation(element){
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'flex'
+
+                    document.getElementById('supplier_quotations_received').style.display = 'none'
+                    document.getElementById('supplier_quotations_sent').style.display = 'block'
+
+
 
 
 
@@ -2113,7 +2346,8 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('product_management').style.display = 'flex'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
 
 
 
@@ -2137,7 +2371,8 @@
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
 
 
 
@@ -2153,7 +2388,8 @@
                     document.getElementById('user_management').style.display = 'flex'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
 
 
 
@@ -2170,7 +2406,8 @@
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'flex'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
                     
 
                 }
@@ -2185,7 +2422,8 @@
                     document.getElementById('user_management').style.display = 'none'
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'flex'
-                    document.getElementById('rfq_management').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
 
                     
 

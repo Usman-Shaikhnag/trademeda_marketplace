@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from datetime import timedelta, date
 
 class RequestForQuotation(models.Model):
     _name = 'trademeda.rfq'
@@ -76,6 +77,35 @@ class RequestForQuotation(models.Model):
 
 
     quotations = fields.One2many('rfq.quotations','rfq_id',string="Quotations")
+    days_remaining = fields.Integer(string="Days Remaining",default=100)
+
+
+
+    @api.model
+    def _cron_expire_rfqs(self):
+        # today = date.today()
+        # expiration_date = today - timedelta(days=100)
+        
+        # expired_rfqs = self.search([('rfq_date', '<=', expiration_date), ('state', '=', 'active')])
+        # for rfq in expired_rfqs:
+        #     rfq.write({'state': 'expired'})
+        today = date.today()
+        expiration_date = today - timedelta(days=100)
+        
+        # Search for active RFQs
+        rfqs = self.search([('state', '=', 'active')])
+
+        for rfq in rfqs:
+            # Calculate expiration based on create_date
+            if rfq.create_date:
+                expiration_threshold = rfq.create_date.date() + timedelta(days=100)
+                rfq.days_remaining = (expiration_threshold - today).days
+            else:
+                rfq.days_remaining = 0
+
+            # Check if RFQ should be expired
+            if rfq.days_remaining <= 0:
+                rfq.write({'state': 'expired'})
     
 
 
