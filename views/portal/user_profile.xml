@@ -1485,7 +1485,8 @@
                                                 <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
                                                 <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
                                                 <t t-set="enquiries" t-value="env['product.enquiries'].sudo().search_count([('product_id','=',product.id)])"/>
-                                                <a style="text-decoration:none;color:rgba(199,8,8,1);margin-top:4px;" t-attf-href="/buyer/download_rtb_enquiries/{{product.id}}"><t t-esc="enquiries" /> Enquiries</a>
+                                                <!-- <a style="text-decoration:none;color:rgba(199,8,8,1);margin-top:4px;" t-attf-href="/buyer/download_rtb_enquiries/{{product.id}}"><t t-esc="enquiries" /> Enquiries</a> -->
+                                                <span style="color:rgba(199,8,8,1);margin-top:4px;" onclick="show_rtb_enquiries(this)"><t t-esc="enquiries"/> Enquiries</span>
                                             </div>
                                             <div class="product-details">
                                                 <span style="display:flex;justify-content: space-between;align-items:center;">
@@ -1508,10 +1509,64 @@
                                             <span class="divider-line"></span>
                                         </div>
 
+                                        <div class="inner-card" id="rtb_enquiry_management">
+                                            <form t-attf-action="/supplier/download_rtb_enquiry/{{product.id}}" method="get" style="display: flex;justify-content: flex-end;">
+                                                <div class="download-btn">
+                                                    <button type="submit"><i class="fas fa-download" /> Download</button>
+                                                </div>
+                                            </form>
+                                            <table id="ready2buy_single_table">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- <th>Quotation No</th> -->
+                                                        <th>Product</th>
+                                                        <th>Buyer</th>
+                                                        <th>Date</th>
+                                                        <th>Email</th>
+                                                        <th>Phone</th>
+                                                        <th>Message</th>
+
+                                                    </tr>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                <!-- here  -->
+                                                    <t t-foreach="env['product.enquiries'].sudo().search([('product_id','=',product.id)])" t-as="enquiry">
+                                                        <tr>
+                                                            
+                                                            <td>
+                                                                <a t-attf-href="/product/{{enquiry.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="enquiry.product_id.product_name" /></a>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="enquiry.partner_id.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="enquiry.create_date.strftime('%d-%b-%Y')" />
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                <t t-esc="enquiry.email" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="enquiry.phone" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="enquiry.message" />
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+
 
                                     </t>
                                 </t>
                             </div>
+
+                             
 
                         </div>
 
@@ -1795,7 +1850,7 @@
 
                             </div>
                             <div id="buyer_quotations_sent" class="">
-                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                <form action="/buyer/rfqs_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
@@ -1844,7 +1899,7 @@
                                 </table>
                             </div>
                             <div id="buyer_quotations_received" class="">
-                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                <form action="/buyer/rfq_received" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
@@ -1901,7 +1956,7 @@
 
                             </div>
                             <div id="supplier_quotations_sent" class="">
-                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                <form action="/supplier/rfq_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
@@ -1949,7 +2004,7 @@
                                 </table>
                             </div>
                             <div id="supplier_quotations_received" class="">
-                                <form action="/supplier/download_rfqs" method="get" style="display: flex;justify-content: flex-end;">
+                                <form action="/supplier/rfq_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
@@ -2915,6 +2970,13 @@
                     }
                 }
                
+                function show_rtb_enquiries(element){
+                    if(document.getElementById('rtb_enquiry_management').style.display == 'block'){
+                        document.getElementById('rtb_enquiry_management').style.display = 'none'
+                    }else {
+                        document.getElementById('rtb_enquiry_management').style.display = 'block'
+                    }
+                }
  
                 
             </script>

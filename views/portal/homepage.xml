@@ -582,14 +582,14 @@
                     showBuyers(document.getElementById('tab1'))
 
                     document.addEventListener('DOMContentLoaded', function() {
-                        const leftButton = document.getElementById('slide-left');
+                        const leftButton1 = document.getElementById('slide-left');
                         const rightButton = document.getElementById('slide-right');
                         const newProductsContainer = document.querySelector('.new-products');
                         
                         const slideAmount = 200; // Adjust this value to control the sliding distance
 
                         // Slide left
-                        leftButton.addEventListener('click', function() {
+                        leftButton1.addEventListener('click', function() {
                             newProductsContainer.scrollBy({
                                 top: 0,
                                 left: -slideAmount,
@@ -607,15 +607,15 @@
                         });
                     });
 
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const leftButton = document.getElementById('testimony-slide-left');
+                    <!-- document.addEventListener('DOMContentLoaded', function() {
+                        const leftButton2 = document.getElementById('testimony-slide-left');
                         const rightButton = document.getElementById('testimony-slide-right');
                         const newProductsContainer = document.querySelector('.testimony');
                         
                         const slideAmount = 800; // Adjust this value to control the sliding distance
 
                         // Slide left
-                        leftButton.addEventListener('click', function() {
+                        leftButton2.addEventListener('click', function() {
                             newProductsContainer.scrollBy({
                                 top: 0,
                                 left: -slideAmount,
@@ -631,7 +631,7 @@
                                 behavior: 'smooth'
                             });
                         });
-                    });
+                    }); -->
                     document.addEventListener('DOMContentLoaded', function() {
                         document.querySelectorAll('.rating').forEach(function(el) {
                             fill_stars(el);
@@ -690,14 +690,14 @@
                     }
 
                     document.addEventListener('DOMContentLoaded', function() {
-                        const leftButton = document.getElementById('featured-slide-left');
+                        const leftButton3 = document.getElementById('featured-slide-left');
                         const rightButton = document.getElementById('featured-slide-right');
                         const newProductsContainer = document.querySelector('.featured-products');
                         
                         const slideAmount = 200; // Adjust this value to control the sliding distance
 
                         // Slide left
-                        leftButton.addEventListener('click', function() {
+                        leftButton3.addEventListener('click', function() {
                             newProductsContainer.scrollBy({
                                 top: 0,
                                 left: -slideAmount,
@@ -716,14 +716,14 @@
                     });
 
                     document.addEventListener('DOMContentLoaded', function() {
-                        const leftButton = document.getElementById('ready-to-buy-slide-left');
+                        const leftButton4 = document.getElementById('ready-to-buy-slide-left');
                         const rightButton = document.getElementById('ready-to-buy-slide-right');
                         const newProductsContainer = document.querySelector('.ready-to-buy-products');
                         
                         const slideAmount = 300; // Adjust this value for more significant sliding
 
                         // Slide left
-                        leftButton.addEventListener('click', function() {
+                        leftButton4.addEventListener('click', function() {
                             newProductsContainer.scrollBy({
                                 top: 0,
                                 left: -slideAmount,

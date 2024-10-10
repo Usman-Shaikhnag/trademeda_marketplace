@@ -286,6 +286,51 @@ class ProductController(http.Controller):
         return response
     
 
+    @http.route('/supplier/download_rtb_enquiry/<int:product_id>', type='http', auth='user', website=True)
+    def download_suppliers_ready2buy_enquiries(self,product_id):
+
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
+
+        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country',]
+        for col_num, header in enumerate(headers):
+            enquiry_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        enquiries = request.env['product.enquiries'].sudo().search([('product_id','=',product_id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, enquiry in enumerate(enquiries, 1):
+            enquiry_worksheet.write(row_num, 0, enquiry.create_date.strftime('%d-%b-%Y'))
+            enquiry_worksheet.write(row_num, 1, enquiry.product_id.product_name)
+            enquiry_worksheet.write(row_num, 2 ,enquiry.partner_id.name)
+            enquiry_worksheet.write(row_num, 3, enquiry.user_name)
+            enquiry_worksheet.write(row_num, 4, enquiry.email)
+            enquiry_worksheet.write(row_num, 5, enquiry.phone)  # Assuming country_id is a Many2one field
+            enquiry_worksheet.write(row_num, 6 ,enquiry.message)
+            enquiry_worksheet.write(row_num, 7 ,enquiry.country.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=Product_Enquiry.xlsx;')
+                                         ])
+        return response
+
+
     @http.route('/buyer/download_rtb_enquiries/<int:product_id>', type='http', auth='user', website=True)
     def download_buyers_ready2buy_enquiries(self,product_id):
         user = request.env.user
@@ -329,6 +374,189 @@ class ProductController(http.Controller):
                                          ])
         return response
 
+    @http.route('/supplier/rfq_sent', type='http', auth='user', website=True)
+    def supplier_rfq_sent(self):
+
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        quotation_worksheet = workbook.add_worksheet("RFQs")
+
+        # Add headers
+        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Buyer']
+        for col_num, header in enumerate(headers):
+            quotation_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        quotations = request.env['rfq.quotations'].sudo().search([('partner_id','=',partner_id.id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, quotation in enumerate(quotations, 1):
+            quotation_worksheet.write(row_num, 0, quotation.create_date.strftime('%d-%b-%Y'))
+            quotation_worksheet.write(row_num, 1, quotation.rfq_id.rfq_no)
+            quotation_worksheet.write(row_num, 2 , quotation.company_name)
+            quotation_worksheet.write(row_num, 3, quotation.email)
+            quotation_worksheet.write(row_num, 4, quotation.phone)
+            quotation_worksheet.write(row_num, 5, quotation.country_id.name)  # Assuming country_id is a Many2one field
+            quotation_worksheet.write(row_num, 6 , quotation.message)
+            quotation_worksheet.write(row_num, 7 , quotation.rfq_id.partner_id.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=product_quotations.xlsx;')
+                                         ])
+        return response
+    
+
+    @http.route('/supplier/rfq_received', type='http', auth='user', website=True)
+    def supplier_rfq_received(self):
+
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
+
+        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country',]
+        for col_num, header in enumerate(headers):
+            enquiry_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        enquiries = request.env['product.enquiries'].sudo().search([('product_id.partner_id','=',partner_id.id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, enquiry in enumerate(enquiries, 1):
+            enquiry_worksheet.write(row_num, 0, enquiry.create_date.strftime('%d-%b-%Y'))
+            enquiry_worksheet.write(row_num, 1, enquiry.product_id.product_name)
+            enquiry_worksheet.write(row_num, 2 ,enquiry.partner_id.name)
+            enquiry_worksheet.write(row_num, 3, enquiry.user_name)
+            enquiry_worksheet.write(row_num, 4, enquiry.email)
+            enquiry_worksheet.write(row_num, 5, enquiry.phone)  # Assuming country_id is a Many2one field
+            enquiry_worksheet.write(row_num, 6 ,enquiry.message)
+            enquiry_worksheet.write(row_num, 7 ,enquiry.country.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=Product_Enquiry.xlsx;')
+                                         ])
+        return response
+    
+
+    @http.route('/buyer/rfqs_sent', type='http', auth='user', website=True)
+    def buyer_rfqs_sent(self):
+
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        enquiry_worksheet = workbook.add_worksheet("RFQs")
+
+        # Add headers
+        headers = ['Date','Product','Supplier', 'Your Email', 'Your Phone','Message','Your Country']
+        for col_num, header in enumerate(headers):
+            enquiry_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        enquiries = request.env['product.enquiries'].sudo().search([('partner_id','=',partner_id.id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, enquiry in enumerate(enquiries, 1):
+            enquiry_worksheet.write(row_num, 0, enquiry.create_date.strftime('%d-%b-%Y'))
+            enquiry_worksheet.write(row_num, 1, enquiry.product_id.product_name)
+            enquiry_worksheet.write(row_num, 2 ,enquiry.product_id.partner_id.name)
+            enquiry_worksheet.write(row_num, 3, enquiry.user_name)
+            enquiry_worksheet.write(row_num, 4, enquiry.email)
+            enquiry_worksheet.write(row_num, 5, enquiry.phone)  # Assuming country_id is a Many2one field
+            enquiry_worksheet.write(row_num, 6 ,enquiry.message)
+            enquiry_worksheet.write(row_num, 7 ,enquiry.country.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=Product_Enquiry.xlsx;')
+                                         ])
+        return response
+    
+    @http.route('/buyer/rfq_received', type='http', auth='user', website=True)
+    def buyer_rfq_received(self):
+
+        user = request.env.user
+        partner_id = user.partner_id
+
+        excel_buffer = io.BytesIO()
+        # import wdb;wdb.set_trace()
+
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(excel_buffer)
+        quotation_worksheet = workbook.add_worksheet("RFQs")
+
+        # Add headers
+        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Supplier']
+        for col_num, header in enumerate(headers):
+            quotation_worksheet.write(0, col_num, header)
+
+        # Fetch the product enquiries
+        quotations = request.env['rfq.quotations'].sudo().search([('partner_id','=',partner_id.id)],order='create_date desc')
+
+        # Write data to worksheet
+        for row_num, quotation in enumerate(quotations, 1):
+            quotation_worksheet.write(row_num, 0, quotation.create_date.strftime('%d-%b-%Y'))
+            quotation_worksheet.write(row_num, 1, quotation.rfq_id.rfq_no)
+            quotation_worksheet.write(row_num, 2 , quotation.company_name)
+            quotation_worksheet.write(row_num, 3, quotation.email)
+            quotation_worksheet.write(row_num, 4, quotation.phone)
+            quotation_worksheet.write(row_num, 5, quotation.country_id.name)  # Assuming country_id is a Many2one field
+            quotation_worksheet.write(row_num, 6 , quotation.message)
+            quotation_worksheet.write(row_num, 7 , quotation.partner_id.name)
+
+
+
+        workbook.close()
+        excel_buffer.seek(0)
+
+        # Prepare the response with the appropriate headers
+        response = request.make_response(excel_buffer.read(),
+                                         headers=[
+                                             ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+                                             ('Content-Disposition', 'attachment; filename=product_quotations.xlsx;')
+                                         ])
+        return response
+    
+
+        
 
     @http.route('/supplier/download_rfqs', type='http', auth='user', website=True)
     def download_rfqs(self):
