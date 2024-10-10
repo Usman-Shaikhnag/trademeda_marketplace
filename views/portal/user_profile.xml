@@ -1970,6 +1970,9 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Message</th>
+                                            <th>Company Website URL</th>
+                                            <th>Minimum Order Quantity</th>
+                                            <th>Unit</th>
 
                                         </tr>
                                         
@@ -1998,13 +2001,22 @@
                                                 <td>
                                                     <t t-esc="rfq.message" />
                                                 </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.website" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.quantity" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.unit.name" />
+                                                </td>
                                             </tr>
                                         </t>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="supplier_quotations_received" class="">
-                                <form action="/supplier/rfq_sent" method="get" style="display: flex;justify-content: flex-end;">
+                                <form action="/supplier/rfq_received" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>

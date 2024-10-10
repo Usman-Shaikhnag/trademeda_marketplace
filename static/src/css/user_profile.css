@@ -853,3 +853,13 @@ h2 {
 #rtb_enquiry_management{
     display: none;
 }
+
+#supplier_quotations_sent_table {
+
+    min-width: 2000px;
+}
+
+#supplier_quotations_sent {
+    overflow-x: auto;
+    width: 100%;
+}
