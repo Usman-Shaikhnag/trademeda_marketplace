@@ -388,7 +388,7 @@ class ProductController(http.Controller):
         quotation_worksheet = workbook.add_worksheet("RFQs")
 
         # Add headers
-        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Buyer']
+        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Buyer','Nature of Business','Company Website URL','Minimum Order Quantity','Unit','Product Description','Target Price','Currency','Destination','Shipping Terms','Payment Terms','Looking for Suppliers from','Primary Business','Establishment Year','Annual Sales in USD','No of Employees','Your Name','Designation','Country','State','City','Zip/Postal Code','Country Code','Area Code','Phone No','Email Address']
         for col_num, header in enumerate(headers):
             quotation_worksheet.write(0, col_num, header)
 
@@ -405,6 +405,45 @@ class ProductController(http.Controller):
             quotation_worksheet.write(row_num, 5, quotation.country_id.name)  # Assuming country_id is a Many2one field
             quotation_worksheet.write(row_num, 6 , quotation.message)
             quotation_worksheet.write(row_num, 7 , quotation.rfq_id.partner_id.name)
+            quotation_worksheet.write(row_num, 8 , quotation.partner_id.member_type)
+            quotation_worksheet.write(row_num, 9 , quotation.rfq_id.partner_id.website)
+            quotation_worksheet.write(row_num, 10 , quotation.rfq_id.quantity)
+            quotation_worksheet.write(row_num, 11 , quotation.rfq_id.unit.name)
+            quotation_worksheet.write(row_num, 12 , quotation.rfq_id.product_description)
+            quotation_worksheet.write(row_num, 13 , quotation.rfq_id.target_price)
+            quotation_worksheet.write(row_num, 14 , quotation.rfq_id.currency.name)
+            quotation_worksheet.write(row_num, 15 , quotation.rfq_id.destination.name)
+            quotation_worksheet.write(row_num, 16 , quotation.rfq_id.shipping_terms)
+            quotation_worksheet.write(row_num, 17 , quotation.rfq_id.payment_terms)
+            quotation_worksheet.write(row_num, 18 , quotation.rfq_id.suppliers_country.name)
+            quotation_worksheet.write(row_num, 19 , quotation.rfq_id.partner_id.primary_business)
+            quotation_worksheet.write(row_num, 20 , quotation.rfq_id.partner_id.establishment_year)
+            quotation_worksheet.write(row_num, 21 , quotation.rfq_id.partner_id.annual_sales)
+            quotation_worksheet.write(row_num, 22 , quotation.rfq_id.partner_id.no_of_employees)
+            quotation_worksheet.write(row_num, 23 , quotation.partner_id.name)
+            quotation_worksheet.write(row_num, 24 , quotation.partner_id.designation)
+            quotation_worksheet.write(row_num, 25 , quotation.partner_id.company_address)
+            quotation_worksheet.write(row_num, 26 , quotation.partner_id.country_id.name)
+            quotation_worksheet.write(row_num, 27 , quotation.partner_id.state_id.name)
+            quotation_worksheet.write(row_num, 28 , quotation.partner_id.city)
+            quotation_worksheet.write(row_num, 29 , quotation.partner_id.zip)
+            quotation_worksheet.write(row_num, 30 , quotation.partner_id.country_id.name) # country code to be done
+            quotation_worksheet.write(row_num, 31 , quotation.partner_id.area_code)
+            quotation_worksheet.write(row_num, 32 , quotation.partner_id.phone)
+            quotation_worksheet.write(row_num, 33 , quotation.partner_id.email)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -433,7 +472,7 @@ class ProductController(http.Controller):
         workbook = xlsxwriter.Workbook(excel_buffer)
         enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
 
-        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country',]
+        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country']
         for col_num, header in enumerate(headers):
             enquiry_worksheet.write(0, col_num, header)
 
