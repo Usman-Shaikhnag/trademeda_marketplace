@@ -15,6 +15,7 @@
                 
             <main class="">
                 <div class="container">
+                    
                     <div class="heading">
                         <h2 style="margin-bottom: 0;">Required: <t t-esc="rfq.product_name"/></h2>
                     </div>
@@ -86,6 +87,9 @@
                             <p><t t-esc="rfq.partner_id.email"/></p>
                             <p><t t-esc="rfq.partner_id.phone"/></p>
                         </t> -->
+                    </div>
+                    <div class="quotations_left">
+                        <span style="color:rgb(212, 37, 5);"><t t-esc="partner.quotations_left"/> Quotations Left</span>
                     </div>
                     <div class="contact_buyer">
                         <button type="button" onclick="open_popup(this)" id="btn_contact_buyer" class="">Contact Buyer</button>

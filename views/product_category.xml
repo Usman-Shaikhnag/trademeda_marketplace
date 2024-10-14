@@ -39,6 +39,9 @@
                         <field name="category_id"/>
                         <field name="ranking"/>
                         <field name="points"/>
+                        <field name="icon" widget="image" filename="icon_name" options="{'size': [50, 50]}"/>
+                        <field name="icon_name" invisible="1"/>
+
 
                     </group>
                     <notebook>

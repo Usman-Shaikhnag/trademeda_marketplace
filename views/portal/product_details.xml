@@ -90,6 +90,58 @@
                             </div>
                             
                         </div>
+                        <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Quantity</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="number"  name="quantity" id="quantity"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Unit</span>
+                                    </div>
+                                    <div class="select-container">
+                                            
+                                        <select id="quantity_unit" name="quantity_unit">
+                                            <t t-foreach="env['uom.uom'].sudo().search([])" t-as="option">
+                                                <option t-att-value="option.id">
+                                                    <t t-esc="option.name"/>
+                                                </option>
+                                            </t>    
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="multi-input">
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Target Price</span>
+                                    </div>
+                                    <div class="">
+                                        <input type="number"  name="target_price" id="target_price"/>
+                                    </div>
+                                </div>
+                                <div class="text-input">
+                                    <div class="">
+                                        <span class="">Currency</span>
+                                    </div>
+                                    <div class="select-container">
+                                            
+                                        <select id="currency" name="currency">
+                                            <t t-foreach="env['res.currency'].sudo().search([])" t-as="option">
+                                                <option t-att-value="option.id">
+                                                    <t t-esc="option.name"/>
+                                                </option>
+                                            </t>    
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
                         <div class="actions">
                             <button type="submit" t-att-data-partner-id="partner.id">Enquire now</button>
                         </div>

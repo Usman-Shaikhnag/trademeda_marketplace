@@ -119,6 +119,13 @@ class ResPartner(models.Model):
     logo_image = fields.Binary('logo Image')
     logo_image_name = fields.Char("Image Name") 
 
+    quotations_left = fields.Integer("Quotations Left",default=1)
+
+    @api.model
+    def _reset_quotation(self):
+        for record in self:
+            record.quotations_left = 1
+
 
     @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')
     def _compute_supplier_rating(self):
@@ -293,3 +300,5 @@ class ProductEnquiries(models.Model):
     product = fields.Char(string="Product")
     product_id = fields.Many2one('product.customer.images', string="Product")
     country = fields.Many2one('res.country', string="Country")
+    quantity = fields.Integer("Quantity")
+    unit = fields.Many2one("uom.uom",string='Unit')

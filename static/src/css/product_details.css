@@ -179,3 +179,12 @@ main > div {
   color: #b32f2d;
 
 }
+
+.multi-input .text-input {
+  width: 50%;
+  /* margin-right: 10px; */
+}
+.multi-input {
+  display: flex;
+  width: 95%;
+}

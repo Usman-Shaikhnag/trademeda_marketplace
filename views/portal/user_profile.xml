@@ -1913,7 +1913,13 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Message</th>
-
+                                            <th>Company Website URL</th>
+                                            <th>Minimum Order Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Product Description</th>
+                                            <th>Taget Price</th>
+                                            <th>Currency</th>
+                                            <th>Destination</th>
                                         </tr>
                                         
                                     </thead>
@@ -1940,6 +1946,27 @@
                                                 </td>
                                                 <td>
                                                     <t t-esc="rfq.message" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.website" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.quantity" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.unit.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.product_description" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.target_price" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.currency.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.destination.name" />
                                                 </td>
                                             </tr>
                                         </t>
@@ -1973,6 +2000,12 @@
                                             <th>Company Website URL</th>
                                             <th>Minimum Order Quantity</th>
                                             <th>Unit</th>
+                                            <th>Product Description</th>
+                                            <th>Taget Price</th>
+                                            <th>Currency</th>
+                                            <th>Destination</th>
+
+
 
                                         </tr>
                                         
@@ -2010,6 +2043,18 @@
                                                 <td>
                                                     <t t-esc="rfq.rfq_id.unit.name" />
                                                 </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.product_description" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.target_price" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.currency.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.destination.name" />
+                                                </td>
                                             </tr>
                                         </t>
                                     </tbody>
@@ -2030,7 +2075,9 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Message</th>
-
+                                            <th>Product Description</th>
+                                            <th>Company Website URL</th>
+                                            
                                         </tr>
                                         
                                     </thead>
@@ -2058,6 +2105,13 @@
                                                 <td>
                                                     <t t-esc="rtb.message" />
                                                 </td>
+                                                <td>
+                                                    <t t-esc="rtb.product_id.product_description" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.partner_id.website" />
+                                                </td>
+                                                
                                             </tr>
                                         </t>
                                     </tbody>

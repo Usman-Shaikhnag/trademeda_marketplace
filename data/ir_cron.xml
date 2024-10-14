@@ -10,5 +10,25 @@
             <field name="interval_type">days</field>
             <field name="active">True</field>
         </record>
+
+        <record id="ir_cron_reset_daily_quotations" model="ir.cron">
+            <field name="name">Reset Daily Quotations</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._reset_quotation()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="ir_cron_reset_category_rankings" model="ir.cron">
+            <field name="name">Reset Category Rankings</field>
+            <field name="model_id" ref="model_product_subcategories"/>
+            <field name="state">code</field>
+            <field name="code">model.action_calculate_ranking()</field>
+            <field name="interval_number">21</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
     </data>
 </odoo>
