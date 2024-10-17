@@ -291,13 +291,19 @@ main{
   }
   .rfq-content {
     color: gray;
+    width: 80%;
   }
+ 
   .rfq-buttons {
     display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  
+  .space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .btn-wishlist{
     padding: 0.5rem 2rem;
     /* outline: 2px solid #b32f2d; */

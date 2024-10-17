@@ -239,31 +239,48 @@
                                                 <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
-                                            <div class="rfq-content">
-                                                <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
-                                                <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                            <div class="space-between">
+                                                <div class="rfq-content">
+                                                    <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                                    <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                                </div>
+                                                <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
+                                                    <span style="background-color:rgb(199,8,8);border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
+                                                    
+                                                </div>
                                             </div>
-                                            <div class="rfq-content">
-                                                <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
-                                                Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
-                                                <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
-                                                <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>
-                                                <t t-if="rfq.shipping_terms == 'exw'">EXW (Ex Works)</t>
-                                                <t t-if="rfq.shipping_terms == 'fas'">FAS (Free Alongside Ship)</t>
-                                                <t t-if="rfq.shipping_terms == 'dap'">DAP (Delivered at Place)</t>
-                                                <t t-if="rfq.shipping_terms == 'dat'">DAT (Delivered at Terminal)</t>
-                                                <t t-if="rfq.shipping_terms == 'cif'">CIF (Cost, Insurance and Freight)</t>
-                                                <t t-if="rfq.shipping_terms == 'cip'">CIP (Carriage and Insurance Paid to)</t>
-                                                <t t-if="rfq.shipping_terms == 'cfr'">CFR (Cost and Freight)</t>
-                                                <t t-if="rfq.shipping_terms == 'ddp'">DDP (Delivery Duty Paid)</t>
-                                                <t t-if="rfq.shipping_terms == 'cpt'">CPT (Carriage paid to)</t>
-                                                
-                                                </p>
+                                            <div class="space-between">
+                                                <div class="rfq-content">
+                                                    <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
+                                                    Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
+                                                    <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
+                                                    <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>
+                                                    <t t-if="rfq.shipping_terms == 'exw'">EXW (Ex Works)</t>
+                                                    <t t-if="rfq.shipping_terms == 'fas'">FAS (Free Alongside Ship)</t>
+                                                    <t t-if="rfq.shipping_terms == 'dap'">DAP (Delivered at Place)</t>
+                                                    <t t-if="rfq.shipping_terms == 'dat'">DAT (Delivered at Terminal)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cif'">CIF (Cost, Insurance and Freight)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cip'">CIP (Carriage and Insurance Paid to)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cfr'">CFR (Cost and Freight)</t>
+                                                    <t t-if="rfq.shipping_terms == 'ddp'">DDP (Delivery Duty Paid)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cpt'">CPT (Carriage paid to)</t>
+                                                    
+                                                    </p>
+                                                </div>
+                                                <div style="align-self: flex-start;margin-top: 0.5rem;" class="">Quotations Left</div>
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
+                                            <!-- <div class="space-between">
+                                                <div class="rfq-buttons">
+                                                    <button class="btn-wishlist">Add to Wishlist</button>
+                                                    <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
+                                                </div>
+                                                <div><span style="color:rgb(199,8,8);"><t t-esc="partner.quotations_left"/> Quotations Left</span></div>
+                                            </div> -->
+                                            
                                         </div>
                                     </t>
                                     <t t-if="not searchByCategory">
@@ -365,14 +382,47 @@
                                                 <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
-                                            <div class="rfq-content">
-                                                <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
-                                                <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                            <div class="space-between">
+                                                <div class="rfq-content">
+                                                    <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
+                                                    <!-- <p><t t-esc="rfq.product_description"/></p> -->
+                                                </div>
+                                                <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
+                                                    <span style="background-color:rgb(199,8,8);border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="space-between">
+                                                <div class="rfq-content">
+                                                    <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
+                                                    Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
+                                                    <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
+                                                    <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>
+                                                    <t t-if="rfq.shipping_terms == 'exw'">EXW (Ex Works)</t>
+                                                    <t t-if="rfq.shipping_terms == 'fas'">FAS (Free Alongside Ship)</t>
+                                                    <t t-if="rfq.shipping_terms == 'dap'">DAP (Delivered at Place)</t>
+                                                    <t t-if="rfq.shipping_terms == 'dat'">DAT (Delivered at Terminal)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cif'">CIF (Cost, Insurance and Freight)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cip'">CIP (Carriage and Insurance Paid to)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cfr'">CFR (Cost and Freight)</t>
+                                                    <t t-if="rfq.shipping_terms == 'ddp'">DDP (Delivery Duty Paid)</t>
+                                                    <t t-if="rfq.shipping_terms == 'cpt'">CPT (Carriage paid to)</t>
+                                                    
+                                                    </p>
+                                                </div>
+                                                <div style="align-self: flex-start;margin-top: 0.5rem;" class="">Quotations Left</div>
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
+                                            <!-- <div class="space-between">
+                                                <div class="rfq-buttons">
+                                                    <button class="btn-wishlist">Add to Wishlist</button>
+                                                    <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
+                                                </div>
+                                                <div><span style="color:rgb(199,8,8);"><t t-esc="partner.quotations_left"/> Quotations Left</span></div>
+                                            </div> -->
                                         </div>
                                     </t>
                                     <t t-if="not searchByCategory">
