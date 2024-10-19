@@ -116,7 +116,20 @@
                                         </div>
                                     </div>
                                     <div class="product-description">
-                                        <p><t t-esc="product.product_description"/></p>
+                                        <!-- <p><t t-esc="product.product_description"/></p> -->
+                                        <p>Supplier is seeking quotes for the following items:Product Name : <t t-esc="product.product_name"/> Specifications: <t t-esc="product.product_description"/>
+                                            Minimum Order Quantity:<t t-esc="product.product_quantity"/> Payment Terms :
+                                            <t t-if="product.payment_mode == 'cash_advance'" >Cash in Advance</t>
+                                            <t t-if="product.payment_mode == 'letter_of_credit'" >Letter of Credit</t>
+                                            <t t-if="product.payment_mode == 'documentary_collection'" >Documentary Collection</t>
+                                            <t t-if="product.payment_mode == 'open_account'" >Open Account</t>
+                                            <t t-if="product.payment_mode == 'advance_payment'" >Advance Payment</t>
+                                            <t t-if="product.payment_mode == 'consignment'" >Consignment</t>
+                                            <t t-if="product.payment_mode == 'cash_on_delivery'" >Cash on Delivery (COD)</t>
+                                            <t t-if="product.payment_mode == 'payment_in_installments'" >Payment in Installments</t>
+                                            <t t-if="product.payment_mode == 'bill_of_exchange'" >Bill of Exchange</t>
+                                            <t t-if="product.payment_mode == 'telegraphic_transfer'" >Telegraphic transfer</t>
+                                        </p>
                                     </div>
                                     <div class="product-actions">
                                         <button class="favourites-button"><b>Add To Favourites</b></button>
