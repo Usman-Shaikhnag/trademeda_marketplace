@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">State*</span>
+                                            <span class="">State / Province*</span>
                                         </div>
                                         <!-- <div class="">
                                             <select id="state" name="state" class="form-control" required="required">

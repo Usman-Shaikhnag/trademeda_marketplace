@@ -200,6 +200,8 @@
                                     <li class="payment_in_installments">Payment in Installments - The total amount is paid in multiple scheduled payments over time.</li>
                                     <li class="bill_of_exchange">Bill of Exchange - A written order from the seller to the buyer to pay a specific amount at a certain time.</li>
                                     <li class="telegraphic_transfer">Telegraphic transfer - Telegraphic Transfer (TT), also known as a wire transfer or bank transfer, is a method of transferring funds electronically from one bank account to another.</li>
+                                    <li class="to_be_discussed">To be discussed with supplier</li>
+
                                 </ul>
                             </div>
                         </div>
@@ -242,6 +244,8 @@
                                         <option value="payment_in_installments">Payment in Installments</option>                  
                                         <option value="bill_of_exchange">Bill of Exchange</option>                  
                                         <option value="telegraphic_transfer">Telegraphic transfer</option>  
+                                        <option value="to_be_discussed">Open for Discussion</option>  
+
                                     </select>
                                 </div>
                             </div>

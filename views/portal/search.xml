@@ -387,10 +387,10 @@
                                                     <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
                                                     <!-- <p><t t-esc="rfq.product_description"/></p> -->
                                                 </div>
-                                                <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
+                                                <!-- <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
                                                     <span style="background-color:rgb(199,8,8);border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
                                                     
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="space-between">
                                                 <div class="rfq-content">
@@ -410,7 +410,7 @@
                                                     
                                                     </p>
                                                 </div>
-                                                <div style="align-self: flex-start;margin-top: 0.5rem;" class="">Quotations Left</div>
+                                                <div style="align-self: flex-start;margin-top: 0.5rem;color:green;" class="">Quotations Left:<span ><t t-esc="partner.quotations_left"/></span></div>
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>

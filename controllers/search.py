@@ -273,12 +273,13 @@ class SearchController(http.Controller):
         partner_id = user.partner_id
 
         suppliers = request.env['product.customer.images'].sudo().search(
-             [
+            [
                 '&',
                 ('ready_to_ship', '=', True),
-                '|',
+                '|', '|',
                 ('product_id.name', 'ilike', product),
-                ('product_name', 'ilike', product)
+                ('product_name', 'ilike', product),
+                ('partner_id.name', 'ilike', product)
             ],
             limit=per_page, offset=offset
         )
