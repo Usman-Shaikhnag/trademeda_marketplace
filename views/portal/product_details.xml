@@ -11,8 +11,8 @@
         </t>
         <style>
             #imageZoom {
-                width: 400px;
-                height: 400px;
+                width: 100%;
+                max-height: 600px;
                 position: relative;
             }
             #imageZoom img {
