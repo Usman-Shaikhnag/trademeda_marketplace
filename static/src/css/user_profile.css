@@ -854,12 +854,18 @@ h2 {
     display: none;
 }
 
-#supplier_quotations_sent_table {
+#supplier_quotations_sent_table,
+#buyer_quotations_sent_table,
+#buyer_quotations_received_table,
+#supplier_quotations_received_table {
 
     min-width: 2000px;
 }
 
-#supplier_quotations_sent {
+#supplier_quotations_sent,
+#supplier_quotations_received,
+#buyer_quotations_sent,
+#buyer_quotations_received {
     overflow-x: auto;
     width: 100%;
 }

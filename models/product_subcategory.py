@@ -12,6 +12,8 @@ class ProductSubCategory(models.Model):
 
     ranking = fields.Integer("Ranking")
     points = fields.Integer("Points")
+    icon = fields.Binary('Icon')
+    icon_name = fields.Char("Icon Name")
 
 
     def action_calculate_ranking(self):
