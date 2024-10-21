@@ -25,7 +25,14 @@
                     <div class="buyer-details">
                         <div class=""><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>Buyer from <t t-esc="rfq.partner_id.country_id.name"/></div>
                         <div class=""><span style="color:#009900"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span></div>
-                        <div class=""><i class="fa-solid fa-hourglass-start"></i>Expires in <t t-esc="rfq.days_remaining"/> Days</div>
+                        <div class=""><i class="fa-solid fa-hourglass-start"></i>Expires in <t t-esc="rfq.days_remaining"/> Days
+                            <div class="">
+                                Expires on  <t t-if="rfq.create_date">
+                                                <span><t t-esc="rfq.end_date"/></span>
+                                            </t>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- product image  -->
                     <div class="image-container">

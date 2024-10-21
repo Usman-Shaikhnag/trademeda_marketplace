@@ -57,6 +57,39 @@
                     url.search = newQuery;
                     window.location.href = url.toString();
                 }
+
+                function select_continent(element) {
+                    const val = element.getAttribute('data-continent-id');
+                    const input_country_ids = document.getElementById('input_country_ids').value;
+
+                    if (input_country_ids != '') {
+                        const input_country_ids_array = JSON.parse(input_country_ids);
+                        if (input_country_ids_array.length &gt; 0) {
+                            for (let i = 0; i &lt; input_country_ids_array.length; i++) {
+                                countries.push(parseInt(input_country_ids_array[i]));
+                            }
+                        }
+                    }
+
+                    if (element.checked) {
+                        countries.push(parseInt(val));
+                    } else {
+                        const index = countries.indexOf(parseInt(val));
+                        if (index &gt; -1) {
+                            countries.splice(index, 1);
+                        }
+                    }
+
+                    const url = new URL(window.location.href);
+                    let newQuery = '';
+
+                    if (countries.length &gt; 0) {
+                        newQuery = `country_ids=[${countries.join(',')}]`;
+                    }
+
+                    url.search = newQuery;
+                    window.location.href = url.toString();
+                }
                 
             </script>
             <main class="">
@@ -108,6 +141,14 @@
                             <span class="" onclick="toggle_countries(this)"><i class="fa-solid fa-globe"></i> Countries
                                 <div id="countries_filters" class="countries_filter">
                                     <ul>
+                                        <li>Asia <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>Europe <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>Africa <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>North America <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>South America <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>Australia <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li>Antarctica <input name="countries123" onclick="select_continent(this)" class="country_checkbox"  type="checkbox" /></li>
+                                        <li><div class="divider-line"></div></li>
                                         <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
                                             
                                             <li>

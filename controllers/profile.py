@@ -677,10 +677,13 @@ class ProductController(http.Controller):
 
         for rec in kw:
             if "update_product_image_" in rec:
-                    update_product_image = kw.get(rec).read()
+                    update_product_image = kw.get(rec)
         for rec in kw:
             if "edit_delivery_days_" in rec:
                     edit_delivery_days = kw.get(rec)
+        for rec in kw:
+            if "edit_product_name_" in rec:
+                    edit_product_name = kw.get(rec)
             
         for rec in kw:
             if "edit_packaging_requirement" in rec:
@@ -715,12 +718,15 @@ class ProductController(http.Controller):
                         ready_to_buy_requirements = True
                     else:
                         ready_to_buy_requirements = False
+        # import wdb;wdb.set_trace()
+        
 
         if product:
             if update_product_image:
                 product.sudo().write({
-                    'product_image':base64.b64encode(update_product_image),
+                    'product_image':base64.b64encode(update_product_image.read()),
                     'image_name':update_product_image.filename,
+                    'product_name':edit_product_name,
                     'product_description':edit_product_description,
                     'product_quantity':edit_product_quantity,
                     'packaging_requirement':edit_packaging_requirement,
@@ -734,6 +740,7 @@ class ProductController(http.Controller):
             else:
                  product.sudo().write({
                     'product_description':edit_product_description,
+                    'product_name':edit_product_name,
                     'product_quantity':edit_product_quantity,
                     'packaging_requirement':edit_packaging_requirement,
                     'delivery_days':edit_delivery_days,
@@ -957,6 +964,7 @@ class ProductController(http.Controller):
             packaging_requirement = data['packaging_requirement']
             payment_mode = data['payment_mode']
             product_description = data['product_description']
+            product_name = data['product_name']
             product_price_usd = data['product_price_usd']
             product_quantity = data['product_quantity']
             ready_to_ship = data['ready_to_ship']
@@ -973,6 +981,7 @@ class ProductController(http.Controller):
             # Prepare the values to be updated
             update_vals = {
                 'product_description': product_description,
+                'product_name': product_name,
                 'product_quantity': product_quantity,
                 'delivery_days': delivery_days,
                 'product_price_usd': product_price_usd,
