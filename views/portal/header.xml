@@ -36,7 +36,7 @@
                             </t>
                             <t t-else="">
                                 <a style="text-decoration:none;" class="login_link" t-attf-href="/signin"><b>Login</b></a>
-                                <a style="text-decoration:none;" class="login_link" t-attf-href="/signup"><b>Signup</b></a>
+                                <a style="text-decoration:none;background-color: white;color: #ea5801;padding: 0.5rem;border-radius: 5px;" class="login_link" t-attf-href="/signup"><b>Signup</b></a>
 
                             </t>
                             

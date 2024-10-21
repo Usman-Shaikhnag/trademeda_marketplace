@@ -14,7 +14,10 @@ class SearchController(http.Controller):
         offset = (int(page) - 1) * per_page
 
         
-        supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        supplier_domain = ['|', '|', 
+                   ('product_id.name', 'ilike', product), 
+                   ('product_name', 'ilike', product), 
+                   ('partner_id.name', 'ilike', product)]
         buyer_domain = ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
         # import wdb;wdb.set_trace()
         if country_ids:
@@ -85,7 +88,11 @@ class SearchController(http.Controller):
         # import wdb;wdb.set_trace()
         
         
-        supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        # supplier_domain = ['|', ('product_id.name', 'ilike', product), ('product_name', 'ilike', product)]
+        supplier_domain = ['|', '|', 
+                   ('product_id.name', 'ilike', product), 
+                   ('product_name', 'ilike', product), 
+                   ('partner_id.name', 'ilike', product)]
         buyer_domain = ['|', ('product_subsubcategory.name', 'ilike', product), ('product_name', 'ilike', product)]
 
         user = request.env.user
@@ -179,7 +186,7 @@ class SearchController(http.Controller):
             if len(unique_subcategories) >= 5:
                 break
         subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',category)],limit=1)
-        points = subcategory.points + 1
+        points = subcategory.points + 10
         subcategory.sudo().write({
             'points':points
         })
@@ -266,12 +273,13 @@ class SearchController(http.Controller):
         partner_id = user.partner_id
 
         suppliers = request.env['product.customer.images'].sudo().search(
-             [
+            [
                 '&',
                 ('ready_to_ship', '=', True),
-                '|',
+                '|', '|',
                 ('product_id.name', 'ilike', product),
-                ('product_name', 'ilike', product)
+                ('product_name', 'ilike', product),
+                ('partner_id.name', 'ilike', product)
             ],
             limit=per_page, offset=offset
         )

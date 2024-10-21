@@ -70,7 +70,7 @@ class HomepageController(http.Controller):
         product = request.env['product.customer.images'].sudo().search([('id','=',productId)])
 
         subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',product.product_id.subcategory_id.name)],limit=1)
-        points = subcategory.points + 2
+        points = subcategory.points + 20
         subcategory.sudo().write({
             'points':points
         })

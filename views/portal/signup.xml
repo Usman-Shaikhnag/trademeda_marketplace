@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Company Name</span>
+                                        <span class="">Company Name*</span>
                                     </div>
                                     <div class="">
                                         <input placeholder="Company Name" name="company_name" id="company_name" required="required" class="form-control"/>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">We are:</span>
+                                        <span class="">We are:*</span>
                                     </div>
                                     <div class="radio-group">
                                         <input type="radio" id="buyer" name="role" value="buyer" onchange="role_changed()" checked="true"/>
@@ -100,7 +100,7 @@
                                 <div class="" style="display:flex;">
                                     <div class="text-input" style="width:50%;">
                                         <div class="">
-                                            <span class="">Primary Business</span>
+                                            <span class="">Primary Business*</span>
                                         </div>
                                         <div class="select-container">
                                             <select id="business-type" name="business-type" required="required">
@@ -130,7 +130,7 @@
                                 <div class="" style="display:flex;">
                                     <div class="text-input" style="width:50%;">
                                         <div class="">
-                                            <span class="">Approx,Annual Sales in USD</span>
+                                            <span class="">Approx,Annual Sales in USD*</span>
                                         </div>
                                         <div class="select-container">
                                             <select id="annual-sales" name="annual-sales" required="required">
@@ -145,7 +145,7 @@
                                     </div>
                                     <div class="text-input" style="width:40%;">
                                         <div class="">
-                                            <span class="">Number of Employees</span>
+                                            <span class="">Number of Employees*</span>
                                         </div>
                                         <div class="select-container">
                                             <select id="employees" name="employees" required="required">
@@ -174,7 +174,7 @@
                                 <div class="multi-input">
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Your Name</span>
+                                            <span class="">Your Name*</span>
                                         </div>
                                         <div class="">
                                             <input placeholder="Your Name" name="name" required="required"/>
@@ -182,7 +182,7 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Designation</span>
+                                            <span class="">Designation*</span>
                                         </div>
                                         <div class="">
                                             <input placeholder="Designation" name="designation" required="required"/>
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Address</span>
+                                        <span class="">Address*</span>
                                     </div>
                                     <div class="">
                                         <textarea name="address" style="height:80px;" required="required"/>
@@ -200,7 +200,7 @@
                                 <div class="multi-input">
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Country</span>
+                                            <span class="">Country*</span>
                                         </div>
                                         <div class="">
                                             <!-- <input placeholder="Country" name="country" required="required"/> -->
@@ -217,9 +217,9 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">State</span>
+                                            <span class="">State / Province*</span>
                                         </div>
-                                        <div class="">
+                                        <!-- <div class="">
                                             <select id="state" name="state" class="form-control" required="required">
                                                 <option value="">Select your state</option>
                                                 <t t-foreach="env['res.country.state'].sudo().search([])" t-as="state">
@@ -229,13 +229,16 @@
                                                 </t>
                                             </select>
 
+                                        </div> -->
+                                        <div class="">
+                                            <input placeholder="State" name="state" id="state" required="required"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="multi-input">
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">City</span>
+                                            <span class="">City*</span>
                                         </div>
                                         <div class="">
                                             <input placeholder="City" name="city" required="required"/>
@@ -243,7 +246,7 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Zip/Postal Code</span>
+                                            <span class="">Zip/Postal Code*</span>
                                         </div>
                                         <div class="">
                                             <input placeholder="Zip/Postal Code" name="zip_code" required="required"/>
@@ -253,7 +256,7 @@
                                 <div class="multi-input">
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Country Code</span>
+                                            <span class="">Country Code*</span>
                                         </div>
                                         <div class="">
                                             <select id="country_code" name="country_code" class="form-control" required="required">
@@ -270,7 +273,7 @@
 
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Phone Number</span>
+                                            <span class="">Phone Number*</span>
                                         </div>
                                         <div class="">
                                             <input placeholder="Phone Number" name="phone_number" required="required"/>
@@ -289,7 +292,7 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Email Address</span>
+                                            <span class="">Email Address*</span>
                                         </div>
                                         <div class="">
                                             <input type="email" placeholder="Email Address" name="company_email" required="required"/>
@@ -323,7 +326,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Email Address / Login</span>
+                                        <span class="">Email Address / Login*</span>
                                     </div>
                                     <div class="">
                                         <input type="email" name="email" placeholder="user@email.com" required="required"/>
@@ -331,7 +334,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Password</span>
+                                        <span class="">Password*</span>
                                     </div>
                                     <div class="">
                                         <input type="password" name="password" class="form-control" required="required"/>
@@ -339,7 +342,7 @@
                                 </div>
                                 <div class="text-input">
                                     <div class="">
-                                        <span class="">Confirm Password</span>
+                                        <span class="">Confirm Password*</span>
                                     </div>
                                     <div class="">
                                         <input type="password" name="confirm_password"  required="required"/>
