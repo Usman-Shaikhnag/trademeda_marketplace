@@ -203,6 +203,8 @@ class ProductCustomerImages(models.Model):
     product_image4 = fields.Binary('Image')
     image_name4 = fields.Char("Image Name")   
 
+    unit = fields.Many2one("uom.uom",string="Unit")
+
     product_quantity = fields.Integer("Quantity")
     packaging_requirement = fields.Char("Packaging Requirements")
     delivery_days = fields.Integer("Delivery in Days")

@@ -604,7 +604,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="text-input">
+                                                    <div class="text-input" style="margin-top:1rem;">
 
                                                         <div class="">
                                                             <span class="">Unit</span>
@@ -688,13 +688,57 @@
                                             <div class="add-product">
                                                 <div class="text-input" style="margin-top:2px">
                                                     <div class="">
-                                                        <span class="">Upload Image</span>
+                                                        <span class="">Upload Image 1</span>
                                                     </div>
                                                     <div class="file-upload-wrapper">
                                                         <input onchange="file_change(this)" type="file" id="upload_product" name="upload_product" class="file-input" data-file-name="upload_product_name" data-delete-btn="upload_product_delete"/>
                                                         <label for="upload_product" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
                                                         <span id="upload_product_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
                                                         <span id="upload_product_name" class="file-name">No file chosen</span>
+                                                    </div>
+
+        
+                                                    
+                                                </div>
+
+                                                <div class="text-input" style="margin-top:2px">
+                                                    <div class="">
+                                                        <span class="">Upload Image 2</span>
+                                                    </div>
+                                                    <div class="file-upload-wrapper">
+                                                        <input onchange="file_change(this)" type="file" id="upload_product1" name="upload_product1" class="file-input" data-file-name="upload_product1_name" data-delete-btn="upload_product1_delete"/>
+                                                        <label for="upload_product1" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                        <span id="upload_product1_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                        <span id="upload_product1_name" class="file-name">No file chosen</span>
+                                                    </div>
+
+        
+                                                    
+                                                </div>
+
+                                                <div class="text-input" style="margin-top:2px">
+                                                    <div class="">
+                                                        <span class="">Upload Image 3</span>
+                                                    </div>
+                                                    <div class="file-upload-wrapper">
+                                                        <input onchange="file_change(this)" type="file" id="upload_product2" name="upload_product2" class="file-input" data-file-name="upload_product2_name" data-delete-btn="upload_product2_delete"/>
+                                                        <label for="upload_product2" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                        <span id="upload_product2_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                        <span id="upload_product2_name" class="file-name">No file chosen</span>
+                                                    </div>
+
+        
+                                                    
+                                                </div>
+                                                <div class="text-input" style="margin-top:2px">
+                                                    <div class="">
+                                                        <span class="">Upload Image 4</span>
+                                                    </div>
+                                                    <div class="file-upload-wrapper">
+                                                        <input onchange="file_change(this)" type="file" id="upload_product3" name="upload_product3" class="file-input" data-file-name="upload_product3_name" data-delete-btn="upload_product3_delete"/>
+                                                        <label for="upload_product3" class="image-file-label"><i class="fa-solid fa-upload"></i>Click to browse</label>
+                                                        <span id="upload_product3_delete" class="file-delete"><i class="fa-regular fa-circle-xmark"></i></span>
+                                                        <span id="upload_product3_name" class="file-name">No file chosen</span>
                                                     </div>
 
         

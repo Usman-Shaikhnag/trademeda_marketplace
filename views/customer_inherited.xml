@@ -16,6 +16,9 @@
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image"  style="width:100px;height:100px;"/>
+                        <field name="product_image2" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_image3" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_image4" widget="image" style="width:100px;height:100px;"/>
                         <field name="product_quantity"/>
                         <field name="packaging_requirement"/>
                         <field name="delivery_days"/>
@@ -35,6 +38,9 @@
                         <field name="product_description"/>
                         <field name="image_name" invisible='1'/>
                         <field name="product_image" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_image2" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_image3" widget="image" style="width:100px;height:100px;"/>
+                        <field name="product_image4" widget="image" style="width:100px;height:100px;"/>
                         <field name="product_quantity"/>
                         <field name="packaging_requirement"/>
                         <field name="delivery_days"/>
