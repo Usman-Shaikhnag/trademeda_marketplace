@@ -51,7 +51,7 @@
                                     <img t-att-src="('data:image/' + ('jpeg' if partner.logo_image_name.endswith('.jpeg') or partner.logo_image_name.endswith('.jpg')  else 'png') + ';base64,' + partner.logo_image.decode('utf-8'))" alt="Product Image" class="product-image"/>
                                     
                                 </t>
-                                <i class="fas fa-edit" onclick="enable_profile_detail()" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
+                                <i class="fas fa-edit" onclick="enable_profile_detail(this)" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
                             </div>
                             <div class="username">
                                 <b><span><t t-esc="partner.name"/></span></b>
@@ -134,6 +134,11 @@
                                     <span class="">Quotations (Seller)</span>
                                 </div>
                             </t>
+                            <div class="menu-item" onclick="enable_notifications(this)" id="notifications-menu">
+                                <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
+                                <i class="fas fa-message" /> 
+                                <span class="">Notifications</span>
+                            </div>
                             <div class="menu-item" onclick="enable_queries(this)" id="queries-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-clipboard-question" /> 
@@ -497,6 +502,24 @@
                                                 <input placeholder="" t-att-value="partner.area_code" name="area_code"/>
                                             </div>
                                         </div>
+                                        
+                                    </div>
+                                    <div class="text-input">
+                                        <div class="">
+                                            <span class="">Subscribe to Notifications</span>
+                                        </div>
+                                        <div class="">
+                                            <select id="subscribe_product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="select_subcategory(this)">
+                                                <option value=''></option>
+                                                <t t-foreach="request.env['product.subcategories'].sudo().search([])" t-as="subcategory">
+                                                    <option t-att-value="subcategory.id">
+                                                        <t t-esc="subcategory.name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <!-- Container for selected subcategories (chips) -->
+                                        <div id="selected-chips-container" class="chip-container"></div>
                                     </div>
                                 </div>
                         </form>
@@ -2626,7 +2649,7 @@
                     })
                 }
 
-                function enable_profile_detail(){
+                function enable_profile_detail(element){
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
                     document.getElementById('documents').style.display = 'none'
@@ -2642,8 +2665,7 @@
                             item.classList.remove('active');
                         });
                         
-                        // Add active class to the clicked menu item
-                        element.classList.add('active');
+                        
                     
 
                 }
@@ -3335,7 +3357,45 @@
                         document.getElementById('rtb_enquiry_management').style.display = 'block'
                     }
                 }
- 
+                function select_subcategory(element){
+                    let chip_container = document.getElementById('selected-chips-container');
+    
+                    console.log(element.selectedOptions[0].label);
+
+                    let chip_box = document.createElement('span');
+                    let chip = document.createElement('span');
+                    let removeButton = document.createElement('button');
+
+                    // Add the 'x' for delete
+                    removeButton.innerText = 'x';
+                    removeButton.classList.add('remove-chip');
+                    removeButton.type = 'button'
+                    chip.classList.add('chip');
+                    
+                    // Set the chip text to the selected subcategory label
+                    chip.innerText = element.selectedOptions[0].label;
+                    chip.setAttribute('id',element.selectedOptions[0].value)
+
+                    // Append chip and delete button to the chip_box
+                    chip_box.appendChild(chip);
+                    chip_box.appendChild(removeButton);
+
+                    // Add class to style chip_box
+                    chip_box.classList.add('chipbox');
+
+                    // Append chip_box to the chip container
+                    chip_container.appendChild(chip_box);
+
+                    // Add event listener to remove the chip when 'x' is clicked
+                    removeButton.addEventListener('click', function() {
+                        removeChip(removeButton);
+                    });
+                }
+                function removeChip(chip){
+                    <!-- debugger; -->
+                    const parentElement = chip.parentElement
+                    parentElement.parentElement.removeChild(parentElement);
+                }
                 
             </script>
         </template>
