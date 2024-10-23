@@ -121,6 +121,8 @@ class ResPartner(models.Model):
 
     quotations_left = fields.Integer("Quotations Left",default=1)
 
+    subscribed_categories = fields.Many2many('product.subcategories', string='Subscribed Categories')
+
     @api.model
     def _reset_quotation(self):
         for record in self:

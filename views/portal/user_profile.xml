@@ -506,7 +506,7 @@
                                     </div>
                                     <div class="text-input">
                                         <div class="">
-                                            <span class="">Subscribe to Notifications</span>
+                                            <span class="">Notify Me</span>
                                         </div>
                                         <div class="">
                                             <select id="subscribe_product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="select_subcategory(this)">
@@ -519,7 +519,12 @@
                                             </select>
                                         </div>
                                         <!-- Container for selected subcategories (chips) -->
-                                        <div id="selected-chips-container" class="chip-container"></div>
+                                        <div id="selected-chips-container" class="chip-container">
+                                            <input type="hidden" id="subscribed_categories_input" name="subscribed_categories" t-att-value="','.join(str(category.id) for category in partner.subscribed_categories)" />
+                                            <t t-foreach="partner.subscribed_categories" t-as="category">
+                                                <span t-attf-id="cb#{category.id}" t-attf-name="chipbox#{category.id}" class="chipbox"><span class="chip"><t t-esc="category.name"/></span><button type="button" onclick="removeChipp(this)" class="remove-chip">x</button></span>
+                                            </t>
+                                        </div>
                                     </div>
                                 </div>
                         </form>
@@ -3357,10 +3362,9 @@
                         document.getElementById('rtb_enquiry_management').style.display = 'block'
                     }
                 }
-                function select_subcategory(element){
+                function select_subcategory(element) {
                     let chip_container = document.getElementById('selected-chips-container');
-    
-                    console.log(element.selectedOptions[0].label);
+                    let hiddenInput = document.getElementById('subscribed_categories_input'); // Make sure the ID exists in your input element
 
                     let chip_box = document.createElement('span');
                     let chip = document.createElement('span');
@@ -3369,12 +3373,14 @@
                     // Add the 'x' for delete
                     removeButton.innerText = 'x';
                     removeButton.classList.add('remove-chip');
-                    removeButton.type = 'button'
+                    removeButton.type = 'button';
                     chip.classList.add('chip');
-                    
+                    chip_box.setAttribute('name', 'chipbox' + element.selectedOptions[0].value);
+                    chip_box.setAttribute('id', 'cb' + element.selectedOptions[0].value);
+
                     // Set the chip text to the selected subcategory label
                     chip.innerText = element.selectedOptions[0].label;
-                    chip.setAttribute('id',element.selectedOptions[0].value)
+                    chip.setAttribute('id', element.selectedOptions[0].value);
 
                     // Append chip and delete button to the chip_box
                     chip_box.appendChild(chip);
@@ -3386,15 +3392,48 @@
                     // Append chip_box to the chip container
                     chip_container.appendChild(chip_box);
 
+                    // Update hidden input when adding a new chip
+                    updateHiddenInputAdd(hiddenInput, element.selectedOptions[0].value);
+
                     // Add event listener to remove the chip when 'x' is clicked
                     removeButton.addEventListener('click', function() {
                         removeChip(removeButton);
+                        updateHiddenInputRemove(hiddenInput, element.selectedOptions[0].value);
                     });
                 }
-                function removeChip(chip){
+
+                function updateHiddenInputAdd(hiddenInput, id) {
+                    let currentValue = hiddenInput.value ? hiddenInput.value.split(',') : [];
+                    
+                    // Check if the ID is not already present
+                    if (!currentValue.includes(id)) {
+                        currentValue.push(id);  // Add the new ID
+                        hiddenInput.value = currentValue.join(',');  // Update the hidden input
+                    }
+                }
+
+                function updateHiddenInputRemove(hiddenInput, id) {
+                    let currentValue = hiddenInput.value ? hiddenInput.value.split(',') : [];
+
+                    // Correctly filter out the id
+                    currentValue = currentValue.filter(function(existingId) {
+                        return existingId !== id;  // Return true for IDs to keep, false for the one to remove
+                    });
+
+                    hiddenInput.value = currentValue.join(',');  // Update the hidden input
+                }
+
+                function removeChip(button) {
+                    let chip_box = button.parentElement;
+                    chip_box.remove();
+                }
+                function removeChipp(button){
+                    const category_id = button.parentElement.id.match(/\d+/g)[0]
+                    let chip_box = button.parentElement;
+                    const hidden_input = button.parentElement.parentElement.firstElementChild
                     <!-- debugger; -->
-                    const parentElement = chip.parentElement
-                    parentElement.parentElement.removeChild(parentElement);
+                    updateHiddenInputRemove(hidden_input,category_id)
+                    chip_box.remove();
                 }
                 
             </script>
