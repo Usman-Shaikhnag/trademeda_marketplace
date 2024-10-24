@@ -220,6 +220,16 @@
                     </form>
                 </field>
             </page>
+            <page string="Notifications" name="notifications_page">
+                <field name="notifications">
+                    <tree editable="bottom">
+                        <field name="notification"/>
+                    </tree>
+                    <form>
+                        <field name="notification"/>
+                    </form>
+                </field>
+            </page>
         </xpath>
         <xpath expr="//field[@name='category_id']" position="after">
             <field name="supplier_rating" />

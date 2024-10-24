@@ -123,6 +123,8 @@ class ResPartner(models.Model):
 
     subscribed_categories = fields.Many2many('product.subcategories', string='Subscribed Categories')
 
+    notifications = fields.One2many('subscribed.notifications','partner_id', string='Subscribed Notifications')
+
     @api.model
     def _reset_quotation(self):
         for record in self:
@@ -308,3 +310,11 @@ class ProductEnquiries(models.Model):
     unit = fields.Many2one("uom.uom",string='Unit')
     target_price = fields.Float("Target Price")
     currency = fields.Many2one("res.currency",string='Currency')
+
+    
+
+class SubscribedNotifications(models.Model):
+    _name = "subscribed.notifications"
+
+    partner_id = fields.Many2one('res.partner', string="Customer")
+    notification = fields.Text("Message")

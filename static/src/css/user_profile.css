@@ -896,3 +896,26 @@ h2 {
     overflow-x: auto;
     width: 100%;
 }
+
+.notification_card{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #f0f0f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.notification_card .vertical_line{
+    height: 100%;
+    width: 2px;
+    border-radius: 8px;
+    background-color: #d0d0d0;
+}
+.notification_card .message{
+    width: 80%;
+}
+
+.notification_card .notification_action{
+    color: rgb(199,8,8);
+}

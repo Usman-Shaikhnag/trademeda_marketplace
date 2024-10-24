@@ -544,6 +544,19 @@ class HomepageController(http.Controller):
 
         # Create the product record with the images and descriptions
         partner_id.product_images.sudo().create(product_data)
+        product_subcategory = request.env['product.template'].sudo().search([('id','=',product_subsubcategory)]).subcategory_id
+        # subscribers = request.env['res.partner'].sudo().search([('subscribed_categories', 'in', product_subcategory.id),('member_type','in',['buyer','both'])])
+        subscribers = request.env['res.partner'].sudo().search([
+            ('subscribed_categories', 'in', [product_subcategory.id]),  # Ensure it's in a list
+            ('member_type', 'in', ['buyer', 'both'])  # Filter by member_type
+        ])
+            # import wdb;wdb.set_trace()
+            
+        for subscriber in subscribers:
+            request.env['subscribed.notifications'].sudo().create({
+                'partner_id': subscriber.id, 
+                'notification': f'1 New Supplier posted for {product_subcategory.name}',
+            })
 
         return request.redirect("/profile")
         

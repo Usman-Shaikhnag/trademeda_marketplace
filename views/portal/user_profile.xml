@@ -134,7 +134,7 @@
                                     <span class="">Quotations (Seller)</span>
                                 </div>
                             </t>
-                            <div class="menu-item" onclick="enable_notifications(this)" id="notifications-menu">
+                            <div class="menu-item" onclick="enable_notification_page(this)" id="notifications-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-message" /> 
                                 <span class="">Notifications</span>
@@ -2435,6 +2435,24 @@
                             </div>
 
                         </div>
+                        <div class="inner-card" id="notification_management" style="margin-top: -1rem;">
+                            <div>
+                                <div class="edit-profile-text" style="text-align: center;">
+                                    <h1>Notifications</h1>
+                                </div>
+                            </div>
+                            <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id)])" t-as="notification">
+                                <div class="notification_card">
+                                    <div class="message">
+                                        <t t-esc="notification.notification"/>
+                                    </div>
+                                    <div class="vertical_line"></div>
+                                    <div class="notification_action">
+                                        <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
 
 
                                      
@@ -2467,6 +2485,8 @@
                     document.getElementById('edit_profile_form').style.display = 'flex'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'none'
+
 
 
                 function supplier_quotations_sent(element){
@@ -2665,6 +2685,8 @@
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('company_details').style.display = 'flex'
                     document.getElementById('contact_details').style.display = 'flex'
+                    document.getElementById('notification_management').style.display = 'none'
+
 
                     document.querySelectorAll('.menu-item').forEach(function(item) {
                             item.classList.remove('active');
@@ -2699,6 +2721,34 @@
                     document.getElementById('readyToShip_management').style.display = 'none'
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'none'
+
+
+
+                    
+                    document.querySelectorAll('.menu-item').forEach(function(item) {
+                            item.classList.remove('active');
+                        });
+                        
+                        // Add active class to the clicked menu item
+                        element.classList.add('active');
+
+                }
+
+                function enable_notification_page(element){
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
+                    document.getElementById('documents').style.display = 'none'
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'flex'
 
 
 
@@ -2726,6 +2776,7 @@
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('buyers_quotation_management').style.display = 'flex'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'none'
 
 
 
@@ -2758,7 +2809,7 @@
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'flex'
-
+                    document.getElementById('notification_management').style.display = 'none'
                     document.getElementById('supplier_quotations_received').style.display = 'none'
                     document.getElementById('supplier_quotations_sent').style.display = 'block'
 
@@ -2788,7 +2839,7 @@
                     document.getElementById('product_management').style.display = 'flex'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
-
+                    document.getElementById('notification_management').style.display = 'none'
 
 
                     document.querySelectorAll('.menu-item').forEach(function(item) {
@@ -2813,7 +2864,7 @@
                     document.getElementById('quotation_management').style.display = 'none'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
-
+                    document.getElementById('notification_management').style.display = 'none'
 
 
                 }
@@ -2830,7 +2881,7 @@
                     document.getElementById('news_management').style.display = 'none'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
-
+                    document.getElementById('notification_management').style.display = 'none'
 
 
                 }
@@ -2848,7 +2899,8 @@
                     document.getElementById('readyToShip_management').style.display = 'flex'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
-                    
+                    document.getElementById('notification_management').style.display = 'none'
+                
 
                 }
 
@@ -2864,7 +2916,7 @@
                     document.getElementById('quotation_management').style.display = 'flex'
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
-
+                    document.getElementById('notification_management').style.display = 'none'
                     
 
                 }
@@ -3434,6 +3486,25 @@
                     <!-- debugger; -->
                     updateHiddenInputRemove(hidden_input,category_id)
                     chip_box.remove();
+                }
+                function delete_notification(element){
+                    const notificationId = element.getAttribute('notificationId')
+                    <!-- debugger; -->
+                    vals = {
+                        'id':notificationId
+                    }
+
+                    fetch('/profile/deleteNotification/' + notificationId, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body:JSON.stringify(vals)
+                    }).then(function(res) {
+                        console.log(res);
+                        // handle response or reload page
+                    });
+
                 }
                 
             </script>
