@@ -18,3 +18,10 @@ class OTPVerification(models.Model):
         expiration_time = datetime.now() + timedelta(minutes=5)  # OTP expires in 5 minutes
         self.create({'email': email, 'otp': otp, 'expiration': expiration_time})
         return otp
+    
+    @api.model
+    def delete_expired_otps(self):
+        """Delete OTP records that have expired."""
+        expired_otps = self.search([('expiration', '<', datetime.now())])
+        if expired_otps:
+            expired_otps.unlink()

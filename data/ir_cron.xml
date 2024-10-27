@@ -30,5 +30,15 @@
             <field name="interval_type">days</field>
             <field name="active">True</field>
         </record>
+        <record id="ir_cron_delete_expired_otps" model="ir.cron">
+            <field name="name">Delete Expired OTPs</field>
+            <field name="model_id" ref="model_otp_verification"/>
+            <field name="state">code</field>
+            <field name="code">model.delete_expired_otps()</field>
+            <field name="interval_number">5</field> <!-- Run every 5 minutes -->
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field> <!-- Run indefinitely -->
+            <field name="active">True</field>
+        </record>
     </data>
 </odoo>
