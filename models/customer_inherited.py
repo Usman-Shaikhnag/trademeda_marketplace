@@ -318,3 +318,10 @@ class SubscribedNotifications(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Customer")
     notification = fields.Text("Message")
+    rfq_id = fields.Many2one('trademeda.rfq',string="RFQ")
+    product_id = fields.Many2one('product.customer.images',string="Product")
+    buyer_notification = fields.Boolean("For Buyer")
+    seller_notification = fields.Boolean("For Seller")
+
+
+    

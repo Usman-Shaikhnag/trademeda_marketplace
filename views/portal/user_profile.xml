@@ -1319,7 +1319,7 @@
                                                             <span class="">Ready to Buy</span>
                                                         </div>
                                                         <div class="">
-                                                            <input type="checkbox" onclick="ready_to_buy_popup(this)" t-att-name="'edit_ready_to_buy_'+str(product.id)" t-att-id="'edit_ready_to_buy_'+str(product.id)" t-att-value="product.ready_to_ship"/>                                                        
+                                                            <input type="checkbox" onclick="ready_to_buy_popup(this)" t-att-name="'edit_ready_to_buy_'+str(product.id)" t-att-id="'edit_ready_to_buy_'+str(product.id)" t-att-checked="product.ready_to_ship and 'checked' or None"/>                                                        
                                                         </div>
                                                     </div>
                                                     <div class="text-input">
@@ -2441,17 +2441,41 @@
                                     <h1>Notifications</h1>
                                 </div>
                             </div>
-                            <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id)])" t-as="notification">
-                                <div class="notification_card">
-                                    <div class="message">
-                                        <t t-esc="notification.notification"/>
+                            <div class="tab-buttons">
+                                <button onclick="buyer_notifications(this)" class="active">Buyer</button>
+                                <button onclick="seller_notifications(this)" class="">Seller</button>
+
+                            </div>
+                            <div class="" id="buyer_notifications">
+                                <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id),('buyer_notification','=',True)],order='create_date desc')" t-as="notification">
+                                    <div class="notification_card">
+                                        <div class="message">
+                                            <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
+                                            <div><a t-attf-href="/product/{{notification.product_id.id}}" style="color:inherit;"><t t-esc="notification.notification"/></a></div>
+                                        </div>
+                                        <div class="vertical_line"></div>
+                                        <div class="notification_action">
+                                            <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <div class="vertical_line"></div>
-                                    <div class="notification_action">
-                                        <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
+                                </t>
+                            </div>
+                            <div class="" id="seller_notifications" style="display:none;">
+                                <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id),('seller_notification','=',True)],order='create_date desc')" t-as="notification">
+                                    <div class="notification_card">
+                                        <div class="message">
+                                            <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
+                                            <div><t t-esc="notification.notification"/></div>
+                                        </div>
+                                        <div class="vertical_line"></div>
+                                        <div class="notification_action">
+                                            <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                </div>
-                            </t>
+                                </t>
+                            </div>
+
+                           
                         </div>
 
 
@@ -2523,6 +2547,39 @@
                     element.previousElementSibling.classList.remove('active')
 
                     
+                }
+                function buyer_notifications(element){
+                    const buyer_notifications = document.getElementById('buyer_notifications')
+                    const seller_notifications = document.getElementById('seller_notifications')
+                    element.classList.add('active')
+                    element.nextElementSibling.classList.remove('active');
+
+                    if(seller_notifications.style.display == 'block'){
+                        seller_notifications.style.display = 'none'
+                        buyer_notifications.style.display = 'block'
+
+                    }else{
+                        seller_notifications.style.display = 'block'
+                        buyer_notifications.style.display = 'none'
+
+                    }
+                }
+
+                function seller_notifications(element){
+                    const buyer_notifications = document.getElementById('buyer_notifications')
+                    const seller_notifications = document.getElementById('seller_notifications')
+                    element.classList.add('active')
+                    element.previousElementSibling.classList.remove('active');
+
+                    if(buyer_notifications.style.display == 'block'){
+                        buyer_notifications.style.display = 'none'
+                        seller_notifications.style.display = 'block'
+
+                    }else{
+                        seller_notifications.style.display = 'none'
+                        buyer_notifications.style.display = 'block'
+
+                    }
                 }
 
                 function product_image_change(element) {
@@ -3403,7 +3460,7 @@
                 function ready_to_buy_popup(element){
                     const ready_to_buy = element.checked
                     if(ready_to_buy == true){
-                        document.getElementById('readyToBuyPopup').style.display = 'block'
+                        document.getElementById('readyToBuyPopup').style.display = 'fixed'
                     }
                 }
                

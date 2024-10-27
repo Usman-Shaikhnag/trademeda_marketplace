@@ -716,6 +716,17 @@ class ProductController(http.Controller):
             if "ready_to_buy_requirements" in rec:
                     if kw.get(rec) == 'yes':
                         ready_to_buy_requirements = True
+                        # notifications to be done 
+                        if product.ready_to_ship == False:
+                            subscribers = request.env['res.partner'].sudo().search([('subscribed_categories', 'in', [product.product_id.subcategory_id.id]),('member_type', 'in', ['buyer', 'both']),('id','!=',partner_id.id)])
+                            for subscriber in subscribers:
+                                request.env['subscribed.notifications'].sudo().create({
+                                    'partner_id': subscriber.id, 
+                                    'notification': f'Ready to Buy: 1 New product is now available for ready to buy {product.product_name}',
+                                    'seller_notification':False,
+                                    'buyer_notification':True,
+                                    'product_id':product.id
+                                })
                     else:
                         ready_to_buy_requirements = False
         # import wdb;wdb.set_trace()
@@ -886,13 +897,16 @@ class ProductController(http.Controller):
             subsubcategories.subcategory_id.sudo().write({
                 'points':points
             })
-            subscribers = request.env['res.partner'].sudo().search([('subscribed_categories', 'in', subcategories.id),('member_type', 'in', ['seller', 'both'])])
+            subscribers = request.env['res.partner'].sudo().search([('subscribed_categories', 'in', subcategories.id),('member_type', 'in', ['seller', 'both']),('id','!=',partner_id.id)])
             # import wdb;wdb.set_trace()
             
             for subscriber in subscribers:
                 request.env['subscribed.notifications'].sudo().create({
                     'partner_id': subscriber.id, 
-                    'notification': f'1 New buyer requested for {subsubcategories.name}',
+                    'notification': f'1 New buyer requested for {subsubcategories.name} from {partner_id.country_id.name}',
+                    'seller_notification':True,
+                    'buyer_notification':False,
+
                 })
             return request.redirect('/home')
         
