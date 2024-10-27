@@ -72,9 +72,17 @@
         <field name="model">trademeda.rfq</field>
         <field name="arch" type="xml">
             <tree string="Product Category">
+                <header>
+                    <button type="object" class="oe_highlight" name="calculate_end_date" string="Assign End Dates"/>
+                    
+                </header>
                 <field name="rfq_no"/>
                 <field name="state"/>
                 <field name="views"/>
+                <field name="product_name"/>
+                <field name="partner_id"/>
+
+                
             </tree>
         </field>
     </record>

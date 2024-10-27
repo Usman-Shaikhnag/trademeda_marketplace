@@ -302,3 +302,5 @@ class ProductEnquiries(models.Model):
     country = fields.Many2one('res.country', string="Country")
     quantity = fields.Integer("Quantity")
     unit = fields.Many2one("uom.uom",string='Unit')
+    target_price = fields.Float("Target Price")
+    currency = fields.Many2one("res.currency",string='Currency')

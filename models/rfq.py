@@ -78,6 +78,15 @@ class RequestForQuotation(models.Model):
 
     quotations = fields.One2many('rfq.quotations','rfq_id',string="Quotations")
     days_remaining = fields.Integer(string="Days Remaining",default=100)
+    end_date = fields.Date('Date',compute="calculate_end_date")
+
+    @api.depends('create_date')
+    def calculate_end_date(self):
+        for record in self:
+            if record.create_date:
+                record.end_date = record.create_date + timedelta(days=100)
+            else:
+                record.end_date = False
 
 
 

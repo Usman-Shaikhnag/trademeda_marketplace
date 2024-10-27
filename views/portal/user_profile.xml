@@ -1137,7 +1137,7 @@
                                         </div>
                                         <div class="product-details">
                                             <span>
-                                                <h2 style="display: inline;" t-esc="product.product_id.name"/>
+                                                <h2 style="display: inline;" t-esc="product.product_name"/>
                                                 <!-- $<p style="display: inline; margin-left: -4px;" t-esc="product.product_price_usd"/> -->
                                             </span>
                                             <h3 >Product Description</h3>
@@ -1166,6 +1166,14 @@
                                                 </div>
                                             </div>
                                             <div class="editproductDetails">
+                                                <div class="text-input">
+                                                    <div class="">
+                                                        <span class="">Product Name</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input placeholder="Product Name" t-att-name="'edit_product_name_'+str(product.id)" t-att-id="'edit_product_name_'+str(product.id)" t-att-value="product.product_name"/>
+                                                    </div>
+                                                </div>
                                                 
                                                 <div class="text-input">
                                                     <div class="">
@@ -1260,7 +1268,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="submit-edit-product">
-                                                    <button class="" onclick="save_edited_product(this)" t-att-productId="product.id">Save</button>
+                                                    <button class="" t-att-productId="product.id">Save</button>
                                                 </div>  
                                                 <div class="readyToBuyPopup" id="readyToBuyPopup">
 
@@ -1904,7 +1912,7 @@
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
-                                <table id="buyer_quotations_received_table">
+                                <table id="buyer_quotations_received_table" style="min-width:3000px">
                                     <thead>
                                         <tr>
                                             <!-- <th>Quotation No</th> -->
@@ -1920,6 +1928,26 @@
                                             <th>Taget Price</th>
                                             <th>Currency</th>
                                             <th>Destination</th>
+                                            <th>Shipping Terms</th>
+                                            <th>Payment Terms</th>
+                                            <th>Looking for Suppliers From</th>
+                                            <th>Primary Business</th>
+                                            <th>Establishment Year</th>
+                                            <th>Annual Sales in USD (Approx)</th>
+                                            <th>Number of Employees</th>
+                                            <th>Your Name</th>
+                                            <th>Designation</th>
+                                            <th>Address</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Zip/Postal Code</th>
+                                            <th>Area Code</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Date</th>
+
+
                                         </tr>
                                         
                                     </thead>
@@ -1968,6 +1996,60 @@
                                                 <td>
                                                     <t t-esc="rfq.rfq_id.destination.name" />
                                                 </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.shipping_terms" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.payment_terms" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.suppliers_country.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.primary_business" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.establishment_year" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.annual_sales" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.no_of_employees" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.designation" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.company_address" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.country_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.state_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.city" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.zip" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.area_code" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.create_date" />
+                                                </td>
                                             </tr>
                                         </t>
                                     </tbody>
@@ -1988,7 +2070,7 @@
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
-                                <table id="supplier_quotations_sent_table">
+                                <table id="supplier_quotations_sent_table" style="min-width:3000px">
                                     <thead>
                                         <tr>
                                             <!-- <th>Quotation No</th> -->
@@ -2004,9 +2086,24 @@
                                             <th>Taget Price</th>
                                             <th>Currency</th>
                                             <th>Destination</th>
-
-
-
+                                            <th>Shipping Terms</th>
+                                            <th>Payment Terms</th>
+                                            <th>Looking for Suppliers From</th>
+                                            <th>Primary Business</th>
+                                            <th>Establishment Year</th>
+                                            <th>Annual Sales in USD (Approx)</th>
+                                            <th>Number of Employees</th>
+                                            <th>Your Name</th>
+                                            <th>Designation</th>
+                                            <th>Address</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Zip/Postal Code</th>
+                                            <th>Area Code</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Date</th>
                                         </tr>
                                         
                                     </thead>
@@ -2055,6 +2152,60 @@
                                                 <td>
                                                     <t t-esc="rfq.rfq_id.destination.name" />
                                                 </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.shipping_terms" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.payment_terms" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.suppliers_country.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.primary_business" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.establishment_year" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.annual_sales" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.rfq_id.partner_id.no_of_employees" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.designation" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.company_address" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.country_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.state_id.name" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.city" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.zip" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.area_code" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.phone" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.partner_id.email" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rfq.create_date" />
+                                                </td>
                                             </tr>
                                         </t>
                                     </tbody>
@@ -2077,6 +2228,29 @@
                                             <th>Message</th>
                                             <th>Product Description</th>
                                             <th>Company Website URL</th>
+
+                                            <th>Minimum Order Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Product Description</th>
+                                            <th>Taget Price</th>
+                                            <th>Currency</th>
+                                            <th>Shipping Terms</th>
+                                            <th>Payment Terms</th>
+                                            <th>Primary Business</th>
+                                            <th>Establishment Year</th>
+                                            <th>Annual Sales in USD (Approx)</th>
+                                            <th>Number of Employees</th>
+                                            <th>Your Name</th>
+                                            <th>Designation</th>
+                                            <th>Address</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Zip/Postal Code</th>
+                                            <th>Area Code</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Date</th>
                                             
                                         </tr>
                                         
@@ -2111,6 +2285,76 @@
                                                 <td>
                                                     <t t-esc="rtb.partner_id.website" />
                                                 </td>
+
+
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+
+
                                                 
                                             </tr>
                                         </t>
@@ -2213,7 +2457,9 @@
 
                 function save_edited_product(element) {
                     const productId = element.getAttribute('ProductId');
+                    debugger;
                     const product_description = document.getElementById('edit-product_description').value;
+                    const product_name = document.getElementById('edit-product_name').value;
                     const product_quantity = document.getElementById('edit-product_quantity').value;
                     const packaging_requirement = document.getElementById('edit-packaging_requirement').value;
                     const delivery_days = document.getElementById('edit-delivery_days').value;
@@ -2233,6 +2479,7 @@
 
                             const vals = {
                                 'product_description': product_description,
+                                'product_name': product_name,
                                 'product_quantity': product_quantity,
                                 'packaging_requirement': packaging_requirement,
                                 'delivery_days': delivery_days,
@@ -2259,6 +2506,7 @@
                     } else {
                         const vals = {
                             'product_description': product_description,
+                            'product_name': product_name,
                             'product_quantity': product_quantity,
                             'packaging_requirement': packaging_requirement,
                             'delivery_days': delivery_days,
