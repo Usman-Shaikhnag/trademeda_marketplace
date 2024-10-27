@@ -540,6 +540,7 @@
                         document.getElementById('send_otp_btn').parentElement.style.display = 'none'
                         document.getElementById('verify_otp_btn').parentElement.style.display = 'none'
                         document.getElementById('password').parentElement.parentElement.style.display = 'block'
+                        document.getElementById('otp_text').parentElement.parentElement.style.display = 'none'
                         document.getElementById('confirm_password').parentElement.parentElement.style.display = 'block'
                         document.getElementById('submit').parentElement.style.display = 'block'
                     }
