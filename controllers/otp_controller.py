@@ -6,18 +6,18 @@ from datetime import datetime
 class OTPController(http.Controller):
 
     @http.route('/generate_otp', methods=["POST"], type="json", auth='public')
-    def generate_otp(self, email):
+    def generate_otp(self):
         # Generate OTP and store it
         # import wdb;wdb.set_trace()
 
-        otp = request.env['otp.verification'].generate_otp(email)
+        otp = request.env['otp.verification'].sudo().generate_otp(request.httprequest.json['email'])
         
         # Send email
-        mail = request.env['mail.mail'].create({
+        mail = request.env['mail.mail'].sudo().create({
             'subject': 'Your OTP Code',
             'body_html': f'<p>Your OTP is: <strong>{otp}</strong>. It expires in 5 minutes.</p>',
-            'email_to': email,
-            'email_from': request.env.user.email or 'noreply@example.com',
+            'email_to': request.httprequest.json['email'],
+            'email_from': 'usman.shaikhnag@esehat.org',
         })
         mail.send()
 
