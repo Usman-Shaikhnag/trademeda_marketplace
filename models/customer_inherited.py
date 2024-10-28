@@ -121,6 +121,10 @@ class ResPartner(models.Model):
 
     quotations_left = fields.Integer("Quotations Left",default=1)
 
+    subscribed_categories = fields.Many2many('product.subcategories', string='Subscribed Categories')
+
+    notifications = fields.One2many('subscribed.notifications','partner_id', string='Subscribed Notifications')
+
     @api.model
     def _reset_quotation(self):
         for record in self:
@@ -202,6 +206,8 @@ class ProductCustomerImages(models.Model):
 
     product_image4 = fields.Binary('Image')
     image_name4 = fields.Char("Image Name")   
+
+    unit = fields.Many2one("uom.uom",string="Unit")
 
     product_quantity = fields.Integer("Quantity")
     packaging_requirement = fields.Char("Packaging Requirements")
@@ -304,3 +310,18 @@ class ProductEnquiries(models.Model):
     unit = fields.Many2one("uom.uom",string='Unit')
     target_price = fields.Float("Target Price")
     currency = fields.Many2one("res.currency",string='Currency')
+
+    
+
+class SubscribedNotifications(models.Model):
+    _name = "subscribed.notifications"
+
+    partner_id = fields.Many2one('res.partner', string="Customer")
+    notification = fields.Text("Message")
+    rfq_id = fields.Many2one('trademeda.rfq',string="RFQ")
+    product_id = fields.Many2one('product.customer.images',string="Product")
+    buyer_notification = fields.Boolean("For Buyer")
+    seller_notification = fields.Boolean("For Seller")
+
+
+    

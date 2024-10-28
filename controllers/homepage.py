@@ -3,6 +3,8 @@ from odoo.http import request
 import base64
 import json
 from odoo.exceptions import ValidationError
+from datetime import timedelta, date
+
 class HomepageController(http.Controller):
 
     @http.route('/home', auth='public', website=True)
@@ -14,6 +16,7 @@ class HomepageController(http.Controller):
         # else:
         #     logged_in:True
         # import wdb;wdb.set_trace()
+        
         vals = {
             "product_categories": product_categories,
             'logged_in':request.env.user != request.env.ref('base.public_user')
@@ -214,7 +217,7 @@ class HomepageController(http.Controller):
 
     @http.route(['/profile/updateuserprofile'], method=["POST"], type="http", auth="public", website=True)
     def UpdateUser(self, **kw):
-        # import wdb;wdb.set_trace()
+        import wdb;wdb.set_trace()
         user = request.env.user
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
@@ -492,28 +495,77 @@ class HomepageController(http.Controller):
 
     @http.route(['/profile/addproduct'], method=["POST"], type="http", auth="user", website=True)
     def addProducts(self, **kw):
-        # import wdb;wdb.set_trace()
         user = request.env.user
         partner_id = user.partner_id
-        if request.httprequest.method == 'POST':
-            # Extract form data
-            product_name = kw.get('product_name')
-            product_image = kw.get('upload_product').read()
-            product_description = kw.get('product_description')
-            product = kw.get('product_subsubcategory')
+
+        # Extract form data
+        product_name = kw.get('product_name')
+        product_description = kw.get('product_description')
+        product_subsubcategory = kw.get('product_subsubcategory')
+        product_quantity = kw.get('quantity')
+        product_unit = kw.get('quantity_unit')
 
 
-            if product_image:
-                partner_id.product_images.sudo().create({
-                    'partner_id': partner_id.id,
-                    'product_image':base64.b64encode(product_image),
-                    'product_description':product_description,
-                    'product_name':product_name,
-                    'product_id':product,
+        # Read the product images and names if they exist
+        product_image = kw.get('upload_product')
+        product_image1 = kw.get('upload_product1')
+        product_image2 = kw.get('upload_product2')
+        product_image3 = kw.get('upload_product3')
 
-                })
+        image_name = kw.get('image_name')
+        image_name1 = kw.get('image_name1')
+        image_name2 = kw.get('image_name2')
+        image_name3 = kw.get('image_name3')
 
-            return request.redirect("/profile")
+        # Prepare data for the record creation
+        product_data = {
+            'partner_id': partner_id.id,
+            'product_name': product_name,
+            'product_description': product_description,
+            'product_id': product_subsubcategory,
+            'product_quantity': product_quantity,
+            'unit': product_unit,
+
+        }
+
+        # Add product images if they are uploaded
+        if product_image:
+            product_data['product_image'] = base64.b64encode(product_image.read())
+            product_data['image_name'] = image_name
+
+        if product_image1:
+            product_data['product_image2'] = base64.b64encode(product_image1.read())
+            product_data['image_name2'] = image_name1
+
+        if product_image2:
+            product_data['product_image3'] = base64.b64encode(product_image2.read())
+            product_data['image_name3'] = image_name2
+
+        if product_image3:
+            product_data['product_image4'] = base64.b64encode(product_image3.read())
+            product_data['image_name4'] = image_name3
+
+        # Create the product record with the images and descriptions
+        product = partner_id.product_images.sudo().create(product_data)
+        product_subcategory = request.env['product.template'].sudo().search([('id','=',product_subsubcategory)]).subcategory_id
+        # subscribers = request.env['res.partner'].sudo().search([('subscribed_categories', 'in', product_subcategory.id),('member_type','in',['buyer','both'])])
+        subscribers = request.env['res.partner'].sudo().search([
+            ('subscribed_categories', 'in', [product_subcategory.id]),  # Ensure it's in a list
+            ('member_type', 'in', ['buyer', 'both']),  # Filter by member_type
+            ('id','!=',partner_id.id)
+        ])
+            # import wdb;wdb.set_trace()
+            
+        for subscriber in subscribers:
+            request.env['subscribed.notifications'].sudo().create({
+                'partner_id': subscriber.id, 
+                'notification': f'1 New Supplier posted sale offer for {product_name}',
+                'seller_notification':False,
+                'buyer_notification':True,
+                'product_id':product.id
+            })
+
+        return request.redirect("/profile")
         
     @http.route('/get_categories/<string:dataId>', type='http', auth='user',website=True)
     def get_categoriess(self,dataId, **kw):

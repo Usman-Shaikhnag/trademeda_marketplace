@@ -329,7 +329,7 @@
                                         <span class="">Email Address / Login*</span>
                                     </div>
                                     <div class="">
-                                        <input type="email" name="email" placeholder="user@email.com" required="required"/>
+                                        <input type="email" name="email" id="login_email" placeholder="user@email.com" required="required"/>
                                     </div>
                                 </div>
                                 <div class="text-input">
@@ -361,6 +361,9 @@
                                 <div class="multi-input" style="margin-top:1rem;">
                                     <div class="next-page-btn">
                                         <button type="button" id="prev2">Previous</button>
+                                    </div>
+                                    <div class="next-page-btn">
+                                        <button type="button" id="submit" onclick="send_otp(this)">Send OTP</button>
                                     </div>
                                     <div class="next-page-btn">
                                         <button type="submit" id="submit" t-attf-href="/signup/createuser">Submit</button>
@@ -426,6 +429,24 @@
             buyer = document.getElementById('buyer')
             supplier = document.getElementById('seller')
             both = document.getElementById('both')
+
+            function send_otp(element){
+                const email = document.getElementById('login_email').value
+                const vals = {
+                    'email':email
+                }
+                fetch('/generate_otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(vals),
+                }).then(function(res) {
+                    console.log(res);
+                    // handle response or reload page
+                });
+
+            }
 
             function role_changed(){
                 if(buyer.checked == true){

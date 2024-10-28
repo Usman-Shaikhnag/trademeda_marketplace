@@ -104,7 +104,22 @@ main > div {
   align-items: center;
 }
 
+#image-previews {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
 
+#image-previews img{
+  max-width: 100px;
+  max-height: 100px;
+  min-height: 75px;
+  min-width: 75px;
+  border-radius: 8px;
+  background-color: grey;
+  cursor: pointer;
+}
 
 .product-section img{
   max-width: 90%;

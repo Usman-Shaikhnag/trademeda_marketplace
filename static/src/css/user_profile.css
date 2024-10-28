@@ -134,7 +134,34 @@ main {
     color:rgb(212, 37, 5);
 
 }
+#selected-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+.chipbox{
+    display: flex;
+    border-radius: 10px;
+    color: white;
+    background-color:rgb(212, 37, 5);
+    width: fit-content;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content !important;
+    padding: 3px 5px;
 
+}
+.chipbox span {
+    color: #fff;
+
+}
+.chipbox button{
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+}
 .multi-input .text-input {
     width: 50%;
     /* margin-right: 10px; */
@@ -868,4 +895,27 @@ h2 {
 #buyer_quotations_received {
     overflow-x: auto;
     width: 100%;
+}
+
+.notification_card{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #f0f0f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.notification_card .vertical_line{
+    height: 100%;
+    width: 2px;
+    border-radius: 8px;
+    background-color: #d0d0d0;
+}
+.notification_card .message{
+    width: 80%;
+}
+
+.notification_card .notification_action{
+    color: rgb(199,8,8);
 }
