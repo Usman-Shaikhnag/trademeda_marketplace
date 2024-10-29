@@ -74,19 +74,40 @@ button {
   transition: transform 0.5s ease-in-out;
 }
 
-.banner img {
-  align-self: center;
-  max-width: 100%;
-  height: 73vh;
-  flex-shrink: 0; /* Prevent images from shrinking */
+.banner-slide {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
   width: 100%;
 }
-#banner-slide-left{
+
+.banner img {
+  max-width: 100%;
+  height: 73vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.banner-partner-name {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+  color: #fff;
+  padding: 5px;
+  font-size: 0.9em;
+  z-index: 10; /* Keeps text on top of the image */
+  width: fit-content; /* Makes the span width full to match the image width */
+  text-align: right; /* Aligns text to the right */
+}
+
+#banner-slide-left {
   position: absolute;
   z-index: 100;
   margin-left: 0.5rem;
 }
-#banner-slide-right{
+
+#banner-slide-right {
   position: absolute;
   right: 0;
   z-index: 100;
@@ -380,6 +401,10 @@ li{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.icons {
+  max-width: 25px;
+  max-height: 25px;
 }
 
 .status-icon, .info-icon {
