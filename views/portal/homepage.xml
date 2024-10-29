@@ -23,12 +23,15 @@
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
                             <t t-foreach="env['product.subcategories'].sudo().search([],limit=13,order='ranking')" t-as="category">
-                                <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
-                                    <t t-if="category.icon">
-                                        <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
-                                        <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
-                                    </t>
-                                    <t t-out="category.name"/>
+                                <div>
+                                    <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
+                                    
+                                        <t t-if="category.icon">
+                                            <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
+                                            <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
+                                        </t>
+                                        <t t-out="category.name"/>
+                                    </div>
                                     <div class="outer-product-container">
                                         <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=20)" t-as="product">
                                             
