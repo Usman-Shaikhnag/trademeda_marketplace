@@ -322,6 +322,7 @@ class SubscribedNotifications(models.Model):
     product_id = fields.Many2one('product.customer.images',string="Product")
     buyer_notification = fields.Boolean("For Buyer")
     seller_notification = fields.Boolean("For Seller")
+    seen = fields.Boolean("Seen")
 
 
     

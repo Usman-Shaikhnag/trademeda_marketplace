@@ -137,7 +137,8 @@
                             <div class="menu-item" onclick="enable_notification_page(this)" id="notifications-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
                                 <i class="fas fa-message" /> 
-                                <span class="">Notifications</span>
+                                <t t-set="unread_messages" t-value="env['subscribed.notifications'].sudo().search_count([('seen','=',False)])"/>
+                                <span class="">Notifications (<t t-esc="unread_messages"/>)</span>
                             </div>
                             <div class="menu-item" onclick="enable_queries(this)" id="queries-menu">
                                 <!-- <img src="/trademeda/static/src/img/page.png" alt="" class="icons"/> -->
@@ -2442,8 +2443,8 @@
                                 </div>
                             </div>
                             <div class="tab-buttons">
-                                <button onclick="buyer_notifications(this)" class="active">Buyer</button>
-                                <button onclick="seller_notifications(this)" class="">Seller</button>
+                                <button t-if="partner.member_type == 'buyer' or partner.member_type == 'both'"  onclick="buyer_notifications(this)" class="active">Buyer</button>
+                                <button t-if="partner.member_type == 'seller' or partner.member_type == 'both'"  onclick="seller_notifications(this)" class="">Seller</button>
 
                             </div>
                             <div class="" id="buyer_notifications">
@@ -2453,10 +2454,10 @@
                                             <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
                                             <div><a t-attf-href="/product/{{notification.product_id.id}}" style="color:inherit;"><t t-esc="notification.notification"/></a></div>
                                         </div>
-                                        <div class="vertical_line"></div>
+                                        <!-- <div class="vertical_line"></div>
                                         <div class="notification_action">
                                             <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </t>
                             </div>
@@ -2467,10 +2468,10 @@
                                             <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
                                             <div><t t-esc="notification.notification"/></div>
                                         </div>
-                                        <div class="vertical_line"></div>
+                                        <!-- <div class="vertical_line"></div>
                                         <div class="notification_action">
                                             <i class="fa fa-trash" t-att-notificationId="notification.id" onclick="delete_notification(this)" aria-hidden="true"></i>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </t>
                             </div>

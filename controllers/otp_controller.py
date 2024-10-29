@@ -16,7 +16,7 @@ class OTPController(http.Controller):
         # Send email
         mail = request.env['mail.mail'].sudo().create({
             'subject': 'Your OTP Code',
-            'body_html': f'<p>Your OTP is: <strong>{otp}</strong>. It expires in 5 minutes.</p>',
+            'body_html': f'<p>Your OTP is: <strong>{otp}</strong>. It expires in 10 minutes.</p>',
             'email_to': request.httprequest.json['email'],
             'email_from': 'usman.shaikhnag@esehat.org',
         })

@@ -913,7 +913,7 @@ h2 {
     background-color: #d0d0d0;
 }
 .notification_card .message{
-    width: 80%;
+    width: 100%;
 }
 
 .notification_card .notification_action{
