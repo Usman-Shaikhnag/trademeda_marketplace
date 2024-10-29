@@ -219,7 +219,7 @@
                                         <div class="">
                                             <span class="">State / Province*</span>
                                         </div>
-                                        <!-- <div class="">
+                                        <div class="">
                                             <select id="state" name="state" class="form-control" required="required">
                                                 <option value="">Select your state</option>
                                                 <t t-foreach="env['res.country.state'].sudo().search([])" t-as="state">
@@ -229,10 +229,10 @@
                                                 </t>
                                             </select>
 
-                                        </div> -->
-                                        <div class="">
-                                            <input placeholder="State" name="state" id="state" required="required"/>
                                         </div>
+                                        <!-- <div class="">
+                                            <input placeholder="State" name="state" id="state" required="required"/>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="multi-input">
@@ -263,7 +263,7 @@
                                                 <option value="">Select your country code</option>
                                                 <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
                                                     <option t-att-value="country.id">
-                                                        ( +<t t-esc="country.phone_code"/>) <t t-esc="country.name"/>
+                                                        (+<t t-esc="country.phone_code"/> ) <t t-esc="country.name"/>
                                                     </option>
                                                 </t>
                                             </select>
@@ -329,23 +329,31 @@
                                         <span class="">Email Address / Login*</span>
                                     </div>
                                     <div class="">
-                                        <input type="email" name="email" id="login_email" placeholder="user@email.com" required="required"/>
+                                        <input type="email" onchange="check_email(this)" name="email" id="login_email" placeholder="user@email.com" required="required"/>
                                     </div>
                                 </div>
-                                <div class="text-input">
+                                <div class="text-input" style="display:none;">
                                     <div class="">
                                         <span class="">Password*</span>
                                     </div>
                                     <div class="">
-                                        <input type="password" name="password" class="form-control" required="required"/>
+                                        <input type="password" id="password"  name="password" class="form-control" required="required"/>
                                     </div>
                                 </div>
-                                <div class="text-input">
+                                <div class="text-input" style="display:none;">
                                     <div class="">
                                         <span class="">Confirm Password*</span>
                                     </div>
                                     <div class="">
-                                        <input type="password" name="confirm_password"  required="required"/>
+                                        <input type="password" id="confirm_password" name="confirm_password"  required="required"/>
+                                    </div>
+                                </div>
+                                <div class="text-input" style="display:none;">
+                                    <div class="">
+                                        <span class="">Enter OTP*</span>
+                                    </div>
+                                    <div class="">
+                                        <input id="otp_text" name="otp_text"  required="required"/>
                                     </div>
                                 </div>
                                 <div class="">
@@ -362,10 +370,13 @@
                                     <div class="next-page-btn">
                                         <button type="button" id="prev2">Previous</button>
                                     </div>
-                                    <div class="next-page-btn">
-                                        <button type="button" id="submit" onclick="send_otp(this)">Send OTP</button>
+                                    <div class="next-page-btn" style="display:none;">
+                                        <button type="button" id="send_otp_btn" onclick="send_otp(this)">Send OTP</button>
                                     </div>
-                                    <div class="next-page-btn">
+                                    <div class="next-page-btn" style="display:none;">
+                                        <button type="button" id="verify_otp_btn" onclick="verify_otp(this)">Verify</button>
+                                    </div>
+                                    <div class="next-page-btn" style="display:none;">
                                         <button type="submit" id="submit" t-attf-href="/signup/createuser">Submit</button>
                                     </div>
                                 </div>
@@ -430,7 +441,52 @@
             supplier = document.getElementById('seller')
             both = document.getElementById('both')
 
+            function check_email(element) {
+                const email = document.getElementById('login_email').value;
+                const vals = {
+                    'email': email
+                };
+                fetch('/checkEmail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(vals),
+                })
+                .then(function(res) {
+                    return res.json();  // Parse the JSON response
+                })
+                .then(function(data) {
+                    <!-- debugger; -->
+                    if (data.result[0].status === 'error') {
+                        if(document.getElementById('login_email').nextElementSibling){
+                            document.getElementById('login_email').nextElementSibling.removeChild(document.getElementById('login_email').nextElementSibling.firstChild) 
+                            
+                        }
+                        alert(data.result[0].message);
+                        const message = document.createElement('div');
+                        message.style.color = 'red'
+                        message.innerText = data.result[0].message
+                        document.getElementById('login_email').parentElement.appendChild(message)
+                    } else {
+                        if(document.getElementById('login_email').nextElementSibling){
+                            document.getElementById('login_email').nextElementSibling.removeChild(document.getElementById('login_email').nextElementSibling.firstChild) 
+                        }
+                        const message = document.createElement('div');
+                        message.style.color = 'green'
+                        message.innerText = data.result[0].message
+                        document.getElementById('login_email').parentElement.appendChild(message)
+                        document.getElementById('send_otp_btn').parentElement.style.display = 'block'
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);    // Handle network or other fetch errors
+                });
+            }
             function send_otp(element){
+                document.getElementById('otp_text').parentElement.parentElement.style.display = 'block'
+                document.getElementById('verify_otp_btn').parentElement.style.display = 'block'
+                document.getElementById('send_otp_btn').innerText = 'Resend OTP'
                 const email = document.getElementById('login_email').value
                 const vals = {
                     'email':email
@@ -442,10 +498,55 @@
                     },
                     body: JSON.stringify(vals),
                 }).then(function(res) {
-                    console.log(res);
+                    return res.json();  // Parse the JSON response
+                }).then(function(data) {
+                    console.log(data);
                     // handle response or reload page
+                    if (data.result[0].status === 'error') {
+                        alert("Something went wrong please try again later"); 
+                    }
+                    else {
+                        document.getElementById('otp_text').parentElement.parentElement.style.display = 'block'
+                    }
+                }).catch(function(error) {
+                    console.error('Error:', error);    // Handle network or other fetch errors
                 });
 
+            }
+            function verify_otp(element){
+                const otp = document.getElementById('otp_text').value
+                const email = document.getElementById('login_email').value
+                
+                const vals = {
+                    'email':email,
+                    'otp':otp
+                }
+                fetch('/verify_otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(vals),
+                }).then(function(res) {
+                    return res.json();  // Parse the JSON response
+                }).then(function(data) {
+                    console.log(data);
+                    // handle response or reload page
+                    <!-- debugger; -->
+                    if (data.result.status === 'error') {
+                        alert("Something went wrong please try again later"); 
+                    }
+                    else {
+                        document.getElementById('send_otp_btn').parentElement.style.display = 'none'
+                        document.getElementById('verify_otp_btn').parentElement.style.display = 'none'
+                        document.getElementById('password').parentElement.parentElement.style.display = 'block'
+                        document.getElementById('otp_text').parentElement.parentElement.style.display = 'none'
+                        document.getElementById('confirm_password').parentElement.parentElement.style.display = 'block'
+                        document.getElementById('submit').parentElement.style.display = 'block'
+                    }
+                }).catch(function(error) {
+                    console.error('Error:', error);    // Handle network or other fetch errors
+                });;
             }
 
             function role_changed(){

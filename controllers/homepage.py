@@ -217,7 +217,7 @@ class HomepageController(http.Controller):
 
     @http.route(['/profile/updateuserprofile'], method=["POST"], type="http", auth="public", website=True)
     def UpdateUser(self, **kw):
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
         user = request.env.user
         partner_id = user.partner_id
         if request.httprequest.method == 'POST':
