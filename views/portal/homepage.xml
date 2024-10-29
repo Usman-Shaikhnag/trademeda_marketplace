@@ -178,19 +178,22 @@
                     <div class="more-values">
                         <div class="values-container">
                             <div class="value-card">
+                                <b><p class=""><a t-attf-href="/forum">Discussion Forum</a></p></b>
+                            </div>
+                            <!-- <div class="value-card">
                                 <b><p class=""><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></p></b>
+                            </div> -->
+                            <div class="value-card">
+                                <b><p class=""><a t-attf-href="/profile">Sell on Trademeda</a></p></b>
                             </div>
                             <div class="value-card">
-                                <b><p class="">Sell on Trademeda</p></b>
+                                <b><p class="">Mission and Vision</p></b>
                             </div>
                             <div class="value-card">
-                                <b><p class="">Trademeda Catalogs</p></b>
+                                <b><p class="">Trademeda company brochure</p></b>
                             </div>
                             <div class="value-card">
-                                <b><p class="">Trademeda Membership Plans</p></b>
-                            </div>
-                            <div class="value-card">
-                                <a t-attf-href="/advertisingPlans"><b><p class="">Advertise with us</p></b></a>
+                                <a t-attf-href="#"><b><p class="">FAQ's</p></b></a>
                             </div>
                         </div>
                     </div>
