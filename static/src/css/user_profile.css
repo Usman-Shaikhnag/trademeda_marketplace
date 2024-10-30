@@ -883,6 +883,7 @@ h2 {
 
 #supplier_quotations_sent_table,
 #buyer_quotations_sent_table,
+#buyer_single_quotations_received_table,
 #buyer_quotations_received_table,
 #supplier_quotations_received_table {
 
@@ -891,6 +892,7 @@ h2 {
 
 #supplier_quotations_sent,
 #supplier_quotations_received,
+#buyer_single_quotations_received_table,
 #buyer_quotations_sent,
 #buyer_quotations_received {
     overflow-x: auto;

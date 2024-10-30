@@ -1867,9 +1867,9 @@
                                             </div>
                                         </div>
                                     
-                                        <div class="inner-card" id="seller_responses_management">
+                                        <div class="inner-card" id="seller_responses_management" style="overflow-x: scroll;">
                                             
-                                            <table id="buyer_single_quotations_received_table">
+                                            <table id="buyer_single_quotations_received_table" style="min-width:3000px">
                                                 <thead>
                                                     <tr>
                                                         <!-- <th>Quotation No</th> -->
@@ -1879,6 +1879,31 @@
                                                         <th>Email</th>
                                                         <th>Phone</th>
                                                         <th>Message</th>
+                                                        <th>Company Website URL</th>
+                                                        <th>Minimum Order Quantity</th>
+                                                        <th>Unit</th>
+                                                        <th>Product Description</th>
+                                                        <th>Taget Price</th>
+                                                        <th>Currency</th>
+                                                        <th>Destination</th>
+                                                        <th>Shipping Terms</th>
+                                                        <th>Payment Terms</th>
+                                                        <th>Looking for Suppliers From</th>
+                                                        <th>Primary Business</th>
+                                                        <th>Establishment Year</th>
+                                                        <th>Annual Sales in USD (Approx)</th>
+                                                        <th>Number of Employees</th>
+                                                        <th>Your Name</th>
+                                                        <th>Designation</th>
+                                                        <th>Address</th>
+                                                        <th>Country</th>
+                                                        <th>State</th>
+                                                        <th>City</th>
+                                                        <th>Zip/Postal Code</th>
+                                                        <th>Area Code</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Email Address</th>
+                                                        <th>Date</th>
 
                                                     </tr>
                                                     
@@ -1906,6 +1931,81 @@
                                                             </td>
                                                             <td>
                                                                 <t t-esc="rfq.message" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.website" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.quantity" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.unit.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.product_description" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.target_price" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.currency.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.destination.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.shipping_terms" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.payment_terms" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.suppliers_country.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.primary_business" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.establishment_year" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.annual_sales" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.partner_id.no_of_employees" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.designation" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.company_address" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.country_id.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.state_id.name" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.city" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.zip" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.area_code" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.phone" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.rfq_id.partner_id.email" />
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="rfq.create_date" />
                                                             </td>
                                                         </tr>
                                                     </t>

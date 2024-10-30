@@ -23,12 +23,15 @@
                         <div class="left-sidebar">
                             <h2>Top Categories</h2>
                             <t t-foreach="env['product.subcategories'].sudo().search([],limit=13,order='ranking')" t-as="category">
-                                <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
-                                    <t t-if="category.icon">
-                                        <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
-                                        <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
-                                    </t>
-                                    <t t-out="category.name"/>
+                                <div>
+                                    <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
+                                    
+                                        <t t-if="category.icon">
+                                            <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
+                                            <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
+                                        </t>
+                                        <t t-out="category.name"/>
+                                    </div>
                                     <div class="outer-product-container">
                                         <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=20)" t-as="product">
                                             
@@ -93,9 +96,7 @@
 
                                 <div onclick="open_readytobuy(this)" style="cursor:pointer;">
 
-                                
-                                    <p style="margin-bottom: 4px;">Trademeda</p>
-
+                                    <p> </p>
                                     <p style="margin-top: 0px;cursor:pointer;">Ready To Buy</p>
 
                                 </div>
@@ -110,10 +111,8 @@
 
                                 <div>
 
+                                    <p> </p>
                                     
-
-                                    <p style="margin-bottom: 4px;">Trademeda</p>
-
                                     <a t-attf-href="/membershipPlans" style="color: inherit; text-decoration: none;"><p style="margin-top: 0px;">Membership Plans</p></a>
 
                                 </div>
@@ -193,7 +192,7 @@
                                 <b><p class="">Trademeda company brochure</p></b>
                             </div>
                             <div class="value-card">
-                                <a t-attf-href="#"><b><p class="">FAQ's</p></b></a>
+                                <a t-attf-href="#"><b><p class="">Frequently Asked Questions</p></b></a>
                             </div>
                         </div>
                     </div>
@@ -360,6 +359,7 @@
                     <!-- suppliers by country  -->
                     <div class="flex-between">
                         <h2 class="ready-to-buy" style="margin-bottom: 0;">Buyers And Suppliers By Country</h2>
+                        <button class="control-buttons"><a t-attf-href="/countries">See More</a></button>
 
                     </div>
                     <div class="tabs">
@@ -578,11 +578,11 @@
                     }
                     function show_products(element){
                         <!-- element.children[0].style.display = 'none' -->
-                        element.children[0].style.display = 'flex'
+                        element.parentElement.children[1].style.display = 'flex'
                         
                     }
                     function hide_products(element){
-                        element.children[0].style.display = 'none'
+                        element.parentElement.children[1].style.display = 'none'
                     }
                     function show_categories(element){
                         const category = element.getAttribute('category')
