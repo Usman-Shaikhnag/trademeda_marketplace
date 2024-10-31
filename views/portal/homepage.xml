@@ -30,7 +30,7 @@
                                             <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
                                             <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
                                         </t>
-                                        <t t-out="category.name"/>
+                                        <span style="overflow-x:hidden;"><t t-out="category.name"/></span>
                                     </div>
                                     <div class="outer-product-container">
                                         <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=20)" t-as="product">
@@ -359,12 +359,16 @@
                     <!-- suppliers by country  -->
                     <div class="flex-between">
                         <h2 class="ready-to-buy" style="margin-bottom: 0;">Buyers And Suppliers By Country</h2>
-                        <button class="control-buttons"><a t-attf-href="/countries">See More</a></button>
 
                     </div>
-                    <div class="tabs">
-                        <button id="countryTab1" onclick="showBuyersCountry(this)" class="tab active">Buyers</button>
-                        <button id="countryTab2" onclick="showSuppliersCountry(this)" class="tab">Suppliers</button>
+                    <div class="flex-between">
+
+                        <div class="tabs">
+                            <button id="countryTab1" onclick="showBuyersCountry(this)" class="tab active">Buyers</button>
+                            <button id="countryTab2" onclick="showSuppliersCountry(this)" class="tab">Suppliers</button>
+                        </div>
+                        <button class="control-buttons"><a t-attf-href="/countries">See More</a></button>
+
                     </div>
                     <div class="country-container">
                         <div id="buyers-country-tab" class="buyer-contries content active">

@@ -47,6 +47,8 @@
         'views/portal/banner_application.xml',
         'views/portal/privacy_policy.xml',
         'views/portal/membership_plans.xml',
+        'views/portal/countries.xml',
+
 
     ],
     'demo': [

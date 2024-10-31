@@ -27,6 +27,16 @@
                     <i class="fa-brands fa-instagram"></i>
                     <i class="fa-brands fa-youtube"></i>
                 </div>
+                <div class="footer-language-switcher" style="display:flex;justify-content:center">
+                    <label for="languageDropdown">Language: </label>
+                    <select id="languageDropdown" class="language-select">
+                        <t t-foreach="request.env['res.lang'].search([('active', '=', True)])" t-as="lang">
+                            <option t-att-value="lang.code" t-att-selected="lang.code == request.context.get('lang')">
+                                <t t-esc="lang.display_name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
                 <div class="copyright">
                     <p>2023 Trademeda. All rights reserved.</p>
                 </div>

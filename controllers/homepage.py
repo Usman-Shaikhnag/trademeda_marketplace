@@ -642,3 +642,19 @@ class HomepageController(http.Controller):
         }
         return request.render('trademeda.subcategories',vals)
     
+    @http.route('/countries', auth='public', website=True)
+    def countries(self, **kwargs):
+        user = request.env.user
+        countries = request.env['res.countries'].sudo().search([])
+        # if user == request.env.ref('base.public_user'):
+        #     logged_in:False
+        # else:
+        #     logged_in:True
+        # import wdb;wdb.set_trace()
+        
+        vals = {
+            "countries": countries,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.countries',vals)
+    

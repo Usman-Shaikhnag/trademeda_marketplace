@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <template id="countries" name="Trademeda Countries">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/categories.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+        <main class="">
+            <t t-foreach="env['res.countries'].sudo().search([],order='name asc')" t-as="countries">
+                
+                
+            </t>
+        </main>
+        </template>
+    </data>
+</odoo>
