@@ -17,7 +17,7 @@ button {
   background-color: #f6f6f6;
   padding: 2%;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 25% 75%;
   gap: 1rem;
 }
 
@@ -34,15 +34,15 @@ button {
 
 }
 .left-sidebar h2{
-  color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  color: #07407a;
   font-family: 'Avenir';
 
 }
 .catalogs {
   display: flex;
-  background: rgb(199,8,8);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(199,8,8);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   border-radius: 10px;
   color: white;
   align-items: center;
@@ -174,12 +174,10 @@ button {
 
 }
 .rfq-heading {
-  color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  color: #07407a;
 }
 .rfq-heading a{
-  color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  color: #07407a;
   text-decoration: none;
   font-family: 'Avenir';
 }
@@ -205,8 +203,9 @@ button {
   padding: 0.5rem 2rem;
   /* outline: 2px solid #b32f2d; */
   color: white;
-  background: rgb(199,8,8);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(199,8,8);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   border: none;
   border-radius: 5px;
 }
@@ -216,8 +215,9 @@ button {
   border: none;
   /* outline: 2px solid #b32f2d; */
   color: white;
-  background: rgb(199,8,8);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(199,8,8);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   border: none;
   border-radius: 5px;
 
@@ -225,10 +225,10 @@ button {
 
 .btn-seeMore {
   padding: 0.2rem 2rem;
-  outline: 2px solid #b32f2d;
   color: white;
-  background: rgb(199,8,8);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(199,8,8);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   border: none;
   border-radius: 5px;
   height: fit-content;
@@ -236,8 +236,7 @@ button {
 
 .view-all {
 
-  color: rgb(199,8,8);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  color: #07407a;
 }
 /* .category-item>a{
   text-decoration: none;
@@ -252,9 +251,8 @@ button {
   display: flex;
   align-items: center;
 }
-
 .category-item:hover {
-  color: rgb(199,8,8);
+  color: #07407a;
   
 }
 .outer-product-container {
@@ -281,7 +279,7 @@ button {
 }
 
 .outer-product-container>a:hover{
-  color: rgb(199,8,8);
+  color: #07407a;
 }
 .category-products{
   display: none;
@@ -318,7 +316,7 @@ button {
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
-  color: rgb(199,8,8);
+  color: #07407a;
   padding-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -340,12 +338,12 @@ button {
 
 .tab.active {
   cursor: pointer;
-  background-color: #d42505;
+  background-color: #07407a;
   color: #f0f0f0;
 }
 
 .tabs span:active {
-  border-bottom: 2px solid rgb(212, 37, 5); /* Indicate active tab with a bottom border */
+  border-bottom: 2px solid #07407a; /* Indicate active tab with a bottom border */
   font-weight: bold;
 }
 li{
@@ -406,7 +404,7 @@ li{
 .product-title h2 {
   margin-left: 10px;
   font-size: 1.5rem;
-  color:rgb(212, 37, 5);
+  color:#07407a;
   margin: 0;
 }
 
@@ -450,8 +448,9 @@ li{
 
 .product-actions button {
   color: #f6f6f6;
-  background: rgb(212, 37, 5);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(212, 37, 5);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -530,7 +529,7 @@ li{
 .new-arrival,
 .ready-to-buy,
 .featured-products-title {
-  color: rgb(212, 37, 5);
+  color: #07407a;
   font-family: 'Avenir';
 }
 .new-arrival-container {
@@ -596,7 +595,7 @@ li{
 .control-buttons {
   align-self: center;
   color: #f2f2f2;
-  background-color: rgb(199, 8, 8);
+  background-color: #07407a;
   border-radius: 8px;
   padding: 0.7rem;
   width: fit-content;
@@ -613,12 +612,12 @@ li{
 
 .control-buttons:hover {
   background-color: transparent;
-  color: rgb(199, 8, 8);
-  outline: 2px solid rgb(199, 8, 8);
+  color: #07407a;
+  outline: 2px solid #07407a;
 }
 
 .control-buttons a:hover {
-  color: rgb(199, 8, 8);
+  color: #07407a;
 }
 
 
@@ -654,7 +653,7 @@ li{
 }
 
 .popular_product a:hover{
-  color: rgb(199, 8, 8);
+  color: #07407a;
 }
 .more-values{
   display: flex;
@@ -678,7 +677,7 @@ li{
   background-color: #fdfdfd;
   border-radius: 5px;
   cursor: pointer;
-  color: rgb(199, 8, 8);
+  color: #07407a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: ease-in 0.3s;
   
@@ -689,8 +688,9 @@ li{
   color: inherit;
 }
 .value-card:hover{
-  background: rgb(212, 37, 5);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  /* background: rgb(212, 37, 5);
+  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+  background-color: #07407a;
   color: #fdfdfd;
 
 }

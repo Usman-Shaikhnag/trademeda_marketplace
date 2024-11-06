@@ -1358,10 +1358,19 @@
                                                         <span class="">Do you meet these Requirements?</span>
                                                     </div>
                                                     <div class="select-container">
-                                                        <select id="ready_to_buy_requirements" name="ready_to_buy_requirements">
+                                                        <!-- <select id="ready_to_buy_requirements" name="ready_to_buy_requirements">
                                                             <option value="yes">YES</option>
                                                             <option value="no">No</option> 
-                                                        </select>
+                                                        </select> -->
+                                                        <div class="radio-group">
+                                                            <input type="radio" id="yes" name="ready_to_buy_requirements" value="yes"  checked="true"/>
+                                                            <label for="yes">Yes</label>
+
+                                                            <input type="radio" id="no" name="ready_to_buy_requirements"  value="no"/>
+                                                            <label for="no">No</label>
+
+                                                        </div>
+
                                                     </div>
                                                     <div class="submit-edit-product">
                                                         <!-- <button class="" onclick="rtb_requirements_save(this)">Save</button> -->
@@ -2551,7 +2560,7 @@
                                 <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id),('buyer_notification','=',True)],order='create_date desc')" t-as="notification">
                                     <div class="notification_card">
                                         <div class="message">
-                                            <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
+                                            <div style="text-align:right;"><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
                                             <div><a t-attf-href="/product/{{notification.product_id.id}}" style="color:inherit;"><t t-esc="notification.notification"/></a></div>
                                         </div>
                                         <!-- <div class="vertical_line"></div>
@@ -2565,7 +2574,7 @@
                                 <t t-foreach="env['subscribed.notifications'].sudo().search([('partner_id','=',partner.id),('seller_notification','=',True)],order='create_date desc')" t-as="notification">
                                     <div class="notification_card">
                                         <div class="message">
-                                            <div><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
+                                            <div style="text-align:right;"><t t-esc="notification.create_date.strftime('%d-%b-%Y')"/></div>
                                             <div><t t-esc="notification.notification"/></div>
                                         </div>
                                         <!-- <div class="vertical_line"></div>
@@ -2578,20 +2587,18 @@
 
                            
                         </div>
+                        <div class="inner-card" id="membership_management" style="margin-top: -1rem;">
+                            <div>
+                                <div class="edit-profile-text" style="text-align: center;">
+                                    <h1>Membership</h1>
+                                </div>
+                            </div>
+                            
+                            
 
+                           
+                        </div>
 
-                                     
-
-                        <!-- <div>
-                            <form action="/profile/uploadtemp" method="post" enctype="multipart/form-data" class="">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-                                <input type="file" name="upload_temp" style="display:block;" class=""/>
-                                <button type="submit">Submit</button>
-                            </form>
-                        </div> -->
-                        
-
-                        
                     </div>
                 </div>
                 
@@ -2611,6 +2618,8 @@
                     document.getElementById('buyers_quotation_management').style.display = 'none'
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
                     document.getElementById('notification_management').style.display = 'none'
+                    document.getElementById('membership_management').style.display = 'none'
+
 
 
 
@@ -3559,6 +3568,7 @@
                 }
 
                 function ready_to_buy_popup(element){
+                    debugger;
                     const ready_to_buy = element.checked
                     if(ready_to_buy == true){
                         document.getElementById('readyToBuyPopup').style.display = 'fixed'

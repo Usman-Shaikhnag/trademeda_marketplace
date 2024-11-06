@@ -2,8 +2,9 @@ footer{
     font-family: 'Avenir';
     display: flex;
     flex-direction: column;
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    background-color: #07407a;
     color: #fdfdfd;
     gap: 1rem;
     padding-top: 2rem;

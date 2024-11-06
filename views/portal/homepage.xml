@@ -24,15 +24,16 @@
                             <h2>Top Categories</h2>
                             <t t-foreach="env['product.subcategories'].sudo().search([],limit=13,order='ranking')" t-as="category">
                                 <div>
-                                    <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)" onmouseout="hide_products(this)" class="category-item" style="cursor:pointer;">
+                                    <div onclick="show_categories(this)" t-att-category="category.name" onmouseover="show_products(this)"  class="category-item" style="cursor:pointer;">
                                     
                                         <t t-if="category.icon">
                                             <!-- <img t-att-src="('data:image/' + ('jpeg' if category.icon.endswith('.jpeg') or category.icon.endswith('.jpg')  else 'png') + ';base64,' + category.icon.decode('utf-8'))" class="icons"/> -->
                                             <img t-attf-src="data:image/png; base64, {{category.icon}}" class="icons"/>
                                         </t>
-                                        <span style="overflow-x:hidden;"><t t-out="category.name"/></span>
+                                        <span><t t-out="category.name"/></span>
                                     </div>
-                                    <div class="outer-product-container">
+                                    <div class="outer-product-container" onmouseout="hide_products(this)">
+                                        <div><h3 style="color: rgb(199,8,8);"><t t-out="category.name"/></h3></div>
                                         <t t-foreach="env['product.template'].sudo().search([('subcategory_id.id','=',category.id)],limit=20)" t-as="product">
                                             
                                             <!-- <div class="category-products"> -->
@@ -62,10 +63,10 @@
                                 </div>
 
                                 <!-- <button style="background-color:orange;border-radius:50px;height:20px;width:20px;"></button> -->
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <a t-attf-href="/post_rfq_page"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg> -->
+                                </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -86,10 +87,10 @@
 
                                 </div>
 
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <a t-attf-href="/profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg> -->
+                                </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -101,10 +102,10 @@
 
                                 </div>
 
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <a t-attf-href="/readytobuy"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg> -->
+                                </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -117,10 +118,10 @@
 
                                 </div>
 
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <a t-attf-href="/membershipPlans"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg> -->
+                                </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
                                 </svg>
@@ -133,10 +134,10 @@
 
                                 </div>
 
-                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                <a t-attf-href="/advertisingPlans"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
                                     <path d="M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" fill="#fff"/>
-                                </svg> -->
+                                </svg></a>
 
                             </div>
                             
@@ -585,8 +586,11 @@
                         element.parentElement.children[1].style.display = 'flex'
                         
                     }
-                    function hide_products(element){
+                    <!-- function hide_products(element){
                         element.parentElement.children[1].style.display = 'none'
+                    } -->
+                    function hide_products(element){
+                        element.style.display = 'none'
                     }
                     function show_categories(element){
                         const category = element.getAttribute('category')

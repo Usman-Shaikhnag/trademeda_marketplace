@@ -15,8 +15,9 @@ body{
     justify-content: space-between;
     /* background-color: #8fb151; */
     margin: 0;
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    background-color: #f6f6f6;
 
 }
 .logo-container img {
@@ -28,13 +29,13 @@ body{
     gap: 1rem;
 }
 .login_link{
-    color: #fdfdfd;
+    color: #07407a;
 }
 .search-container input{
     width: 350px;
     border-radius: 5px;
     border: none;
-    outline: 2px solid #b32f2d;
+    /* outline: 2px solid #b32f2d; */
     padding-left: 1rem;
 }
 
@@ -42,17 +43,17 @@ body{
     padding: 0.5rem 2rem;
     border-radius: 5px;
     /* border: none; */
-    background-color: transparent;
+    background-color: #07407a;
     color: white;
     /* outline: 2px solid #EB5B00; */
-    border: 2px solid #fff;;
+    border: none;
 
 }
 .search-container button:hover{
-    outline: 2px solid #fff;
-    background-color: white;
+    outline: 2px solid #07407a;
+    background-color: transparent;
     font-style: bold;
-    color: #EB5B00;
+    color: #07407a;
 }
 
 .hamburger-menu{
@@ -101,7 +102,7 @@ i {
 
 }
 .menu_items>ul>a:hover{
-    color:#b32f2d;
+    color:#07407a;
 }
 .menu_items>ul>a {
     color: inherit;
@@ -111,5 +112,5 @@ i {
     width: 1.5rem;
     height: 2px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #07407a;
 }
