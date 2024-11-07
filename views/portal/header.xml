@@ -11,7 +11,7 @@
             </xpath>
                 <div class="header">
                     <div class="logo-container">
-                        <a t-attf-href="/home"><img src="/trademeda/static/src/img/orange_logo.png" alt="Logo photo" class="logo"/></a>
+                        <a t-attf-href="/home"><img src="/trademeda/static/src/img/orange_logo1.png" alt="Logo photo" class="logo"/></a>
                     </div>
                     <!-- <div class="search-bar">
                         
@@ -32,11 +32,11 @@
                             <a  onclick="wishlistPage(this)" id="wishlist-link" style="margin-right: 8px;"><i class="fas fa-heart" style="color:#07407a"></i></a>
 
                             <t t-if="logged_in">
-                                <a t-attf-href="/profile"><i class="fas fa-user" style="color:#fff"></i></a>
+                                <a t-attf-href="/profile"><i class="fas fa-user" style="color:#07407a"></i></a>
                             </t>
                             <t t-else="">
-                                <a style="text-decoration:none;" class="login_link" t-attf-href="/signin"><b>Login</b></a>
-                                <a style="text-decoration:none;background-color: #07407a;color: #fff;padding: 0.5rem;border-radius: 5px;" class="login_link" t-attf-href="/signup"><b>Signup</b></a>
+                                <a style="text-decoration:none;" class="login_link"  t-attf-href="/signin"><b>Login</b></a>
+                                <a style="text-decoration:none;background-color: #07407a;color: #fff;padding: 0.5rem;border-radius: 5px;" class="signup_btn" t-attf-href="/signup"><b>Signup</b></a>
 
                             </t>
                             

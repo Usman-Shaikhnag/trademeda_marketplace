@@ -31,12 +31,18 @@ body{
 .login_link{
     color: #07407a;
 }
+.login_link:hover{
+    color: #f89623;
+}
 .search-container input{
     width: 350px;
     border-radius: 5px;
     border: none;
     /* outline: 2px solid #b32f2d; */
     padding-left: 1rem;
+}
+.search-container input:focus{
+    outline: 2px solid #f89623;
 }
 
 .search-container button{
@@ -50,10 +56,10 @@ body{
 
 }
 .search-container button:hover{
-    outline: 2px solid #07407a;
+    outline: 2px solid #f89623;
     background-color: transparent;
     font-style: bold;
-    color: #07407a;
+    color: #f89623;
 }
 
 .hamburger-menu{
@@ -63,6 +69,9 @@ body{
     margin-bottom: 6px;
     cursor: pointer;
     /* position: relative; */
+}
+.hamburger-menu:hover span{
+    background-color: #f89623;
 }
 .menu_items {
     display: none;
@@ -77,8 +86,15 @@ body{
 
 
 }
+.signup_btn:hover{
+    background-color: #f89623 !important;
+    color: #fff !important;
+}
 i {
     cursor: pointer;
+}
+i:hover {
+    color: #f89623 !important;
 }
 #search-bar{
     max-height: 150px;
@@ -102,7 +118,7 @@ i {
 
 }
 .menu_items>ul>a:hover{
-    color:#07407a;
+    color:#f89623;
 }
 .menu_items>ul>a {
     color: inherit;

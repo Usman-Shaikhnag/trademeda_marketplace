@@ -272,13 +272,18 @@ main{
   
   }
   .rfq-heading {
-    color: rgb(199,8,8);
-    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    color: #07407a;
   }
   .rfq-heading a{
-    color: rgb(199,8,8);
-    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* color: rgb(199,8,8);
+    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    color: #07407a;
     text-decoration: none;
+  }
+  .rfq-heading a:hover{
+    color: #f89623;
   }
   .rfq-subheading {
     display: flex;
@@ -308,19 +313,26 @@ main{
     padding: 0.5rem 2rem;
     /* outline: 2px solid #b32f2d; */
     color: white;
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    background-color: #07407a;
     border: none;
     border-radius: 5px;
   }
-  
+  .btn-wishlist:hover{
+    background-color: #f89623;
+  }
+  .btn-enquire:hover{
+    background-color: #f89623;
+  }
   .btn-enquire{
     padding: 0.5rem 2rem;
     border: none;
     /* outline: 2px solid #b32f2d; */
     color: white;
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: rgb(199,8,8);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    background-color: #07407a;
     border: none;
     border-radius: 5px;
   

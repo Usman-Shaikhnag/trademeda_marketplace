@@ -238,6 +238,10 @@ button {
 
   color: #07407a;
 }
+.view-all:hover {
+
+  color: #f89623;
+}
 /* .category-item>a{
   text-decoration: none;
   color: #333;
@@ -252,7 +256,7 @@ button {
   align-items: center;
 }
 .category-item:hover {
-  color: #07407a;
+  color: #f89623;
   
 }
 .outer-product-container {
@@ -279,7 +283,7 @@ button {
 }
 
 .outer-product-container>a:hover{
-  color: #07407a;
+  color: #f89623;
 }
 .category-products{
   display: none;
