@@ -11,7 +11,11 @@
             </xpath>
                 <div class="header">
                     <div class="logo-container">
-                        <a t-attf-href="/home"><img src="/trademeda/static/src/img/orange_logo1.png" alt="Logo photo" class="logo"/></a>
+                        <a t-attf-href="/home">
+                            <img onmouseover="switch_logo(this)" src="/trademeda/static/src/img/blue_logo.png" alt="Logo photo" class="logo"/>
+                            <img onmouseout="original_logo(this)" style="display:none;" src="/trademeda/static/src/img/orange_logo1.png" alt="Logo photo" class="logo"/>
+
+                        </a>
                     </div>
                     <!-- <div class="search-bar">
                         
@@ -123,6 +127,14 @@
 
                             window.location.href = '/findBuyers/'+searchQuery
                         }
+                    }
+                    function switch_logo(element){
+                        element.style.display = 'none'
+                        element.nextElementSibling.style.display = 'block'
+                    }
+                    function original_logo(element){
+                        element.style.display = 'none'
+                        element.previousElementSibling.style.display = 'block'
                     }
                 </script>
         </template>

@@ -1,5 +1,5 @@
 main{
-    background-color: #f0f0f0;
+    background-color: #f6f6f6;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: grid;
     grid-template-columns: 22% 78%;
@@ -22,14 +22,14 @@ main{
 
 .search-heading {
     padding: 2%;
-    color:rgb(212, 37, 5);
+    color:#07407a;
 }
 .tabs-filters{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    color:rgb(212, 37, 5);
+    color:#07407a;
 
 }
 
@@ -65,16 +65,20 @@ main{
     padding: 5px 1rem;
     border-radius: 5px;
 }
+.tab:hover{
+    background-color: #f89623;
+    color: #fff;
+}
 
 .tabs span:active {
-    border-bottom: 2px solid rgb(212, 37, 5); /* Indicate active tab with a bottom border */
+    border-bottom: 2px solid #07407a; /* Indicate active tab with a bottom border */
     font-weight: bold;
    
 
 }
 .tab.active {
     /* border-bottom-color: #d42505;  */
-    background-color: #d42505;
+    background-color:#07407a;
     color: #f0f0f0;
 }
 .content {
@@ -172,7 +176,7 @@ main{
 .product-title h2 {
     margin-left: 10px;
     font-size: 1.5rem;
-    color:rgb(212, 37, 5);
+    color:#07407a;
     margin: 0;
 }
 
@@ -212,8 +216,9 @@ main{
 
 .product-actions button {
     color: #f6f6f6;
-    background: rgb(212, 37, 5);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: rgb(212, 37, 5);
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    background-color: #07407a;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -226,6 +231,9 @@ main{
     background-color: white;
     color: #073b4c;
     border: 1px solid #073b4c;
+}
+.product-actions button:hover {
+    background-color: #f89623;
 }
 
 .product-date {
@@ -295,7 +303,7 @@ main{
     margin: 0;
   }
   .rfq-content {
-    color: gray;
+    color: black;
     width: 80%;
   }
  
@@ -339,7 +347,7 @@ main{
   }
 
 ul {
-    color: rgb(199,8,8);
+    color: #07407a;
 }
 li{
     list-style: none;
@@ -350,7 +358,13 @@ li{
     text-decoration: none;
 }
 li:hover {
-    color: rgb(199,8,8);
+    color: #f89623;
+}
+.product_title {
+    color:#07407a
+}
+.product_title:hover {
+    color:#f89623
 }
 .pagination {
     display: flex;
@@ -370,28 +384,28 @@ li:hover {
 .prev-page,
 .next-page {
     background-color: transparent;
-    color: rgb(199,8,8);
-    border: 1px solid rgb(199,8,8);
+    color: #07407a;
+    border: 1px solid #07407a;
 }
 
 .page-link {
     background-color:transparent;
-    color: rgb(199,8,8);
-    border: 1px solid rgb(199,8,8);
+    color: #07407a;
+    border: 1px solid #07407a;
     padding: 0.5rem 1rem;
     border-radius: 25px;
 }
 
 .page-link.active {
-    background-color: rgb(199,8,8);
+    background-color: #07407a;
     color: #fff;
-    border: 1px solid rgb(199,8,8);
+    border: 1px solid #07407a;
 }
 
 .pagination a:hover {
-    background-color: rgb(199,8,8);
+    background-color: #f89623;
     color: #fff;
-    border: 1px solid rgb(199,8,8);
+    border: 1px solid #f89623;
 }
 .search {
     display: none;

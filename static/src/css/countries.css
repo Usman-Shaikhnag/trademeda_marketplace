@@ -1,0 +1,57 @@
+body {
+    padding: 1rem;
+    background-color: #f6f6f6;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.country-card {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    gap: 1rem;
+    flex-direction: column;
+    border: 2px solid #e0e0e0;
+    width: fit-content;
+    padding: 1rem;
+
+}
+.country-card div{
+    color: #07407a;
+}
+.country-card div:hover{
+    color: #f89623;
+}
+.country-card span{
+    margin-right: 0.5rem;
+    color: #000;
+}
+
+.tab-buttons{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 1rem;
+}
+.tab-buttons button:hover {
+    background-color: #f89623;
+    color: #fff;
+}
+.tab-buttons button{
+    background-color: transparent;
+    outline: 2px solid #f0f0f0;
+    color:#07407a;
+    border-radius: 15px;
+    padding: 0.5rem 2rem;
+    border: none;
+    
+    
+}
+.tab-buttons button.active{
+    background-color: #07407a;
+    color: white;
+}

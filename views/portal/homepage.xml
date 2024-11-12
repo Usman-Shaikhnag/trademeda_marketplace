@@ -60,7 +60,7 @@
                                 <!-- <button style="background-color:orange;border-radius:50px;height:20px;width:20px;"></button> -->
                                 <a t-attf-href="/post_rfq_page"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    &gt;
+                                    <text x="4" y="12" font-family="Arial" font-size="12" fill="white">&gt;</text>
                                 </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
@@ -84,7 +84,7 @@
 
                                 <a t-attf-href="/profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    &gt;
+                                    <text x="4" y="12" font-family="Arial" font-size="12" fill="white">&gt;</text>
                                 </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
@@ -99,7 +99,7 @@
 
                                 <a t-attf-href="/readytobuy"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    &gt;
+                                    <text x="4" y="12" font-family="Arial" font-size="12" fill="white">&gt;</text>
                                 </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
@@ -115,7 +115,7 @@
 
                                 <a t-attf-href="/membershipPlans"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    &gt;
+                                    <text x="4" y="12" font-family="Arial" font-size="12" fill="white">&gt;</text>
                                 </svg></a>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="50" viewBox="0 0 16 50">
                                     <line x1="8" y1="0" x2="8" y2="50" stroke="white" stroke-width="2"/>
@@ -131,7 +131,7 @@
 
                                 <a t-attf-href="/advertisingPlans"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="hsl(32.4, 91.5%, 53.9%)" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <circle cx="8" cy="8" r="8" fill="hsl(32.4, 91.5%, 53.9%)"/>
-                                    &gt;
+                                    <text x="4" y="12" font-family="Arial" font-size="12" fill="white">&gt;</text>
                                 </svg></a>
 
                             </div>

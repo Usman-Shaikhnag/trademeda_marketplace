@@ -645,7 +645,7 @@ class HomepageController(http.Controller):
     @http.route('/countries', auth='public', website=True)
     def countries(self, **kwargs):
         user = request.env.user
-        countries = request.env['res.countries'].sudo().search([])
+        countries = request.env['res.country'].sudo().search([])
         # if user == request.env.ref('base.public_user'):
         #     logged_in:False
         # else:
