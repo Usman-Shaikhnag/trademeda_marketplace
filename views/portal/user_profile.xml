@@ -1625,7 +1625,7 @@
                                                         <tr>
                                                             
                                                             <td>
-                                                                <a t-attf-href="/product/{{enquiry.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="enquiry.product_id.product_name" /></a>
+                                                                <a t-attf-href="/product/{{enquiry.product_id.id}}" style="color:#07407a;"><t t-esc="enquiry.product_id.product_name" /></a>
                                                             </td>
                                                             <td>
                                                                 <t t-esc="enquiry.partner_id.name" />
@@ -1923,7 +1923,7 @@
                                                         <tr>
                                                             
                                                             <td>
-                                                                <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                                <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                             </td>
                                                             <td>
                                                                 <t t-esc="rfq.partner_id.name" />
@@ -2068,7 +2068,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rtb.product_id.partner_id.name" />
@@ -2142,7 +2142,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rfq.partner_id.name" />
@@ -2298,7 +2298,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rfq.rfq_id.partner_id.name" />
@@ -2446,7 +2446,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rtb.partner_id.name" />
