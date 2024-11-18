@@ -16,8 +16,8 @@ main {
     display: grid;
     grid-template-columns: 25% 75%;
     background-color: #f2f2f2;
-    /* background-color: rgb(212, 37, 5);
-    background-color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%); */
+    /* background-color: #07407a;
+    background- */
     border-radius: 8px;
     gap: 15px;
     padding: 2%;
@@ -59,6 +59,7 @@ main {
     display: flex;
     flex-direction: column;
     color: #07407a;
+  
 }
 
 .update-btn {
@@ -70,6 +71,7 @@ main {
 
 .update-btn:hover button{
     color: #07407a;
+  
     background: transparent;
     outline: 2px solid #07407a;
     
@@ -78,6 +80,7 @@ main {
 .update-btn button{
     color: #f6f6f6;
     background: #07407a;
+    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     height: 55px;
     width: 150px;
     border-radius: 5px;
@@ -102,6 +105,7 @@ main {
 }
 .heading h2 {
     color: #07407a;
+  
 }
 
 .text-input{
@@ -123,7 +127,7 @@ main {
     background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #07407a;
 
 }
 .text-input span {
@@ -222,6 +226,7 @@ main {
     gap: 10px;
     margin: 1.5rem 1rem;
     color: #07407a;
+  
     cursor: pointer;
     transition: 0.2s ease;
 }
@@ -282,6 +287,7 @@ input[type="file"] {
     display: inline-block;
     color: #f6f6f6;
     background-color: #07407a;
+  
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -295,6 +301,7 @@ input[type="file"] {
 .file-label:hover {
     background-color: #fdfdfd;
     color: #07407a;
+  
     outline: 2px solid #07407a;
 }
 #new_product {
@@ -316,6 +323,7 @@ input[type="file"] {
     overflow: hidden;  /* Hide overflow text */
     text-overflow: ellipsis;  /* Display ellipsis for overflow text */
     color: #07407a;
+  
 }
 
 .file-delete {
@@ -370,6 +378,7 @@ input[type="file"] {
 .image-file-label {
     display: inline-flex;
     color: #07407a;
+  
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -402,7 +411,8 @@ input[type="file"] {
 .button-container button{
     padding: 1rem;
     width: 150px;
-    background-color: #f89623;
+    background-color: #07407a;
+  
     color: white;
     border-radius: 5px;
     border: none;
@@ -410,9 +420,9 @@ input[type="file"] {
 }
 .button-container button:hover{
     background-color: transparent;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(212, 37, 5);
+    color: #07407a;
+  
+    outline: 2px solid #07407a;
 }
 
 
@@ -444,6 +454,7 @@ input[type="file"] {
     display: flex;
     flex-direction: column;
     color: #07407a;
+  
     
 }
 
@@ -459,6 +470,7 @@ input[type="file"] {
     align-items: center;
     gap:1rem;
     color: #07407a;
+  
 }
 
 .product-icons i{
@@ -489,12 +501,14 @@ input[type="file"] {
     justify-content: center;
     align-items: center;
     color: #07407a;
+  
     
 }
 .news-heading input{
     font-size: 2.5rem;
     margin-bottom: 0px;
     color: #07407a;
+  
     border: none;
     width: 100%;
     text-align: center;
@@ -512,6 +526,7 @@ input[type="file"] {
 }
 .news-image-container button{
     background-color: #07407a;
+  
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -523,7 +538,7 @@ input[type="file"] {
 .news-image-container button:hover{
     background-color: transparent;
     color: #07407a;
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  
     outline: 2px solid #07407a;
 }
 .news-content textarea{
@@ -533,6 +548,7 @@ input[type="file"] {
 }
 .news-submit button{
     background-color: #07407a;
+  
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -544,16 +560,16 @@ input[type="file"] {
 
 .news-submit button:hover{
     background-color: transparent;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(212, 37, 5);
+    color: #07407a;
+  
+    outline: 2px solid #07407a;
 
 }
 .divider-vertical {
     height: 80%;
     width: 2px;
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
+  
     border-radius: 5px;
 }
 .document_upload_table{
@@ -563,7 +579,7 @@ input[type="file"] {
 }
 table {
     width: 100%;
-    border: 1px solid rgb(212, 37, 5);
+    border: 1px solid #07407a;
     border-collapse: collapse;
     font-size: 12px;
     
@@ -576,20 +592,20 @@ th {
     border: 1px solid black;
     padding: 5px;
     vertical-align: top;
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
+  
     color: white;
 }
 
 td {
-    border: 1px solid rgb(212, 37, 5);
+    border: 1px solid #07407a;
     padding: 5px;
     vertical-align: top;
 }
 
 .button{
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
+  
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -598,9 +614,9 @@ td {
 
 .button:hover{
     background-color: transparent;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(212, 37, 5);
+    color: #07407a;
+  
+    outline: 2px solid #07407a;
 
 }
 
@@ -655,8 +671,8 @@ td {
 .submit-edit-product button{
     display: block;
     width: 100%;
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
+  
     padding: 1rem;
     border: none;
     color: white;
@@ -665,33 +681,33 @@ td {
     margin: 8px;
 }
 .submit-edit-product button:hover{
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #07407a;
     background-color: transparent;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
+  
 }
 
 
 input[type="checkbox"] {
     width: 1.15rem;
     height: 1.15rem;
-    accent-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    accent-color: #07407a;
+  
   }
   
 .rfq-container{
     display: grid;
     grid-template-columns: 90% 10%;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
+  
     margin-top: 1rem;
 }
 .rfq-details{
     display: grid;
     padding-left: 2%;
     grid-template-columns: 50% 50%;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
+  
 }
 .rfq-details p{
     color: black;
@@ -709,8 +725,8 @@ input[type="checkbox"] {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     background-color: #fdfdfd;
     padding: 2%;
-    color: rgb(212, 37, 5);
-    color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
+    
     width: 75%;
 
 }
@@ -730,7 +746,7 @@ h4 {
     color: rgb(37, 36, 63);
 }
 h1{
-    color:rgb(212, 37, 5);
+    color:#07407a;
     font-family: 'Avenir';
 }
 h2 {
@@ -738,7 +754,7 @@ h2 {
 
 }
 .end-rfq {
-    background: rgb(212, 37, 5);
+    background: #07407a;
     background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     color: #fdfdfd;
     border: none;
@@ -747,8 +763,8 @@ h2 {
 }
 
 .end-rfq:hover {
-    outline: 2px solid rgb(212, 37, 5);
-    color: rgb(212, 37, 5);
+    outline: 2px solid #07407a;
+    color: #07407a;
     background: transparent;
 }
 
@@ -821,15 +837,15 @@ h2 {
 }
 
 .download-btn:hover button{
-    color: rgb(212, 37, 5);
+    color: #07407a;
     background: transparent;
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #07407a;
     
 }
 
 .download-btn button{
     color: #f6f6f6;
-    background: rgb(212, 37, 5);
+    background: #07407a;
     background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
     height: 45px;
     width: 150px;
