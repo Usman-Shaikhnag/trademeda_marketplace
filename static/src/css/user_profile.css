@@ -58,8 +58,7 @@ main {
 .edit-profile-text{
     display: flex;
     flex-direction: column;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
 }
 
 .update-btn {
@@ -70,17 +69,15 @@ main {
 }
 
 .update-btn:hover button{
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     background: transparent;
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #07407a;
     
 }
 
 .update-btn button{
     color: #f6f6f6;
-    background: rgb(212, 37, 5);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     height: 55px;
     width: 150px;
     border-radius: 5px;
@@ -104,8 +101,7 @@ main {
     justify-content: center;
 }
 .heading h2 {
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
 }
 
 .text-input{
@@ -131,7 +127,7 @@ main {
 
 }
 .text-input span {
-    color:rgb(212, 37, 5);
+    color:#07407a;
 
 }
 #selected-chips-container {
@@ -144,7 +140,7 @@ main {
     display: flex;
     border-radius: 10px;
     color: white;
-    background-color:rgb(212, 37, 5);
+    background-color:#07407a;
     width: fit-content;
     flex-wrap: wrap;
     align-items: center;
@@ -206,7 +202,7 @@ main {
     align-items: center;
 }
 .username span {
-    color:rgb(212, 37, 5);
+    color:#07407a;
     font-weight: 900;
     
 }
@@ -225,8 +221,7 @@ main {
     align-items: center;
     gap: 10px;
     margin: 1.5rem 1rem;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     cursor: pointer;
     transition: 0.2s ease;
 }
@@ -286,8 +281,7 @@ input[type="file"] {
 .file-label {
     display: inline-block;
     color: #f6f6f6;
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -300,9 +294,8 @@ input[type="file"] {
 
 .file-label:hover {
     background-color: #fdfdfd;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(212, 37, 5);
+    color: #07407a;
+    outline: 2px solid #07407a;
 }
 #new_product {
     display: block;
@@ -322,8 +315,7 @@ input[type="file"] {
     white-space: nowrap;  /* Prevent text wrapping */
     overflow: hidden;  /* Hide overflow text */
     text-overflow: ellipsis;  /* Display ellipsis for overflow text */
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
 }
 
 .file-delete {
@@ -377,8 +369,7 @@ input[type="file"] {
 
 .image-file-label {
     display: inline-flex;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     text-align: center;
     padding: 10px 30px;
     user-select: none;
@@ -386,7 +377,7 @@ input[type="file"] {
     border-radius: 5px;
     transition: background-color 0.3s ease;
     margin-top: 1rem;
-    border: 2px dotted rgb(212, 37, 5);
+    border: 2px dotted #07407a;
     height: 80px;
     flex-direction: column;
     justify-content: center;
@@ -411,8 +402,7 @@ input[type="file"] {
 .button-container button{
     padding: 1rem;
     width: 150px;
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #f89623;
     color: white;
     border-radius: 5px;
     border: none;
@@ -453,8 +443,7 @@ input[type="file"] {
 .product-details {
     display: flex;
     flex-direction: column;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     
 }
 
@@ -469,8 +458,7 @@ input[type="file"] {
     justify-content: flex-start;
     align-items: center;
     gap:1rem;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
 }
 
 .product-icons i{
@@ -500,15 +488,13 @@ input[type="file"] {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     
 }
 .news-heading input{
     font-size: 2.5rem;
     margin-bottom: 0px;
-    color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    color: #07407a;
     border: none;
     width: 100%;
     text-align: center;
@@ -525,8 +511,7 @@ input[type="file"] {
     border-radius: 5px;
 }
 .news-image-container button{
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
@@ -537,9 +522,9 @@ input[type="file"] {
 
 .news-image-container button:hover{
     background-color: transparent;
-    color: rgb(212, 37, 5);
+    color: #07407a;
   color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #07407a;
 }
 .news-content textarea{
     border-radius: 5px;
@@ -547,8 +532,7 @@ input[type="file"] {
     height: 8rem;
 }
 .news-submit button{
-    background-color: rgb(212, 37, 5);
-  color: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background-color: #07407a;
     color: white;
     border-radius: 5px;
     padding: 4px 1rem;
