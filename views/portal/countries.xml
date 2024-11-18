@@ -12,21 +12,11 @@
             <button onclick="supplier_countries(this)" class="">Supplier</button>
 
         </div>
-        <div>
-           
-                
-                <div class="text-input">
-                    <div class="">
-                        <span class="">Sort by</span>
-                    </div>
-                    <div class="select-container">
-                        <select id="sort_countries" name="sort_countries" onchange="sortCountries()">
-                            <option value="alphabetical">Alphabetically</option>
-                            <option value="numbers">Registered Users</option>
-                        </select>
-                    </div>
-                </div>
-
+        <div slass="sorting">
+            <div class="sorting_buttons">Sort By <i class="fa-solid fa-sort"></i> 
+                <button onclick="sortCountriesAlphabetically(this)">Alphabetically</button>
+                <button onclick="sortCountriesUsers(this)">Registered Users</button> 
+            </div>
         </div>
         <main id="countries_list" class="countries_list">
             
@@ -38,7 +28,7 @@
                 <t t-set="sorted_countries_with_buyers" t-value="sorted(countries_with_buyers, key=lambda x: x[0].name)"/>
                 <t t-foreach="sorted_countries_with_buyers" t-as="country">
                     <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;color:inherit;" t-attf-href="/findBuyers/country/{{country[0].id}}">
+                        <a style="text-decoration:none;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findBuyers/country/{{country[0].id}}">
                             <t t-esc="country[0].name"/>
                         </a>
                         <span> (<t t-esc="country[1]"/>)</span>
@@ -54,7 +44,7 @@
                 <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[0].name)"/>
                 <t t-foreach="sorted_countries_with_suppliers" t-as="country">
                     <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;color:inherit;" t-attf-href="/findSuppliers/country/{{country[0].id}}">
+                        <a style="text-decoration:none;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findSuppliers/country/{{country[0].id}}">
                             <t t-esc="country[0].name"/>
                         </a>
                         <span> (<t t-esc="country[1]"/>)</span>
@@ -83,6 +73,136 @@
                     element.previousElementSibling.classList.remove('active');
 
 
+                }
+                function sortCountriesAlphabetically(element){
+                    let buyer_countries = []
+                    let supplier_countries = []
+
+                    let countries_list = document.getElementById('buyer_countries')
+                    let supplier_countries_list = document.getElementById('supplier_countries')
+
+                    for(let i = 0;i &lt;countries_list.childElementCount;i++){
+                        <!-- debugger; -->
+                        let country = String(countries_list.children[i].children[0].innerText.trim())
+                        let count = parseInt(countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
+                        let country_id = parseInt(countries_list.children[i].children[0].getAttribute('countryId'))
+                        buyer_countries.push({'country':country,'count':count,'id':country_id})
+                    } 
+                    for(let i = 0;i &lt;supplier_countries_list.childElementCount;i++){
+                        let country = String(supplier_countries_list.children[i].children[0].innerText.trim())
+                        let count = parseInt(supplier_countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
+                        let country_id = parseInt(supplier_countries_list.children[i].children[0].getAttribute('countryId'))
+                        <!-- debugger; -->
+                        supplier_countries.push({'country':country,'count':count,'id':country_id})
+                    } 
+                    buyer_countries.sort(function(a, b) {
+                        return a.country.localeCompare(b.country); // Locale-based comparison
+                    });
+                    supplier_countries.sort(function(a, b) {
+                        return a.country.localeCompare(b.country); // Locale-based comparison
+                    });
+                    while (countries_list.firstChild) {
+                        countries_list.removeChild(countries_list.firstChild);
+                    }
+                    <!-- debugger; -->
+
+                    while (supplier_countries_list.firstChild) {
+                        supplier_countries_list.removeChild(supplier_countries_list.firstChild);
+                    }
+                    buyer_countries.forEach(function(item){
+                        const countryDiv = document.createElement('div');
+                        const countrySpan = document.createElement('a');
+                        countrySpan.textContent = item.country;
+                        countrySpan.href = '/findBuyers/country/'+item.id;
+                        countrySpan.classList.add('country_link')
+
+                        const countSpan = document.createElement('span');
+                        countSpan.textContent = ` (${item.count})`;
+                        countryDiv.appendChild(countrySpan);
+                        countryDiv.appendChild(countSpan);
+
+                        // Append the div to the container
+                        countries_list.appendChild(countryDiv);
+                    })
+                    supplier_countries.forEach(function(item){
+                        const countryDiv = document.createElement('div');
+                        const countrySpan = document.createElement('a');
+                        countrySpan.textContent = item.country;
+                        countrySpan.href = '/findSuppliers/country/'+item.id;
+                        countrySpan.classList.add('country_link')
+
+                        const countSpan = document.createElement('span');
+                        countSpan.textContent = ` (${item.count})`;
+                        countryDiv.appendChild(countrySpan);
+                        countryDiv.appendChild(countSpan);
+
+                        // Append the div to the container
+                        supplier_countries_list.appendChild(countryDiv);
+                    })
+
+                    
+                }
+                function sortCountriesUsers(element){
+                    let buyer_countries = []
+                    let supplier_countries = []
+
+                    let countries_list = document.getElementById('buyer_countries')
+                    let supplier_countries_list = document.getElementById('supplier_countries')
+
+                    for(let i = 0;i &lt;countries_list.childElementCount;i++){
+                        <!-- debugger; -->
+                        let country = String(countries_list.children[i].children[0].innerText.trim())
+                        let count = parseInt(countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
+                        let country_id = parseInt(countries_list.children[i].children[0].getAttribute('countryId'))
+                        buyer_countries.push({'country':country,'count':count,'id':country_id})
+                    } 
+                    for(let i = 0;i &lt;supplier_countries_list.childElementCount;i++){
+                        let country = String(supplier_countries_list.children[i].children[0].innerText.trim())
+                        let count = parseInt(supplier_countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
+                        let country_id = parseInt(supplier_countries_list.children[i].children[0].getAttribute('countryId'))
+                        <!-- debugger; -->
+                        supplier_countries.push({'country':country,'count':count,'id':country_id})
+                    } 
+                    buyer_countries.sort(function(a, b) {return b.count - a.count;});
+                    supplier_countries.sort(function(a, b) {return b.count - a.count;});
+
+                    while (countries_list.firstChild) {
+                        countries_list.removeChild(countries_list.firstChild);
+                    }
+                    while (supplier_countries_list.firstChild) {
+                        supplier_countries_list.removeChild(supplier_countries_list.firstChild);
+                    }
+                    buyer_countries.forEach(function(item){
+                        const countryDiv = document.createElement('div');
+                        const countrySpan = document.createElement('a');
+                        countrySpan.textContent = item.country;
+                        countrySpan.href = '/findBuyers/country/'+item.id;
+                        countrySpan.classList.add('country_link')
+
+                        const countSpan = document.createElement('span');
+                        countSpan.textContent = ` (${item.count})`;
+                        countryDiv.appendChild(countrySpan);
+                        countryDiv.appendChild(countSpan);
+
+                        // Append the div to the container
+                        countries_list.appendChild(countryDiv);
+                    })
+                    supplier_countries.forEach(function(item){
+                        const countryDiv = document.createElement('div');
+                        const countrySpan = document.createElement('a');
+                        countrySpan.textContent = item.country;
+                        countrySpan.href = '/findSuppliers/country/'+item.id;
+                        countrySpan.classList.add('country_link')
+
+                        const countSpan = document.createElement('span');
+                        countSpan.textContent = ` (${item.count})`;
+                        countryDiv.appendChild(countrySpan);
+                        countryDiv.appendChild(countSpan);
+
+                        // Append the div to the container
+                        supplier_countries_list.appendChild(countryDiv);
+                    })
+                    
                 }
                 function sortCountries() {
                     var sortType = document.getElementById('sort_countries').value;

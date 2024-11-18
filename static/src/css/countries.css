@@ -81,3 +81,20 @@ main {
     color:#07407a;
 
 }
+.country_link {
+    color: #07407a;
+    text-decoration: none;
+}
+.country_link:hover {
+    color: #f89623;
+}
+.sorting_buttons button{
+    border-radius: 15px;
+    padding: 0.5rem 2rem;
+    border: none;
+    background-color: #07407a;
+    color: #fff;
+}
+.sorting_buttons button:hover{
+    background-color: #f89623;
+}
