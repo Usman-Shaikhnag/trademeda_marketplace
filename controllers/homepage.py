@@ -11,6 +11,8 @@ class HomepageController(http.Controller):
     def home(self, **kwargs):
         user = request.env.user
         product_categories = request.env['product.categories'].sudo().search([])
+        # import wdb;wdb.set_trace()
+
         # if user == request.env.ref('base.public_user'):
         #     logged_in:False
         # else:
@@ -658,3 +660,28 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.countries',vals)
     
+
+    @http.route('/brochure', auth='public', website=True)
+    def brochure(self, **kwargs):
+        user = request.env.user
+       
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.brochure',vals)
+    
+    @http.route('/apply_testimony', auth='user', website=True)
+    def applyTestimony(self, **kwargs):
+        return request.render('trademeda.testimony_application')
+
+
+    @http.route('/submit_testimony', type='http', auth='user', methods=['POST'], csrf=False)
+    def submit_testimony(self, **kw):
+        user = request.env.user
+        partner_id = user.partner_id
+        testimony = kw.get('testimony')
+        request.env['customer.testimony'].sudo().create({
+            'testimony':testimony,
+            'partner_id':partner_id.id
+        })
+        return request.render('trademeda.homepage')

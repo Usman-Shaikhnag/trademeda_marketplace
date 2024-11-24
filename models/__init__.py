@@ -11,3 +11,4 @@ from . import banner
 from . import pricing_plans
 from . import faqs
 from . import otp_verification
+from . import brochure

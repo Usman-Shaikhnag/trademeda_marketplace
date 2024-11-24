@@ -179,7 +179,7 @@
                                 <b><p class=""><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></p></b>
                             </div> -->
                             <div class="value-card">
-                                <b><p class=""><a t-attf-href="/profile">Sell on Trademeda</a></p></b>
+                                <b><p class=""><a t-attf-href="/profile">About us</a></p></b>
                             </div>
                             <div class="value-card">
                                 <b><p class="">Mission and Vision</p></b>
@@ -432,11 +432,14 @@
 
 
                     <!-- New Arrivals  -->
-                    <div class="flex-between">
+                    <form action="/apply_testimony" >
+                        <div class="flex-between">
 
-                        <h2 class="new-arrival">Our Customers Testimonies</h2>
+                            <h2 class="new-arrival">Our Customers Testimonies</h2>
+                                <button href="/apply_testimony" class="control-buttons">Apply</button>
 
-                    </div>
+                        </div>
+                    </form>
                     <div class="customer-testimonies">
                         <t t-foreach="env['customer.testimony'].sudo().search([('display','=',True)])" t-as="testimony">
                             <div class="testimony">
