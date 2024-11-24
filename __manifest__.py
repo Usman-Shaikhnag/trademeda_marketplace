@@ -25,6 +25,7 @@
         'views/quotation.xml',
         'views/pricing_plans.xml',
         'views/faqs.xml',
+        'views/brochure_view.xml',
 
 
         
@@ -48,6 +49,10 @@
         'views/portal/privacy_policy.xml',
         'views/portal/membership_plans.xml',
         'views/portal/countries.xml',
+        'views/portal/brochure.xml',
+        'views/portal/testimony_application.xml',
+
+
 
 
     ],

@@ -80,7 +80,6 @@ main {
 .update-btn button{
     color: #f6f6f6;
     background: #07407a;
-    
     height: 55px;
     width: 150px;
     border-radius: 5px;
@@ -755,7 +754,6 @@ h2 {
 }
 .end-rfq {
     background: #07407a;
-    
     color: #fdfdfd;
     border: none;
     padding: 0.5rem;
@@ -846,7 +844,6 @@ h2 {
 .download-btn button{
     color: #f6f6f6;
     background: #07407a;
-    
     height: 45px;
     width: 150px;
     border-radius: 5px;

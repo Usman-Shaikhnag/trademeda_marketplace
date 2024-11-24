@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="trademeda_brochure_form_view" model="ir.ui.view">
+            <field name="name">trademeda.brochure.form</field>
+            <field name="model">trademeda.brochure</field>
+            <field name="arch" type="xml">
+                <form string="membership Pricelists">
+
+                    <group>
+                        <field name="sequence" />
+                        <field name="brochure_image" filename="image_name"/>
+                        <field name="image_name" />
+                        
+                    </group>
+
+                </form>
+                
+            </field>
+        </record>
+
+    
+
+
+        <record id="trademeda_brochure_tree_view" model="ir.ui.view">
+            <field name="name">trademeda.brochure.tree</field>
+            <field name="model">trademeda.brochure</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
