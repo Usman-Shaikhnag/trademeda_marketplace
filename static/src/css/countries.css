@@ -1,6 +1,8 @@
 body {
     padding: 1rem;
     background-color: #f6f6f6;
+
+
 }
 main {
     display: flex;
@@ -48,6 +50,8 @@ main {
     border-radius: 15px;
     padding: 0.5rem 2rem;
     border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
     
     
 }
@@ -57,7 +61,7 @@ main {
 }
 .text-input{
     margin-top: 1rem;
-    font-size: 1.1rem;
+    
     font-family: 'Times New Roman', Times, serif;
     padding-left: 1%;
 }
@@ -79,10 +83,12 @@ main {
 }
 .text-input span {
     color:#07407a;
+    font-size: 1.1rem;
 
 }
 .country_link {
     color: #07407a;
+    
     text-decoration: none;
 }
 .country_link:hover {
@@ -94,6 +100,7 @@ main {
     border: none;
     background-color: #07407a;
     color: #fff;
+    font-size: 1rem;
 }
 .sorting_buttons button:hover{
     background-color: #f89623;

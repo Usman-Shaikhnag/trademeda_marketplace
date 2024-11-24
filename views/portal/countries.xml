@@ -13,7 +13,7 @@
 
         </div>
         <div slass="sorting">
-            <div class="sorting_buttons">Sort By <i class="fa-solid fa-sort"></i> 
+            <div style="font-size:1.3rem;" class="sorting_buttons">Sort By <i class="fa-solid fa-sort"></i> 
                 <button onclick="sortCountriesAlphabetically(this)">Alphabetically</button>
                 <button onclick="sortCountriesUsers(this)">Registered Users</button> 
             </div>

@@ -42,7 +42,7 @@ main {
     font-weight: bold;
     margin: 0;
     /* color: #b32f2d; */
-    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -73,7 +73,7 @@ main {
     background: none;
     border: none;
     /* color: #b32f2d; */
-    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: pointer;
@@ -97,7 +97,7 @@ main {
     margin-bottom: 1rem;
     border-radius: 5px;
     /* color:#b32f2d; */
-    background: linear-gradient(45deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

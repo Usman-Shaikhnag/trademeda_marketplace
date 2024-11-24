@@ -56,7 +56,7 @@
                             <div class="username">
                                 <b><span><t t-esc="partner.name"/></span></b>
                                 <div class="">
-                                    <span class="" style="color:rgb(199,8,8);margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
+                                    <span class="" style="color:#07407a;margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
 
                                 </div>
                             </div>
@@ -1205,7 +1205,7 @@
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
                                             <span style="margin-top: 0.7rem;">
                                                 <t t-set="enquiry_count" t-value="env['product.enquiries'].sudo().search_count([('product_id', '=', product.id)])"/>
-                                                <a t-att-data-product-id="product.id" onclick="showProductLeads(this)" style="color:rgb(199,8,8)"><t t-esc="enquiry_count"/> Enquiries</a>
+                                                <a t-att-data-product-id="product.id" onclick="showProductLeads(this)" style="color:#07407a"><t t-esc="enquiry_count"/> Enquiries</a>
                                             </span>
                                         </div>
                                         <div class="product-details">
@@ -1235,7 +1235,7 @@
                                                 <div class="file-upload-wrapper" style="align-self: flex-end;">
                                                     <input onchange="product_image_change(this)" type="file" t-att-id="'update_product_image_' + str(product.id)" t-att-name="'update_product_image_' + str(product.id)" data-file-name="'update_product_image_' + str(product.id)" data-delete-btn="update_update_product_image"/>
                                                     <button type="button"><label t-att-for="'update_product_image_' + str(product.id)"><i class="fas fa-camera"></i>Update Photo</label></button>
-                                                    <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                                    <span id="update_product_image" onclick="product_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                                 </div>
                                             </div>
                                             <div class="editproductDetails">
@@ -1400,7 +1400,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news1" name="update_news1" data-file-name="update_news1_name" data-delete-btn="update_news1_delete"/>
                                         <button type="button"><label for="update_news1"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news1_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                        <span id="update_news1_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 2  -->
@@ -1409,7 +1409,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news2" name="update_news2" data-file-name="update_news2_name" data-delete-btn="update_news2_delete"/>
                                         <button type="button"><label for="update_news2"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news2_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                        <span id="update_news2_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 3  -->
@@ -1418,7 +1418,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news3" name="update_news3" data-file-name="update_news3_name" data-delete-btn="update_news3_delete"/>
                                         <button type="button"><label for="update_news3"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 4  -->
@@ -1427,7 +1427,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news4" name="update_news4" data-file-name="update_news4_name" data-delete-btn="update_news4_delete"/>
                                         <button type="button"><label for="update_news4"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <!-- image 5  -->
@@ -1436,7 +1436,7 @@
                                     <div class="file-upload-wrapper" style="align-self: flex-end;">
                                         <input onchange="news_image_change(this)" type="file" id="update_news5" name="update_news5" data-file-name="update_news5_name" data-delete-btn="update_news5_delete"/>
                                         <button type="button"><label for="update_news5"><i class="fas fa-camera"></i>Upload a Photo</label></button>
-                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: rgb(199,8,8);cursor:pointer"></i></span>
+                                        <span id="update_news3_delete" onclick="news_image_delete(this)" class="file-delete"><i class="fa-regular fa-circle-xmark" style="color: #07407a;cursor:pointer"></i></span>
                                     </div>
                                 </div>
                                 <div class="news-content">
@@ -1575,8 +1575,7 @@
                                                 <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
                                                 <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
                                                 <t t-set="enquiries" t-value="env['product.enquiries'].sudo().search_count([('product_id','=',product.id)])"/>
-                                                <!-- <a style="text-decoration:none;color:rgba(199,8,8,1);margin-top:4px;" t-attf-href="/buyer/download_rtb_enquiries/{{product.id}}"><t t-esc="enquiries" /> Enquiries</a> -->
-                                                <span style="color:rgba(199,8,8,1);margin-top:4px;" onclick="show_rtb_enquiries(this)"><t t-esc="enquiries"/> Enquiries</span>
+                                                <span style="color:#07407a;margin-top:4px;" onclick="show_rtb_enquiries(this)"><t t-esc="enquiries"/> Enquiries</span>
                                             </div>
                                             <div class="product-details">
                                                 <span style="display:flex;justify-content: space-between;align-items:center;">
@@ -1625,7 +1624,7 @@
                                                         <tr>
                                                             
                                                             <td>
-                                                                <a t-attf-href="/product/{{enquiry.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="enquiry.product_id.product_name" /></a>
+                                                                <a t-attf-href="/product/{{enquiry.product_id.id}}" style="color:#07407a;"><t t-esc="enquiry.product_id.product_name" /></a>
                                                             </td>
                                                             <td>
                                                                 <t t-esc="enquiry.partner_id.name" />
@@ -1923,7 +1922,7 @@
                                                         <tr>
                                                             
                                                             <td>
-                                                                <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                                <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                             </td>
                                                             <td>
                                                                 <t t-esc="rfq.partner_id.name" />
@@ -2068,7 +2067,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rtb.product_id.partner_id.name" />
@@ -2142,7 +2141,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rfq.partner_id.name" />
@@ -2298,7 +2297,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rfq.rfq_id.rfq_no" /></a>
+                                                    <a t-attf-href="/view_rfq/{{rfq.rfq_id.id}}" style="color:#07407a;"><t t-esc="rfq.rfq_id.rfq_no" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rfq.rfq_id.partner_id.name" />
@@ -2446,7 +2445,7 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:rgb(212, 37, 5);"><t t-esc="rtb.product_id.product_name" /></a>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
                                                 </td>
                                                 <td>
                                                     <t t-esc="rtb.partner_id.name" />
