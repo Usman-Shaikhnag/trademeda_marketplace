@@ -63,13 +63,13 @@
                                         <span class="">We are:*</span>
                                     </div>
                                     <div class="radio-group">
-                                        <input type="radio" id="buyer" name="role" value="buyer" onchange="role_changed()" checked="true"/>
+                                        <input type="radio" id="buyer" name="role" value="buyer" onchange="role_changed()"/>
                                         <label for="buyer">Buyer</label>
 
                                         <input type="radio" id="seller" name="role" onchange="role_changed()" value="seller"/>
                                         <label for="seller">Supplier</label>
 
-                                        <input type="radio" id="both" name="role" onchange="role_changed()"  value="both"/>
+                                        <input type="radio" id="both" name="role" onchange="role_changed()"  value="both"  checked="true"/>
                                         <label for="both">Both</label>
                                     </div>
                                 </div>

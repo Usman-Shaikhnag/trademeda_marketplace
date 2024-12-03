@@ -685,3 +685,12 @@ class HomepageController(http.Controller):
             'partner_id':partner_id.id
         })
         return request.render('trademeda.homepage')
+
+    @http.route('/aboutus', auth='public', website=True)
+    def aboutus(self, **kwargs):
+        user = request.env.user
+        
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.aboutus',vals)
