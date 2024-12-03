@@ -27,7 +27,7 @@
                         </div>
                         <div class="sign-in-text">
                             <h3>Welcome To</h3>
-                            <span style="font-size: 3rem;"><b>Trade</b></span><span style="color:#07407a;font-size: 3rem;"><b>meda</b></span>
+                            <span style="font-size: 3rem;"><b>Trade</b></span><span style="color:rgba(199,8,8,1);font-size: 3rem;"><b>meda</b></span>
                             <div class="">
                                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, mi vel tincidunt commodo, sapien</p> -->
                                 <div class=""> </div>

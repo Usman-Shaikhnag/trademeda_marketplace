@@ -50,6 +50,7 @@
         'views/portal/membership_plans.xml',
         'views/portal/countries.xml',
         'views/portal/brochure.xml',
+        'views/portal/about_us.xml',
         'views/portal/testimony_application.xml',
 
 

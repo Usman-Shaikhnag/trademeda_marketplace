@@ -124,6 +124,7 @@ class ResPartner(models.Model):
     subscribed_categories = fields.Many2many('product.subcategories', string='Subscribed Categories')
 
     notifications = fields.One2many('subscribed.notifications','partner_id', string='Subscribed Notifications')
+    is_admin = fields.Boolean("Admin",default="False")
 
     @api.model
     def _reset_quotation(self):

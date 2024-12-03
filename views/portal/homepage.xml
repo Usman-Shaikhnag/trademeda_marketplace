@@ -145,7 +145,15 @@
                                             <t t-if="banner.get_image_src()">
                                                 <div class="banner-slide">
                                                     <img t-att-src="banner.get_image_src()" alt="Banner Image" class="banner-image"/>
-                                                    <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/></a></span>
+                                                    <t t-if="banner.partner_id.is_admin">
+                                                        <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/aboutus"><t t-esc="banner.partner_id.name"/></a></span>
+                                                        
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/></a></span>
+                                                    </t>
+                                                        <!-- <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/></a></span> -->
+
                                                 </div>
                                             </t>
                                         </t>
@@ -179,7 +187,7 @@
                                 <b><p class=""><a t-attf-href="/post_rfq_page">Post Buy Requirements</a></p></b>
                             </div> -->
                             <div class="value-card">
-                                <b><p class=""><a t-attf-href="/profile">About us</a></p></b>
+                                <b><p class=""><a t-attf-href="/aboutus">About us</a></p></b>
                             </div>
                             <div class="value-card">
                                 <b><p class="">Mission and Vision</p></b>
