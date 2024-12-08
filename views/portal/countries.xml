@@ -13,9 +13,17 @@
 
         </div>
         <div slass="sorting">
-            <div style="font-size:1.3rem;" class="sorting_buttons">Sort By <i class="fa-solid fa-sort"></i> 
-                <button onclick="sortCountriesAlphabetically(this)">Alphabetically</button>
-                <button onclick="sortCountriesUsers(this)">Registered Users</button> 
+            <div class="sorting_buttons">Sort By <i class="fa-solid fa-sort"></i> 
+                <!-- <button onclick="sortCountriesAlphabetically(this)">Alphabetically</button>
+                <button onclick="sortCountriesUsers(this)">Registered Users</button>  -->
+                <div class="select-container" style="display: inline;">
+                                                
+                    <select>
+                        <option onclick="sortCountriesAlphabetically(this)">Alphabetically</option>
+                        <option onclick="sortCountriesUsers(this)">Registered Users</option>
+
+                    </select>
+                </div>
             </div>
         </div>
         <main id="countries_list" class="countries_list">
@@ -28,8 +36,8 @@
                 <t t-set="sorted_countries_with_buyers" t-value="sorted(countries_with_buyers, key=lambda x: x[0].name)"/>
                 <t t-foreach="sorted_countries_with_buyers" t-as="country">
                     <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findBuyers/country/{{country[0].id}}">
-                            <t t-esc="country[0].name"/>
+                        <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findBuyers/country/{{country[0].id}}">
+                            <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><t t-esc="country[0].name"/>
                         </a>
                         <span> (<t t-esc="country[1]"/>)</span>
                     </div>
@@ -44,8 +52,8 @@
                 <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[0].name)"/>
                 <t t-foreach="sorted_countries_with_suppliers" t-as="country">
                     <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findSuppliers/country/{{country[0].id}}">
-                            <t t-esc="country[0].name"/>
+                        <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findSuppliers/country/{{country[0].id}}">
+                            <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><t t-esc="country[0].name"/>
                         </a>
                         <span> (<t t-esc="country[1]"/>)</span>
                     </div>
