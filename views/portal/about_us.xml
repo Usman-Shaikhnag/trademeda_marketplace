@@ -8,11 +8,13 @@
                 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/brochure.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/aboutus.css"/>
+
             </xpath>
             <t t-call="trademeda.header"/>
 
             <main>
-                <div class="images">
+                <!-- <div class="images">
                     <t t-foreach="env['trademeda.aboutus'].sudo().search([],order='sequence')" t-as="aboutus">
                         <t t-if="aboutus.get_image_src()">
                             <div class="image-container">
@@ -21,7 +23,123 @@
                         </t>
                     </t>
                     
+                </div> -->
+                <div class="logo">
+                    <img src="/trademeda/static/src/img/trademeda_logo1.png"/>
                 </div>
+                <div class="heading">
+                    <h4 class="">TRADEMEDA — Empowering trade through wisdom</h4>
+                </div>
+                <div class="">
+                    <p class="">TRADEMEDA represents a fusion of two life principles: "Trade" and "Meda."</p>
+                    <div class="" style="margin-left:3rem;">
+                        <div class=""><b>Trade:</b> This term covers the exchange of goods, services, and value
+between individuals, businesses, and nations. . Trade is an important
+driving force of economic growth. It promotes relationships and
+growing possibilities in the global marketplace.</div>
+                    <div class=""><b class="">Meda:</b> Derived from the Greek root "med-" (μηδ-), which signifies
+"wisdom," Meda evokes ideas of thoughtful counsel and strategic
+insight. This is critical to navigate complex business environments.</div>
+
+                    </div>
+                </div>
+                <div class="">Combining these concepts, TRADEMEDA refers to a platform or marketplace that not only facilitates trade but also emphasizes the importance of wisdom and strategic thinking in the trading process. It emphasizes its dedication to training organizations and individuals to make informed choices, optimizing
+their trading activities, and maximize their potential in the marketplace.
+Through this synergy, TRADEMEDA aims to create a more efficient,
+transparent, and successful trading ecosystem.</div>
+                <div class="">Join us as we chart new territories and fuel progress through the power of
+trade.</div>
+            <h4 class="red medium">Welcome to Trademeda:</h4>
+
+                <p class="red">Connecting global businesses with innovative solutions to drive success in today's marketplace.</p>
+
+                <p>At Trademeda, we are driven by a single mission: to simplify business operations on a global scale. In the ever-evolving landscape of international trade, finding the right partner can be a daunting challenge. That is where our expertise comes into play.</p>
+
+                <p>Our advanced platform is designed to facilitate perfect connectivity between exporters, importers, traders and manufacturers across the world. We recognize the critical importance of fostering relationships of trust. And we carefully develop robust solutions tailored to a wide range of business needs.</p>
+                <p class="margin-top">By integrating cutting-edge technology with innovative solutions, we offer
+client's access to a dynamic ecosystem that that optimizes operations.
+Whether you are exploring new markets providing high quality suppliers or
+looking for a profitable business opportunity, Trademeda is your trusted
+partner.</p>
+            <p class="margin-top">Our unwavering commitment to digital transformation is at the heart of our
+strategy. It helps users imagine, compete, and succeed in global business.
+Together, we will unlock enormous potential and cultivate non-sectoral
+prosperity</p>
+            <p class="margin-top">Join us to push boundaries and capitalizing on limitless global
+opportunities. Thank you for choosing Trademeda as your partner in
+success. Let's start the day of moving forward together.
+            </p>
+
+            <p class="red margin-top medium bold">Unlock Your Global Potential: Connect, Thrive and Succeed with
+Trademeda!</p>
+            <div class="" style="display:flex;gap:1rem">
+                <img src="/trademeda/static/src/img/about1.png"/>
+                <div class="">
+                    <p class="">Trademeda is a multifunctional online
+marketing platform designed to support
+business growth through the exchange and
+promotion of products and services. Valuable
+focus on growing your business on a local or
+global level. We connect companies with
+buyers and suppliers of ideas synergize their
+desire to improve their well-being through
+inclusive cooperation</p>
+                    <p class="">Unlock your business potential, connects with
+the world, and succeeds in a marketplace
+designed to help you thrive in the digital age.</p>
+                </div>
+            </div>
+            <p class="red medium center bold">Mission of Trademeda</p>
+            <p class="">To simplify business operations globally</p>
+            <p class="red medium center bold">Vision of Trademeda</p>
+            <p class="">Fuelled by the synergy of technology and innovation, our persistent
+dedication is to optimize efficiency in global trade operations and shape the
+future of commerce infrastructure. We are committed to assisting users in
+envisioning, competing, and thriving in the business arena, with a steadfast
+emphasis on digitization as its foundational element. Together, we unlock
+boundless possibilities and accomplish success within the field of trade.</p>
+            <p class="red medium bold">Core Values:</p>
+            <p class="">At Trademeda, we believe in synergy, persistence and trade are at the core of
+everything we do. These values drive our operations. From responsibly
+sourcing eco-friendly materials to providing excellent customer support.</p>
+            <ul class="">
+                <li>Synergy, persistence, and trade stand as the fundamental
+principles at Trademeda, guiding every decision and action we
+take.</li>
+                <li>These core values act as our operational compass, ensuring the
+conscientious acquisition of eco-friendly materials.</li>
+                <li>We credit both the transformative potential and the unwavering
+commitment of our collaborative efforts</li>
+                <li>From upholding ethical sourcing protocols to establishing
+unmatched service standards, these values shape our business
+philosophy</li>
+                <li>At Trademeda, we are a unique blend of synergy, persistence,
+and trade in maintaining excellence in everything we do.</li>
+
+            </ul>
+            <p class="red medium bold">Brand Story:</p>
+            <div class="" style="display:flex;gap:1rem">
+                <img src="/trademeda/static/src/img/abhishek.png"/>
+                <p class="">Trademeda originates from the vision of Mr. Abhishek
+Kumar, who is a software engineering graduate. In
+addition to his engineering background, he holds
+postgraduate qualifications in both marketing and
+finance, and has undergone specialized training in
+export-import at the prestigious Indian Institute of
+Foreign Trade in Delhi. He has accumulated extensive
+experience working with export-import companies,
+gaining valuable insights into the challenges faced by
+exporters, importers, and traders in establishing
+reliable business partnerships, both locally and
+internationally.
+Building upon his wealth of experience in the export-import sector, Mr.
+Kumar conceptualized a unified online platform aimed at facilitating
+seamless connections between buyers and suppliers. This platform
+empowers its users by facilitating the swift and efficient discovery of
+products and suppliers for buyers. Additionally, it equips suppliers with
+essential tools to access a global audience for their products</p>
+            </div>
+            
             </main>
         </template>
     </data>
