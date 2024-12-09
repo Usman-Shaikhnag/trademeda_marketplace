@@ -324,7 +324,7 @@ and real-time interactions.</li>
                 <p class="red medium bold">Why Choose Trademeda?</p>
 
                 <div class="flex">
-                    <img src="/trademeda/static/src/img/P1.jpg" style="max-height: 50vh;"/>
+                    <img src="/trademeda/static/src/img/P1.jpg" style="max-height: 50vh;max-width:50%;"/>
 
                     <div class="">
                         <ul>
