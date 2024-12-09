@@ -25,6 +25,18 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.homepage',vals)
     
+    @http.route('/', auth='public', website=True)
+    def root(self, **kwargs):
+        user = request.env.user
+        product_categories = request.env['product.categories'].sudo().search([])
+
+        
+        vals = {
+            "product_categories": product_categories,
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.homepage',vals)
+    
 
     
     @http.route('/signup', auth='public', website=True)

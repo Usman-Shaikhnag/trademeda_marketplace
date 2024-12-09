@@ -1,0 +1,28 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 8rem;
+}
+.logo img{
+    max-height: 200px;
+}
+.heading h4{
+    color: #b02e30;
+    font-size: 1.5rem;
+}
+.red {
+    color: #b02e30;
+}
+.medium {
+    font-size: 1.2rem;
+}
+.center {
+    text-align: center;
+}
+.margin-top {
+    margin-top: 1rem;
+}
+.bold {
+    font-weight: 600;
+}
