@@ -119,7 +119,7 @@
                 </ul>
                 <p class="red medium bold">Brand Story:</p>
                 <div class="" style="display:flex;gap:1rem">
-                    <img src="/trademeda/static/src/img/abhishek.png"/>
+                    <img src="/trademeda/static/src/img/abhishek.png" style="max-height:38vh"/>
                     <p class="">Trademeda originates from the vision of Mr. Abhishek
     Kumar, who is a software engineering graduate. In
     addition to his engineering background, he holds
