@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="brochure" name="Trademeda Homepage">
+        <template id="brochure" name="Trademeda Brochure">
             <xpath expr="." position="inside">
                 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
                 <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
@@ -8,21 +8,295 @@
                 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/brochure.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/aboutus.css"/>
+
             </xpath>
             <t t-call="trademeda.header"/>
 
-            <main>
-                <div class="images">
-                    <t t-foreach="env['trademeda.brochure'].sudo().search([],order='sequence')" t-as="brochure">
-                        <t t-if="brochure.get_image_src()">
-                            <div class="image-container">
-                                <img t-att-src="brochure.get_image_src()" alt="Brochure Image" class="brochure-image"/>
-                            </div>
-                        </t>
-                    </t>
-                    
+                <div style="background-color: #f6f6f6;padding: 1rem 22%;">
+                    <main>
+                        
+                        
+                        <img src="/trademeda/static/src/img/B1.jpg" style="max-width:100%"/>
+                        <div class="heading">
+                            <h4 class="red medium">Welcome to Trademeda:</h4>
+                        </div>
+                        <div class="">
+                            <p class="red">Connecting global businesses with innovative solutions to drive success in today’s marketplace.</p>
+                        </div>
+                        <p>At Trademeda, we are driven by a single mission: to simplify business
+operations on a global scale. In the ever-evolving landscape of international
+trade, finding the right partner can be a daunting challenge. That is where
+our expertise comes into play.</p>
+                        <p>Our advanced platform is designed to facilitate perfect connectivity between
+exporters, importers, traders and manufacturers across the world. We
+recognize the critical importance of fostering relationships of trust. And we
+carefully develop robust solutions tailored to a wide range of business needs.
+                        </p>
+                        <p>By integrating cutting-edge technology with innovative solutions, we offer
+client’s access to a dynamic ecosystem that that optimizes operations.
+Whether you are exploring new markets providing high quality suppliers or
+looking for a profitable business opportunity, Trademeda is your trusted
+partner.
+                    </p>
+                    <p>
+                    Our unwavering commitment to digital transformation is at the heart of our
+strategy. It helps users imagine, compete, and succeed in global business.
+Together, we will unlock enormous potential and cultivate non-sectoral
+prosperity.
+                    </p>
+                    <p>
+                    Join us to push boundaries and capitalizing on limitless global opportunities.
+Thank you for choosing Trademeda as your partner in success. Let's start the
+day of moving forward together.
+                    </p>
+                    <p class="red medium">Unlock Your Global Potential: Connect, Thrive and Succeed with Trademeda!</p>
+                    <div class="flex">
+                        <img src="/trademeda/static/src/img/B2.jpg" style="max-width:100%"/>
+                        <div>
+                            <p>Trademeda is a multifunctional
+online marketing platform designed
+to support business growth through
+the exchange and promotion of
+products and services. Valuable
+focus on growing your business on a
+local or global level. We connect
+companies with buyers and
+suppliers of ideas synergize their
+desire to improve their well-being
+through inclusive cooperation.</p>
+                            <p><span class="blue">Unlock your business potential,</span>
+connects with the world, and
+succeeds in a marketplace designed
+to help you thrive in the digital age.</p>
+                        </div>
+
+                    </div>
+                    <p class="red medium margin-top">Mission of Trademeda</p>
+                    <p class="">To simplify business operations globally</p>
+                    <p class="red medium margin-top">Vision of Trademeda</p>
+                    <div class="flex">
+                        <p class="">Fuelled by the synergy of technology
+and innovation, our persistent
+dedication is to optimize efficiency in
+global trade operations and shape the
+future of commerce infrastructure. We
+are committed to assisting users in
+envisioning, competing, and thriving in
+the business arena, with a steadfast
+emphasis on digitization as its
+foundational element. Together, we
+unlock boundless possibilities and
+accomplish success within the field of
+trade.</p>
+                        <img src="/trademeda/static/src/img/B3.jpg" style="max-width:100%;max-height:35vh;"/>
+
+                    </div>
+                    <p class="red medium margin-top">Trademeda: Your Trusted Partner in Global Trade</p>
+                    <img src="/trademeda/static/src/img/B4.jpg" style="max-width:100%"/>
+                    <p class="margin-top">At Trademeda, we provide a global platform that facilitates business
+operations. It perfectly connects you with certain business partners. Our
+mission is to remove the complexities of international trade. Improve
+processes Opening up new opportunities and expanding market access
+Increase business potential in driving long-term growth in the global market.</p>
+                    <p class="red large">What We Do</p>
+                    <img src="/trademeda/static/src/img/P5.jpg" style="max-width:100%"/>
+                    <ul>
+                        <li><span class="bold">Global Connectivity &amp; Simplified Trade:</span>We facilitate perfect
+connectivity between buyers and suppliers across the world. Doing
+business, you can navigate international trade more easily and
+expand your horizons.</li>
+                        <li><span class="bold">Efficient Discovery of Opportunities:</span>Our platform enables the fast
+and efficient discovery of new products, suppliers and business
+opportunities, helping users identify and connect with the right
+partners quickly.</li>
+                        <li><span class="bold">Optimized Trade Processes:</span>We simplify complex business
+processes. Reduce layoffs and ensure a quiet and efficient interaction
+between buyers and suppliers. To manage the best results for all
+parties involved.</li>
+                        <li><span class="bold">Enhanced Accessibility &amp; Productivity:</span>By improving access to
+global markets, we increase the productivity of both buyers and
+suppliers, helping them unlock greater success in the international
+marketplace.</li>
+                        <li><span class="bold">Expanding Global Market Reach for Suppliers:</span>Suppliers gain
+greater visibility and access to a global audience, empowering them to
+grow their businesses, reach new markets, and forge valuable
+partnerships.</li>
+                        <li><span class="bold">Maximizing Growth Opportunities:</span>Trademeda is dedicated to
+supporting business growth by offering access to high-quality
+partners, new sourcing opportunities, and an expansive global trade
+network that drives success.</li>
+                        <li><span class="bold">Continuous Platform Evolution:</span>We are committed to constantly
+evolving our platform to meet the changing needs of the global trade
+ecosystem, offering innovative solutions that help businesses explore
+new opportunities and scale to new heights.</li>
+                        <li><span class="bold">Inclusive Sourcing Solutions:</span>Trademeda brings together buyers and
+suppliers from around the world in a single platform, providing
+inclusive sourcing solutions that simplify finding reliable partners and
+growing your business globally.</li>
+                        <li><span class="bold">Building a Trusted Network:</span>Through our created network of
+reputable suppliers and active buyers, we create a trustworthy
+environment that fosters transparent communication, secure
+negotiations, and successful transactions.</li>
+
+                    </ul>
+                    <p class="red large margin-top">Our Services</p>
+                    <img src="/trademeda/static/src/img/p4.jpg" style="max-width:100%;"/>
+                    <ul>
+                        <li><span class="bold">Product Listings:</span>Businesses can list their products for visibility to
+    potential buyers.</li>
+                        <li><span class="bold">Trade Leads:</span>Users can post and respond to inquiries and trade
+    leads, facilitating direct connections.</li>
+                        <li><span class="bold">Supplier Directory:</span>A comprehensive directory to help buyers find
+    and connect with verified suppliers across various industries.</li>
+                        <li><span class="bold">Verified Members:</span>They often provide a verification process to
+    enhance trust between buyers and suppliers.</li>
+                        <li><span class="bold">Online Advertising:</span>Options for businesses to promote their products
+    and services through various advertising tools.</li>
+                        <li><span class="bold">E-commerce Solutions:</span>Services to help businesses set up and
+    manage online stores.</li>
+                    </ul>
+                    <p class="red large">Key features of Trademeda</p>
+                    <img src="/trademeda/static/src/img/p3.jpg" style="max-width:100%;"/>
+                    <ul>
+                    <li><span class="bold">Global B2B Marketplace:</span>Trademeda serves as a vast online platform
+that connects buyers and suppliers from around the globe, facilitating
+international trade and fostering business relationships.</li>
+                    <li><span class="bold">Buyers and Supplier Directory:</span></li>
+                    <li><span class="bold"></span>Users can search for manufacturers,
+wholesalers, distributors, exporters, importers and traders by filtering
+through product categories, locations, and ratings.</li>
+                    <li><span class="bold">Product Listings:</span>Enables suppliers to showcase their products with
+comprehensive descriptions, specifications, and images, simplifying
+the process for buyers to locate what they require.</li>
+                    <li><span class="bold">Company Profiles:</span>Organizations can build comprehensive profiles to
+highlight their expertise, certifications, and product offerings,
+increasing their visibility.</li>
+                    <li><span class="bold">Trade Leads:</span>Provides a platform for submitting and addressing trade
+inquiries, assisting businesses in discovering new opportunities.</li>
+                    <li><span class="bold">Advanced Search Filters:</span>Allows users to narrow down searches
+using specific criteria, including location, product category, and type
+of supplier.</li>
+                    <li><span class="bold">User-Friendly Interface:</span>Engineered for user-friendliness, our
+platform ensures straightforward navigation for both seasoned
+professionals and newcomers alike.</li>
+                    <li><span class="bold">Request for Quotation (RFQ):</span>Buyers can submit requests for
+quotations, enabling suppliers to provide their most competitive offers,
+which simplify price comparison.</li>
+                    <li><span class="bold">Ready to Buy:</span>Suppliers can showcase product offers, enabling
+buyers to connect if the products and prices meet their requirements.</li>
+                    <li><span class="bold">Advertise with us:</span>Offers promotional tools and features that assist
+businesses in enhancing their visibility on the platform and
+connecting with prospective customers.</li>
+                    <li><span class="bold">Notifications:</span>Buyers and suppliers are promptly informed of new
+arrivals through the “Notify Me” feature on Trademeda's platform,
+ensuring they stay updated with the latest offerings.</li>
+                    <li><span class="bold">Mobile App:</span>We recognize the importance of mobile applications in
+the current business landscape and are committed to offering this
+feature in the near future.</li>
+                    <li><span class="bold">Discussion forum:</span>Our discussion forum serves as an essential
+platform for buyers and suppliers to engage in meaningful
+conversations, enhancing collaboration and knowledge sharing within
+the trade community. By enabling real-time communication and
+efficient problem-solving, this feature reinforces relationships and
+promotes continuous improvement in all interactions.</li>
+
+                </ul>
+                <p class="red large">Key Benefits and Value Proposition of Trademeda</p>
+                    <img src="/trademeda/static/src/img/P2.jpg" style="max-width:100%;"/>
+
+                    <ul>
+                    <li><span class="bold">Global Market Access:</span>Trademeda brings together exporters,
+importers, traders, manufacturers, and wholesalers, making
+international trade and market expansion seamless. Our platform
+connects businesses with millions of buyers and suppliers globally, unlocking new opportunities for growth. With minimal investment,
+companies can efficiently scale and extend their reach using
+Trademeda's affordable and effective solutions.</li>
+
+                        
+                            <li><span class="bold">Wide Industry Coverage:</span>The platform supports
+businesses from a wide range
+of industries, including
+agriculture, textiles,
+electronics, machinery,
+Computers and more,
+providing opportunities for
+companies in diverse sectors.</li>
+                            <li><span class="bold">Verified Buyers and Suppliers:</span>The platform
+ensures credibility by
+verifying the legitimacy of
+businesses, which reduces
+the risk of fraud and fosters
+trust between trading
+partners.</li>
+                            <li><span class="bold">Comprehensive Product Listings:</span>Businesses can list
+their products with detailed
+descriptions, photos, and
+specifications, making it
+easier for buyers to find
+exactly what they are looking
+for and make informed
+decisions.</li>
+                            <li><span class="bold">Easy Access to Trade Leads:</span>Trademeda provides real-time access to
+thousands of trade leads across various industries, enabling
+businesses to find relevant opportunities quickly and easily.</li>
+                        
+                    <li><span class="bold">Tailored Membership Plans:</span>The platform offers free and premium
+membership options. Premium members gain access to exclusive
+features like direct buyer inquiries, priority support, and higher
+visibility in search results.</li>
+                    <li><span class="bold">Efficient Communication Tools:</span>Integrated communication tools
+allow buyers and sellers to interact securely on the platform,
+streamlining negotiations and fostering transparent transactions.</li>
+                    <li><span class="bold">User-Friendly Interface:</span>The platform is designed to be intuitive and
+easy to navigate, allowing users to search for products, send inquiries,
+and connect with suppliers effortlessly.</li>
+                    <li><span class="bold">Mobile Applications:</span>A mobile app provides users with seamless, on-
+the-go access to products or services, enhancing convenience,
+
+engagement, and customer loyalty through personalized experiences
+and real-time interactions.</li>
+                </ul>
+                <p class="red large">Why Choose Trademeda?</p>
+                <div class="flex">
+
+                    <div class="">
+                        <ul style="width: 90%;">
+                            <li><span class="bold">Innovative &amp; Evolving Platform:</span> Our platform is continuously accelerating to
+meet the dynamic needs of the global
+business ecosystem. This ensures that your
+company always has access to the latest
+technology and solutions for success.</li>
+                            <li><span class="bold">Global Reach with Local Impact:</span> Trademeda connects buyers and suppliers
+from all over the world. Continuously build
+
+an integrated platform that promotes cross-
+border collaboration. While also meeting the
+
+needs of the local market.</li>
+                            <li><span class="bold">Trusted Network:</span> We offer access to
+a carefully selected network of trusted
+buyers and suppliers. Fostering reliable
+long-term business relationships to
+guarantee high-quality connections.</li>
+                        </ul>
+                    </div>
+                    <img src="/trademeda/static/src/img/P1.jpg" style="max-height: 50vh;max-width:45%;"/>
+
                 </div>
-            </main>
+                <p class="">Trademeda is your ideal partner for global marketing consulting. Our
+platform helps companies grow, succeed and thrive internationally. Join us
+today and experience the future of two global businesses.</p>
+                <div class="left"><p class="red xlarge bold">Contact Us:</p></div>
+                <ul>
+                    <li><span class="bold left large">E-mail:</span> info@trademeda.com</li>
+                    <li><span class="bold left large">Phone no.:</span> +91-7033295727</li>
+                </ul>
+
+
+                    </main>
+                </div>
+            
         </template>
     </data>
 </odoo>

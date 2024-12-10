@@ -58,9 +58,9 @@
                                             <a t-attf-href="/signin"><li>Logout</li></a>
                                         </t>
                                         
-                                        <t>
+                                        <!-- <t>
                                             <a t-attf-href="/web"><li>Web</li></a>
-                                        </t>
+                                        </t> -->
                                         <a t-attf-href="/post_rfq_page"><li>Post Buy Requirements</li></a>
 
                                     </ul>
