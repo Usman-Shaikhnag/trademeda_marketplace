@@ -4,10 +4,7 @@
             <xpath expr="." position="inside">
                 <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/header.css"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-                 
-            
-                <script type="text/javascript" src="http://trademeda.com/im_livechat/loader/1"></script>
-                <script type="text/javascript" src="http://trademeda.com/im_livechat/assets_embed.js"></script>
+                 <script type="text/javascript" src="http://38.242.217.109:8069/im_livechat/loader/1"></script> <script type="text/javascript" src="http://38.242.217.109:8069/im_livechat/assets_embed.js"></script>
             
                 
             
@@ -61,9 +58,9 @@
                                             <a t-attf-href="/signin"><li>Logout</li></a>
                                         </t>
                                         
-                                        <t>
+                                        <!-- <t>
                                             <a t-attf-href="/web"><li>Web</li></a>
-                                        </t>
+                                        </t> -->
                                         <a t-attf-href="/post_rfq_page"><li>Post Buy Requirements</li></a>
 
                                     </ul>

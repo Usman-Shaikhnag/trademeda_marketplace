@@ -3,7 +3,7 @@ main{
     padding: 2%;
 }
 h1{
-    color: rgb(212, 37, 5);
+    color: #07407a;
     font-family: 'Avenir';
 }
 .pricing-table {
@@ -25,7 +25,7 @@ h1{
     flex-direction: column;
 }
 .pricing-plan.best-value {
-    border-top: 4px solid rgb(199,8,8);
+    border-top: 4px solid #07407a;
     background-color: #e0f7ff;
 }
 .pricing-plan.best-value::before {
@@ -33,7 +33,7 @@ h1{
     position: absolute;
     top: -10px;
     right: -10px;
-    background: rgb(199,8,8);
+    background: #07407a;
     color: white;
     font-size: 12px;
     padding: 5px 10px;
@@ -90,8 +90,7 @@ h1{
 }
 .get_started_btn{
     color: #f6f6f6;
-    background: rgb(212, 37, 5);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -101,5 +100,9 @@ h1{
 }
 
 .pricing-plan:hover {
-    outline: 2px solid rgb(212, 37, 5);
+    outline: 2px solid #f89623;
 }
+button:hover {
+    background-color: #f89623;
+}
+

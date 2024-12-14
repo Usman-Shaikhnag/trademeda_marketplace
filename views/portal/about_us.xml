@@ -73,7 +73,7 @@
                 <p class="red margin-top medium bold">Unlock Your Global Potential: Connect, Thrive and Succeed with
     Trademeda!</p>
                 <div class="" style="display:flex;gap:1rem">
-                    <img src="/trademeda/static/src/img/about1.png"/>
+                    <img src="/trademeda/static/src/img/about1.png" style="max-height:38vh;"/>
                     <div class="">
                         <p class="">Trademeda is a multifunctional online
     marketing platform designed to support
@@ -98,7 +98,7 @@
     envisioning, competing, and thriving in the business arena, with a steadfast
     emphasis on digitization as its foundational element. Together, we unlock
     boundless possibilities and accomplish success within the field of trade.</p>
-                <p class="red medium bold">Core Values:</p>
+                <p class="red left medium bold">Core Values:</p>
                 <p class="">At Trademeda, we believe in synergy, persistence and trade are at the core of
     everything we do. These values drive our operations. From responsibly
     sourcing eco-friendly materials to providing excellent customer support.</p>
@@ -117,7 +117,7 @@
     and trade in maintaining excellence in everything we do.</li>
 
                 </ul>
-                <p class="red medium bold">Brand Story:</p>
+                <p class="red left medium bold">Brand Story:</p>
                 <div class="" style="display:flex;gap:1rem">
                     <img src="/trademeda/static/src/img/abhishek.png" style="max-height:38vh"/>
                     <p class="">Trademeda originates from the vision of Mr. Abhishek
@@ -151,7 +151,7 @@ processes Opening up new opportunities and
 expanding market access Increase business
 potential in driving long-term growth in the
 global market.</p>
-                <img src="/trademeda/static/src/img/AU2.jpg"/>
+                <img src="/trademeda/static/src/img/AU2.jpg" style="max-height: 30vh;"/>
                 </div>
                 <div class="flex"><p class="red bold">What We Do:</p><p class="blue">“Connecting buyers and suppliers for your business.”</p></div>
                 <div class="">
@@ -202,7 +202,7 @@ negotiations, and successful transactions.</li>
 driving business success through seamless connections, secure
 transactions, and a continuously evolving platform designed to meet the
 demands of modern international trade.</p>
-                <p class="bold red medium">Our services:</p>
+                <p class="bold left red medium">Our services:</p>
                 <img src="/trademeda/static/src/img/P4.jpg"/>
                 <ul>
                     <li><span class="bold">Product Listings:</span>Businesses can list their products for visibility to
@@ -218,7 +218,7 @@ and services through various advertising tools.</li>
                     <li><span class="bold">E-commerce Solutions:</span>Services to help businesses set up and
 manage online stores.</li>
                 </ul>
-                <p class="red bold medium">Key features of Trademeda:</p>
+                <p class="red left bold medium">Key features of Trademeda:</p>
                 <img src="/trademeda/static/src/img/P3.jpg"/>
                 <ul>
                     <li><span class="bold">Global B2B Marketplace:</span>Trademeda serves as a vast online platform
@@ -264,7 +264,7 @@ efficient problem-solving, this feature reinforces relationships and
 promotes continuous improvement in all interactions.</li>
 
                 </ul>
-                <p class="bold red medium">Key Benefits and Value Proposition of Trademeda:</p>
+                <p class="bold left red medium">Key Benefits and Value Proposition of Trademeda:</p>
                 <ul>
                     <li><span class="bold">Global Market Access:</span>Trademeda brings together exporters,
 importers, traders, manufacturers, and wholesalers, making
@@ -321,10 +321,10 @@ the-go access to products or services, enhancing convenience,
 engagement, and customer loyalty through personalized experiences
 and real-time interactions.</li>
                 </ul>
-                <p class="red medium bold">Why Choose Trademeda?</p>
+                <p class="red medium left bold">Why Choose Trademeda?</p>
 
                 <div class="flex">
-                    <img src="/trademeda/static/src/img/P1.jpg" style="max-height: 50vh;max-width:50%;"/>
+                    <img src="/trademeda/static/src/img/P1.jpg" style="max-height: 50vh;max-width:45%;"/>
 
                     <div class="">
                         <ul>
@@ -351,10 +351,10 @@ guarantee high-quality connections.</li>
                 <p class="">Trademeda is your ideal partner for global marketing consulting. Our
 platform helps companies grow, succeed and thrive internationally. Join us
 today and experience the future of two global businesses.</p>
-                <p class="red medium bold">Contact Us:</p>
+                <div class="left"><p class="red xlarge bold">Contact Us:</p></div>
                 <ul>
-                    <li><span class="bold">E-mail:</span> info@trademeda.com</li>
-                    <li><span class="bold">Phone no.:</span> +91-7033295727</li>
+                    <li><span class="bold left large">E-mail:</span> info@trademeda.com</li>
+                    <li><span class="bold left large">Phone no.:</span> +91-7033295727</li>
                 </ul>
                 </main>
             </div>

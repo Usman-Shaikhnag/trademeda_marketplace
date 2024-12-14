@@ -16,9 +16,18 @@
             <div class="pricing-table">
                 <!-- Silver Plan -->
                 <div class="pricing-plan">
-                    <h2><span class="icon">★</span>15 Days</h2>
+                    <h2><span class="icon">★</span>
+                    <select onchange="select_plan(this)" style="width: 75%;min-height: 2rem;background: #fff;border: 2px solid lightgray;border-radius: 5px;">
+                        <option value="15000">15 Days</option>
+                        <option value="30000">30 Days</option>
+                        <option value="50000">50 Days</option>
+                        <option value="75000">75 Days</option>
+                        <option value="100000">100 Days</option>
+
+                    </select>
+                    </h2>
                     <p>Starts From</p>
-                    <div class="price">₹15000 + <small>18% GST*</small></div>
+                    <div class="price">₹<span id="price">15000</span> + <small>18% GST*</small></div>
                     <ul>
                         
                         <li><button class="get_started_btn">Get Started</button></li>
@@ -27,49 +36,16 @@
                 </div>
 
                 <!-- Gold Plan -->
-                <div class="pricing-plan best-value">
-                    <h2><span class="icon">★</span>30 Days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹23,999*<small>Total for 6 months (Only ₹4,000/month)</small></div>
-                    <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <!-- Gold+ Plan -->
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>50 Days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>75 days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
-
-                <div class="pricing-plan">
-                    <h2><span class="icon">★</span>100 Days</h2>
-                    <p>Starts From</p>
-                    <div class="price">₹29,999*<small>Total for 6 months (Only ₹5,000/month)</small></div>
-                    <ul>
-                        
-                        <li><button class="get_started_btn">Get Started</button></li>
-                    </ul>
-                </div>
+                
             </div>
 
         </main>
+        <script>
+            function select_plan(element) {
+                let selected_plan = element.value
+                document.getElementById('price').innerText = selected_plan
+            }
+        </script>
         </template>
     </data>
 </odoo>
