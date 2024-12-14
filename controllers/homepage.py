@@ -682,6 +682,24 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.brochure',vals)
     
+    @http.route('/terms_conditions', auth='public', website=True)
+    def terms_conditions(self, **kwargs):
+        user = request.env.user
+       
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.terms_conditions',vals)
+    
+    @http.route('/productListingPolicy', auth='public', website=True)
+    def productListingPolicy(self, **kwargs):
+        user = request.env.user
+       
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.product_listing',vals)
+    
     @http.route('/apply_testimony', auth='user', website=True)
     def applyTestimony(self, **kwargs):
         return request.render('trademeda.testimony_application')

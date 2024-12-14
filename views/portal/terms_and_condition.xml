@@ -1,0 +1,440 @@
+<odoo>
+    <data>
+        <template id="terms_conditions" name="Terms and Conditions">
+            <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/brochure.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/aboutus.css"/>
+
+            </xpath>
+            <t t-call="trademeda.header"/>
+            <main>
+                <h3 class="bold">TERMS AND CONDITIONS</h3>
+                <h3 class="bold">(THIS IS IMPORTANT-PLEASE READ)</h3>
+                <p class="">Before granting you access to the website, this website asks you to take into account and agree to
+certain conditions. In order to visit, read or interact with the website, you must read and accept
+the "Terms of use" and the provisions outlined in the "Privacy Policy".</p>
+                <p class="">Access to this site is only granted to those who have read and agreed to abide by the "Terms of
+Use" and the "Privacy Policy".</p>
+
+                <p class="">By accessing or engaging with this website, including any banners, pop-ups, or advertisements
+displayed on it, you are consenting to abide by all the terms and conditions stated here. Terms of
+use Policy and the Privacy Policy of this website.
+                </p>
+                <p class="">website, the ability to view or access the content on this site can be denied to anyone, regardless
+of the reason. Privacy Policy By agreeing to the terms and conditions of this website, you give
+consent for the collection and storage of data and information for various purposes including
+exclusion.</p>
+                <p class="">The terms of the agreement for using this website may be subject to change. It is the
+responsibility of visitors to stay updated on any modifications, as it is a condition for being
+granted permission to access and view the site.</p>
+                <ul><p class="bold">1. Definitions</p>
+                    <li>1.1 Trademeda and Its websites:
+Trademeda is a company responsible for owning and managing a series of websites,
+including the one you are currently on. The entire list of websites in our network can be
+found here. In this paragraph, the website, its agents, owners, operators, and employees
+are collectively referred to as "Website" or "Trademeda".</li>
+                    <li>1.2 Website content:
+The content found on a website refers to any information or data published on the site.
+This can include the website's design, layout, text, images, graphics, videos, web pages,
+hyperlinks, and any data submitted by users, such as trade leads, buy leads, trade offers,
+advertisements, etc. The content can come from the website itself or from third parties.</li>
+                    <li>1.3 Third Party Content:
+The content that is supplied or submitted by users or contributed by anonymous users or
+paid content providers on our website is known as Third Party Content. This
+
+encompasses items such as the company's name, address, contact information, profile
+information, trade leads, purchasing leads, catalogs, inquiries, and paid articles.</li>
+                    <li>1.4 Visitors:
+The term "Visitors" refers to individuals who visit or view this website, regardless of
+their intention or whether they were solicited or unsolicited.</li>
+                    <li>1.5 Subscribers:
+Those who are subscribed to lists or newsletters will be called "subscribers" in this
+document.</li>
+                    <li>1.6 Registered Members:
+Registration refers to when visitors or companies willingly provide information to this
+website, creating a unique LOGIN profile and becoming known as registered members.</li>
+                    <li>1.7 Paid Members:
+Paid Members are individuals who have registered on this website and had their payment
+accepted. Merely making a payment on our website is not sufficient; if this website does
+not accept the payment, the registered member cannot be considered a Paid Member.
+When the subscription term ends, a paid member will revert back to being a Registered
+Member if they do not renew their membership.</li>
+                    <li>1.8 Services:
+The term "Services" refers to any service or subscription offered or provided by this
+website, as well as the right to view or visit provided by this website.</li>
+                    <li>1.9 Users:
+The term "User" encompasses all individuals and organizations who use the service,
+including Registered Members, Paid Members, Visitors, and business entities eligible to
+enter into a contract.</li>
+                    <li>1.10 “Verified” Label:
+A "Verified" label on Buying Leads or RFQs indicates that the website staff has
+confirmed the owner’s intent to purchase. However, it does not imply endorsement or
+certification of the lead poster's credibility. Users should conduct their own research
+before engaging in business.</li>
+                    <li>1.11 Agreement:
+The term "Agreement" will be used to refer to this set of terms and conditions.</li>
+
+                </ul>
+                <ul><p class="bold">2. General</p>
+                    <li>2.1 This website serves as an online platform for user communication and does not
+facilitate or engage in negotiations, sales, or transactions between users.</li>
+                    <li>2.2 The agreement does not establish any type of partnership, collaboration,
+representation, franchising, employment, or buy-selling relationship between any user
+and the website.</li>
+                    <li>2.3 The titles provided in this agreement are solely for reference purposes and do not in
+any way establish, restrict, interpret, or explain the range or magnitude of that particular
+section.</li>
+                </ul>
+                <ul>
+                    <p class="bold">3. Parties to the Terms of Agreement</p>
+                    <li>3.1 The purpose of this agreement is to include all individuals who use this website, those
+who subscribe to paid or unpaid lists or newsletters, or those who are paid or unpaid
+affiliates.</li>
+                </ul>
+                <ul>
+                    <p class="bold">4. User Eligibility</p>
+                    <li>4.1 Visitors and users of this website must be of legal age to enter into contracts with
+others. By using this website, we assume that users possess the necessary legal
+competence to enter into binding agreements as per the laws of their own country.</li>
+                    <li>4.2 This website has the authority to refuse access to any user without providing a reason.
+Additionally, this website has the ability to assign varying degrees of access and
+privileges to different users.</li>
+                    <li>4.3 The website has the right to request Registered Members, whether they are Free or
+Paid Members, to provide KYC (Know Your Customer) documentation to verify the
+legitimacy and legal existence of the business they represent. Moreover, the website may
+also ask for appropriate Identity Proof documents. Additionally, the website may require
+Free or Paid Members to conduct live video or telephonic call verification (using
+WhatsApp, Google Meet, or a similar platform) or physical verification to confirm the
+identity of the account owner. These requests can be made at any time during the
+membership period, with or without prior notice.</li>
+                    <li>4.4 You can only access this website if you and the business you represent are not based,
+registered, or engaged in any business dealings with companies from countries or
+territories with which your country does not enemy or adverse relationship.</li>
+                    <li>4.5 Additionally, you confirm that neither you nor any companies affiliated with you, nor
+any individuals associated with you or your affiliated companies such as directors,
+administrators, officers, board members (supervisory and management), members, or
+employees, are currently being investigated or affected by any local or global sanctions.</li>
+                </ul>
+                <ul>
+                    <p class="bold">5. Specific services that have individual terms of use:</p>
+                    <li>5.1 If any part of the terms of use and/or Agreement is found to be invalid or
+unenforceable, that part will be disregarded and the rest of the provisions will still be
+valid and enforced.</li>
+                    <li>5.2 If any part of this agreement contradicts a specific part of another written agreement
+made by this website with a user, the terms of the other agreement will take precedence
+over the terms of this agreement. The rest of this agreement will still be valid and legally
+binding.</li>
+                </ul>
+                <ul>
+                    <p class="bold">6. Posting Information on Website</p>
+                    <li>6.1 By viewing the website, users acknowledge that any information they provide will be
+publicly accessible to all visitors and users of the website. The website will own and have
+the right to use any information submitted by users for commercial purposes, without
+needing further permission or compensation. Users agree to only share information with
+the website that they are willing to allow the website to use in any way, whether publicly
+or otherwise. Users cannot claim any rights, including copyrights, over such information.</li>
+                    <li>6.2 All Users confirm and consent that any information provided on this website will not:</li>
+                    <li>6.2.1 Break any relevant law, legislation, or rule.</li>
+                    <li>6.2.2 Include false information or make false offers.</li>
+                    <li>6.2.2 Include false information or make false offers.</li>
+                    <li>6.2.4 It is prohibited to express false accusations or statements that harm someone's
+reputation, engage in illegal intimidation or unwanted persistent interactions.</li>
+                    <li>6.2.5 It is prohibited to include any obscene, pornographic, or sexually suggestive
+material, as well as any content that promotes sexually explicit materials or may be
+harmful for minors.</li>
+                    <li>6.2.6 Encourage the act of discriminating against individuals on the basis of their race,
+gender, religion, nationality, disability, sexual orientation, or age.</li>
+                    <li>6.2.7 Include any content that is not allowed to be used for advertising or harassment,
+such as spamming. This also includes any content that intrudes on someone's privacy or
+encourages activities that are considered illegal or may result in legal consequences.</li>
+                    <li>6.2.8 Attempt to gain business from any User for a competing commercial enterprise
+through this website.</li>
+                    <li>6.2.9 Do not have any computer viruses or any harmful codes that can cause harm,
+disrupt, intercept, or take control of software, hardware systems, data, or personal
+information.</li>
+                    <li>6.2.10 Linking directly or indirectly to, or including descriptions of, goods or services
+that are not allowed by the current law.</li>
+                    <li>6.2.11 Otherwise, this website or its affiliates may incur liability.</li>
+                    <li>6.3 Users are strictly forbidden from sharing information with other users that is
+irrelevant to the recipients. This encompasses activities such as posting unrelated
+questions, trade proposals, and communication.</li>
+                    <li>6.4 If a user provides any information that violates this agreement, it can lead to actions
+being taken against the user. These actions may include removing the user's details from
+the database, preventing their communications, or terminating their access to services.</li>
+                </ul>
+                <ul>
+                    <p class="bold">7. Information Published on the Website</p>
+                    <li>7.1 The website does not take responsibility for the accuracy of its content. Users are
+fully responsible for the risks associated with viewing, reading, using, or relying upon the
+information provided. The website does not guarantee the accuracy of any information
+found here.</li>
+                    <li>7.2 The information that users submit to this website may not be published at the
+discretion of the site, and users do not have the right to demand that their information be
+published on this website.</li>
+                    <li>7.3 The content displayed on this website may be deleted by the website if it is deemed to
+be illegal, goes against the terms of this agreement, or is deemed inappropriate by the
+website's own judgment.</li>
+                </ul>
+                <ul>
+                    <p class="bold">8. Accessing Information from the Website</p>
+                    <li>8.1 Users acknowledge that the information on this website is solely for the
+purpose of connecting with potential interested parties, and they are not
+authorized to utilize the published data for commercial purposes. Users are
+prohibited from sharing, duplicating, downloading, printing, selling, or publishing
+any part of the website's content.</li>
+                    <li>8.2 By using this website, users confirm and agree not to use the information
+obtained from it for soliciting business related to a commercial activity that
+directly competes with this website.</li>
+                    <li>8.3 The ownership or licensing of the website and its contents belong to the
+website itself. The material found on the website is assumed to be protected by
+copyright and is considered proprietary. Users do not possess any rights to the
+content on the site. Any use of the website's content is against the law unless it is
+done with explicit consent or permission from the website.</li>
+                    <li>8.4 The website has the ability to change the level of access given to users for any
+content on the site, regardless of whether they have paid or not, without giving
+prior notice.</li>
+                    <li>8.5 If a user is found engaging in harmful activities to the website, such as
+fraudulent access or automated access to the database or content, or accessing
+
+information unrelated to their business profile, the website has the right to
+terminate their access and remove them from its database.</li>
+                    <li>8.6 Users are explicitly forbidden from using systematic or automated means to
+gather the website's content with the intention of generating or forming a
+collection, database, or directory, whether done manually or through automated
+devices like robots or spiders.</li>
+                    <li>8.7 All accounts on the website, regardless of whether they are paid or free, are
+intended for individual use only. Sharing your account information with another
+person or business, regardless of your relationship with them, is strictly
+prohibited. Failure to comply with this policy will result in administrative
+consequences such as account suspension and permanent blocking.</li>
+                    <li>8.8 If you make a business profile on a website and provide your business
+information from a specific location, it is expected that you will continue to
+access the account from the same location. However, if it is discovered that the
+account is being accessed from a different location or by a different entity,
+whether connected to your business or not, for any reason at all, your account may
+be suspended and permanently blocked. These administrative actions cannot be
+appealed.</li>
+                </ul>
+                <ul>
+                    <p class="bold">9. Repeated Similar Postings</p>
+                    <li>9.1 This website has the right to remove any user-created content that is repetitive
+or similar, whether it is posted manually or done through automated methods.
+This content includes, but is not limited to, company profiles, buy requirements,
+trade leads, and other offers. The website is not obligated to inform the user
+before removing this content.</li>
+                    <li>9.2 Users who engage in sending SPAM messages and sharing inappropriate
+information with other users on this website may be promptly removed from our
+database, without prior notice.</li>
+                </ul>
+
+                <ul>
+                    <p class="bold">10. Transactions between Users</p>
+                    <li>10.1 Users are being informed that there is a possibility of encountering
+individuals who are pretending to be someone they are not on this website. It is
+highly recommended and encouraged for users to be cautious and take necessary
+measures when interacting with other users on the website.</li>
+                    <li>10.2 Users understand and accept the possible dangers and uncertainties
+associated with buying and selling on the Site. They are fully responsible for any
+potential negative outcomes or damages that may arise from these transactions.
+These risks encompass various possibilities, such as false information about
+products and services, deceptive schemes, low-quality items, failure to meet
+required standards, defective or hazardous products, illegal products, delays or
+non-payment, inaccurate cost calculations, violations of warranty or contractual
+terms, and accidents related to transportation.</li>
+                </ul>
+                <ul>
+                    <p class="bold">11. Third-party links: </p><p class="">Please review the privacy policy and terms of use</p>
+                    <li>11.1 This website has the possibility of including hyperlinks that will direct users
+to content, products, and/or services offered by third parties, such as websites
+belonging to our member companies, among others. It is expected that users will
+read the privacy policies, terms of use, and/or terms and conditions of these
+websites before using them. It's important to note that this website has no
+authority or responsibility over these third party websites, and therefore we are
+not accountable to anyone for their websites, contents, products, or services.</li>
+                </ul>
+                <ul>
+                    <p class="bold">12. Spam</p>
+                    <li>12.1 When users provide their information, like an email address, to this website,
+they are giving up their right to complain about receiving unsolicited emails or
+spam. This is because they have agreed to receive communication from the
+website by providing their information.</li>
+                    <li>12.2 By sharing information on this website, users are also consenting to
+receiving communication and/or offers from other users of the site.</li>
+                    <li>12.3 The user has the option to inform the website that they no longer want to
+receive requests or information from the website or its other users. In this case,
+their name will be taken off the main database for requests, effectively
+unsubscribing them from the site's general request system.</li>
+                    <li>12.4 If a user informs this website that they want to stop receiving general
+solicitation emails, the website will make sure to remove the user's information
+from its database within 7 working days. Additionally, all communication from
+the website will cease within 15 working days after receiving the user's
+notification.</li>
+                    <li>12.5 Opting out of the general solicitation database will lead to a total halt in
+services provided by this website. This includes, but is not limited to, receiving
+
+sales opportunities, notifications about services, and communication from both
+this website and other users.</li>
+                </ul>
+                <ul>
+                    <p class="bold">13. Fraudulent Activities</p>
+                    <li>13.1 This website strictly prohibits any form of fraud or scamming. If this website
+becomes aware of a user engaging in fraudulent activities such as collecting email
+addresses to send spam, the user's account will be immediately suspended. There
+will be no refunds for unused membership.</li>
+                    <li>13.2 Users of this website must adhere to a strict policy regarding the use of the
+chat feature. Any individuals who attempt to provoke or use offensive language
+towards other members will not be tolerated. If it is discovered that a user is
+engaging in abusive behavior or making inappropriate sexual comments towards
+others, their account will be promptly suspended. Please note that no refunds will
+be given for any remaining time on their membership, regardless of the
+circumstances.</li>
+                </ul>
+                <ul>
+                    <p class="bold">14. Special Clause on Section 419 and other sections of IPC relating to Cheating, Scam,
+Fraud etc</p>
+                    <p>Please be aware of fraudulent activities such as 419 scams, lottery scams, advance fee
+scams, and sample scams.</p>
+                    <li>14.1 The website aims to prevent users or individuals who engage in the
+mentioned activities from accessing it. This is achieved by using information
+gathered from experts in internet security who are third party service providers.
+As a result, access to the website is denied to areas of the world where this kind of
+fraudulent behavior is common. The list of blocked IP addresses is dynamic and
+changes over time. Therefore, if a user or member sees a "403- Forbidden and
+access is denied" message, it means their connection's IP address has been
+identified as a high risk by our security partner and their access is temporarily
+restricted. Users and members are advised to check their access to the site before
+making any payment for premium membership.</li>
+                    <li>14.2 Furthermore, if this site identifies someone engaging in fraudulent activities,
+immediate action will be taken to prohibit their usage of the membership services
+provided.</li>
+                    <li>14.3 The website holds no responsibility or liability for any harm or loss
+experienced by users or members due to false individuals pretending to be buyers
+or suppliers.</li>
+                </ul>
+                <ul>
+                    <p class="bold">15. Delivery Policy</p>
+                    <li>15.1 Once a subscription or membership is activated, all the services offered by
+this website are accessed online. Therefore, the delivery of these services is
+exclusively done through online means. Upon membership activation, users can
+immediately begin utilizing all the services provided by this website. The website
+solely relies on online platforms such as the Internet and email to provide its
+services to clients.</li>
+                </ul>
+                <ul>
+                    <p class="bold">16. Refund and Cancellation Policy</p>
+                    <li>16.1 The Website offers a "No Refund Policy" that if a user has paid and bought a
+subscription, the website or company will not be held liable to refund money paid.
+The user may cancel paid subscription anytime, but in any case, website or
+company will not be pay any refund.</li>
+                </ul>
+                <ul>
+                    <p class="bold">17. Limitation of Liability</p>
+                    <li>17.1 The features and services on this website are provided in their current
+condition and availability, and this website explicitly denies any and all
+warranties, whether expressed or implied. This includes warranties of condition,
+quality, durability, performance, accuracy, reliability, merchantability, or fitness
+for a specific purpose. All such warranties, representations, conditions,
+undertakings, and terms are not included or guaranteed.</li>
+                    <li>17.2 This website does not guarantee or promise the validity, accuracy,
+correctness, reliability, quality, stability, completeness, or timeliness of any
+information available on or through the site.</li>
+                    <li>17.3 The website does not take any responsibility for any harm caused to the
+user's computer or software, or anyone the user communicates with, due to
+accidentally receiving corrupted code or data from the website. Users should
+
+understand that they view and interact with the site, as well as any banners, pop-
+ups, or advertisements displayed, at their own risk.</li>
+                    <li>17.4 The user bears the responsibility and potential risks when downloading
+information from this website. The website does not guarantee that the downloads
+are clear of harmful computer codes such as viruses and worms, among others.</li>
+                    <li>17.5 By accessing and engaging with this website in any way, such as interacting
+with its content, advertisements, or pop-ups, or downloading any materials, the
+user agrees to forfeit any claims for damages, regardless of the nature or extent of
+harm, whether it be physical or emotional, foreseeable or unforeseeable, and
+applicable to both personal and business matters. The user also acknowledges that
+this condition is a prerequisite for legally accessing and using the website.</li>
+                    <li>17.6 The user gives up any entitlement to seek compensation if, for any reason,
+this website is temporarily not functioning properly and displaying errors, such as
+"Site Not Working," "Portions Not Available," "Database Error," and so on.</li>
+                    <li>17.7 The User acknowledges that this website is not responsible for any damages
+or issues that may arise from using or relying on its services. The website
+specifically disclaims liability for any misleading or incorrect information in sales
+materials or product descriptions provided by users.</li>
+                </ul>
+                <ul>
+                    <p class="bold">18.</p><p>The following paragraph is about providing clear disclaimers regarding claims about
+results, income, or earnings in sales and promotional materials or success stories.</p>
+                    <li>18.1 If any assertions are made about the outcomes achieved by using this service
+or the income earned from using it (such as success stories or satisfied customers),
+these assertions are true for the individuals who have made them, including
+statements made by this website about its own experiences. However, users
+cannot solely rely on these statements as being able to be replicated by them, as
+there are various factors that can influence the results, including mere chance.
+Nothing advertised on this website should be interpreted as a fast and guaranteed
+method to become wealthy. The statements about income and earnings, if any, are
+likely to represent the more successful instances, and users should not consider
+them as the "average" or typical success story.</li>
+                    <li>18.2 If the user chooses to subscribe to a paid membership or a service that
+promises certain benefits or results and involves a recurring fee, they are
+permitted to cancel the membership or service by notifying this website.
+However, as stated in the refund policy, if they do terminate in this situation, they
+will not receive any refund.</li>
+                </ul>
+                <ul>
+                    <p class="bold">19. Indemnification</p>
+                    <li>19.1 The user acknowledges that if they cause any kind of damage, for which the
+Website is liable to pay, they must reimburse the Website for all expenses
+incurred as a condition for accessing the content.</li>
+                </ul>
+                <ul>
+                    <p class="bold">20. Intellectual Property rights</p>
+                    <li>20.1 Trademeda is the exclusive holder or authorized licensee of all the
+privileges to the website and its material. The web content includes valuable
+confidential information and intellectual property rights that are safeguarded by
+international copyright and other legislations. The ownership and intellectual
+property rights to the website and its content will continue to belong to
+Trademeda, its associated organizations, or licensors of Trademeda’s content,
+depending on the circumstances.</li>
+                    <li>20.2 Any rights that are not explicitly mentioned in this agreement are being
+reserved. The purpose of the information on this website is to give general
+knowledge to the reader for their personal use, and they are fully responsible for
+how they choose to use that information.</li>
+                    <li>20.3 The copyright for all content on this website belongs to Trademeda with the
+exception of any content provided by third parties or any links leading to third
+party websites on our site.</li>
+                </ul>
+                <ul>
+                    <p class="bold">21. Privacy Policy Accepted</p>
+                    <li>21.1 The User explicitly agrees to the conditions outlined in the Privacy Policy of
+this website.</li>
+                </ul>
+                <ul>
+                    <p class="bold">22. Modification</p>
+                    <li>22.1 Any changes to this Agreement must be made in writing and signed by both
+the Paid Members and this website. However, the website has the ability to
+modify this Agreement at any time for other users without notifying the current
+user.</li>
+                </ul>
+                <ul>
+                    <p class="bold">23. Jurisdiction and Applicable Law</p>
+                    <li>23.1 In the event that any issue related to this agreement is taken to court, the user
+acknowledges and accepts that the state of Bihar, India, will be the exclusive and
+appropriate jurisdiction for such matters. The user also agrees that the laws of
+India, will be the one applied in all instances. All disputes will be subject to
+jurisdiction of the Court, Patna, Bihar, India.</li>
+                </ul>
+                <ul>
+                    <p class="bold">24. Company Contact Information:</p>
+                    <li>Trademeda, B-96, P.C. Colony, Lohia Nagar, Kankarbagh, Patna, Bihar- 800020.</li>
+                </ul>
+
+
+            </main>
+        </template>
+    </data>
+</odoo>
