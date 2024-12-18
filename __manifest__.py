@@ -52,6 +52,9 @@
         'views/portal/brochure.xml',
         'views/portal/about_us.xml',
         'views/portal/testimony_application.xml',
+        'views/portal/terms_and_condition.xml',
+        'views/portal/product_listing_policy.xml'
+
 
 
 

@@ -1,0 +1,113 @@
+<odoo>
+    <data>
+        <template id="product_listing" name="Product Listing">
+            <xpath expr="." position="inside">
+                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+                <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/brochure.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/aboutus.css"/>
+
+            </xpath>
+            <t t-call="trademeda.header"/>
+            <main>
+                <h1>Product Listing Policy</h1>
+                <p>This Product Listing Policy explains the rules for listing products on Trademeda.com.
+Please review it carefully before registering your products on our site.</p>
+                <p>1. You must not list, sell, or purchase any items on Trademeda.com that are banned
+or restricted by any federal, state, or local law in any country.</p>
+                <p>2. The platform prohibits the trade of illegal products, items that infringe on
+intellectual property rights, or those that could easily be used for illegal purposes.</p>
+                <p>3. As a user of Trademeda, it is your responsibility to ensure the legality and
+permissibility of your listed products. Before adding any product, selling lead, or
+buying lead, you must confirm that your items comply with this policy.
+Trademeda has the right to remove any listings that violate these terms without
+prior notice and may disable accounts of users who repeatedly breach the policy
+after receiving warnings.</p>
+                <p class="bold">Prohibited Products</p>
+                <p>This section details items that are strictly forbidden on Trademeda.com:</p>
+                <ul>
+                    <p class="bold">1. Alcoholic Beverages</p>
+                    <li>The platform prohibits the sale of alcoholic beverages, including beer,
+wine, whisky, gin, vodka, and rum.</li>
+                </ul>
+                <ul>
+                    <p class="bold">2. Tobacco Products</p>
+                    <li>There is complete prohibition on sale of cigars, cigarettes, pipe
+tobacco, hookah tobacco, and chewing tobacco.</li>
+                    <li>While electronic cigarettes and accessories are permitted, nicotine and
+other e-liquids are banned.</li>
+                </ul>
+                <ul>
+                    <p class="bold">3. Medical Drugs and Devices</p>
+                    <li>Prescription medications, psychotropic drugs, and narcotics are not
+permitted.</li>
+                    <li>Sexual enhancement foods and supplementstaken orally are banned.</li>
+                    <li>The sale of unapproved drugs and medical devices is not allowed.</li>
+                </ul>
+                <ul>
+                    <p class="bold">4. Illegal Drugs and Paraphernalia</p>
+                    <li>The platform strictly bans the sale of narcotics, tranquilizers,
+psychotropic substances, both natural and synthetic drugs, steroids, and other
+controlled substances.</li>
+                    <li>Selling chemicals used in the production of drugs is also prohibited.</li>
+                </ul>
+                <ul>
+                    <p class="bold">5. Precious Metals</p>
+                    <li>The trade of gold, silver, and other precious metals (excluding jewelry) is
+banned.</li>
+                    <li>Rough diamonds and "conflict minerals" from countries that do not
+comply with international regulations are forbidden.</li>
+                </ul>
+                <ul>
+                    <p class="bold">6. Wildlife and Animal Products</p>
+                    <li>Products derived from wildlife, including pelts, skins, organs, teeth,
+claws, shells, bones, tusks, ivory, and similar items, are prohibited.</li>
+                </ul>
+                <ul>
+                    <p class="bold">7. Financial Services</p>
+                    <li>Services such as money transfers, bank guarantees, letters of
+credit, loans, fundraising, and personal investment services are not allowed.</li>
+                </ul>
+                <ul>
+                    <p class="bold">Other Prohibited Items</p>
+                    <li>Counterfeit currency and stamps</li>
+                    <li>Adult subscription or chatting services, contracts, and tickets are banned.</li>
+                    <li>Pornographic, erotic, and adult content, including pictures, videos,
+DVDs, magazines, toys, etc., is prohibited.</li>
+                    <li>Credit card services, credit repair services, applications for financial
+services or loans, and collection services are not allowed.</li>
+                    <li>The sale of mailing lists and personal information is not allowed.</li>
+                    <li>Items promoting hatred, racism, religious persecution, or products
+featuring nudity are not allowed</li>
+                    <li>Weapons such as firearms, ammunition, high-capacity magazines, stun
+guns, air guns, and military weapons are prohibited.</li>
+                    <li>Human body parts, fluids, and remains are not permitted.</li>
+                    <li>Job postings, lottery, raffle, and contest-related items are banned..</li>
+                    <li>Requests for donations are banned.</li>
+                    <li>Items that are Sanctioned and prohibited by regulations and authorities
+are not allowed.</li>
+                    <li>Unauthorized software, OEM or bundled software, spyware,
+spamware, e-mail advertising, opt-in, or any commercial messaging services
+are banned.</li>
+                </ul>
+                <ul>
+                    <p class="bold">9. Restricted Countries</p>
+                    <li>Trademeda prohibits users from countries listed on US and
+international sanctions lists. Accounts from these regions will be deleted
+without prior notice.</li>
+                </ul>
+                <p>By listing products on Trademeda.com, you agree to abide by this Product Listing
+Policy. Failure to comply may result in the removal of your listings and the
+suspension or termination of your account.</p>
+                <p class="bold">
+                10. Use of foul language, abusive language, harassment, bullying, hate speech,
+sexually implied content or any other type of language, content or action on
+Chatting, Discussion Forum or any other space on this website, which is
+prohibited by the law is strictly prohibited on this platform.</p>
+            </main>
+        </template>
+    </data>
+</odoo>
