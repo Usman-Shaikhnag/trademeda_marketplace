@@ -14,7 +14,7 @@
             <t t-call="trademeda.header"/>
             <div style="background-color: #f6f6f6;padding: 1rem 22%;">
                 <main>
-                    <!-- <div class="images">
+                    <div class="images">
                         <t t-foreach="env['trademeda.aboutus'].sudo().search([],order='sequence')" t-as="aboutus">
                             <t t-if="aboutus.get_image_src()">
                                 <div class="image-container">
@@ -23,8 +23,8 @@
                             </t>
                         </t>
                         
-                    </div> -->
-                    <div class="logo">
+                    </div>
+                    <!-- <div class="logo">
                         <img src="/trademeda/static/src/img/trademeda_logo1.png"/>
                     </div>
                     <div class="heading">
@@ -355,7 +355,7 @@ today and experience the future of two global businesses.</p>
                 <ul>
                     <li><span class="bold left large">E-mail:</span> info@trademeda.com</li>
                     <li><span class="bold left large">Phone no.:</span> +91-7033295727</li>
-                </ul>
+                </ul> -->
                 </main>
             </div>
         </template>
