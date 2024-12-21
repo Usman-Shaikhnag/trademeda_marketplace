@@ -22,6 +22,7 @@ body{
     gap: 1rem;
 }
 img {
+    width: 50vw;
     max-height: 45vh;
     object-fit: contain;
 }

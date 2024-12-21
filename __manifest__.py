@@ -26,6 +26,7 @@
         'views/pricing_plans.xml',
         'views/faqs.xml',
         'views/brochure_view.xml',
+        'views/trademeda_emails.xml',
 
 
         
