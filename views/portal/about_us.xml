@@ -12,7 +12,7 @@
 
             </xpath>
             <t t-call="trademeda.header"/>
-            <div style="background-color: #f6f6f6;padding: 1rem 22%;">
+            <div style="background-color: #fff;padding: 1rem;">
                 <main>
                     <div class="images">
                         <t t-foreach="env['trademeda.aboutus'].sudo().search([],order='sequence')" t-as="aboutus">

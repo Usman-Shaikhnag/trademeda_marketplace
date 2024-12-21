@@ -22,8 +22,9 @@ body{
     gap: 1rem;
 }
 img {
-    max-height: 45vh;
-    object-fit: contain;
+    width: 100vw; /* Full viewport width */
+    /* max-height: 100vh; */
+    object-fit: cover; 
 }
 .logo img{
     max-height: 200px;
