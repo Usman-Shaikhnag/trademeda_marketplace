@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="trademeda_email_view" model="ir.ui.view">
+            <field name="name">trademeda.email.form</field>
+            <field name="model">trademeda.email</field>
+            <field name="arch" type="xml">
+                <form string="Emails">
+                    <header>
+                    <button string="Send" name="sendMail" type="object" class="oe_highlight"/>
+
+                    </header>
+
+                    <group>
+                        <group >
+                            <field name="member_type" />
+                            <field name="subcategory" />
+
+                        </group>
+                         <group >
+                            <field name="subject" />
+                            <field name="message" />
+                            
+                        </group>
+                    </group>
+
+                       
+                   
+                </form>
+                
+            </field>
+        </record>
+
+    
+
+
+    </data>
+</odoo>

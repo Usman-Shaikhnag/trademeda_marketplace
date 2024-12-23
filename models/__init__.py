@@ -12,3 +12,4 @@ from . import pricing_plans
 from . import faqs
 from . import otp_verification
 from . import brochure
+from . import trademeda_emails
