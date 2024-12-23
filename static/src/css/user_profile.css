@@ -794,7 +794,7 @@ h2 {
     top: 0;
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(199,8,8,1); /* Border color */
+    border: 2px solid #07407a; /* Border color */
     border-radius: 50%; /* Circle shape */
     background-color: #fdfdfd; /* Background color */
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
@@ -802,8 +802,8 @@ h2 {
 
 /* Style for selected radio button */
 .radio-group input[type="radio"]:checked + label::before {
-    background-color: rgba(199,8,8,1); /* Fill color for selected state */
-    border-color: rgba(199,8,8,1); /* Border color for selected state */
+    background-color: #07407a; /* Fill color for selected state */
+    border-color: #07407a; /* Border color for selected state */
 }
 
 /* Inner dot for selected radio button */

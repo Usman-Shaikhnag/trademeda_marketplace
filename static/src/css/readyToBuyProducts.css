@@ -29,14 +29,13 @@ button {
     
   }
   .search input:focus{
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid #07407a;
   }
   
   .search button {
   
   
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    background: #07407a;
     border: none;
   
     cursor: pointer;
