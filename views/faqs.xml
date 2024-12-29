@@ -35,5 +35,34 @@
             </field>
         </record>
 
+        <record id="trademeda_mission_form_view" model="ir.ui.view">
+            <field name="name">trademeda.mission.form</field>
+            <field name="model">trademeda.mission</field>
+            <field name="arch" type="xml">
+                <form string="membership Pricelists">
+
+                    <group>
+                        <field name="mission_img" filename="img_name"/>
+                        <field name="img_name" invisible="1"/>
+                        
+                    </group>
+
+
+                       
+                </form>
+                
+            </field>
+        </record>
+
+        <record id="trademeda_mission_tree_view" model="ir.ui.view">
+            <field name="name">trademeda.mission.tree</field>
+            <field name="model">trademeda.mission</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="img_name"/>
+                </tree>
+            </field>
+        </record>
+
     </data>
 </odoo>

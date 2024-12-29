@@ -189,13 +189,24 @@
     </record>
 
     <record id="action_trademeda_emails" model="ir.actions.act_window">
-        <field name="name">About Us</field>
+        <field name="name">Emails</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">trademeda.emails</field>
+        <field name="res_model">trademeda.email</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Emails</p>
+        </field>
+    </record>
+
+    <record id="action_trademeda_mission" model="ir.actions.act_window">
+        <field name="name">Mission and Vision</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">trademeda.mission</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Mission and Vision</p>
         </field>
     </record>
 
@@ -222,6 +233,7 @@
     <menuitem id="submenu_brochure" name="Brochure" parent="submenu_pricing" action="action_trademeda_brochure" sequence="13"/>
     <menuitem id="submenu_aboutus" name="About Us" parent="submenu_pricing" action="action_trademeda_aboutus" sequence="14"/>
     <menuitem id="submenu_emails" name="Emails" parent="submenu_pricing" action="action_trademeda_emails" sequence="14"/>
+    <menuitem id="submenu_mission" name="Mission" parent="submenu_pricing" action="action_trademeda_mission" sequence="15"/>
 
 
     <menuitem id="submenu_faqs" name="FAQs" parent="menu_trademeda" action="action_trademeda_faqs" sequence="11"/>

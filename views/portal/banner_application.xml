@@ -31,6 +31,7 @@
                     <ul>
                         
                         <li><button class="get_started_btn">Get Started</button></li>
+                        <li><button class="get_started_btn">Notify Me <i class="fa-solid fa-bell"></i></button></li>
 
                     </ul>
                 </div>
