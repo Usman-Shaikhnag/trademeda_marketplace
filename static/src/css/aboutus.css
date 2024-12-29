@@ -22,9 +22,9 @@ body{
     gap: 1rem;
 }
 img {
-    width: 50vw;
-    max-height: 45vh;
-    object-fit: contain;
+    width: 100%; /* Full viewport width */
+    /* max-height: 100vh; */
+    object-fit: cover; 
 }
 .logo img{
     max-height: 200px;
@@ -57,6 +57,7 @@ img {
 }
 .bold {
     font-weight: 600;
+    color: #07407a;
 }
 .blue{
     color: #07407a;

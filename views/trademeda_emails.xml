@@ -8,11 +8,20 @@
             <field name="model">trademeda.email</field>
             <field name="arch" type="xml">
                 <form string="Emails">
+                    <header>
+                    <button string="Send" name="sendMail" type="object" class="oe_highlight"/>
+
+                    </header>
 
                     <group>
                         <group >
                             <field name="member_type" />
                             <field name="subcategory" />
+                            <field name="category" />
+                            <field name="attachment" finename="filename" />
+                            <field name="filename" invisible="1"/>
+
+                            
 
                         </group>
                          <group >

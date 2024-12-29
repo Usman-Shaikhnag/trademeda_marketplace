@@ -4,6 +4,7 @@ import base64
 import json
 from odoo.exceptions import ValidationError
 from datetime import timedelta, date
+import os
 
 class HomepageController(http.Controller):
 
@@ -724,3 +725,26 @@ class HomepageController(http.Controller):
             'logged_in':request.env.user != request.env.ref('base.public_user')
             }
         return request.render('trademeda.aboutus',vals)
+
+    @http.route('/portal/download_brochure', type='http', auth='public', website=True)
+    def download_brochure(self, **kwargs):
+        # Get the absolute path to the module directory
+        module_path = os.path.dirname(os.path.abspath(__file__)).split('/controllers')[0]
+        pdf_path = os.path.join(module_path, 'static', 'src', 'docs', 'brochure.pdf')
+
+        # Check if the file exists
+        if not os.path.exists(pdf_path):
+            return request.not_found()
+
+        # Read the content of the PDF file
+        with open(pdf_path, 'rb') as pdf_file:
+            pdf_content = pdf_file.read()
+
+        # Set the headers to serve the file as a downloadable attachment
+        headers = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Disposition', 'attachment; filename="brochure.pdf"'),
+        ]
+
+        # Return the response
+        return request.make_response(pdf_content, headers=headers)

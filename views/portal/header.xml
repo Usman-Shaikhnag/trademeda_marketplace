@@ -40,7 +40,7 @@
                             </t>
                             <t t-else="">
                                 <a style="text-decoration:none;" class="login_link"  t-attf-href="/signin"><b>Login</b></a>
-                                <a style="text-decoration:none;background-color: #07407a;color: #fff;padding: 0.5rem;border-radius: 5px;" class="signup_btn" t-attf-href="/signup"><b>Signup</b></a>
+                                <a style="text-decoration:none;background-color: #07407a;color: #fff;padding: 0.5rem;border-radius: 5px;" class="signup_btn" t-attf-href="/signup"><b>Join us</b></a>
 
                             </t>
                             

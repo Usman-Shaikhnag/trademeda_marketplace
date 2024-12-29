@@ -11,6 +11,11 @@ class TrademedaEmail(models.Model):
     ],string="Member Type")
 
     subcategory = fields.Many2one('product.subcategories',string="Subcategory")
+    category = fields.Many2one('product.categories',string="Category")
+
+    attachment = fields.Binary('Attachment')
+    filename = fields.Char('Filename')
+
     subject = fields.Char("Subject")
     message = fields.Text('Message')
 

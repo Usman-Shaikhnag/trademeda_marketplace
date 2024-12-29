@@ -14,6 +14,7 @@
             <t t-call="trademeda.header"/>
 
                 <div style="background-color: #fff;padding: 1rem;">
+                    <div class="download"><button href="/portal/download_brochure">Download</button></div>
                     <main>
                         <div class="images">
                             <t t-foreach="env['trademeda.brochure'].sudo().search([],order='sequence')" t-as="aboutus">
@@ -151,7 +152,7 @@ negotiations, and successful transactions.</li>
 
                     </ul>
                     <p class="red large margin-top">Our Services</p>
-                    <img src="/trademeda/static/src/img/p4.jpg" style="max-width:100%;"/>
+                    <img src="/trademeda/static/src/img/P4.jpg" style="max-width:100%;"/>
                     <ul>
                         <li><span class="bold">Product Listings:</span>Businesses can list their products for visibility to
     potential buyers.</li>
@@ -167,7 +168,7 @@ negotiations, and successful transactions.</li>
     manage online stores.</li>
                     </ul>
                     <p class="red large">Key features of Trademeda</p>
-                    <img src="/trademeda/static/src/img/p3.jpg" style="max-width:100%;"/>
+                    <img src="/trademeda/static/src/img/P3.jpg" style="max-width:100%;"/>
                     <ul>
                     <li><span class="bold">Global B2B Marketplace:</span>Trademeda serves as a vast online platform
 that connects buyers and suppliers from around the globe, facilitating

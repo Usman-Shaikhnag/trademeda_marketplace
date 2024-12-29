@@ -1,7 +1,7 @@
 body {
     /* background-color: cadetblue; */
     /* background:#8fb15f; */
-    background: blanchedalmond;
+    background: #74b3cd;
     font-family: 'Source Sans Pro', sans-serif;
 
 }
@@ -21,18 +21,18 @@ h1, h2{
 
 .sign-in .back {
     background:transparent;
-    color: rgba(199,8,8,1);
+    color: #07407a;
     border-radius: 5px;
-    border: 2px solid rgba(199,8,8,1);
+    border: 2px solid #07407a;
     cursor: pointer;
 }
 .back:hover{
-    border:2px solid rgba(199,8,8,1);
+    border:2px solid #07407a;
 }
 
 .sign-in-text {
     font-size: 1.5rem;
-    color: rgba(199,8,8,1);
+    color: #07407a;
 }
 .sign-in-text h3{
     margin-bottom: 0;
@@ -49,7 +49,7 @@ h1, h2{
     
     border-radius: 5px;
     width: 300px;
-    border: 2px solid rgba(199,8,8,1);
+    border: 2px solid #07407a;
     height: 55px;
 
 }
@@ -59,13 +59,13 @@ h1, h2{
     background: transparent;
     border: none;
     height: 100%;
-    color: rgba(199,8,8,1);
+    color: #07407a;
     font-size: 1.1rem;
     cursor: pointer;
 }
 
 .sign-in-btn button:hover{
-    background-color: rgba(199,8,8,1);
+    background-color: #07407a;
     color: #f2f2f2;
 }
 .sign-in-btn>button a {
@@ -77,7 +77,7 @@ h1, h2{
 .sign-up {
     display: block;
     background-color: #f6f6f6;
-    color:rgba(199,8,8,1);
+    color:#07407a;
     padding: 0% 8%;
     border-radius: 8px;
 }
@@ -115,8 +115,8 @@ h1, h2{
 } */
 
 
-.text-input input:focus{
-    border: 1px solid  rgba(199,8,8,1);
+.text-input input:focus,textarea:focus{
+    border: 1px solid  #f89623;
 }
 
 .radio-group {
@@ -147,7 +147,7 @@ h1, h2{
     top: 0;
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(199,8,8,1); /* Border color */
+    border: 2px solid #07407a; /* Border color */
     border-radius: 50%; /* Circle shape */
     background-color: #fdfdfd; /* Background color */
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
@@ -155,8 +155,8 @@ h1, h2{
 
 /* Style for selected radio button */
 .radio-group input[type="radio"]:checked + label::before {
-    background-color: rgba(199,8,8,1); /* Fill color for selected state */
-    border-color: rgba(199,8,8,1); /* Border color for selected state */
+    background-color: #f89623; /* Fill color for selected state */
+    border-color: #f89623; /* Border color for selected state */
 }
 
 /* Inner dot for selected radio button */
@@ -183,7 +183,7 @@ h1, h2{
     width: 100px;
     border: 2px solid white;
     height: 50px;
-    background-color: rgba(199,8,8,1);
+    background-color: #07407a;
 
 }
 .next-page-btn button{

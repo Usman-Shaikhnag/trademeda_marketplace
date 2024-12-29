@@ -1,27 +1,24 @@
 main {
-    background-color: #f6f6f6;
+    background-color: #fff;
     position: relative;
     font-family: 'Source Sans Pro', sans-serif;
 }
 body{
-    background-color: #f6f6f6;
-    font-family: Bookman Old Style;
+background-color: #fff;
+font-family: Bookman Old Style;
 
 }
 .images{
-    display: flex;
-    flex-direction: column;
-}
-img {
-    width: 60vw !important;
-    max-height: 100vh;
-    object-fit: contain;
+    display: block; /* Ensure normal document flow for stacking */
+    width: 100%;
+
 }
 .image-container {
-    display: flex;
-    width: 100%;
-    /* max-height: 100vh; */
-    justify-content: center;
+    position: relative; /* Isolate each container */
+    width: 100%; /* Occupy the full width of the viewport */
+    height: fit-content; /* Each image gets full viewport height */
+    overflow: hidden; /* Prevents overflow of images */
+    margin: 0;
 }
 .brochure-image{
     object-fit: contain;

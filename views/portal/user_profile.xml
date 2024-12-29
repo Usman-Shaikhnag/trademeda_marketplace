@@ -512,7 +512,7 @@
                                         <div class="">
                                             <select id="subscribe_product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="select_subcategory(this)">
                                                 <option value=''></option>
-                                                <t t-foreach="request.env['product.subcategories'].sudo().search([])" t-as="subcategory">
+                                                <t t-foreach="request.env['product.subcategories'].sudo().search([], order='name asc')" t-as="subcategory">
                                                     <option t-att-value="subcategory.id">
                                                         <t t-esc="subcategory.name" />
                                                     </option>
@@ -1575,8 +1575,7 @@
                                                 <!-- <img src="/trademeda/static/src/img/product_shampoo.png" class="product-image" alt="profile photo"/> -->
                                                 <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>
                                                 <t t-set="enquiries" t-value="env['product.enquiries'].sudo().search_count([('product_id','=',product.id)])"/>
-                                                <!-- <a style="text-decoration:none;color:rgba(199,8,8,1);margin-top:4px;" t-attf-href="/buyer/download_rtb_enquiries/{{product.id}}"><t t-esc="enquiries" /> Enquiries</a> -->
-                                                <span style="color:rgba(199,8,8,1);margin-top:4px;" onclick="show_rtb_enquiries(this)"><t t-esc="enquiries"/> Enquiries</span>
+                                                <span style="color:#07407a;margin-top:4px;" onclick="show_rtb_enquiries(this)"><t t-esc="enquiries"/> Enquiries</span>
                                             </div>
                                             <div class="product-details">
                                                 <span style="display:flex;justify-content: space-between;align-items:center;">

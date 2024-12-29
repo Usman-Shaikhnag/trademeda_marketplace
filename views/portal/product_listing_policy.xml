@@ -13,7 +13,7 @@
             </xpath>
             <t t-call="trademeda.header"/>
             <main>
-                <h1>Product Listing Policy</h1>
+                <h1 style="color:#07407a;">Product Listing Policy</h1>
                 <p>This Product Listing Policy explains the rules for listing products on Trademeda.com.
 Please review it carefully before registering your products on our site.</p>
                 <p>1. You must not list, sell, or purchase any items on Trademeda.com that are banned
