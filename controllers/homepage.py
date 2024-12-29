@@ -724,3 +724,16 @@ class HomepageController(http.Controller):
             'logged_in':request.env.user != request.env.ref('base.public_user')
             }
         return request.render('trademeda.aboutus',vals)
+
+    @http.route('/portal/download_brochure', type='http', auth='public', website=True)
+    def download_brochure(self, **kwargs):
+        pdf_path = '/trademeda/static/src/docs/brochure.pdf'
+        pdf_url = request.env['ir.http'].sudo()._get_static_file_path(pdf_path)
+        with open(pdf_url, 'rb') as pdf_file:
+            pdf_content = pdf_file.read()
+        
+        headers = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Disposition', 'attachment; filename="my_document.pdf"'),
+        ]
+        return request.make_response(pdf_content, headers=headers)

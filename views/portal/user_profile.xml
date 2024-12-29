@@ -512,7 +512,7 @@
                                         <div class="">
                                             <select id="subscribe_product_subsubcategory" name="product_subsubcategory" class="form-control" onchange="select_subcategory(this)">
                                                 <option value=''></option>
-                                                <t t-foreach="request.env['product.subcategories'].sudo().search([])" t-as="subcategory">
+                                                <t t-foreach="request.env['product.subcategories'].sudo().search([], order='name asc')" t-as="subcategory">
                                                     <option t-att-value="subcategory.id">
                                                         <t t-esc="subcategory.name" />
                                                     </option>

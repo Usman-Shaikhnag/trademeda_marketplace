@@ -22,7 +22,7 @@ body{
     gap: 1rem;
 }
 img {
-    width: 100vw; /* Full viewport width */
+    width: 100%; /* Full viewport width */
     /* max-height: 100vh; */
     object-fit: cover; 
 }
