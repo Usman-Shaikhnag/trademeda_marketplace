@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <template id="mission" name="Trademeda Mission">
+         <xpath expr="." position="inside">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet"/>
+            <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet"/> 
+            <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;display=swap" rel="stylesheet"/>  
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/mission.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+        <main class="">
+            <t t-if="mission">
+                <img t-att-src="mission.get_image_src()" alt="mission Image"/>
+            </t>
+            
+
+        </main>
+        </template>
+    </data>
+</odoo>

@@ -726,6 +726,17 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.aboutus',vals)
 
+    @http.route('/mission', auth='public', website=True)
+    def mission(self, **kwargs):
+        user = request.env.user
+        mission = request.env['trademeda.mission'].sudo().search([])
+        
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            'mission':mission
+            }
+        return request.render('trademeda.mission',vals)
+
     @http.route('/portal/download_brochure', type='http', auth='public', website=True)
     def download_brochure(self, **kwargs):
         # Get the absolute path to the module directory
