@@ -24,3 +24,14 @@ font-family: Bookman Old Style;
     object-fit: contain;
     max-width: 950px;
 }
+.download button{
+    padding: 0.5rem 2rem;
+    color: #fff;
+    background-color:#07407a;
+    border-radius: 5px;
+    border: none;
+}
+
+.download button:hover{
+    background-color: #f89623;
+}
