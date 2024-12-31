@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <template id="trustscore" name="Trademeda Trust Score">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/subcategories.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/aboutus.css"/>
+
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+        <main>
+            <h3 class="">Trademeda Trust Score: Key Insights</h3>
+            <h3>What is Your Trust Score?</h3>
+            <p>Your Trust Score on Trademeda indicates the credibility and reliability of your
+business in the eyes of potential partners. A higher score significantly boosts your
+chances of securing valuable business opportunities. You can improve your Trust
+Score by verifying your account, maintaining a detailed and up-to-date profile,
+presenting a thorough product catalog, and earning positive reviews from users you
+interact with.</p>
+            <h3>How is the Trust Score Calculated?</h3>
+            <p>The Trust Score is determined by a combination of buyer feedback, peer ratings, and
+the longevity of your account on the platform. While a perfect score of 10 is
+uncommon, there’s no need to worry if your score begins low. By regularly updating
+your profile, providing accurate information, and avoiding negative feedback, your
+Trust Score will gradually improve. Below are the key factors that contribute to your
+score.</p>
+        <ul>Factors for Earning Trust Points
+            <li>Receiving positive feedback and ratings from your peers.</li>
+            <li>Uploading relevant documentation and receiving ratings for it.</li>
+            <li>Verifying your profile by submitting necessary company documentation.</li>
+            <li>Listing products with high-quality images, detailed descriptions, and clear
+pricing.</li>
+            <li>The duration of your active profile on Trademeda.</li>
+            <li>Maintaining an active and uninterrupted Premium membership.</li>
+        </ul>
+        <ul>Factors for Losing Trust Points
+            <li>Receiving negative feedback or low ratings from peers.</li>
+        </ul>
+        <h3>Why Your Trust Score Matters</h3>
+        <p>Your Trust Score is an essential measure of your business’s reliability and
+trustworthiness. It plays a significant role in attracting inquiries from potential buyers
+on Trademeda. Moreover, your Trust Score positions you relative to other
+businesses on the platform: higher scores lead to better visibility in search results,
+resulting in greater opportunities for growth and business success.</p>
+        </main>
+        </template>
+    </data>
+</odoo>

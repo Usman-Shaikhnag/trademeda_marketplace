@@ -55,7 +55,8 @@
         'views/portal/testimony_application.xml',
         'views/portal/terms_and_condition.xml',
         'views/portal/product_listing_policy.xml',
-        'views/portal/mission.xml'
+        'views/portal/mission.xml',
+        'views/portal/trust_score.xml'
 
 
 
