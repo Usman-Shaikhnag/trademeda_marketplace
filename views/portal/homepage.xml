@@ -190,7 +190,7 @@
                                 <b><p class=""><a t-attf-href="/aboutus">About us</a></p></b>
                             </div>
                             <div class="value-card">
-                                <b><p class="">Mission and Vision</p></b>
+                                <b><p class=""><a t-attf-href="/mission">Mission and Vision</a></p></b>
                             </div>
                             <div class="value-card">
                                 <b><p class=""><a t-attf-href="/brochure">Trademeda company brochure</a></p></b>
