@@ -725,15 +725,22 @@ class HomepageController(http.Controller):
             'logged_in':request.env.user != request.env.ref('base.public_user')
             }
         return request.render('trademeda.aboutus',vals)
+    
+    @http.route('/trustscore', auth='public', website=True)
+    def trustscore(self, **kwargs):
+        user = request.env.user
+        
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.trustscore',vals)
 
     @http.route('/mission', auth='public', website=True)
     def mission(self, **kwargs):
         user = request.env.user
-        mission = request.env['trademeda.mission'].sudo().search([])
         
         vals = {
-            'logged_in':request.env.user != request.env.ref('base.public_user'),
-            'mission':mission
+            'logged_in':request.env.user != request.env.ref('base.public_user')
             }
         return request.render('trademeda.mission',vals)
 
