@@ -732,7 +732,7 @@ class HomepageController(http.Controller):
         mission = request.env['trademeda.mission'].sudo().search([])
         
         vals = {
-            'logged_in':request.env.user != request.env.ref('base.public_user')
+            'logged_in':request.env.user != request.env.ref('base.public_user'),
             'mission':mission
             }
         return request.render('trademeda.mission',vals)

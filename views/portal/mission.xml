@@ -12,8 +12,8 @@
 
         <t t-call="trademeda.header"/>
         <main class="">
-            <t t-if="mission">
-                <img t-att-src="mission.get_image_src()" alt="mission Image"/>
+            <t t-foreach="env['trademeda.mission'].sudo().search([])" t-as="vision">
+                <img t-att-src="'data:image/png;base64,' + vision.mission_img.decode('utf-8')" alt="mission Image"/>
             </t>
             
 
