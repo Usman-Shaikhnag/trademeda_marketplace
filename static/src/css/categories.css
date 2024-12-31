@@ -16,13 +16,13 @@ main {
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.1);
 }
 h2 {
-    color: rgb(199,8,8);
+    color: #07407a;
 }
 span {
     color: #333;
 }
 a {
     text-decoration: none;
-    color: rgb(199,8,8);
+    color: #07407a;
 
 }
