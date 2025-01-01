@@ -735,6 +735,15 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.trustscore',vals)
 
+    @http.route('/faqs', auth='public', website=True)
+    def faqpage(self, **kwargs):
+        user = request.env.user
+        
+        vals = {
+            'logged_in':request.env.user != request.env.ref('base.public_user')
+            }
+        return request.render('trademeda.faq_portal',vals)
+    
     @http.route('/mission', auth='public', website=True)
     def mission(self, **kwargs):
         user = request.env.user

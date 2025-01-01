@@ -1,0 +1,38 @@
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: #f6f6f6;
+    min-height: 100vh;
+}
+.faqs_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.faq_card{
+    padding:1rem;
+    width: 90%;
+    background-color: #fff;
+    height: fit-content;
+    max-height: 10vh;
+    border-radius: 8px;
+    border: 2px solid #f6f6f6;
+}
+.question{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+}
+.answer {
+    padding: 0 1rem;
+    display: none;
+}
+h1{
+    color: #07407a;
+    align-self: center;
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <template id="faq_portal" name="Trademeda FAQs">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+                <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/faq.css"/>
+
+            </xpath>
+            <t t-call="trademeda.header"/>
+            <main>
+                <h1>Frequently Asked Questions</h1>
+                <div class="faqs_list">
+                    <t t-foreach="env['trademeda.faqs'].sudo().search([])" t-as="faq">
+                        <div class="faq_card">
+                            <div class="question"><p><t t-esc="faq.question"/> </p><i class="fa-solid fa-angle-down" onclick="display_answer(this)"></i></div>
+                            <div class="answer"><t t-esc="faq.answer"/> </div>
+                        </div>
+                    </t>
+                </div>
+            </main>
+            <t t-call="trademeda.footer"/>
+            <script>
+                function display_answer(element) {
+                    const answerElement = element.parentElement.nextElementSibling;
+                    if (answerElement.style.display === "none" || answerElement.style.display === "") {
+                        answerElement.style.display = "block";
+                        element.classList.add('fa-angle-up');
+                        element.classList.remove('fa-angle-down');
+                    } else {
+                        answerElement.style.display = "none";
+                        element.classList.add('fa-angle-down');
+                        element.classList.remove('fa-angle-up');
+                    }
+                }
+            </script>
+
+        </template>
+    </data>
+</odoo>
+
+    
