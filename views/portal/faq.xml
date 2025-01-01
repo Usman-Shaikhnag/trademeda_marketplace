@@ -10,10 +10,12 @@
             <main>
                 <h1>Frequently Asked Questions</h1>
                 <div class="faqs_list">
-                    <div class="faq_card">
-                        <div class="question"><p>What is trademeda </p><i class="fa-solid fa-angle-down" onclick="display_answer(this)"></i></div>
-                        <div class="answer">Ecommerce Website</div>
-                    </div>
+                    <t t-foreach="env['trademeda.faqs'].sudo().search([])" t-as="faq">
+                        <div class="faq_card">
+                            <div class="question"><p><t t-esc="faq.question"/> </p><i class="fa-solid fa-angle-down" onclick="display_answer(this)"></i></div>
+                            <div class="answer"><t t-esc="faq.answer"/> </div>
+                        </div>
+                    </t>
                 </div>
             </main>
             <t t-call="trademeda.footer"/>
