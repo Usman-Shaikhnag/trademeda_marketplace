@@ -68,9 +68,7 @@ h2 {
 }
 
 .post_rfq button:hover{
-    outline: 2px solid #07407a;
-    color: #fff;
-    background-color: transparent;
+    background-color: #f89623;
 }
 
 .payment_terms_info{
