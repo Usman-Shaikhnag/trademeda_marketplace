@@ -166,6 +166,17 @@
         </field>
     </record>
 
+    <record id="action_trademeda_feedbacks" model="ir.actions.act_window">
+        <field name="name">Feedback</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.feedback</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Feedback</p>
+        </field>
+    </record>
+
     <record id="action_trademeda_brochure" model="ir.actions.act_window">
         <field name="name">Brochure</field>
         <field name="type">ir.actions.act_window</field>
@@ -226,17 +237,21 @@
     <menuitem id="submenu_awards" name="Awards" parent="menu_certificates" action="action_customer_awards" sequence="10"/>
     <menuitem id="submenu_certificates" name="Certificates" parent="menu_certificates" action="action_customer_certificates" sequence="11"/>
     <menuitem id="submenu_customer_testimony" name="Customer Testimony" parent="submenu_products" action="action_customer_testimony" sequence="14"/>
-    <menuitem id="submenu_banners" name="Banners" parent="menu_trademeda" action="action_trademeda_banner" sequence="12"/>
+    <menuitem id="menu_banners" name="Banners" parent="menu_trademeda"  sequence="12"/>
+    <menuitem id="submenu_banners" name="Banners" parent="menu_banners" action="action_trademeda_banner" sequence="12"/>
+    
     <menuitem id="submenu_pricing" name="Pricing" parent="menu_trademeda" sequence="10"/>
     <menuitem id="submenu_banners_pricing" name="Banners" parent="submenu_pricing" action="action_trademeda_banner_pricing" sequence="1"/>
     <menuitem id="submenu_membership_pricing" name="Membership" parent="submenu_pricing" action="action_trademeda_membership_pricing" sequence="2"/>
-    <menuitem id="submenu_brochure" name="Brochure" parent="submenu_pricing" action="action_trademeda_brochure" sequence="13"/>
-    <menuitem id="submenu_aboutus" name="About Us" parent="submenu_pricing" action="action_trademeda_aboutus" sequence="14"/>
-    <menuitem id="submenu_emails" name="Emails" parent="submenu_pricing" action="action_trademeda_emails" sequence="14"/>
-    <menuitem id="submenu_mission" name="Mission" parent="submenu_pricing" action="action_trademeda_mission" sequence="15"/>
+    <menuitem id="submenu_brochure" name="Brochure" parent="menu_banners" action="action_trademeda_brochure" sequence="13"/>
+    <menuitem id="submenu_aboutus" name="About Us" parent="menu_banners" action="action_trademeda_aboutus" sequence="14"/>
+    <menuitem id="submenu_emails" name="Emails" parent="menu_banners" action="action_trademeda_emails" sequence="14"/>
+    <menuitem id="submenu_mission" name="Mission" parent="menu_banners" action="action_trademeda_mission" sequence="15"/>
 
 
     <menuitem id="submenu_faqs" name="FAQs" parent="menu_trademeda" action="action_trademeda_faqs" sequence="11"/>
+    <menuitem id="submenu_feedbacks" name="Feedbacks" parent="menu_trademeda" action="action_trademeda_feedbacks" sequence="11"/>
+
 
 
 </odoo>

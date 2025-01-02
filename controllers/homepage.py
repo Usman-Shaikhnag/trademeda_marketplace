@@ -704,6 +704,10 @@ class HomepageController(http.Controller):
     @http.route('/apply_testimony', auth='user', website=True)
     def applyTestimony(self, **kwargs):
         return request.render('trademeda.testimony_application')
+    
+    @http.route('/feedback', auth='user', website=True)
+    def applyFeedback(self, **kwargs):
+        return request.render('trademeda.feedback_application')
 
 
     @http.route('/submit_testimony', type='http', auth='user', methods=['POST'], csrf=False)
@@ -713,6 +717,17 @@ class HomepageController(http.Controller):
         testimony = kw.get('testimony')
         request.env['customer.testimony'].sudo().create({
             'testimony':testimony,
+            'partner_id':partner_id.id
+        })
+        return request.render('trademeda.homepage')
+    
+    @http.route('/submit_feedback', type='http', auth='user', methods=['POST'], csrf=False)
+    def submit_feedback(self, **kw):
+        user = request.env.user
+        partner_id = user.partner_id
+        feedback = kw.get('feedback')
+        request.env['customer.feedback'].sudo().create({
+            'feedback':feedback,
             'partner_id':partner_id.id
         })
         return request.render('trademeda.homepage')

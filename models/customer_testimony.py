@@ -8,3 +8,10 @@ class CustomerTestimony(models.Model):
     rating = fields.Integer("Rating")
     testimony = fields.Text("testimony")
     display = fields.Boolean('Display on Homepage')
+
+class CustomerFeedback(models.Model):
+    _name = 'customer.feedback'
+  
+
+    partner_id = fields.Many2one('res.partner',string="Customer")
+    feedback = fields.Text("Feedback")

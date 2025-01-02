@@ -47,4 +47,32 @@
             </tree>
         </field>
     </record>
+
+
+    <record id="customer_feedback_form" model="ir.ui.view">
+        <field name="name">customer.feedback.form</field>
+        <field name="model">customer.feedback</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="feedback"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for customer.feedback -->
+    <record id="customer_feedback_tree" model="ir.ui.view">
+        <field name="name">customer.feedback.tree</field>
+        <field name="model">customer.feedback</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="feedback"/>
+
+                
+            </tree>
+        </field>
+    </record>
 </odoo>

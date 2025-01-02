@@ -30,8 +30,13 @@ font-family: Bookman Old Style;
     background-color:#07407a;
     border-radius: 5px;
     border: none;
+    
 }
 
 .download button:hover{
     background-color: #f89623;
+}
+.download {
+    display: flex;
+    justify-content: flex-end;
 }

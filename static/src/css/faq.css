@@ -26,6 +26,9 @@ main {
     justify-content: space-between;
     padding: 0 1rem;
     align-items: center;
+    color: #07407a;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 .answer {
     padding: 0 1rem;
