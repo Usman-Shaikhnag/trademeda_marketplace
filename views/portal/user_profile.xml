@@ -154,7 +154,7 @@
                             <div class="menu-item">
                                 <!-- <img src="/trademeda/static/src/img/membership.png" alt="" class="icons"/> -->
                                 <i class="fas fa-credit-card" /> 
-                                <span class="">Membership</span>
+                                <span onclick="enable_membership_tab(this)" class="">Membership</span>
                             </div>
                             <div class="menu-item">
                                 <!-- <img src="/trademeda/static/src/img/faq.png" alt="" class="icons"/> -->
@@ -2590,6 +2590,7 @@
                             <div>
                                 <div class="edit-profile-text" style="text-align: center;">
                                     <h1>Membership</h1>
+                                    <div class=""><t t-esc="partner.subscription_remaining"/> Days Remaining</div>
                                 </div>
                             </div>
                             
@@ -2618,6 +2619,23 @@
                     document.getElementById('suppliers_quotation_management').style.display = 'none'
                     document.getElementById('notification_management').style.display = 'none'
                     document.getElementById('membership_management').style.display = 'none'
+
+
+                function enable_membership_tab(){
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'none'
+                    document.getElementById('membership_management').style.display = 'flex'
+                }
 
 
 

@@ -94,6 +94,11 @@ class ResPartner(models.Model):
     tax_id_proof_name = fields.Char(string="Tax Id Proof Name")
     tax_id_proof_verified = fields.Boolean(string="")
 
+    phone_verified = fields.Boolean(string="Phone")
+
+    
+    subscription_remaining = fields.Integer("Subscription Remaining Days", default=365)
+
 
     news_title = fields.Char("News Title")
     news_image1 = fields.Binary('News Image1')
@@ -130,6 +135,12 @@ class ResPartner(models.Model):
     def _reset_quotation(self):
         for record in self:
             record.quotations_left = 1
+
+    @api.model
+    def _update_subscription(self):
+        for record in self:
+            if record.subscription_remaining != 0:
+                record.subscription_remaining = record.subscription_remaining - 1
 
 
     @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')

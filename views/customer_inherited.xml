@@ -106,12 +106,15 @@
                             <field name="prior_import_export_name" invisible="1"/>
                             <field name="tax_id_proof" filename="tax_id_proof_name"/>
                             <field name="tax_id_proof_name" invisible="1"/>
+                            <field name="phone_verified" string="Phone Verified"/>
                         </group>
                         <group>
                             <field name="trading_license_verified" string="Verified"/>
                             <field name="prior_import_export_verified" string="Verified"/>
                             <field name="tax_id_proof_verified" string="Verified"/>
                         </group>
+
+
 
                     </group>
                 </group>
@@ -246,6 +249,12 @@
             <field name="logo_image" filename="logo_image_name"/>
             <field name="logo_image_name" invisible="1"/>
             <field name="is_admin"/>
+
+
+        </xpath>
+        <xpath expr="//div[@class='o_address_format']" position="after">
+                
+                <field name="subscription_remaining" string="Subscription Remaining days"/>
 
 
         </xpath>

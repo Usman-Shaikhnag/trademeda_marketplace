@@ -40,5 +40,15 @@
             <field name="numbercall">-1</field> <!-- Run indefinitely -->
             <field name="active">True</field>
         </record>
+
+        <record id="ir_cron_update_subscription" model="ir.cron">
+            <field name="name">Update Subscription</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">model._reset_quotation()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
     </data>
 </odoo>
