@@ -877,7 +877,12 @@ h2 {
 #rtb_enquiry_management{
     display: none;
 }
-
+#supplier_quotations_received_download,
+#buyer_quotations_received_download,
+#supplier_quotations_sent_download,
+#buyer_quotations_sent_download{
+    display: none;
+}
 #supplier_quotations_sent_table,
 #buyer_quotations_sent_table,
 #buyer_single_quotations_received_table,
