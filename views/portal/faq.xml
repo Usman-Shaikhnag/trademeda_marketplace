@@ -21,13 +21,21 @@
             <t t-call="trademeda.footer"/>
             <script>
                 function display_answer(element) {
-                    const answerElement = element.parentElement.nextElementSibling;
+                    // Find the nearest '.answer' sibling within the same card
+                    const answerElement = element.closest('.faq_card').querySelector('.answer');
+
                     if (answerElement.style.display === "none" || answerElement.style.display === "") {
+                        // Show the answer
                         answerElement.style.display = "block";
+
+                        // Update icon to 'up'
                         element.classList.add('fa-angle-up');
                         element.classList.remove('fa-angle-down');
                     } else {
+                        // Hide the answer
                         answerElement.style.display = "none";
+
+                        // Update icon to 'down'
                         element.classList.add('fa-angle-down');
                         element.classList.remove('fa-angle-up');
                     }

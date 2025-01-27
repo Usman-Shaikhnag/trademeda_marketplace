@@ -11,6 +11,8 @@ class Brochure(models.Model):
     image_name = fields.Char('Image Name')
     sequence = fields.Integer('Sequence')
     
+    brochure = fields.Binary("Brochure")
+    brochure_filename = fields.Char('Filename')
 
     def get_image_src(self):
         # import wdb;wdb.set_trace()
@@ -32,6 +34,8 @@ class AboutUs(models.Model):
     aboutus_image = fields.Binary('Brochure Image')
     image_name = fields.Char('Image Name')
     sequence = fields.Integer('Sequence')
+
+    
     
 
     def get_image_src(self):

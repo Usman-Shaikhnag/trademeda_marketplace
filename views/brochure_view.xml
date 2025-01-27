@@ -13,6 +13,8 @@
                         <field name="sequence" />
                         <field name="brochure_image" filename="image_name"/>
                         <field name="image_name" />
+                        <field name="brochure" string="Brochure" filename="brochure_filename"/>
+                        <field name="brochure_filename" invisible="1" />
                         
                     </group>
 

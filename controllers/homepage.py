@@ -159,8 +159,8 @@ class HomepageController(http.Controller):
                 # Create the partner first
                 partner_data = {
                     'name': kw.get('company_name'),
-                    # 'membership_state': 'free',
-                    # 'free_member': True,
+                    'membership_state': 'free',
+                    'free_member': True,
                     'company_type': 'company',
                     'member_type': kw.get('role'),
                     'supplier_products': kw.get('supplier_textarea'),
@@ -768,25 +768,27 @@ class HomepageController(http.Controller):
             }
         return request.render('trademeda.mission',vals)
 
-    @http.route('/portal/download_brochure', type='http', auth='public', website=True)
+    @http.route('/download_brochure', type='http', auth='public', website=True)
     def download_brochure(self, **kwargs):
-        # Get the absolute path to the module directory
-        module_path = os.path.dirname(os.path.abspath(__file__)).split('/controllers')[0]
-        pdf_path = os.path.join(module_path, 'static', 'src', 'docs', 'brochure.pdf')
 
-        # Check if the file exists
-        if not os.path.exists(pdf_path):
+        brochure_record = request.env['trademeda.brochure'].sudo().search([('sequence', '=', 1)], limit=1)
+
+        
+        if brochure_record and brochure_record.brochure:
+            # Get the binary content of the brochure
+            pdf_content = brochure_record.brochure
+
+            filename = brochure_record.brochure_filename  or "brochure.pdf"
+
+            # Set the headers to serve the file as a downloadable attachment
+            # import wdb;wdb.set_trace()
+            headers = [
+                ('Content-Type', 'application/pdf'),
+                ('Content-Disposition', 'attachment; filename={filename}'),
+            ]
+
+            # Return the response
+            return request.make_response(pdf_content, headers=headers)
+        else:
+            # Return a 404 error if no brochure is found
             return request.not_found()
-
-        # Read the content of the PDF file
-        with open(pdf_path, 'rb') as pdf_file:
-            pdf_content = pdf_file.read()
-
-        # Set the headers to serve the file as a downloadable attachment
-        headers = [
-            ('Content-Type', 'application/pdf'),
-            ('Content-Disposition', 'attachment; filename="brochure.pdf"'),
-        ]
-
-        # Return the response
-        return request.make_response(pdf_content, headers=headers)

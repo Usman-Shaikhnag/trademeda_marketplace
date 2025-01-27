@@ -154,7 +154,7 @@
                             <div class="menu-item">
                                 <!-- <img src="/trademeda/static/src/img/membership.png" alt="" class="icons"/> -->
                                 <i class="fas fa-credit-card" /> 
-                                <span class="">Membership</span>
+                                <span onclick="enable_membership_tab(this)" class="">Membership</span>
                             </div>
                             <div class="menu-item">
                                 <!-- <img src="/trademeda/static/src/img/faq.png" alt="" class="icons"/> -->
@@ -2038,22 +2038,53 @@
                                 <button onclick="buyer_quotations_received(this)" class="">Received</button>
 
                             </div>
-                            <div id="buyer_quotations_sent" class="">
+                            <div id="buyer_quotations_sent_download" class="">
                                 <form action="/buyer/rfqs_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div id="buyer_quotations_sent" class="">
+                                
                                 
                                 <table id="buyer_quotations_sent_table">
                                     <thead>
                                         <tr>
                                             <!-- <th>Quotation No</th> -->
-                                            <th>Product</th>
-                                            <th>Supplier</th>
                                             <th>Email</th>
                                             <th>Phone</th>
+                                            <th>Country</th>
+                                            <th>Contact Person Name</th>
                                             <th>Message</th>
+                                            <th>Company Name</th>
+                                            <th>Nature of Business</th>
+                                            <th>Company Website URL</th>
+                                            <th>Product</th>
+                                            <th>Minimum Order Quantity (MOQ)</th>
+                                            <th>Unit</th>
+                                            <th>Product Description</th>
+                                            <th>Target Price</th>
+                                            <th>Currency</th>
+                                            <th>Shipping Terms</th>
+                                            <th>Payment Terms</th>
+                                            <th>Looking for Suppliers from</th>
+                                            <th>Primary Business</th>
+                                            <th>Establishment Year</th>
+                                            <th>Annual Sales in USD (Approx)</th>
+                                            <th>Number of Employees</th>
+                                            <th>Your Name</th>
+                                            <th>Designation</th>
+                                            <th>Address</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Zip/Postal Code</th>
+                                            <th>Country Code</th>
+                                            <th>Area Code</th>
+                                            <th>Phone Number</th>
+                                            <th>Email Address</th>
+                                            <th>Date</th>
 
                                         </tr>
                                         
@@ -2067,32 +2098,121 @@
                                             
                                                 </td> -->
                                                 <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="rtb.product_id.partner_id.name" />
-                                                </td>
-                                                
-                                                <td>
                                                     <t t-esc="rtb.email" />
                                                 </td>
                                                 <td>
                                                     <t t-esc="rtb.phone" />
                                                 </td>
                                                 <td>
+                                                    <t t-esc="rtb.product_id.partner_id.country_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.product_id.partner_id.name" />
+                                                </td>
+                                                <td>
                                                     <t t-esc="rtb.message" />
                                                 </td>
+                                                <td>
+                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
+                                                </td>
+                                                
+                                                
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc=""/>
+                                                </td>
+                                                
                                             </tr>
                                         </t>
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="buyer_quotations_received" class="">
+                            <div id="buyer_quotations_received_download" class="">
                                 <form action="/buyer/rfq_received" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div id="buyer_quotations_received" class="">
+                                
                                 <table id="buyer_quotations_received_table" style="min-width:3000px">
                                     <thead>
                                         <tr>
@@ -2245,12 +2365,16 @@
                                 <button onclick="supplier_quotations_received(this)" class="">Received</button>
 
                             </div>
-                            <div id="supplier_quotations_sent" class="">
+                            <div id="supplier_quotations_sent_download" class="">
                                 <form action="/supplier/rfq_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
+                            </div>
+
+                            <div id="supplier_quotations_sent" class="">
+                                
                                 <table id="supplier_quotations_sent_table" style="min-width:3000px">
                                     <thead>
                                         <tr>
@@ -2392,12 +2516,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="supplier_quotations_received" class="">
+                            <div id="supplier_quotations_received_download" class="">
                                 <form action="/supplier/rfq_received" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
                                     </div>
                                 </form>
+                            </div>
+                            <div id="supplier_quotations_received" class="">
+                                
                                 <table id="supplier_quotations_received_table">
                                     <thead>
                                         <tr>
@@ -2590,6 +2717,7 @@
                             <div>
                                 <div class="edit-profile-text" style="text-align: center;">
                                     <h1>Membership</h1>
+                                    <div class=""><t t-esc="partner.subscription_remaining"/> Days Remaining</div>
                                 </div>
                             </div>
                             
@@ -2620,11 +2748,31 @@
                     document.getElementById('membership_management').style.display = 'none'
 
 
+                function enable_membership_tab(){
+                    document.getElementById('company_details').style.display = 'none'
+                    document.getElementById('contact_details').style.display = 'none'
+                    document.getElementById('add_new_product_form').style.display = 'none'
+                    document.getElementById('product_management').style.display = 'none'
+                    document.getElementById('news_management').style.display = 'none'
+                    document.getElementById('user_management').style.display = 'none'
+                    document.getElementById('readyToShip_management').style.display = 'none'
+                    document.getElementById('quotation_management').style.display = 'none'
+                    document.getElementById('edit_profile_form').style.display = 'none'
+                    document.getElementById('buyers_quotation_management').style.display = 'none'
+                    document.getElementById('suppliers_quotation_management').style.display = 'none'
+                    document.getElementById('notification_management').style.display = 'none'
+                    document.getElementById('membership_management').style.display = 'flex'
+                }
+
+
 
 
                 function supplier_quotations_sent(element){
                     document.getElementById('supplier_quotations_received').style.display = 'none'
                     document.getElementById('supplier_quotations_sent').style.display = 'block'
+
+                    document.getElementById('supplier_quotations_received_download').style.display = 'none'
+                    document.getElementById('supplier_quotations_sent_download').style.display = 'block'
 
                     element.classList.add('active')
                     element.nextElementSibling.classList.remove('active')
@@ -2632,6 +2780,9 @@
                 function supplier_quotations_received(element){
                     document.getElementById('supplier_quotations_sent').style.display = 'none'
                     document.getElementById('supplier_quotations_received').style.display = 'block'
+
+                    document.getElementById('supplier_quotations_sent_download').style.display = 'none'
+                    document.getElementById('supplier_quotations_received_download').style.display = 'block'
 
                     element.classList.add('active')
                     element.previousElementSibling.classList.remove('active')
@@ -2643,7 +2794,9 @@
 
                 function buyer_quotations_sent(element){
                     document.getElementById('buyer_quotations_received').style.display = 'none'
+                    document.getElementById('buyer_quotations_received_download').style.display = 'none'
                     document.getElementById('buyer_quotations_sent').style.display = 'block'
+                    document.getElementById('buyer_quotations_sent_download').style.display = 'block'
 
                     element.classList.add('active')
                     element.nextElementSibling.classList.remove('active')
@@ -2651,6 +2804,9 @@
                 function buyer_quotations_received(element){
                     document.getElementById('buyer_quotations_sent').style.display = 'none'
                     document.getElementById('buyer_quotations_received').style.display = 'block'
+                    document.getElementById('buyer_quotations_received_download').style.display = 'block'
+                    document.getElementById('buyer_quotations_sent_download').style.display = 'none'
+
 
                     element.classList.add('active')
                     element.previousElementSibling.classList.remove('active')

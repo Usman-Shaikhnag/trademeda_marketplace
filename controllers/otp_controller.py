@@ -18,7 +18,7 @@ class OTPController(http.Controller):
             'subject': 'Your OTP Code',
             'body_html': f'<p>Your OTP is: <strong>{otp}</strong>. It expires in 10 minutes.</p>',
             'email_to': request.httprequest.json['email'],
-            'email_from': 'usman.shaikhnag@esehat.org',
+            'email_from': 'info@trademeda.com',
         })
         mail.send()
 

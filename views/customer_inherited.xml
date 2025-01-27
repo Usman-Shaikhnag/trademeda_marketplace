@@ -252,6 +252,12 @@
 
 
         </xpath>
+        <xpath expr="//div[@class='o_address_format']" position="after">
+                
+                <field name="subscription_remaining" string="Subscription Remaining days"/>
+
+
+        </xpath>
         
     </field>
 </record>
