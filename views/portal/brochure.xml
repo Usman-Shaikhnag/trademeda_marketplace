@@ -14,7 +14,7 @@
             <t t-call="trademeda.header"/>
 
                 <div style="background-color: #fff;padding: 1rem;">
-                    <div class="download"><button href="/portal/download_brochure">Download</button></div>
+                    <div class="download"><a href="portal/download_brochure"><button >Download</button></a></div>
                     <main>
                         <div class="images">
                             <t t-foreach="env['trademeda.brochure'].sudo().search([],order='sequence')" t-as="aboutus">

@@ -17,7 +17,7 @@ main {
     width: 90%;
     background-color: #fff;
     height: fit-content;
-    max-height: 10vh;
+    /* max-height: 10vh; */
     border-radius: 8px;
     border: 2px solid #f6f6f6;
 }
@@ -33,6 +33,7 @@ main {
 .answer {
     padding: 0 1rem;
     display: none;
+    font-size: 1.1rem;
 }
 h1{
     color: #07407a;

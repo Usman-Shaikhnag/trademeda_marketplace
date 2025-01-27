@@ -201,6 +201,7 @@
                                                 <div class="product-title">
                                                     <span class="flag-icon"></span>
                                                     <h2><a class="product_title" style="text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                                    
                                                 </div>
                                                 <div class="status-icons">
                                                     <span class="status-icon"></span>
@@ -208,7 +209,133 @@
                                                 </div>
                                             </div>
                                             <div class="product-supplier">
-                                                <b><a class="product_title" t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                               <b style="display: flex;gap: 1rem;align-items: center;justify-content: flex-start;">
+                                                    <a class="product_title" t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="text-decoration:underline;cursor:pointer;">
+                                                        <t t-esc="product.partner_id.name"/>
+                                                    </a>
+                                                    <span onclick="show_verification_popup(this)" style="cursor: pointer;">
+                                                        <i class="fa-solid fa-square-check" style="color: #238e09;"></i>
+                                                        <span>Verified</span>
+                                                    </span>
+                                                </b>
+                                                <div class="verification_popup" style="display: none; position: absolute; background: #fff; padding: 1rem; z-index: 100;">
+                                                    <div>
+                                                        <span>Email Verification</span><span>
+                                                            <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Phone number Verification</span><span>
+                                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Company Registration Certificate</span><span>
+                                                            <t t-if="product.partner_id.company_registration">
+                                                                <t t-if="product.partner_id.company_registration_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Company Address Proof</span><span>
+                                                            <t t-if="product.partner_id.company_address_proof">
+                                                                <t t-if="product.partner_id.company_address_proof_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Company Representative's Identity Proof</span><span>
+                                                            <t t-if="product.partner_id.identity_proof">
+                                                                <t t-if="product.partner_id.identity_proof_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Tax ID Proof</span><span>
+                                                            <t t-if="product.partner_id.tax_id_proof">
+                                                                <t t-if="product.partner_id.tax_id_proof_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Trading License</span><span>
+                                                            <t t-if="product.partner_id.trading_license">
+                                                                <t t-if="product.partner_id.trading_license_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Proof of Product</span><span>
+                                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Any past Export/Import document as proof</span><span>
+                                                            <t t-if="product.partner_id.prior_import_export">
+                                                                <t t-if="product.partner_id.prior_import_export_verified">
+                                                                    <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span>Other Documents like Awards, Certifications etc.</span><span>
+                                                            <t t-if="product.partner_id.awards or product.partner_id.certificates">
+                                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <i class="fa-solid fa-xmark" style="color:red"></i>
+                                                            </t>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 <p><strong>Supplier From :<img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/></strong> <t t-esc="product.partner_id.country_id.name"/></p>
                                                 <div onload="fill_stars(this)" t-att-stars="product.partner_id.supplier_rating" class="rating">
                                                     <!-- <span>⭐⭐⭐⭐⭐</span> -->
@@ -573,6 +700,14 @@
 
                             window.location.href = '/findSuppliersByCategory/'+searchQuery
                         }
+                }
+                function show_verification_popup(element) {
+                    const popup = element.parentElement.nextElementSibling;
+                    if (popup.style.display === 'block') {
+                        popup.style.display = 'none';
+                    } else {
+                        popup.style.display = 'block';
+                    }
                 }
                 function toggle_countries(element){
                     if(element.children[1].style.display == 'flex'){

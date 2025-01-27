@@ -94,6 +94,8 @@ class ResPartner(models.Model):
     tax_id_proof_name = fields.Char(string="Tax Id Proof Name")
     tax_id_proof_verified = fields.Boolean(string="")
 
+    phone_verified = fields.Boolean(string="Phone")
+
 
     news_title = fields.Char("News Title")
     news_image1 = fields.Binary('News Image1')

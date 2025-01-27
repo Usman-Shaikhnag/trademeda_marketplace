@@ -196,7 +196,7 @@
                                 <b><p class=""><a t-attf-href="/brochure">Trademeda company brochure</a></p></b>
                             </div>
                             <div class="value-card">
-                                <a t-attf-href="#"><b><p class="">Frequently Asked Questions</p></b></a>
+                                <a t-attf-href="faqs"><b><p class="">Frequently Asked Questions</p></b></a>
                             </div>
                         </div>
                     </div>
@@ -377,37 +377,62 @@
                     </div>
                     <div class="country-container">
                         <div id="buyers-country-tab" class="buyer-contries content active">
+                            <!-- Initialize empty countries_with_suppliers -->
                             <t t-set="countries_with_suppliers" t-value="[]"/>
+                            
+                            <!-- Loop through all countries -->
                             <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
-                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['buyer', 'both'])])"/>
-                                <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                                <!-- Calculate supplier count for this country -->
+                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([
+                                    ('country_id', '=', country.id),
+                                    ('member_type', 'in', ['buyer', 'both']),
+                                ])"/>
+                                
+                                <!-- Add country if supplier_count > 0 -->
+                                <t t-if="supplier_count > 0">
+                                    <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                                </t>
                             </t>
-
+                            
+                            <!-- Sort and limit to top 12 countries -->
                             <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[1], reverse=True)[:12]"/>
 
                             <div class="countries-container">
+                                <!-- Render sorted countries -->
                                 <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
                                     <div class="country">
                                         <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
-                                        <a t-attf-href="/findBuyers/country/{{country_tuple[0].id}}"><t t-esc="country_tuple[0].name"/></a>
+                                        <a t-attf-href="/findBuyers/country/{{country_tuple[0].id}}">
+                                            <t t-esc="country_tuple[0].name"/>
+                                        </a>
                                     </div>
                                 </t>
                             </div>
                         </div>
+
                         <div id="suppliers-country-tab" class="supplier-contries content">
                             <t t-set="countries_with_suppliers" t-value="[]"/>
+                            
                             <t t-foreach="env['res.country'].sudo().search([])" t-as="country">
-                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['seller', 'both'])])"/>
-                                <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                                <t t-set="supplier_count" t-value="env['res.partner'].sudo().search_count([
+                                    ('country_id', '=', country.id),
+                                    ('member_type', 'in', ['seller', 'both'])
+                                ])"/>
+                                
+                                <t t-if="supplier_count > 0">
+                                    <t t-set="countries_with_suppliers" t-value="countries_with_suppliers + [(country, supplier_count)]"/>
+                                </t>
                             </t>
-
+                            
                             <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[1], reverse=True)[:12]"/>
 
                             <div class="countries-container">
                                 <t t-foreach="sorted_countries_with_suppliers" t-as="country_tuple">
                                     <div class="country">
                                         <img t-att-src="country_tuple[0].image_url" alt="" style="height:0.9rem;"/>
-                                        <a t-attf-href="/findSuppliers/country/{{country_tuple[0].id}}"><t t-esc="country_tuple[0].name"/></a>
+                                        <a t-attf-href="/findSuppliers/country/{{country_tuple[0].id}}">
+                                            <t t-esc="country_tuple[0].name"/>
+                                        </a>
                                     </div>
                                 </t>
                             </div>

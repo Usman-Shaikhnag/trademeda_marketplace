@@ -159,8 +159,8 @@ class HomepageController(http.Controller):
                 # Create the partner first
                 partner_data = {
                     'name': kw.get('company_name'),
-                    'membership_state': 'free',
-                    'free_member': True,
+                    # 'membership_state': 'free',
+                    # 'free_member': True,
                     'company_type': 'company',
                     'member_type': kw.get('role'),
                     'supplier_products': kw.get('supplier_textarea'),
