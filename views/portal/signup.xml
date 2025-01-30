@@ -205,7 +205,7 @@
                                         </div>
                                         <div class="">
                                             <!-- <input placeholder="Country" name="country" required="required"/> -->
-                                            <select id="country" name="country" class="form-control" required="required">
+                                            <select id="country" onchange="fetch_state(this)" name="country" class="form-control" required="required">
                                                 <option value="">Select your country</option>
                                                 <t t-foreach="countries" t-as="country">
                                                     <option t-att-value="country.id">
@@ -976,6 +976,8 @@ jurisdiction of the Court, Patna, Bihar, India.</li>
                     
                 }
 
+                
+
 
                 document.getElementById('form1').classList.add('active')
                 
@@ -1064,6 +1066,77 @@ jurisdiction of the Court, Patna, Bihar, India.</li>
                 document.getElementById('prev2').onclick = function() {
                     switchForm(document.getElementById('form3'), document.getElementById('form2'));
                 };
+
+                function fetch_state(element){
+                    <!-- debugger; -->
+                    const country_id = element.value
+                    const state_dropdown = document.getElementById('state')
+                    const vals = {
+                        'country_id':country_id
+                    }
+                    fetch('/get_states',{
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(vals),
+                        }).then(function(resp){
+                            resp = resp.json().then(function(jsonData){
+                            states_list = jsonData.result.state_list
+                            while (state_dropdown.firstChild) {
+                                state_dropdown.removeChild(state_dropdown.firstChild);
+                            }
+                            const option1 = document.createElement('option');
+                            option1.value = ''
+                            option1.textContent = ''
+                            states_list.forEach(function(state_element) {
+                                const option = document.createElement('option');
+                                    option.value = state_element.id
+                                    option.textContent = state_element.name;
+                                    
+                                    state_dropdown.appendChild(option)
+                            })
+                                
+
+                            })
+                        }).catch(function(error){
+                            console.log(error)
+                        })
+
+                    
+                }
+
+                function category_change(element){
+                    const country_id = element.getAttribute('country_id')
+                    let product_subcategory = document.getElementById('state')
+                    while (product_subcategory.firstChild) {
+                        product_subcategory.removeChild(product_subcategory.firstChild);
+                    }
+                    let product_name = document.getElementById('product_name')
+                    while (product_name.firstChild) {
+                        product_name.removeChild(product_name.firstChild);
+                    }
+                    fetch('profile/getsubcategories/'+category_id).then(function(res) {
+                        res.json().then(function(data){
+                            <!-- while (product_subcategory.firstChild) {
+                                product_subcategory.removeChild(product_subcategory.firstChild);
+                            } -->
+                            const option1 = document.createElement('option');
+                            option1.value = ''
+                            option1.textContent = ''
+                            product_subcategory.appendChild(option1)
+                            data.forEach(function(subcategory) {
+                            const option = document.createElement('option');
+                                    option.value = subcategory.id
+                                    option.textContent = subcategory.name;
+                                    
+                                    product_subcategory.appendChild(option)
+                            })
+                        })
+                        }) 
+
+
+                }
             </script>
         </template>
     </data>
