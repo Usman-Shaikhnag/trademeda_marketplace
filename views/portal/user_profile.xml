@@ -54,7 +54,7 @@
                                 <i class="fas fa-edit" onclick="enable_profile_detail(this)" style="position: absolute;bottom: 0px;right: -4  px;color: gray;"></i>
                             </div>
                             <div class="username">
-                                <b><span><t t-esc="partner.name"/></span></b>
+                                <b><span><t t-esc="partner.user_name"/></span></b>
                                 <div class="">
                                     <span class="" style="color:#07407a;margin-top:1rem;cursor:pointer;" onclick="enable_profile_detail()">Edit Profile</span>
 
@@ -2596,70 +2596,70 @@
 
 
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.quantity" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.unit.name" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.product_id.product_description" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.target_price" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.currency.name" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.product_id.sample_policy" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.product_id.payment_mode" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.partner_id.primary_business" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.partner_id.establishment_year" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.partner_id.annual_sales" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.partner_id.no_of_employees" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.user_name" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.designation" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.company_address" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.country_id.name" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.state_id.name" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.city" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.zip" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.area_code" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.phone" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="partner.email" />
                                                 </td>
                                                 <td>
-                                                    
+                                                    <t t-esc="rtb.create_date" />
                                                 </td>
 
 
