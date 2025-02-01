@@ -29,3 +29,4 @@ access_trademeda_mission,access_trademeda_mission,model_trademeda_mission,group_
 access_trademeda_email,access_trademeda_email,model_trademeda_email,group_trademeda_admin,1,1,1,1
 
 access_customer_feedback,access_customer_feedback,model_customer_feedback,group_trademeda_admin,1,1,1,1
+access_trademeda_conf,access_trademeda_conf,model_trademeda_conf,group_trademeda_admin,1,1,1,1

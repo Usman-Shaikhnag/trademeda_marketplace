@@ -154,6 +154,10 @@ class HomepageController(http.Controller):
                 raise ValidationError("Passwords do not match")
 
             portal_group = request.env.ref('base.group_portal')
+
+            trademeda_conf = request.env['trademeda.conf'].sudo().search([],limit=1)
+
+            free_subscription_days = trademeda_conf.free_subscription_days
             
             try:
                 # Create the partner first
@@ -179,6 +183,7 @@ class HomepageController(http.Controller):
                     'area_code': kw.get('area_code'),
                     'email': kw.get('company_email'),
                     'website': kw.get('website'),
+                    'membership_expiration_date':free_subscription_days
                 }
 
                 partner = request.env['res.partner'].sudo().create(partner_data)

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="trademeda_conf_view" model="ir.ui.view">
+            <field name="name">trademeda.conf.form</field>
+            <field name="model">trademeda.conf</field>
+            <field name="arch" type="xml">
+                <form string="">
+                   
+                    <group>
+                        <group >
+                            <field name="free_subscription_days" />
+                        </group>
+                    </group>
+                    
+                </form>
+                
+            </field>
+        </record>
+
+    <record id="view_tree_trademeda_conf" model="ir.ui.view">
+        <field name="name">trademeda.conf.tree</field>
+        <field name="model">trademeda.conf</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="id" />
+                
+            </tree>
+        </field>
+    </record>
+
+
+    </data>
+</odoo>

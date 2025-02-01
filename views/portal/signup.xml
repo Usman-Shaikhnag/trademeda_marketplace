@@ -1106,37 +1106,7 @@ jurisdiction of the Court, Patna, Bihar, India.</li>
                     
                 }
 
-                function category_change(element){
-                    const country_id = element.getAttribute('country_id')
-                    let product_subcategory = document.getElementById('state')
-                    while (product_subcategory.firstChild) {
-                        product_subcategory.removeChild(product_subcategory.firstChild);
-                    }
-                    let product_name = document.getElementById('product_name')
-                    while (product_name.firstChild) {
-                        product_name.removeChild(product_name.firstChild);
-                    }
-                    fetch('profile/getsubcategories/'+category_id).then(function(res) {
-                        res.json().then(function(data){
-                            <!-- while (product_subcategory.firstChild) {
-                                product_subcategory.removeChild(product_subcategory.firstChild);
-                            } -->
-                            const option1 = document.createElement('option');
-                            option1.value = ''
-                            option1.textContent = ''
-                            product_subcategory.appendChild(option1)
-                            data.forEach(function(subcategory) {
-                            const option = document.createElement('option');
-                                    option.value = subcategory.id
-                                    option.textContent = subcategory.name;
-                                    
-                                    product_subcategory.appendChild(option)
-                            })
-                        })
-                        }) 
-
-
-                }
+                
             </script>
         </template>
     </data>

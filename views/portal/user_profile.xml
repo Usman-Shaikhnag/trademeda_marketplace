@@ -404,7 +404,7 @@
                                             </div> -->
 
                                             <div class="select-container">           
-                                            <select id="country" name="country" class="form-control">
+                                            <select id="country" onchange="fetch_state(this)" name="country" class="form-control">
                                                     <t t-foreach="request.env['res.country'].sudo().search([])" t-as="country">
                                                         <option t-att-value="country.id" t-att-selected="country.id == partner.country_id.id and 'selected'">
                                                             <t t-esc="country.name"/>
@@ -2717,7 +2717,7 @@
                             <div>
                                 <div class="edit-profile-text" style="text-align: center;">
                                     <h1>Membership</h1>
-                                    <div class=""><t t-esc="partner.subscription_remaining"/> Days Remaining</div>
+                                    <div class=""><t t-esc="partner.subscription_remaining"/> Days Remaining Expires on <t t-esc="partner.membership_expiration_date"/></div>
                                 </div>
                             </div>
                             
@@ -3828,6 +3828,45 @@
                         // handle response or reload page
                     });
 
+                }
+
+                function fetch_state(element){
+                    <!-- debugger; -->
+                    const country_id = element.value
+                    const state_dropdown = document.getElementById('state')
+                    const vals = {
+                        'country_id':country_id
+                    }
+                    fetch('/get_states',{
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(vals),
+                        }).then(function(resp){
+                            resp = resp.json().then(function(jsonData){
+                            states_list = jsonData.result.state_list
+                            while (state_dropdown.firstChild) {
+                                state_dropdown.removeChild(state_dropdown.firstChild);
+                            }
+                            const option1 = document.createElement('option');
+                            option1.value = ''
+                            option1.textContent = ''
+                            states_list.forEach(function(state_element) {
+                                const option = document.createElement('option');
+                                    option.value = state_element.id
+                                    option.textContent = state_element.name;
+                                    
+                                    state_dropdown.appendChild(option)
+                            })
+                                
+
+                            })
+                        }).catch(function(error){
+                            console.log(error)
+                        })
+
+                    
                 }
                 
             </script>
