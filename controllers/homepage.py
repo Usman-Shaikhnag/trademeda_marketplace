@@ -55,10 +55,10 @@ class HomepageController(http.Controller):
     
     @http.route('/logout', auth='user', website=True)
     def logout(self, **kwargs):
-        request.session.logout(keep_db=False)
         # import wdb;wdb.set_trace()
-        
-        return request.render('trademeda.signin')
+
+        request.session.logout(keep_db=False)
+        return request.redirect('/web/login')
     
     @http.route('/advertisingPlans', auth='public', website=True)
     def advertisingPlans(self, **kwargs):
@@ -792,3 +792,17 @@ class HomepageController(http.Controller):
         else:
             # Return a 404 error if no brochure is found
             return request.not_found()
+
+
+    @http.route(['/get_states'], methods=["POST"],  type="json", auth="public")
+    def get_states(self):
+        # import wdb;wdb.set_trace()
+        country_id = request.httprequest.json.get('country_id')
+
+        if not country_id:
+            return {'error': 'Country ID not provided'}
+
+        states = request.env['res.country.state'].sudo().search([('country_id', '=', int(country_id))])
+        state_list = [{'id': state.id, 'name': state.name} for state in states]
+
+        return {'state_list': state_list}
