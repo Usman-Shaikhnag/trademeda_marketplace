@@ -255,6 +255,7 @@
         <xpath expr="//div[@class='o_address_format']" position="after">
                 
                 <field name="subscription_remaining" string="Subscription Remaining days"/>
+                <field name="membership_expiration_date" string="Membership Expiration"/>
 
 
         </xpath>

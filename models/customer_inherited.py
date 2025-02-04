@@ -1,5 +1,6 @@
 from odoo import models, fields,api
 import math
+from datetime import timedelta, date
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -126,6 +127,8 @@ class ResPartner(models.Model):
 
     quotations_left = fields.Integer("Quotations Left",default=1)
 
+    membership_expiration_date = fields.Date("Expiration Date",compute="_compute_membership_expiration")
+
     subscribed_categories = fields.Many2many('product.subcategories', string='Subscribed Categories')
 
     notifications = fields.One2many('subscribed.notifications','partner_id', string='Subscribed Notifications')
@@ -142,6 +145,10 @@ class ResPartner(models.Model):
             if record.subscription_remaining != 0:
                 record.subscription_remaining = record.subscription_remaining - 1
 
+    @api.depends('subscription_remaining')
+    def _compute_membership_expiration(self):
+        for record in self:
+            record.membership_expiration_date = date.today() + timedelta(days=record.subscription_remaining)
 
     @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','awards','certificates')
     def _compute_supplier_rating(self):

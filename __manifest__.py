@@ -27,7 +27,7 @@
         'views/faqs.xml',
         'views/brochure_view.xml',
         'views/trademeda_emails.xml',
-
+        'views/trademeda_conf.xml',
 
         
         'views/portal/header.xml',
