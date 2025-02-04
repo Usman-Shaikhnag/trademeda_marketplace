@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="contactus" name="Trademeda ContactUS">
+         <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/trademeda/static/src/css/contactus.css"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+        </xpath>
+
+        <t t-call="trademeda.header"/>
+            <main class="">
+                <h1 class="blue">Contact Us</h1>
+                <div><h3><span class="blue">Email: </span></h3><span class=""><t t-esc="contact.contact_email"/></span></div>
+                <div><h3><span class="blue">Phone: </span></h3><span class=""><t t-esc="contact.contact_phone"/></span></div>
+                <div><span class=""><t t-esc="contact.contact_text"/></span></div>
+
+
+            </main>
+
+
+        </template>
+    </data>
+</odoo>
