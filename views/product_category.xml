@@ -55,6 +55,18 @@
                                 </form>
                             </field>
                         </page>
+                        <page string="Points">
+                            <field name="daily_points">
+                                <tree editable="bottom">
+                                    <field name="create_date"/>
+                                    <field name="points"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <field name="total_points"/>
+                            </group>
+
+                        </page>
                     </notebook>
                 </sheet>
             </form>
