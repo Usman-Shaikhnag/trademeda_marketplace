@@ -53,6 +53,16 @@ class HomepageController(http.Controller):
         
         return request.render('trademeda.signin')
     
+
+    @http.route('/contactus', auth='public', website=True)
+    def contactus(self, **kwargs):
+        # import wdb;wdb.set_trace()
+        vals = {
+            'contact':request.env['trademeda.conf'].sudo().search([],limit=1)
+            }
+        
+        return request.render('trademeda.contactus',vals)
+    
     @http.route('/logout', auth='user', website=True)
     def logout(self, **kwargs):
         # import wdb;wdb.set_trace()

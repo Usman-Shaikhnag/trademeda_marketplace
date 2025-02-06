@@ -362,7 +362,7 @@
                     
 
                                         <input type="checkbox" id="agree" name="agree" style="color:green;" required="required"/>
-                                        <label for="agree" >I agree to the <a onclick="open_tnc()" style="text-decoration: underline;">Terms and Conditions</a></label>
+                                        <label for="agree" >I agree to the <a onclick="open_tnc()" style="text-decoration: underline;">Terms and Conditions</a> and <a onclick="open_privacypolicy()" style="text-decoration: underline;">Privacy Policy</a></label>
                                     </div>
                                     
                                 </div>
@@ -385,10 +385,134 @@
                         </form>
                     
                     </div>
+                    <div class="terms_condition_container" id="privacypolicy_container">
+                        <div class="inner_container">
+                            <div class="heading">
+                                <h2 style="color:#07407a">Privacy Policy</h2>
+                            </div>
+                            <div class="scrollable-content">
+                                <p class="list-item">This Privacy Policy explains Trademeda.com's dedication to protecting your privacy.
+By using this website, you agree to the terms described here.</p>
+
+                <p class="list-item">Trademeda, the company behind this website, values your privacy. We use your
+personal information solely to manage your account and deliver the services you
+request, such as B2B trade connections.</p>
+
+
+
+                <h2>Communication and Information Sharing</h2>
+
+                <p class="list-item">Occasionally, we may reach out with promotions and updates via mail, email, phone,
+text messages, and automated calls. As a business advertising platform, we may also
+share your details with potential business partners. Non-registered users cannot access
+your contact information but can send inquiries through our system.</p>
+
+
+                <h2>1. Collection of Information</h2>
+
+                <p class="list-item">I. Business Information: This includes contact details, company profile, trade leads,
+buy leads, catalogs, and inquiries collected during registration, newsletter subscriptions, email
+communications, feedback, or surveys.</p>
+
+                <p class="list-item">II. Payment Information: Data related to payments made via credit card, cheque, or
+bank transfer, such as name, address, email, phone number, credit card number, CVV, and bank
+details.</p>
+
+                <p class="list-item">III. Information like visitor IP addresses, browser software,
+operating systems, and pages viewed.</p>
+
+                <p class="list-item">These are collectively referred to as "Information Gathered."</p>
+
+
+                <h2>2. Use and Sharing of Information:</h2>
+
+                <p class="list-item">i. This information is made public to maximize your business reach and
+may be shared with authorized agents and verification agencies.</p>
+
+                <p class="list-item">ii. Payment Information: We do not disclose this information unless required by law. Credit card
+information is processed directly by payment gateways and is not stored on our site.</p>
+
+                <p class="list-item">iii. Statistical Information: Collected to enhance our services and manage site performance, this
+data is shared in aggregate form without personal details.</p>
+
+
+                <h2>3. Disclosure of Information</h2>
+
+                <p class="list-item">We may disclose "Information Gathered" if legally required or if withholding it would
+harm our or our users' interests.</p>
+
+
+                <h2>4. Modifying or Deleting Your Information</h2>
+
+                <p class="list-item">i. Modify your business information by logging into your account..</p>
+
+                <p class="list-item">ii. Request deletion of your information via the "terminate membership" option in your profile or by
+contacting us directly.</p>
+
+                <p class="list-item">iii. We typically process removal requests within 48-72 business hours.</p>
+
+
+                <h2>5. Duration of Information Storage</h2>
+
+                <p class="list-item">Your public profile remains online indefinitely unless you request its removal.</p>
+
+
+                <h2>6. Hyperlinks to Other Websites</h2>
+
+                <p class="list-item">Our site may include links to third-party websites. We recommend reviewing their
+privacy policies and terms of use, as we are not responsible for their content or
+services.</p>
+
+
+                <h2>7. Cookies</h2>
+
+                <p class="list-item">We use cookies to recognize you on our website, a common practice for login-based
+sites.</p>
+
+
+                <h2>8. Data Security</h2>
+
+                <p class="list-item">We implement measures to protect your data, but by using this site, you waive any
+claims against us for the loss, alteration, or misuse of information.</p>
+
+
+                <h2>9. Revisions to This Policy</h2>
+
+                <p class="list-item">This Privacy Policy may change over time. Review it regularly for updates, as
+continued use of the site implies acceptance of any changes.</p>
+
+
+                <h2>10. Jurisdiction and Applicable Law</h2>
+
+                <p class="list-item">Any disputes regarding this Privacy Policy will be governed by the laws of India, and
+fall under the jurisdiction of Civil court of Patna, Bihar,India.</p>
+
+
+                <h2>Contact Information</h2>
+
+                <p class="list-item">For questions, comments, or incident reports, contact us at:</p>
+
+                <p class="list-item">Trademeda</p>
+
+                <p class="list-item">B-96, P.C. Colony, Lohia nagar, Kankarbagh, Patna, Bihar- 800020,INDIA</p>
+
+                <p class="list-item">Phone: +91-70332 95727</p>
+
+                            </div>
+                            <div class="multi-input" style="margin-top:1rem;" id="tnc_buttons">
+                                <!-- <div class="next-page-btn">
+                                    <button type="button" id="download">Download</button>
+                                </div> -->
+                                <div class="next-page-btn">
+                                    <button id="close_privacypolicy" onclick="close_privacypolicy()" >Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="terms_condition_container" id="terms_condition_container">
                         <div class="inner_container">
                             <div class="heading">
-                                <h2 style="color:#8fb15f">Terms and Conditions</h2>
+                                <h2 style="color:#07407a">Terms and Conditions</h2>
                             </div>
                             <div class="scrollable-content">
                                 <h3 class="bold">TERMS AND CONDITIONS</h3>
@@ -973,6 +1097,15 @@ jurisdiction of the Court, Patna, Bihar, India.</li>
                 }
                 function open_tnc(){
                     document.getElementById('terms_condition_container').style.display = 'block'
+                    
+                }
+
+                function open_privacypolicy(){
+                    document.getElementById('privacypolicy_container').style.display = 'block'
+                    
+                }
+                function close_privacypolicy(){
+                    document.getElementById('privacypolicy_container').style.display = 'none'
                     
                 }
 

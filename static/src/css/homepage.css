@@ -153,7 +153,7 @@ button {
   margin-top: 0;
 }
 .rfq-container h2{
-  font-family: 'Century Schoolbook';
+  font-family: 'Avenir';
 }
 .rfq-list{
   display: flex;
@@ -191,7 +191,8 @@ button {
   margin: 0;
 }
 .rfq-content {
-  color: gray;
+  color: black;
+  font-family: 'Century Schoolbook';
 }
 .rfq-buttons {
   display: flex;
