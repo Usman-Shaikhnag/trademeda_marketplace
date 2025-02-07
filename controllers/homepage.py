@@ -167,7 +167,10 @@ class HomepageController(http.Controller):
 
             trademeda_conf = request.env['trademeda.conf'].sudo().search([],limit=1)
 
+            # if not trademeda_conf:
+            #     raise ValidationError("Configuration not found")
             free_subscription_days = trademeda_conf.free_subscription_days
+
             
             try:
                 # Create the partner first
@@ -193,7 +196,7 @@ class HomepageController(http.Controller):
                     'area_code': kw.get('area_code'),
                     'email': kw.get('company_email'),
                     'website': kw.get('website'),
-                    'membership_expiration_date':free_subscription_days
+                    # 'membership_expiration_date':free_subscription_days
                 }
 
                 partner = request.env['res.partner'].sudo().create(partner_data)
