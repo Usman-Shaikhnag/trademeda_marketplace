@@ -149,19 +149,36 @@ class HomepageController(http.Controller):
             # Extract form data
             name = kw.get("name")
             city = kw.get("city")
+            member_type = kw.get('role')
+            supplier_products = kw.get('supplier_textarea')
+            buyer_products = kw.get('buyer_textarea')
+            trader_products = kw.get('trader_textarea')
+            primary_business = kw.get('business-type')
+            establishment_year = kw.get('establishment_year')
+            annual_sales = kw.get('annual-sales')
+            employees =  kw.get('employees')
+            designation = kw.get('designation')
             zip_code = kw.get("zip_code")
+            country = kw.get("country")
             state = kw.get("state")
             phone = kw.get("phone_number")
             email = kw.get("email")
             password = kw.get("password")
             confirm_password = kw.get("confirm_password")
+            address = kw.get('address')
+            area_code = kw.get('area_code')
+            company_email = kw.get('company_email')
+            website = kw.get('website')
+            company_name = kw.get('company_name')
 
+            # import wdb;wdb.set_trace()
             # Basic validation
             if not all([name, city, zip_code, state, phone, email, password, confirm_password]):
                 raise ValidationError("Not all required fields are filled")
 
             if password != confirm_password:
                 raise ValidationError("Passwords do not match")
+            
 
             portal_group = request.env.ref('base.group_portal')
 
@@ -172,28 +189,28 @@ class HomepageController(http.Controller):
             try:
                 # Create the partner first
                 partner_data = {
-                    'name': kw.get('company_name'),
+                    'name': company_name,
                     'membership_state': 'free',
                     'free_member': True,
                     'company_type': 'company',
-                    'member_type': kw.get('role'),
-                    'supplier_products': kw.get('supplier_textarea'),
-                    'buyer_products': kw.get('buyer_textarea'),
-                    'trader_products': kw.get('trader_textarea'),
-                    'primary_business': kw.get('business-type'),
-                    'establishment_year': kw.get('establishment_year'),
-                    'annual_sales': kw.get('annual-sales'),
-                    'no_of_employees': kw.get('employees'),
+                    'member_type': member_type,
+                    'supplier_products': supplier_products,
+                    'buyer_products': buyer_products,
+                    'trader_products': trader_products,
+                    'primary_business': primary_business,
+                    'establishment_year': int(establishment_year),
+                    'annual_sales': annual_sales,
+                    'no_of_employees':employees,
                     'user_name': name,
-                    'designation': kw.get('designation'),
-                    'street': kw.get('address'),
+                    'designation': designation,
+                    'street': address,
                     'city': city,
                     'zip': zip_code,
                     'phone': phone,
-                    'area_code': kw.get('area_code'),
-                    'email': kw.get('company_email'),
-                    'website': kw.get('website'),
-                    'membership_expiration_date':free_subscription_days
+                    'area_code': area_code,
+                    'email': email,
+                    'website': website,
+                    'membership_expiration_date':int(free_subscription_days)
                 }
 
                 partner = request.env['res.partner'].sudo().create(partner_data)
