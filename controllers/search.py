@@ -60,8 +60,22 @@ class SearchController(http.Controller):
                         break
             if len(unique_subcategories) >= 5:
                 break
+            # for sb in unique_subcategories:
+            #     sb1 = request.env['product.subcategories'].sudo.search([('name','ilike',sb)],limit=1)
+            #     points = sb1.points
+            #     sb1.write({
+            #         'points':points + 20
+            #     })
 
         total_pages = (total_suppliers + per_page - 1) // per_page  # Calculate the total number of pages
+        
+        for sb1 in unique_subcategories:
+            subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',sb1)])
+            for sb2 in subcategory:
+                # points = subcategory.points + 20
+                sb2.sudo().write({
+                    'points':sb2.points + 20
+                })
 
         vals = {
             'suppliers': suppliers,
@@ -186,7 +200,7 @@ class SearchController(http.Controller):
             if len(unique_subcategories) >= 5:
                 break
         subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',category)],limit=1)
-        points = subcategory.points + 10
+        points = subcategory.points + 20
         subcategory.sudo().write({
             'points':points
         })

@@ -29,13 +29,14 @@ h1{
     background-color: #e0f7ff;
 }
 .pricing-plan.best-value::before {
-    content: 'BEST VALUE';
+    content: 'Limited Offer';
     position: absolute;
     top: -10px;
     right: -10px;
     background: #07407a;
+    font-family: 'Century Schoolbook';
     color: white;
-    font-size: 12px;
+    font-size: 13px;
     padding: 5px 10px;
     border-radius: 5px;
     transform: rotate(10deg);
@@ -51,7 +52,8 @@ h1{
 .pricing-plan p {
     margin: 10px 0;
     font-size: 14px;
-    color: gray;
+    font-family: 'Century Schoolbook';
+    color: black;
 }
 .pricing-plan ul {
     list-style: none;
@@ -60,7 +62,8 @@ h1{
 }
 .pricing-plan ul li {
     margin: 10px 0;
-    font-size: 14px;
+    font-size: 1rem;
+    font-family: 'Century Schoolbook';
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -75,7 +78,9 @@ h1{
 .pricing-plan .price small {
     font-size: 14px;
     font-weight: normal;
-    color: gray;
+    color: black;
+    font-family: 'Century Schoolbook';
+
 }
 .btn {
     display: inline-block;

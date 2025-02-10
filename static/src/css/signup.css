@@ -11,6 +11,9 @@ h1, h2{
     font-family: 'Avenir';
   
 }
+span {
+    font-family: 'Century Schoolbook';
+}
 
 .outer {
     padding: 5%;
@@ -99,6 +102,7 @@ h1, h2{
     box-shadow: none;
     outline: none;
     border: 1px solid lightgrey;
+    font-family: 'Century Schoolbook';
     padding-left: 10px;
 }
 

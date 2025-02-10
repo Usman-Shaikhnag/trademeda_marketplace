@@ -30,7 +30,8 @@
                     <div class="price">₹<span id="price">15000</span> + <small>18% GST*</small></div>
                     <ul>
                         
-                        <li><button class="get_started_btn">Get Started</button></li>
+                        <!-- <li><button class="get_started_btn">Get Started</button></li> -->
+                        <li><button class="get_started_btn">Coming Soon</button></li>
                         <li><button class="get_started_btn">Notify Me <i class="fa-solid fa-bell"></i></button></li>
 
                     </ul>

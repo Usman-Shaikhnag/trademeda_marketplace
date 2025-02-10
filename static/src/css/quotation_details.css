@@ -16,7 +16,7 @@ h2 {
     display: flex;
     justify-content: center;
     /* color: #8fb15f; */
-    color: #b32f2d;
+    color: #07407a;
     position: relative;
 }
 .divider-line {
@@ -24,16 +24,15 @@ h2 {
     margin-top: 5px;
     width: 100%;
     height: 2px;
-    /* background: #b32f2d; */
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background: #07407a; */
+    background: #07407a;
 }
 .buyer-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    color: #b32f2d;
+    color: #07407a;
 }
 .post-details{
     display: grid;
@@ -41,10 +40,10 @@ h2 {
 }
 
 .post-details b {
-    color: #b32f2d;
+    color: #07407a;
 }
 .description h4{
-    color: #b32f2d;
+    color: #07407a;
 }
 .image-container {
     display: flex;
@@ -58,9 +57,8 @@ h2 {
 }
 
 .contact_buyer button {
-    /* background-color: #b32f2d; */
-    background: rgb(199,8,8);
-    background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+    /* background-color: #07407a; */
+    background: #07407a;
     font-weight: 600;
     color: white;
     width: 100%;
@@ -72,7 +70,7 @@ h2 {
 }
 
 .contact_buyer button:hover {
-    outline: 2px solid rgb(199,8,8);
+    outline: 2px solid #07407a;
     cursor: pointer;
 }
 
@@ -95,11 +93,11 @@ h2 {
     background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-    outline: 2px solid #b32f2d;
+    outline: 2px solid #07407a;
 
 }
 .text-input span {
-    color: #b32f2d;
+    color: #07407a;
 
 }
 
@@ -122,7 +120,7 @@ h2 {
     position: absolute;
     top: 15;
     right: 10;
-    background-color: #b32f2d;
+    background-color: #07407a;
     border: none;
     color: white;
     border-radius: 5px;
@@ -143,7 +141,7 @@ h2 {
     gap: 1rem;
 }
 .responses h2{
-    color: rgb(199,8,8);
+    color: #07407a;
 }
 .responses p {
     margin-top: 4px;
@@ -153,6 +151,6 @@ h2 {
     overflow-y: scroll;
 }
 .contact-details h4{
-    color: rgb(199,8,8);
+    color: #07407a;
 
 }
