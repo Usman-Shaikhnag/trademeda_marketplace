@@ -207,6 +207,8 @@ class HomepageController(http.Controller):
                     'no_of_employees':employees,
                     'user_name': name,
                     'designation': designation,
+                    'country_id':int(country),
+                    'state_id':int(state),
                     'street': address,
                     'country_id':int(country),
                     'city': city,
@@ -215,7 +217,7 @@ class HomepageController(http.Controller):
                     'area_code': area_code,
                     'email': email,
                     'website': website,
-                    'membership_expiration_date':int(free_subscription_days)
+                    'subscription_remaining':int(free_subscription_days)
                 }
 
                 partner = request.env['res.partner'].sudo().create(partner_data)
@@ -231,6 +233,14 @@ class HomepageController(http.Controller):
 
                 # Create the user
                 request.env['res.users'].sudo().create(user_data)
+
+                mail = request.env['mail.mail'].sudo().create({
+                    'subject': 'Your Trademeda Account has been created',
+                    'body_html': f'<p>Your Trademeda Account has been created and you have been given free subscription of <strong>{free_subscription_days}</strong> days</p>',
+                    'email_to': email,
+                    'email_from': 'info@trademeda.com',
+                })
+                mail.send()
 
                 return request.redirect("/signin")
 
