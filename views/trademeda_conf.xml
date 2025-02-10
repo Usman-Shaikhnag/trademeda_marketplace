@@ -12,12 +12,15 @@
                     <group>
                         <group >
                             <field name="free_subscription_days" />
-                            <field name="contact_phone" />
+                            <!-- <field name="contact_phone" /> -->
+                            <field name="contactus_image" filename="contactus_imagename"/>
+                            <field name="contactus_imagename" invisible="1"/>
+
 
                         </group>
                         <group >
-                            <field name="contact_email" />
-                            <field name="contact_text" />
+                            <!-- <field name="contact_email" />
+                            <field name="contact_text" /> -->
 
                         </group>
                     </group>

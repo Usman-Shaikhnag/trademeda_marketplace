@@ -8,10 +8,13 @@
 
         <t t-call="trademeda.header"/>
             <main class="">
-                <h1 class="blue">Contact Us</h1>
+                <!-- <h1 class="blue">Contact Us</h1>
                 <div><h3><span class="blue">Email: </span></h3><span class=""><t t-esc="contact.contact_email"/></span></div>
                 <div><h3><span class="blue">Phone: </span></h3><span class=""><t t-esc="contact.contact_phone"/></span></div>
-                <div><span class=""><t t-esc="contact.contact_text"/></span></div>
+                <div><span class=""><t t-esc="contact.contact_text"/></span></div> -->
+                <t t-if="contact.contactus_image">
+                    <img t-att-src="'data:image/png;base64,' + contact.contactus_image.decode('utf-8')" alt="Cintact us Image" class="product-image"/>
+                </t>
 
 
             </main>
