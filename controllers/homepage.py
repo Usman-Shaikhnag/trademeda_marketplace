@@ -813,12 +813,13 @@ class HomepageController(http.Controller):
     @http.route('/download_brochure', type='http', auth='public', website=True)
     def download_brochure(self, **kwargs):
 
-        brochure_record = request.env['trademeda.brochure'].sudo().search([('sequence', '=', 1)], limit=1)
+        # brochure_record = request.env['trademeda.brochure'].sudo().search([('sequence', '=', 1)], limit=1)
 
+        brochure_record = request.env['trademeda.conf'].sudo().search([], limit=1)
         
-        if brochure_record and brochure_record.brochure:
+        if brochure_record and brochure_record.brochure_file:
             # Get the binary content of the brochure
-            pdf_content = brochure_record.brochure
+            pdf_content = brochure_record.brochure_file
 
             filename = brochure_record.brochure_filename  or "brochure.pdf"
 
@@ -826,7 +827,7 @@ class HomepageController(http.Controller):
             # import wdb;wdb.set_trace()
             headers = [
                 ('Content-Type', 'application/pdf'),
-                ('Content-Disposition', 'attachment; filename={filename}'),
+                (f'Content-Disposition', f'attachment; filename="{filename}"')
             ]
 
             # Return the response
