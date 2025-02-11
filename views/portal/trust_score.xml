@@ -13,7 +13,7 @@
                 color:#07407a;
             }
             body {
-                font-family:helvetica !important;
+                font-family: Arial, sans-serif;
             }
         </style>
 

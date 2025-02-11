@@ -66,7 +66,7 @@
                         <div id="content1" class="content active">
                             <div class="company-detail-header">
                                 <h3>Our Company</h3>
-                                <span style="color:rgb(199,8,8);display:flex;align-items:center;gap:4px;">Supplier From <t t-esc="partner.country_id.name" /> <img src="/trademeda/static/src/img/flag.png" alt="" style="height:1.5rem;"/></span>
+                                <span style="color:#07407a;display:flex;align-items:center;gap:4px;">Supplier From <t t-esc="partner.country_id.name" /> <img src="/trademeda/static/src/img/flag.png" alt="" style="height:1.5rem;"/></span>
                                 <span class="product-date"><t t-esc="partner.create_date.strftime('%d-%b-%Y')"/></span>
                                 <!-- <button id="contact_us">Contact Us</button> -->
                             </div>
@@ -94,8 +94,8 @@
                                 <t t-foreach="request.env['product.customer.images'].sudo().search([('partner_id','=',7)])" t-as="product"> 
                                     <div class="product-card">
                                         <div class="product-header">
-                                            <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:rgb(199,8,8);text-decoration:none;"></a></h3>
-                                            <span style="color:rgb(199,8,8);display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="" style="height:0.9rem;"/></span>
+                                            <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#07407a;text-decoration:none;"></a></h3>
+                                            <span style="color:#07407a;display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="" style="height:0.9rem;"/></span>
                                             <span class="product-date">Jul-05-23</span>
                                         </div>
                                         <div class="product-content">
@@ -198,7 +198,7 @@
                         </div>
                         <!-- certificates  -->
                         
-                        <div id="content4" style="color:rgb(199,8,8)" class="content">
+                        <div id="content4" style="color:#07407a" class="content">
                             <h1 class="">Certificates</h1>
                             <div class="certificate_award_container">
                                 <t t-foreach="partner.certificates" t-as="certificate">
@@ -233,7 +233,7 @@
                             
                         </div>
                         <!-- awards  -->
-                        <div id="content5" style="color:rgb(199,8,8)" class="content">
+                        <div id="content5" style="color:#07407a" class="content">
                             <h1 class="">Awards</h1>
                             <t t-foreach="partner.awards" t-as="award">
                                 <div class="award-certificate-card">
