@@ -11,6 +11,9 @@ class TrademedaConf(models.Model):
 
     contactus_image = fields.Binary("Contact Us Image")
     contactus_imagename = fields.Char("Contact Us Image name")
+
+    brochure_file = fields.Binary("Brochure")
+    brochure_filename = fields.Char("Brochure Filename")
     
 
 
