@@ -224,12 +224,15 @@ class ProductController(http.Controller):
 
         # Write data to worksheet
         for row_num, enquiry in enumerate(enquiries, 1):
-            enquiry_worksheet.write(row_num, 0, enquiry.user_name)
-            enquiry_worksheet.write(row_num, 1, enquiry.product_id.name)
-            enquiry_worksheet.write(row_num, 2, enquiry.email)
-            enquiry_worksheet.write(row_num, 3, enquiry.phone)
-            enquiry_worksheet.write(row_num, 4, enquiry.country.name)  # Assuming country_id is a Many2one field
-            enquiry_worksheet.write(row_num, 5, enquiry.message)
+            # enquiry_worksheet.write(row_num, 0, enquiry.user_name)
+            # enquiry_worksheet.write(row_num, 1, enquiry.product_id.name)
+            # enquiry_worksheet.write(row_num, 2, enquiry.email)
+            # enquiry_worksheet.write(row_num, 3, enquiry.phone)
+            # enquiry_worksheet.write(row_num, 4, enquiry.country.name)  # Assuming country_id is a Many2one field
+            # enquiry_worksheet.write(row_num, 5, enquiry.message)
+
+            enquiry_worksheet.write(row_num, 0, enquiry.email)
+
 
         workbook.close()
         excel_buffer.seek(0)
@@ -238,7 +241,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=product_enquiries.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=Buyers_Information.xlsx;')
                                          ])
         return response
     
@@ -1031,5 +1034,34 @@ class ProductController(http.Controller):
         partner_id = user.partner_id
         notification = request.env['subscribed.notifications'].sudo().search([('id','=',notification_id),('partner_id.id','=',partner_id.id)])
         notification.sudo().unlink()
+
+
+    @http.route('/download_brochure', type='http', auth='public', website=True)
+    def download_brochure(self, **kwargs):
+
+        # brochure_record = request.env['trademeda.brochure'].sudo().search([('sequence', '=', 1)], limit=1)
+
+        brochure_record = request.env['trademeda.conf'].sudo().search([], limit=1)
+        # import wdb;wdb.set_trace()
+        
+        if brochure_record and brochure_record.brochure_file:
+            # Get the binary content of the brochure
+            pdf_content = brochure_record.brochure_file
+            pdf_content = base64.b64decode(pdf_content)
+
+            # Use the filename provided or default to "brochure.pdf"
+            filename = brochure_record.brochure_filename or "brochure.pdf"
+
+            # Set the headers to serve the file as a downloadable attachment
+            headers = [
+                ('Content-Type', 'application/pdf'),
+                ('Content-Disposition', f'attachment; filename="{filename}"'),
+            ]
+
+            # Return the response
+            return request.make_response(pdf_content, headers=headers)
+        else:
+            # Return a 404 error if no brochure is found
+            return request.not_found()
 
 
