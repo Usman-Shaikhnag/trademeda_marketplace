@@ -1,9 +1,7 @@
 main {
   background-color: #f6f6f6;
   position: relative;
-  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif' */
-  font-family: 'Source Sans Pro', sans-serif;
-  /* font-family: 'Heveltica'; */
+  font-family: Arial, sans-serif;;
   
   
 }
@@ -31,7 +29,7 @@ button {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: fit-content;
-
+  font-family: Arial;
 }
 .left-sidebar h2{
   color: #07407a;

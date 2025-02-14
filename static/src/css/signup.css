@@ -2,7 +2,7 @@ body {
     /* background-color: cadetblue; */
     /* background:#8fb15f; */
     background: #74b3cd;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
@@ -91,7 +91,7 @@ span {
 .text-input{
     margin-top: 1rem;
     font-size: 1.1rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
 }
 
 .text-input input,textarea,select{
@@ -102,8 +102,9 @@ span {
     box-shadow: none;
     outline: none;
     border: 1px solid lightgrey;
-    font-family: 'Century Schoolbook';
     padding-left: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
 }
 
 /* .text-input select{

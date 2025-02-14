@@ -3723,7 +3723,7 @@
                 }
 
                 function ready_to_buy_popup(element){
-                    debugger;
+                    <!-- debugger; -->
                     const ready_to_buy = element.checked
                     if(ready_to_buy == true){
                         document.getElementById('readyToBuyPopup').style.display = 'fixed'

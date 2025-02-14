@@ -1,7 +1,7 @@
 body {
     background-color: #f6f6f6;
     color: #07407a;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, sans-serif;
 }
 main{
     display: flex;
@@ -26,7 +26,7 @@ h2 {
 .text-input{
     margin-top: 1rem;
     font-size: 1.1rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
     padding-left: 1%;
 }
 
@@ -40,6 +40,9 @@ h2 {
     border: none;
     padding-left: 10px;
     background: transparent;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+
 }
 .text-input input:focus,textarea:focus,select:focus{
     /* outline: 2px solid #b32f2d; */

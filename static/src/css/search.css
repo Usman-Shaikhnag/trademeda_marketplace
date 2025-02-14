@@ -1,6 +1,6 @@
 main{
     background-color: #f6f6f6;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, sans-serif;
     display: grid;
     grid-template-columns: 22% 78%;
     gap:1rem;

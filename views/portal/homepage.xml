@@ -212,7 +212,7 @@
                             </div>
                     
                             <div id="buyers-tab" class="rfq-list content active">
-                                <t t-foreach="env['trademeda.rfq'].sudo().search([('subcategory.id','=',subcategory.id)],limit=4)" t-as="rfq">
+                                <t t-foreach="env['trademeda.rfq'].sudo().search([('subcategory.id','=',subcategory.id)],limit=4,order='create_date desc')" t-as="rfq">
                                     <t t-if="rfq.state == 'active'">
                                         <div class="rfq-card">
                                             <div class="rfq-heading">
@@ -254,7 +254,7 @@
                             
 
                             <div id="suppliers-tab" class="supplier-container content">
-                                <t t-foreach="env['product.customer.images'].sudo().search([('product_id.subcategory_id.id','=',subcategory.id)],limit=4)" t-as="product">
+                                <t t-foreach="env['product.customer.images'].sudo().search([('product_id.subcategory_id.id','=',subcategory.id)],limit=4,order='create_date desc')" t-as="product">
                                     
                                 
                                     <div class="product-card">
@@ -336,7 +336,7 @@
                         <div class="featured-products">
                             <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
                                 
-                            <t t-foreach="env['product.customer.images'].sudo().search([],order='views desc')" t-as="product">
+                            <t t-foreach="env['product.customer.images'].sudo().search([],order='views desc',limit=10)" t-as="product">
                                     <t t-if="product.product_image">
                                         <div class="featured-product">
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
@@ -366,7 +366,7 @@
                         <div class="new-products">
                             <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
                                 
-                            <t t-foreach="env['product.customer.images'].sudo().search([])" t-as="product">
+                            <t t-foreach="env['product.customer.images'].sudo().search([],order='create_date desc',limit=10)" t-as="product">
                                     <t t-if="product.product_image">
                                         <div class="new-arrival-product">
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
