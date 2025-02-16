@@ -514,7 +514,7 @@ class ProductController(http.Controller):
         workbook = xlsxwriter.Workbook(excel_buffer)
         enquiry_worksheet = workbook.add_worksheet("Buyer's Information")
 
-        headers = ['Date','Product','Buyer\'s Company Name','Name','Email','Phone','Message','Country']
+        headers = headers = ["RFQ. No.", "Email", "Phone", "Country", "Contact Person Name", "Message", "Company Name", "Nature of Business", "Company Website URL", "Product Name", "Minimum Order Quantity (MOQ)", "Unit", "Product description", "Target Price", "Currency", "Destination", "Shipping Terms", "Payment Terms", "Looking for Suppliers from", "Primary Business", "Establishment Year", "Annual Sales in USD (Approx)", "Number of Employees", "Your Name", "Designation", "Address", "Country", "State", "City", "Zip/Postal Code", "Country Code", "Area Code", "Phone Number", "Email Address", "Date (Newest First)"]
         for col_num, header in enumerate(headers):
             enquiry_worksheet.write(0, col_num, header)
 
@@ -523,14 +523,41 @@ class ProductController(http.Controller):
 
         # Write data to worksheet
         for row_num, enquiry in enumerate(enquiries, 1):
-            enquiry_worksheet.write(row_num, 0, enquiry.create_date.strftime('%d-%b-%Y'))
-            enquiry_worksheet.write(row_num, 1, enquiry.product_id.product_name)
-            enquiry_worksheet.write(row_num, 2 ,enquiry.partner_id.name)
-            enquiry_worksheet.write(row_num, 3, enquiry.user_name)
-            enquiry_worksheet.write(row_num, 4, enquiry.email)
-            enquiry_worksheet.write(row_num, 5, enquiry.phone)  # Assuming country_id is a Many2one field
-            enquiry_worksheet.write(row_num, 6 ,enquiry.message)
-            enquiry_worksheet.write(row_num, 7 ,enquiry.country.name)
+            enquiry_worksheet.write(row_num, 1, '') #rfq no
+            enquiry_worksheet.write(row_num, 1, enquiry.email)
+            enquiry_worksheet.write(row_num, 3, enquiry.phone)
+            enquiry_worksheet.write(row_num, 4, enquiry.partner_id.country_id.name)
+            enquiry_worksheet.write(row_num, 5, '') # contact person
+            enquiry_worksheet.write(row_num, 6, enquiry.message)
+            enquiry_worksheet.write(row_num, 7, enquiry.partner_id.name)
+            enquiry_worksheet.write(row_num, 8, enquiry.partner_id.member_type)
+            enquiry_worksheet.write(row_num, 9, enquiry.partner_id.company_website)
+            enquiry_worksheet.write(row_num, 10, enquiry.product_id.product_name)
+            enquiry_worksheet.write(row_num, 11, enquiry.quantity)
+            enquiry_worksheet.write(row_num, 12, enquiry.unit.name) #unit
+            enquiry_worksheet.write(row_num, 13, enquiry.product_id.product_description)
+            enquiry_worksheet.write(row_num, 14, enquiry.target_price)
+            enquiry_worksheet.write(row_num, 15, enquiry.currency.name)
+            enquiry_worksheet.write(row_num, 16, enquiry.country.name)
+            enquiry_worksheet.write(row_num, 17, '') #shipping terms
+            enquiry_worksheet.write(row_num, 18, enquiry.product_id.payment_mode)
+            enquiry_worksheet.write(row_num, 19, '') #suppliers from
+            enquiry_worksheet.write(row_num, 20, enquiry.partner_id.primary_business)
+            enquiry_worksheet.write(row_num, 20, enquiry.partner_id.establishment_year)
+            enquiry_worksheet.write(row_num, 21, enquiry.partner_id.annual_sales)
+            enquiry_worksheet.write(row_num, 22, enquiry.partner_id.no_of_employees)
+            enquiry_worksheet.write(row_num, 23, partner_id.name)
+            enquiry_worksheet.write(row_num, 24, partner_id.designation)
+            enquiry_worksheet.write(row_num, 25, partner_id.company_address)
+            enquiry_worksheet.write(row_num, 26, partner_id.country_id.name)
+            enquiry_worksheet.write(row_num, 27, partner_id.state_id.name)
+            enquiry_worksheet.write(row_num, 28, partner_id.city)
+            enquiry_worksheet.write(row_num, 29, partner_id.zip)
+            enquiry_worksheet.write(row_num, 30, partner_id.country_id.phone_code)
+            enquiry_worksheet.write(row_num, 31, partner_id.area_code)
+            enquiry_worksheet.write(row_num, 32, partner_id.phone)
+            enquiry_worksheet.write(row_num, 33, partner_id.email)
+            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
 
 
 
@@ -541,7 +568,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=Product_Enquiry.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=Buyers_Information.xlsx;')
                                          ])
         return response
     

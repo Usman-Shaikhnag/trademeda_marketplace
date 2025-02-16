@@ -246,12 +246,29 @@ class ProductCustomerImages(models.Model):
         ('bill_of_exchange','Bill of Exchange'),
         ('telegraphic_transfer','Telegraphic transfer')
     ],string="Payment Terms")
+    shipping_terms = fields.Selection([
+        ('fob','FOB (Free on Board)'),
+        ('fca','FCA (Free Carrier)'),
+        ('exw','EXW (Ex Works)'),
+        ('fas','FAS (Free Alongside Ship)'),
+        ('dap','DAP (Delivered at Place)'),
+        ('dat','DAT (Delivered at Terminal)'),
+        ('cif','CIF (Cost, Insurance and Freight)'),
+        ('cip','CIP (Carriage and Insurance Paid to)'),
+        ('cfr','CFR (Cost and Freight)'),
+        ('ddp','DDP (Delivery Duty Paid)'),
+        ('cpt','CPT (Carriage paid to)'),
+    ],string="Shipping Terms")
     sample_policy = fields.Char("Sample Policy")
     upload_date = fields.Datetime("Upload Date")
     ready_to_ship = fields.Boolean("Ready to Ship")
     rts_quantity = fields.Integer("Ready to Ship Quantity")
     views = fields.Integer("Views")
     rating = fields.Float('Rating')
+
+    buyers_country = fields.Many2one('res.country', string="Buyer Country")
+    contact_person = fields.Char("Contact Person")   
+
 
 
 class CustomerAwards(models.Model):
