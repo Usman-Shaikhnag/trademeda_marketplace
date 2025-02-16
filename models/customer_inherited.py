@@ -62,6 +62,8 @@ class ResPartner(models.Model):
     company_address = fields.Text("Company Address")
     area_code = fields.Char("Area Code")
     company_email = fields.Char("Company Email")
+    company_website = fields.Char(string="Company Website URL")
+
 
     company_details = fields.Text("Company Details")
     contact_person_name = fields.Char("Contact Person Name")

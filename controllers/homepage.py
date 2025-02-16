@@ -303,7 +303,7 @@ class HomepageController(http.Controller):
             
             data = {
                 'name':name,
-                'street1':address,
+                'company_address':address,
                 'phone':phone,
                 'city':city,
                 'zip':zip_code,
