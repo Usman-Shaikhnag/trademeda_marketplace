@@ -582,6 +582,7 @@ class HomepageController(http.Controller):
         image_name1 = kw.get('image_name1')
         image_name2 = kw.get('image_name2')
         image_name3 = kw.get('image_name3')
+        buyer_country = kw.get('buyers_country')
 
         # Prepare data for the record creation
         product_data = {
@@ -591,9 +592,12 @@ class HomepageController(http.Controller):
             'product_id': product_subsubcategory,
             'product_quantity': product_quantity,
             'unit': product_unit,
-
+            'payment_mode':kw.get('payment_terms'),
+            'shipping_terms':kw.get('shipping_terms'),
+            
         }
-
+        if buyer_country:
+            product_data['buyers_country'] = int(buyer_country)
         # Add product images if they are uploaded
         if product_image:
             product_data['product_image'] = base64.b64encode(product_image.read())

@@ -29,6 +29,9 @@
                         <field name="rts_quantity" />
                         <field name="views" />
                         <field name="rating"/>
+                        <field name="buyers_country" />
+                        <field name="contact_person" />
+
 
 
                     </tree>

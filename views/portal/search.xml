@@ -404,7 +404,7 @@
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
                                             </div>
                                             <div class="rfq-subheading">
-                                                <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
                                             <div class="space-between">
@@ -413,7 +413,7 @@
                                                     <!-- <p><t t-esc="rfq.product_description"/></p> -->
                                                 </div>
                                                 <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
-                                                    <span style="background-color:rgb(199,8,8);border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
+                                                    <span style="background-color:#07407a;border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
                                                     
                                                 </div>
                                             </div>
@@ -441,13 +441,7 @@
                                                 <button class="btn-wishlist">Add to Wishlist</button>
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
                                             </div>
-                                            <!-- <div class="space-between">
-                                                <div class="rfq-buttons">
-                                                    <button class="btn-wishlist">Add to Wishlist</button>
-                                                    <a t-attf-href="/view_rfq/{{rfq.id}}"><button class="btn-enquire">Enquire Now</button></a>
-                                                </div>
-                                                <div><span style="color:rgb(199,8,8);"><t t-esc="partner.quotations_left"/> Quotes Left</span></div>
-                                            </div> -->
+                                            
                                             
                                         </div>
                                     </t>
@@ -547,7 +541,7 @@
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
                                             </div>
                                             <div class="rfq-subheading">
-                                                <b><p>Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
                                             <div class="space-between">
@@ -578,7 +572,7 @@
                                                     
                                                     </p>
                                                 </div>
-                                                <div style="align-self: flex-start;margin-top: 0.5rem;color: white;background-color: #f89623;padding: 0.5rem 1rem;border-radius: 8px;" onmouseover="hover_quotes(this)"  onmouseout="unhover_quotes(this)" class="">Quotes Left:<span ><t t-esc="partner.quotations_left"/></span></div>
+                                                <t t-if="logged_in"><div style="align-self: flex-start;margin-top: 0.5rem;color: white;background-color: #f89623;padding: 0.5rem 1rem;border-radius: 8px;" onmouseover="hover_quotes(this)"  onmouseout="unhover_quotes(this)" class="">Quotes Left:<span ><t t-esc="partner.quotations_left"/></span></div></t>
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
