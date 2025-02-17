@@ -404,7 +404,7 @@
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
                                             </div>
                                             <div class="rfq-subheading">
-                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/>,<t t-esc="rfq.partner_id.state_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
                                             <div class="space-between">
@@ -541,7 +541,7 @@
                                                 <a t-attf-href="/view_rfq/{{rfq.id}}" ><h3 class="">REQUIRED:<t t-esc="rfq.product_name"/></h3></a>
                                             </div>
                                             <div class="rfq-subheading">
-                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/></p></b>
+                                                <b><p><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Buyer From <t t-esc="rfq.partner_id.country_id.name"/>,<t t-esc="rfq.partner_id.state_id.name"/></p></b>
                                                 <p class="" style="color:grey;"><t t-esc="rfq.create_date.strftime('%d-%b-%Y')"/></p>
                                             </div>
                                             <div class="space-between">
