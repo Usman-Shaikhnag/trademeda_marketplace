@@ -17,15 +17,15 @@
                 <t t-foreach="env['membership.pricelists'].sudo().search([])" t-as="membership">
                     <t t-if="membership.suggested">
                         <div class="pricing-plan best-value">
-                            <h2><span class="icon">★</span>GOLD Membership</h2>
-                            <p>Starts From</p>
-                            <div class="price"><t t-esc="membership.price"/><small> Total for <t t-esc="membership.duration"/> <t t-esc="membership.duration_type"/></small></div>
-                            <ul>
+                            <h2><span class="icon">★</span><t t-esc="membership.name"/></h2>
+                            <div style="margin-top:1rem;" class="price"><t t-esc="membership.price"/><small> Total for <t t-esc="membership.duration"/> <t t-esc="membership.duration_type"/></small></div>
+                            <ul style="display:flex;flex-direction:column;">
                                 <t t-foreach="membership.features" t-as="feature">
-                                    <li><t t-esc="feature.name"/></li>
+                                    <div><li><t t-esc="feature.name"/></li></div>
                                 </t>
                             </ul>
-                            <button class="get_started_btn">Get Started</button>
+                            <button class="get_started_btn" onclick="show_text(this)">Get Started</button>
+                            <h3 id="get_started_text" style="display:none;text-align:center;">Subscription starts From <div><t t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/></div></h3>
                         </div>
                     </t>
                     <t t-else="">
@@ -33,7 +33,7 @@
                             <h2><span class="icon">★</span><t t-esc="membership.name"/></h2>
                             <p>Starts From</p>
                             <div class="price"><t t-esc="membership.price"/><small> Total for <t t-esc="membership.duration"/> <t t-esc="membership.duration_type"/></small></div>
-                            <ul>
+                            <ul style="display:flex;flex-direction:column;">
                                 <t t-foreach="membership.features" t-as="feature">
                                     <li><t t-esc="feature.name"/></li>
                                 </t>
@@ -46,6 +46,12 @@
             </div>
             
         </main>
+        <script>
+            function show_text(element){
+                const get_started = document.getElementById("get_started_text")
+                get_started.style.display = 'block'
+            }
+        </script>
         </template>
     </data>
 </odoo>

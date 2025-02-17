@@ -40,6 +40,9 @@ h2 {
     border: none;
     padding-left: 10px;
     background: transparent;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+
 }
 .text-input input:focus,textarea:focus,select:focus{
     /* outline: 2px solid #b32f2d; */

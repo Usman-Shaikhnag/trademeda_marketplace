@@ -9,3 +9,6 @@ main {
     padding-top: 5rem;
     padding-left: 5%;
 }
+img {
+    max-width: 100%;
+}

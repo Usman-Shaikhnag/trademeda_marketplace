@@ -5,6 +5,8 @@ import json
 from odoo.exceptions import ValidationError
 from datetime import timedelta, date
 import os
+import logging
+_logger = logging.getLogger(__name__)
 
 class HomepageController(http.Controller):
 
@@ -97,11 +99,12 @@ class HomepageController(http.Controller):
         partner_id = user.partner_id
         product = request.env['product.customer.images'].sudo().search([('id','=',productId)])
 
-        subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',product.product_id.subcategory_id.name)],limit=1)
-        points = subcategory.points + 20
-        subcategory.sudo().write({
-            'points':points
-        })
+        subcategory = request.env['product.subcategories'].sudo().search([('name','ilike',product.product_id.subcategory_id.name)])
+        for sb in subcategory:
+            # points = sb.points + 20
+            sb.sudo().write({
+                'points':sb.points + 10
+            })
         vals = {
             'product':product,
             'logged_in':request.env.user != request.env.ref('base.public_user'),
@@ -184,7 +187,10 @@ class HomepageController(http.Controller):
 
             trademeda_conf = request.env['trademeda.conf'].sudo().search([],limit=1)
 
+            if not trademeda_conf:
+                raise ValidationError("Configuration not found")
             free_subscription_days = trademeda_conf.free_subscription_days
+
             
             try:
                 # Create the partner first
@@ -198,7 +204,7 @@ class HomepageController(http.Controller):
                     'buyer_products': buyer_products,
                     'trader_products': trader_products,
                     'primary_business': primary_business,
-                    'establishment_year': int(establishment_year),
+                    # 'establishment_year': int(establishment_year),
                     'annual_sales': annual_sales,
                     'no_of_employees':employees,
                     'user_name': name,
@@ -206,6 +212,7 @@ class HomepageController(http.Controller):
                     'country_id':int(country),
                     'state_id':int(state),
                     'street': address,
+                    'country_id':int(country),
                     'city': city,
                     'zip': zip_code,
                     'phone': phone,
@@ -296,7 +303,7 @@ class HomepageController(http.Controller):
             
             data = {
                 'name':name,
-                'street1':address,
+                'company_address':address,
                 'phone':phone,
                 'city':city,
                 'zip':zip_code,
@@ -817,6 +824,7 @@ class HomepageController(http.Controller):
         return request.render('trademeda.mission',vals)
 
     
+
 
 
     @http.route(['/get_states'], methods=["POST"],  type="json", auth="public")

@@ -39,7 +39,7 @@ body {
   
   .actions button {
   
-    background-color: #ea5455;
+    background-color: #07407a;
   
     color: white;
   
@@ -69,7 +69,7 @@ body {
   
     font-size: 18px;
   
-    color: #ea5455;
+    color: #07407a;
   
   }
   main {
@@ -145,7 +145,7 @@ main > div {
 .contact-section {
   margin-top: 50px;
   margin-left: 2%;
-  color: rgb(199,8,8);
+  color: #07407a;
 }
 .contact-section p{
   font-size: 1.3rem;
@@ -159,15 +159,14 @@ main > div {
   width: 100%;
   height: 3px;
   border-radius: 5px;
-  background-color: #ea5455;
+  background-color: #07407a;
 }
 .actions button{
 
-  background: rgb(199,8,8);
-  background: linear-gradient(90deg, rgba(199,8,8,1) 35%, rgba(238,98,0,1) 100%);
+  background: #07407a;
 }
 .product-details h3{
-  color: rgb(199,8,8);
+  color: #07407a;
 }
 
 .text-input{
@@ -189,11 +188,11 @@ main > div {
   background: transparent;
 }
 .text-input input:focus,textarea:focus,select:focus{
-  outline: 2px solid #b32f2d;
+  outline: 2px solid #07407a;
 
 }
 .text-input span {
-  color: #b32f2d;
+  color: #07407a;
 
 }
 

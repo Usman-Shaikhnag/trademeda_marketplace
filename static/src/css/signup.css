@@ -11,6 +11,9 @@ h1, h2{
     font-family: 'Avenir';
   
 }
+span {
+    font-family: 'Century Schoolbook';
+}
 
 .outer {
     padding: 5%;
@@ -100,6 +103,8 @@ h1, h2{
     outline: none;
     border: 1px solid lightgrey;
     padding-left: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
 }
 
 /* .text-input select{

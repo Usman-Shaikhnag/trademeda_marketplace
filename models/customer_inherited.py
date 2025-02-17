@@ -261,8 +261,8 @@ class ProductCustomerImages(models.Model):
     ],string="Shipping Terms")
     sample_policy = fields.Char("Sample Policy")
     upload_date = fields.Datetime("Upload Date")
-    ready_to_ship = fields.Boolean("Ready to Ship")
-    rts_quantity = fields.Integer("Ready to Ship Quantity")
+    ready_to_ship = fields.Boolean("Ready to buy")
+    rts_quantity = fields.Integer("Ready to buy Quantity")
     views = fields.Integer("Views")
     rating = fields.Float('Rating')
 

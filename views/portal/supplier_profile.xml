@@ -91,7 +91,7 @@
                         </div>
                         <div id="content2" class="content" style="position:relative;">
                                 
-                                <t t-foreach="request.env['product.customer.images'].sudo().search([('partner_id','=',7)])" t-as="product"> 
+                                <t t-foreach="products" t-as="product"> 
                                     <div class="product-card">
                                         <div class="product-header">
                                             <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#07407a;text-decoration:none;"></a></h3>

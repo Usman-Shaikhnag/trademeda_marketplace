@@ -2060,7 +2060,7 @@
                                 <button onclick="buyer_quotations_received(this)" class="">Received</button>
 
                             </div>
-                            <div id="buyer_quotations_sent_download" class="">
+                            <div id="buyer_quotations_sent_download" style="display:block;" class="">
                                 <form action="/buyer/rfqs_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
@@ -2387,7 +2387,7 @@
                                 <button onclick="supplier_quotations_received(this)" class="">Received</button>
 
                             </div>
-                            <div id="supplier_quotations_sent_download" class="">
+                            <div id="supplier_quotations_sent_download" style="display:block;" class="">
                                 <form action="/supplier/rfq_sent" method="get" style="display: flex;justify-content: flex-end;">
                                     <div class="download-btn">
                                         <button type="submit"><i class="fas fa-download" /> Download</button>
@@ -3745,7 +3745,7 @@
                 }
 
                 function ready_to_buy_popup(element){
-                    debugger;
+                    <!-- debugger; -->
                     const ready_to_buy = element.checked
                     if(ready_to_buy == true){
                         document.getElementById('readyToBuyPopup').style.display = 'fixed'
