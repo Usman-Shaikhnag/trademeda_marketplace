@@ -108,7 +108,12 @@
                                         </div>
                                     </div>
                                     <div class="product-description">
-                                        <p><t t-esc="product.product_description"/></p>
+                                        <t t-if="len(product.product_description) &gt; 150">
+                                            <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                        </t>
+                                        <t t-else="">
+                                            <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                        </t>
                                     </div>
                                     <div class="product-actions">
                                         <button class="favourites-button"><b>Add To Favourites</b></button>

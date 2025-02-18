@@ -26,7 +26,10 @@
                 <div class="left">
                     <div class="company_header">
                         <div class="company_name" style="display: flex;">
-                            <img src="/trademeda/static/src/img/company.png" alt="" class="company-image"/>
+                            <!-- <img src="/trademeda/static/src/img/company.png" alt="" class="company-image"/> -->
+                            <t t-if="partner.logo_image">
+                                <img t-att-src="'data:image/png;base64,' + partner.logo_image.decode('utf-8')" class="company-image"/>
+                            </t>
                             <div>
                                 <h1 t-esc="partner.name" style="margin-bottom: 4px;"/>
 
@@ -66,7 +69,7 @@
                         <div id="content1" class="content active">
                             <div class="company-detail-header">
                                 <h3>Our Company</h3>
-                                <span style="color:#07407a;display:flex;align-items:center;gap:4px;">Supplier From <t t-esc="partner.country_id.name" /> <img src="/trademeda/static/src/img/flag.png" alt="" style="height:1.5rem;"/></span>
+                                <span style="color:#07407a;display:flex;align-items:center;gap:4px;">Supplier From <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="" style="height:0.9rem;"/></span>
                                 <span class="product-date"><t t-esc="partner.create_date.strftime('%d-%b-%Y')"/></span>
                                 <!-- <button id="contact_us">Contact Us</button> -->
                             </div>
@@ -96,7 +99,7 @@
                                         <div class="product-header">
                                             <h3 ><a href="#" class="product-title" t-esc="product.product_id.name" style="color:#07407a;text-decoration:none;"></a></h3>
                                             <span style="color:#07407a;display: flex;align-items: center;gap: 0.5rem;">Supplier from  <t t-esc="partner.country_id.name" /> <img t-att-src="partner.country_id.image_url" alt="" style="height:0.9rem;"/></span>
-                                            <span class="product-date">Jul-05-23</span>
+                                            <span class="product-date"><t t-esc="product.create_date.strftime('%d-%b-%Y')"/></span>
                                         </div>
                                         <div class="product-content">
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image" class="product-image"/>

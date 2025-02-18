@@ -344,7 +344,12 @@
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                <t t-if="len(product.product_description) &gt; 150">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                </t>
+                                                <t t-else="">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                </t>
                                             </div>
                                             <div class="product-actions">
                                                 <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id" class="favourites-button">Add To Favourites</button>
@@ -412,10 +417,7 @@
                                                     <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
                                                     <!-- <p><t t-esc="rfq.product_description"/></p> -->
                                                 </div>
-                                                <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
-                                                    <span style="background-color:#07407a;border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
-                                                    
-                                                </div>
+                                                
                                             </div>
                                             <div class="space-between">
                                                 <div class="rfq-content">
@@ -517,7 +519,13 @@
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                <t t-if="len(product.product_description) &gt; 150">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                </t>
+                                                <t t-else="">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                </t>
+
                                             </div>
                                             <div class="product-actions">
                                                 <button class="favourites-button">Add To Favourites</button>

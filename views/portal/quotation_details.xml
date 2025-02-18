@@ -24,7 +24,127 @@
                     </div>
                     <div class="buyer-details">
                         <div class=""><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>Buyer from <t t-esc="rfq.partner_id.country_id.name"/></div>
-                        <div class=""><span style="color:#009900"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span></div>
+                        <div class=""><span onclick="show_verification_popup(this)" style="color:#009900;cursor:pointer;user-select: none;"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span>
+                            <div class="verification_popup" style="display: none; position: absolute; background: #fff; padding: 1rem; z-index: 100;">
+                                <div>
+                                    <span>Email Verification</span><span>
+                                        <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Phone number Verification</span><span>
+                                        <i class="fa-solid fa-xmark" style="color:red"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Company Registration Certificate</span><span>
+                                        <t t-if="rfq.partner_id.company_registration">
+                                            <t t-if="rfq.partner_id.company_registration_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Company Address Proof</span><span>
+                                        <t t-if="rfq.partner_id.company_address_proof">
+                                            <t t-if="rfq.partner_id.company_address_proof_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Company Representative's Identity Proof</span><span>
+                                        <t t-if="rfq.partner_id.identity_proof">
+                                            <t t-if="rfq.partner_id.identity_proof_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Tax ID Proof</span><span>
+                                        <t t-if="rfq.partner_id.tax_id_proof">
+                                            <t t-if="rfq.partner_id.tax_id_proof_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Trading License</span><span>
+                                        <t t-if="rfq.partner_id.trading_license">
+                                            <t t-if="rfq.partner_id.trading_license_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Proof of Product</span><span>
+                                        <i class="fa-solid fa-xmark" style="color:red"></i>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Any past Export/Import document as proof</span><span>
+                                        <t t-if="rfq.partner_id.prior_import_export">
+                                            <t t-if="rfq.partner_id.prior_import_export_verified">
+                                                <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                            </t>
+                                            <t t-else="">
+                                                <i class="fa-solid fa-square-check" style="color:orange"></i>
+                                            </t>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>Other Documents like Awards, Certifications etc.</span><span>
+                                        <t t-if="rfq.partner_id.awards or rfq.partner_id.certificates">
+                                            <i class="fa-solid fa-square-check" style="color:#238e09"></i>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa-solid fa-xmark" style="color:red"></i>
+                                        </t>
+                                    </span>
+                                </div>
+                            </div>
+                        
+                        </div>
                         
                         <div class="">
                             Expires on  <t t-if="rfq.create_date">
@@ -243,6 +363,14 @@
                         
                     })
 
+                }
+                function show_verification_popup(element) {
+                    const popup = element.nextElementSibling;
+                    if (popup.style.display === 'block') {
+                        popup.style.display = 'none';
+                    } else {
+                        popup.style.display = 'block';
+                    }
                 }
             </script>
 
