@@ -204,7 +204,7 @@ class HomepageController(http.Controller):
                     'buyer_products': buyer_products,
                     'trader_products': trader_products,
                     'primary_business': primary_business,
-                    # 'establishment_year': int(establishment_year),
+                    'establishment_year': int(establishment_year),
                     'annual_sales': annual_sales,
                     'no_of_employees':employees,
                     'user_name': name,
@@ -294,10 +294,12 @@ class HomepageController(http.Controller):
             email = kw.get("email")
             designation = kw.get('designation')
             address = kw.get('address')
-            website = kw.get('website')
+            website = kw.get('company_website')
             logo = kw.get("upload_company_logo")
             company_image = kw.get("upload_company_image")
             role = kw.get('role')
+            company_name = kw.get('company_name')
+
 
 
             
@@ -310,8 +312,10 @@ class HomepageController(http.Controller):
                 'country_id':int(kw.get("country")),
                 'state_id':int(state),
                 'email':email,
-                'member_type':role
-                
+                'member_type':role,
+                'user_name':company_name,
+                'company_website':website,
+                'designation':designation                
 
             }
             # import wdb;wdb.set_trace()

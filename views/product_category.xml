@@ -123,7 +123,7 @@
             <tree string="Product Subcategory">
                 <field name="name"/>
                 <field name="ranking"/>
-                <field name="points"/>
+                <field name="total_points"/>
 
             </tree>
         </field>

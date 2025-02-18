@@ -261,7 +261,7 @@ class ProductController(http.Controller):
             enquiry_worksheet.write(row_num, 31, partner_id.area_code)
             enquiry_worksheet.write(row_num, 32, partner_id.phone)
             enquiry_worksheet.write(row_num, 33, partner_id.email)
-            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
+            enquiry_worksheet.write(row_num, 34, enquiry.create_date.strftime('%d-%b-%Y'))
 
 
 
@@ -377,7 +377,7 @@ class ProductController(http.Controller):
             enquiry_worksheet.write(row_num, 31, partner_id.area_code)
             enquiry_worksheet.write(row_num, 32, partner_id.phone)
             enquiry_worksheet.write(row_num, 33, partner_id.email)
-            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
+            enquiry_worksheet.write(row_num, 34, enquiry.create_date.strftime('%d-%b-%Y'))
 
 
 
@@ -449,7 +449,7 @@ class ProductController(http.Controller):
             enquiry_worksheet.write(row_num, 31, partner_id.area_code)
             enquiry_worksheet.write(row_num, 32, partner_id.phone)
             enquiry_worksheet.write(row_num, 33, partner_id.email)
-            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
+            enquiry_worksheet.write(row_num, 34, enquiry.create_date.strftime('%d-%b-%Y'))
 
 
 
@@ -592,7 +592,7 @@ class ProductController(http.Controller):
             enquiry_worksheet.write(row_num, 31, partner_id.area_code)
             enquiry_worksheet.write(row_num, 32, partner_id.phone)
             enquiry_worksheet.write(row_num, 33, partner_id.email)
-            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
+            enquiry_worksheet.write(row_num, 34, enquiry.create_date.strftime('%d-%b-%Y'))
 
 
 
