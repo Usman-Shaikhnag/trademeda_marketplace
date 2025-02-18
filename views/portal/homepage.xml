@@ -267,7 +267,7 @@
                                             <div class="product-header">
                                                 <div class="product-title">
                                                     <span class="flag-icon"></span>
-                                                    <h2><a style="color:rgb(212, 37, 5);text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
+                                                    <h2><a style="color:#07407a;text-decoration:none;cursor:pointer;" t-attf-href="/product/{{product.id}}"><t t-esc="product.product_name"/></a></h2>
                                                 </div>
                                                 <div class="status-icons">
                                                     <span class="status-icon"></span>
@@ -275,15 +275,15 @@
                                                 </div>
                                             </div>
                                             <div class="product-supplier">
-                                                <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:rgb(212, 37, 5);text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
+                                                <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:#07407a;text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
                                                 <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
                                                 <div class="rating">
                                                     <span>⭐⭐⭐⭐⭐</span>
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p><t t-esc="product.product_description[:200]"/>...</p>
-                                                <a t-attf-href="/profile/supplier/{{product.partner_id.id}}" class="see-more" >See More</a>
+                                                <p><t t-esc="product.product_description[:200]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                
                                             </div>
                                             <div class="product-actions">
                                                 <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id"  class="favourites-button">Add To Favourites</button>
