@@ -713,7 +713,7 @@
                                                 </div>
                                                 <div class="text-input">
                                                     <div class="">
-                                                        <span class="">Buyers From</span>
+                                                        <span class="">Looking Buyers From</span>
                                                     </div>
                                                     <div class="select-container">           
                                                         <select id="buyers_country" name="buyers_country" class="form-control">
