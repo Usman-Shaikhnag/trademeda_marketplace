@@ -282,7 +282,8 @@
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p><t t-esc="product.product_description"/></p>
+                                                <p><t t-esc="product.product_description[:200]"/>...</p>
+                                                <a t-attf-href="/profile/supplier/{{product.partner_id.id}}" class="see-more" >See More</a>
                                             </div>
                                             <div class="product-actions">
                                                 <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id"  class="favourites-button">Add To Favourites</button>
