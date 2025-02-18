@@ -154,3 +154,18 @@ h2 {
     color: #07407a;
 
 }
+
+.verification_popup{
+    gap: 1rem;
+    padding: 1rem;
+    z-index: 1000;
+    background-color: #fff;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.verification_popup>div{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}

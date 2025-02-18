@@ -35,12 +35,11 @@ class ProductSubCategory(models.Model):
             })
             ranking += 1
 
-    @api.depends('daily_points')
+    @api.depends('daily_points.points')
     def _compute_total_daily_points(self):
-        total = 0
-        for point in self.daily_points:
-            total = total + point.points
-        self.total_points = total
+        for record in self:
+            total = sum(record.daily_points.mapped('points'))  # Efficient way to sum
+            record.total_points = total
 
     def action_points_update(self):
         subcategories = self.env['product.subcategories'].sudo().search([])
