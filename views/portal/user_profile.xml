@@ -1385,8 +1385,10 @@
                                                             <option value="no">No</option> 
                                                         </select> -->
                                                         <div class="radio-group">
-                                                            <input type="radio" id="yes" name="ready_to_buy_requirements" value="yes"  checked="true"/>
-                                                            <label for="yes">Yes</label>
+                                                            <!-- <t t-if="not partner.free_member"> -->
+                                                                <input type="radio" id="yes" name="ready_to_buy_requirements" value="yes"  checked="true"/>
+                                                                <label for="yes">Yes</label>
+                                                            <!-- </t> -->
 
                                                             <input type="radio" id="no" name="ready_to_buy_requirements"  value="no"/>
                                                             <label for="no">No</label>
@@ -1397,6 +1399,7 @@
                                                     <div class="submit-edit-product">
                                                         <!-- <button class="" onclick="rtb_requirements_save(this)">Save</button> -->
                                                         <button type="submit" class="">Save</button>
+                                                        <button style="background-color:rgba(199,8,8,1);" type="button" onclick="close_rtb_popup(this)" class="">Close</button>
 
                                                     </div>
                                                 </div>
@@ -2035,7 +2038,7 @@
                                                                 <t t-esc="rfq.rfq_id.partner_id.email" />
                                                             </td>
                                                             <td>
-                                                                <t t-esc="rfq.create_date" />
+                                                                <t t-esc="rfq.create_date.strftime('%d-%b-%Y')" />
                                                             </td>
                                                         </tr>
                                                     </t>
@@ -2371,7 +2374,7 @@
                                                     <t t-esc="rfq.rfq_id.partner_id.email" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rfq.create_date" />
+                                                    <t t-esc="rfq.create_date.strftime('%d-%b-%Y')" />
                                                 </td>
                                             </tr>
                                         </t>
@@ -2531,7 +2534,7 @@
                                                     <t t-esc="rfq.partner_id.email" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rfq.create_date" />
+                                                    <t t-esc="rfq.create_date.strftime('%d-%b-%Y')" />
                                                 </td>
                                             </tr>
                                         </t>
@@ -2681,7 +2684,7 @@
                                                     <t t-esc="partner.email" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.create_date" />
+                                                    <t t-esc="rtb.create_date.strftime('%d-%b-%Y')" />
                                                 </td>
 
 
@@ -3748,10 +3751,12 @@
                     <!-- debugger; -->
                     const ready_to_buy = element.checked
                     if(ready_to_buy == true){
-                        document.getElementById('readyToBuyPopup').style.display = 'fixed'
+                        document.getElementById('readyToBuyPopup').style.display = 'block'
                     }
                 }
-               
+                function close_rtb_popup(element){
+                    document.getElementById('readyToBuyPopup').style.display = 'none'
+                }
                 function show_rtb_enquiries(element){
                     if(document.getElementById('rtb_enquiry_management').style.display == 'block'){
                         document.getElementById('rtb_enquiry_management').style.display = 'none'

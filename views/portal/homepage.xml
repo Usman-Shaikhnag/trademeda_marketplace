@@ -150,7 +150,7 @@
                                                         
                                                     </t>
                                                     <t t-else="">
-                                                        <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/></a></span>
+                                                        <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/>  |  <t t-esc="banner.partner_id.country_id.name"/></a></span>
                                                     </t>
                                                         <!-- <span class="banner-partner-name"><a style="text-decoration:none;color:inhrerit;" t-attf-href="/profile/supplier/{{banner.partner_id.id}}"><t t-esc="banner.partner_id.name"/></a></span> -->
 
@@ -225,7 +225,7 @@
                                             <div class="rfq-content">
                                                 <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
                                                 <!-- <p><t t-esc="rfq.product_description"/></p> -->
-                                                <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
+                                                <p style="text-align: justify !important;" class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
                                                     Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
                                                     <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
                                                     <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>
@@ -283,7 +283,7 @@
                                             </div>
                                             <div class="product-description">
                                                 <t t-if="len(product.product_description) &gt; 150">
-                                                    <p><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
                                                 </t>
                                                 <t t-else="">
                                                     <p><t t-esc="product.product_description"/></p>

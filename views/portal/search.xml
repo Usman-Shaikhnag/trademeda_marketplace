@@ -213,7 +213,7 @@
                                                     <a class="product_title" t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="text-decoration:underline;cursor:pointer;">
                                                         <t t-esc="product.partner_id.name"/>
                                                     </a>
-                                                    <span onclick="show_verification_popup(this)" style="cursor: pointer;">
+                                                    <span onclick="show_verification_popup(this)" style="cursor: pointer;margin-left: 33%;">
                                                         <i class="fa-solid fa-square-check" style="color: #238e09;"></i>
                                                         <span>Verified</span>
                                                     </span>
