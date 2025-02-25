@@ -58,7 +58,8 @@
         'views/portal/mission.xml',
         'views/portal/trust_score.xml',
         'views/portal/contactus.xml',
-        'views/portal/faq.xml'
+        'views/portal/faq.xml',
+        'views/portal/reset_password.xml'
 
 
 

@@ -24,7 +24,7 @@
                     </div>
                     <div class="buyer-details">
                         <div class=""><img t-att-src="rfq.partner_id.country_id.image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>Buyer from <t t-esc="rfq.partner_id.country_id.name"/></div>
-                        <div class=""><span onclick="show_verification_popup(this)" style="color:#009900"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span>
+                        <div class=""><span onclick="show_verification_popup(this)" style="color:#009900;cursor:pointer;user-select: none;"><i class="fa-solid fa-square-check" style="color:#009900;"></i> Verified </span>
                             <div class="verification_popup" style="display: none; position: absolute; background: #fff; padding: 1rem; z-index: 100;">
                                 <div>
                                     <span>Email Verification</span><span>
@@ -365,7 +365,7 @@
 
                 }
                 function show_verification_popup(element) {
-                    const popup = element.parentElement.nextElementSibling;
+                    const popup = element.nextElementSibling;
                     if (popup.style.display === 'block') {
                         popup.style.display = 'none';
                     } else {

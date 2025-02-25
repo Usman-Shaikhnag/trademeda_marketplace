@@ -11,7 +11,7 @@ class ProductSubCategory(models.Model):
     subsubcategories_lines = fields.One2many('product.template', 'subcategory_id', string='Sub-Subcategories')
 
     ranking = fields.Integer("Ranking")
-    points = fields.Integer("Points")
+    points = fields.Integer("Daily Points")
     total_points = fields.Integer("Total Points",compute="_compute_total_daily_points")
     icon = fields.Binary('Icon')
     icon_name = fields.Char("Icon Name")

@@ -44,13 +44,16 @@
                                     <input type="email" name="login" placeholder="Email"/>
                                 </div>
                             </div>
-                            <div class="text-input">
+                            <div style="margin-top: 1rem;" class="text-input">
                                 <div class="">
                                     <span class="">Password</span>
                                 </div>
                                 <div class="">
                                     <input type="password" name="password" placeholder="Password"/>
                                 </div>
+                            </div>
+                            <div class="" style="margin-top: 0.5rem;">
+                                <a style="font-size: 0.9rem;" href="/resetPassword">Reset Password</a>
                             </div>
                             <div class="sign-in-btn">
                                 <button href="/signin" type="submit" class="">Sign In</button>

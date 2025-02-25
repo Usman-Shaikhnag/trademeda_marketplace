@@ -59,3 +59,22 @@ class OTPController(http.Controller):
         if existing_user:
             return {'status': 'error', 'message': 'Email already exists'}, 409  # HTTP 409 Conflict for duplicate
         return {'status': 'success', 'message': 'Email available'}, 200
+    
+
+    @http.route('/checkEmailAvailable', methods=["POST"], type="json", auth='public')
+    def checkEmailAvailable(self):
+        email = request.httprequest.json.get('email')
+        
+        # Check if email is provided
+        # import wdb;wdb.set_trace()
+
+        if not email:
+            return {'status': 'error', 'message': 'Email not provided'}, 400  
+
+        # Search for an existing user with the specified email
+        existing_user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+        
+        # Check if the user exists and respond accordingly
+        if not existing_user:
+            return {'status': 'error', 'message': 'Email doesnt exists'}, 409  
+        return {'status': 'success', 'message': 'Email available'}, 200

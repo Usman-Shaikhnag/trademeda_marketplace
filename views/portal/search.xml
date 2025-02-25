@@ -336,7 +336,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <p><strong><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <p><strong><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/>,<t t-esc="product.partner_id.state_id.name"/></p>
                                                 <div onload="fill_stars(this)" t-att-stars="product.partner_id.supplier_rating" class="rating">
                                                     <!-- <span>⭐⭐⭐⭐⭐</span> -->
                                                     <span></span>
@@ -344,7 +344,12 @@
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p><t t-esc="product.product_description"/></p>
+                                                <t t-if="len(product.product_description) &gt; 150">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                </t>
+                                                <t t-else="">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                </t>
                                             </div>
                                             <div class="product-actions">
                                                 <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id" class="favourites-button">Add To Favourites</button>
@@ -412,14 +417,11 @@
                                                     <p class="">Destination: <t t-esc="rfq.destination.name"/></p>
                                                     <!-- <p><t t-esc="rfq.product_description"/></p> -->
                                                 </div>
-                                                <div style="display: flex;flex-direction: column;align-items: center;gap:0.5rem;margin-top:0.5rem;">
-                                                    <span style="background-color:#07407a;border-radius: 50%;padding: 1px 5px;color: white"><t t-esc="partner.quotations_left"/></span>
-                                                    
-                                                </div>
+                                                
                                             </div>
                                             <div class="space-between">
                                                 <div class="rfq-content">
-                                                    <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
+                                                    <p style="text-align: justify !important;" class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
                                                     Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
                                                     <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
                                                     <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>
@@ -435,7 +437,8 @@
                                                     
                                                     </p>
                                                 </div>
-                                                <div style="align-self: flex-start;margin-top: 0.5rem;" class="">Quotes Left</div>
+                                                <t t-if="logged_in"><div style="align-self: flex-start;margin-top: 0.5rem;color: white;background-color: #f89623;padding: 0.5rem 1rem;border-radius: 8px;" onmouseover="hover_quotes(this)"  onmouseout="unhover_quotes(this)" class="">Quotes Left:<span ><t t-esc="partner.quotations_left"/></span></div></t>
+
                                             </div>
                                             <div class="rfq-buttons">
                                                 <button class="btn-wishlist">Add to Wishlist</button>
@@ -510,13 +513,19 @@
                                             </div>
                                             <div class="product-supplier">
                                                 <b><a class="product_title" t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
-                                                <p><strong><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <p><strong><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/> Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/>,<t t-esc="product.partner_id.state_id.name"/></p>
                                                 <div class="rating">
                                                     <span>⭐⭐⭐⭐⭐</span>
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p><t t-esc="product.product_description"/></p>
+                                                <t t-if="len(product.product_description) &gt; 150">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                </t>
+                                                <t t-else="">
+                                                    <p style="text-align: justify !important;"><t t-esc="product.product_description"/></p>
+                                                </t>
+
                                             </div>
                                             <div class="product-actions">
                                                 <button class="favourites-button">Add To Favourites</button>
@@ -556,7 +565,7 @@
                                             </div>
                                             <div class="space-between">
                                                 <div class="rfq-content">
-                                                    <p class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
+                                                    <p style="text-align: justify !important;" class="">Buyer is interested to receive quotations for the following RFQ- Product Name: <t t-esc="rfq.product_name"/>, Quantity Required: <t t-esc="rfq.product_name"/>,
                                                     Suppliers from: <t t-if="rfq.suppliers_country"><t t-esc="rfq.suppliers_country.name"/></t><t t-else="">Worldwide</t>, Shipping Terms: 
                                                     <t t-if="rfq.shipping_terms == 'fob'">FOB (Free on Board)</t>
                                                     <t t-if="rfq.shipping_terms == 'fca'">FCA (Free Carrier)</t>

@@ -282,8 +282,12 @@
                                                 </div>
                                             </div>
                                             <div class="product-description">
-                                                <p><t t-esc="product.product_description[:200]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
-                                                
+                                                <t t-if="len(product.product_description) &gt; 150">
+                                                    <p><t t-esc="product.product_description[:150]"/>...<a t-attf-href="/product/{{product.id}}" class="see-more" >See More</a></p>
+                                                </t>
+                                                <t t-else="">
+                                                    <p><t t-esc="product.product_description"/></p>
+                                                </t>
                                             </div>
                                             <div class="product-actions">
                                                 <button onclick="add_to_wishlist(this)" t-att-data-product-id="product.id"  class="favourites-button">Add To Favourites</button>
@@ -499,27 +503,28 @@
                         </div>
                     </form>
                     <div class="customer-testimonies">
-                        <t t-foreach="env['customer.testimony'].sudo().search([('display','=',True)])" t-as="testimony">
+                        <t t-foreach="env['customer.testimony'].sudo().search([('display','=',True)],order='create_date desc',limit=10)" t-as="testimony">
                             <div class="testimony">
                                 <div class="testimony-top">
-                                    <span class="quote-icon">“</span>
+                                    <!-- <span class="quote-icon">“</span> -->
                                     <!-- <img t-att-src="'data:image/png;base64,' + testimony.partner_id.image_1920.decode('utf-8')" alt="Customer Photo" class="customer-photo"/> -->
                                 </div>
                                 <div class="testimony-contents">
                                     <span class="customer-name"><t t-esc="testimony.partner_id.name"/></span>
-                                    <div t-att-stars="testimony.rating" class="rating">
+                                    <a style="text-decoration:none;" t-attf-href="/profile/supplier/{{testimony.partner_id.id}}"><t t-esc="testimony.partner_id.user_name"/></a>
+                                    <!-- <div t-att-stars="testimony.rating" class="rating">
                                         <span></span>
-                                    </div>
+                                    </div> -->
                                     <span class="testimony-text">
                                         <t t-if="len(testimony.testimony) &gt; 100">
                                             <t t-esc="testimony.testimony[:100]"/>...
                                             <a href="#" class="see-more" onclick="showFullTestimony(this)">See More</a>
                                             <span class="full-text" style="display:none;">
-                                                <t t-esc="testimony.testimony"/>
+                                                "<t t-esc="testimony.testimony"/>"
                                             </span>
                                         </t>
                                         <t t-else="">
-                                            <t t-esc="testimony.testimony"/>
+                                            "<t t-esc="testimony.testimony"/>"
                                         </t>
                                     </span>
                                     <div class="social-links">
