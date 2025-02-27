@@ -61,6 +61,12 @@ class HomepageController(http.Controller):
         # import wdb;wdb.set_trace()
         
         return request.render('trademeda.resetPassword')
+    
+    @http.route('/forgotPassword', auth='public', website=True)
+    def forgotPassword(self, **kwargs):
+        # import wdb;wdb.set_trace()
+        
+        return request.render('trademeda.forgotPassword')
 
     @http.route('/contactus', auth='public', website=True)
     def contactus(self, **kwargs):
@@ -856,7 +862,7 @@ class HomepageController(http.Controller):
         old_password = request.httprequest.json.get('old_password')
         
         # Check if email is provided
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
 
 
         if not email:
@@ -880,11 +886,14 @@ class HomepageController(http.Controller):
 
     @http.route('/changePassword', methods=["POST"], type="http", auth='public')
     def change_password(self,**kw):
-        import wdb;wdb.set_trace()
+        # import wdb;wdb.set_trace()
 
         email = kw.get('email')
         old_password = kw.get('old_password')
         new_password = kw.get('new_password')
+
+        # if old_password == new_password:
+        #     return {'error': 'New password cannot be same'}
 
         
 
@@ -899,6 +908,26 @@ class HomepageController(http.Controller):
         except:
             return {'error': 'Incorrect old password'}
 
+        # Update password
+        user.sudo().write({'password': new_password})
+
+        return request.redirect("/signin")
+        
+
+    @http.route('/forgotPassword/reset', methods=["POST"], type="http", auth='public')
+    def forgot_password(self,**kw):
+        # import wdb;wdb.set_trace()
+
+        email = kw.get('email')
+        # old_password = kw.get('old_password')
+        new_password = kw.get('new_password')
+
+        user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+
+        if not user:
+            return {'error': 'User not found'}
+
+        
         # Update password
         user.sudo().write({'password': new_password})
 
