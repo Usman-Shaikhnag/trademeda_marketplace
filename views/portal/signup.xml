@@ -60,6 +60,8 @@
                                         <input placeholder="Company Name" name="company_name" id="company_name" required="required" class="form-control"/>
                                     </div>
                                 </div>
+                                <input type="hidden" placeholder="Username" name="username" id="username" class="form-control"/>
+                                
                                 <div class="text-input">
                                     <div class="">
                                         <span class="">We are:*</span>

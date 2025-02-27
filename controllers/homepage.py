@@ -56,6 +56,12 @@ class HomepageController(http.Controller):
         return request.render('trademeda.signin')
     
 
+    @http.route('/resetPassword', auth='public', website=True)
+    def resetPassword(self, **kwargs):
+        # import wdb;wdb.set_trace()
+        
+        return request.render('trademeda.resetPassword')
+
     @http.route('/contactus', auth='public', website=True)
     def contactus(self, **kwargs):
         # import wdb;wdb.set_trace()
@@ -843,3 +849,58 @@ class HomepageController(http.Controller):
         state_list = [{'id': state.id, 'name': state.name} for state in states]
 
         return {'state_list': state_list}
+    
+    @http.route('/checkPassword', methods=["POST"], type="json", auth='public')
+    def checkPassword(self):
+        email = request.httprequest.json.get('email')
+        old_password = request.httprequest.json.get('old_password')
+        
+        # Check if email is provided
+        import wdb;wdb.set_trace()
+
+
+        if not email:
+            return {'status': 'error', 'message': 'Email not provided'}, 400  # HTTP 400 for missing data
+        if not old_password:
+            return {'status': 'error', 'message': 'Password not provided'}, 400  # HTTP 400 for missing data
+        
+        
+
+        # Search for an existing user with the specified email
+        existing_user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+
+        if not existing_user._check_password(old_password):
+             return {'status': 'error', 'message': 'Incorrect Password'}, 300
+        
+        # Check if the user exists and respond accordingly
+        if not existing_user:
+            return {'status': 'error', 'message': 'Email doesnt exists'}, 409  # HTTP 409 Conflict for duplicate
+        return {'status': 'success', 'message': ''}, 200
+    
+
+    @http.route('/changePassword', methods=["POST"], type="http", auth='public')
+    def change_password(self,**kw):
+        # import wdb;wdb.set_trace()
+
+        email = kw.get('email')
+        old_password = kw.get('old_password')
+        new_password = kw.get('new_password')
+
+        
+
+        user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+
+        if not user:
+            return {'error': 'User not found'}
+
+        # Verify old password
+        try:
+            request.session.authenticate(request.db, email, old_password)
+        except:
+            return {'error': 'Incorrect old password'}
+
+        # Update password
+        user.sudo().write({'password': new_password})
+
+        return request.redirect("/signin")
+        
