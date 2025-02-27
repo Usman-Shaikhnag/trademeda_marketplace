@@ -91,6 +91,23 @@
                                     </p>
                                 </details> -->
                             </div>
+                            <div style="display:flex;justify-content:space-between;width:100%;">
+                                <div class="">
+                                    <span>
+                                        
+                                        <span><i class="fa-regular fa-thumbs-up"></i><t t-esc="partner.likes"/></span>
+                                        <span><i class="fa-regular fa-thumbs-down"></i><t t-esc="partner.dislikes"/></span>
+                                    </span>
+                                </div>
+                                <div class="rateUser">
+                                    <span>
+                                        Rate this user
+                                        <form t-attf-action="/likeUser/{{partner.id}}" method="post"><button><i class="fa-regular fa-thumbs-up"></i></button></form>
+                                        <form t-attf-action="/dislikeUser/{{partner.id}}" method="post"><button><i class="fa-regular fa-thumbs-down"></i></button></form>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <div class="rate-user"><a t-attf-href="/rateUser/{{partner.id}}">Rtae this user</a></div> -->
                         </div>
                         <div id="content2" class="content" style="position:relative;">
                                 

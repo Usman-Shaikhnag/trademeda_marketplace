@@ -52,8 +52,10 @@
                                     <input type="password" name="password" placeholder="Password"/>
                                 </div>
                             </div>
-                            <div class="" style="margin-top: 0.5rem;">
-                                <a style="font-size: 0.9rem;" href="/resetPassword">Reset Password</a>
+                            <div class="" style="margin-top: 0.5rem;display:flex;justify-content:space-between;">
+                                <a style="font-size: 0.9rem;" href="/resetPassword">Change Password</a>
+                                <a style="font-size: 0.9rem;" href="/forgotPassword">Forgot Password</a>
+
                             </div>
                             <div class="sign-in-btn">
                                 <button href="/signin" type="submit" class="">Sign In</button>

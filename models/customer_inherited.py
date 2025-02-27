@@ -136,6 +136,10 @@ class ResPartner(models.Model):
     notifications = fields.One2many('subscribed.notifications','partner_id', string='Subscribed Notifications')
     is_admin = fields.Boolean("Admin",default="False")
 
+    likes = fields.Integer("Likes")
+    dislikes = fields.Integer("DisLikes")
+
+
     @api.model
     def _reset_quotation(self):
         for record in self:

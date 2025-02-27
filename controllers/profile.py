@@ -1250,3 +1250,34 @@ class ProductController(http.Controller):
             return request.not_found()
 
 
+    @http.route(['/likeUser/<int:partner_id>'], methods=["POST"], type="http", auth="user", website=True)
+    def likeUser(self,partner_id, **kw):
+        # import wdb;wdb.set_trace()
+
+        user = request.env.user
+        customer_id = user.partner_id
+
+        partner = request.env['res.partner'].sudo().search([('id','=',int(partner_id))])
+        partner.sudo().write({
+            'likes':partner.likes+1
+        })
+        return request.redirect(f'/profile/supplier/{partner_id}') 
+    
+    @http.route(['/dislikeUser/<int:partner_id>'], methods=["POST"], type="http", auth="user", website=True)
+    def dislikeUser(self,partner_id, **kw):
+        # import wdb;wdb.set_trace()
+
+        user = request.env.user
+        customer_id = user.partner_id
+
+        partner = request.env['res.partner'].sudo().search([('id','=',int(partner_id))])
+        partner.sudo().write({
+            'likes':partner.likes-1
+        })
+        return request.redirect(f'/profile/supplier/{partner_id}') 
+        # vals = {
+        #         'customer_id':customer_id,
+        #         'partner_id':partner.id,
+        #     }
+
+        # return request.render('trademeda.rateUser',vals)
