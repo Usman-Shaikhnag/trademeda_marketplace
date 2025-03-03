@@ -321,7 +321,7 @@
                                     </t>
                                     <div class="">
                                         <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                        <span class=""><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                        <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
                                     </div>
 
                                 </div>
@@ -348,7 +348,7 @@
                                         
                                             <div class="">
                                                 <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                                <span class=""><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                                <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
                                             </div>
 
                                         </div>
@@ -377,7 +377,7 @@
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                             <div class="">
                                                 <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                                <span class=""><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                                <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
                                             </div>
 
                                         </div>

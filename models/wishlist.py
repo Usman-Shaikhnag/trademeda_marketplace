@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class Wishlist(models.Model):
     _name = 'user.wishlist'
@@ -6,3 +6,5 @@ class Wishlist(models.Model):
 
     partner_id = fields.Many2one('res.partner',string="Customer")
     product_id = fields.Many2one('product.customer.images',string="Product")
+
+

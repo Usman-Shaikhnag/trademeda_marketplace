@@ -100,10 +100,10 @@
                                     </span>
                                 </div>
                                 <div class="rateUser">
-                                    <span>
+                                    <span style="display: flex;">
                                         Rate this user
-                                        <form t-attf-action="/likeUser/{{partner.id}}" method="post"><button><i class="fa-regular fa-thumbs-up"></i></button></form>
-                                        <form t-attf-action="/dislikeUser/{{partner.id}}" method="post"><button><i class="fa-regular fa-thumbs-down"></i></button></form>
+                                        <form t-attf-action="/likeUser/{{partner.id}}" method="post"><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" /><button><i class="fa-regular fa-thumbs-up"></i></button></form>
+                                        <form t-attf-action="/dislikeUser/{{partner.id}}" method="post"><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" /><button><i class="fa-regular fa-thumbs-down"></i></button></form>
                                     </span>
                                 </div>
                             </div>

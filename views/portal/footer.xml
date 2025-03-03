@@ -17,7 +17,10 @@
                     <div class=""><a href="/terms_conditions" style="color:inherit;text-decoration:none;">Terms of Use </a><span class="vertical-bar"></span></div>
                     <div class=""><a t-attf-href="/privacyPolicy">Privacy Policy </a><span class="vertical-bar"></span></div>
                     <div class=""><a t-attf-href="/productListingPolicy">Product Listing Policy </a><span class="vertical-bar"></span></div>
-                    <div class=""><a t-attf-href="/apply_testimony">Testimony</a></div>
+                    <div class=""><a t-attf-href="/apply_testimony">Testimony</a><span class="vertical-bar"></span></div>
+                    <div class=""><a t-attf-href="/faqs">FAQ's</a></div>
+
+
                 </div>
                 <div class="footer-social-media">
                     <i class="fa-brands fa-facebook"></i>

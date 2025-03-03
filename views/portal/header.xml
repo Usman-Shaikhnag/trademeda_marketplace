@@ -68,6 +68,11 @@
                                         </t> -->
                                         <a t-attf-href="/post_rfq_page"><li>Post Buy Requirements</li></a>
 
+
+                                        <a t-attf-href="/profile"><li>Post Sell Offer</li></a>
+                                        <a t-attf-href="/readytobuy"><li>Ready to Buy</li></a>
+                                        <a t-attf-href="/membershipPlans"><li>Membership Plans</li></a>
+
                                     </ul>
                                 </div>
                         </div>
