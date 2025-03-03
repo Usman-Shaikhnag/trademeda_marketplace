@@ -2134,91 +2134,95 @@
                                                 <td>
                                                     <t t-esc="rtb.message" />
                                                 </td>
-                                                <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
-                                                </td>
-                                                
                                                 
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.partner_id.name" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+
+                                                    <t t-esc="rtb.partner_id.member_type"/>
+                                                </td>
+                                                
+                                                <td>
+                                                    <t t-esc="rtb.partner_id.company_website"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.product_id.product_name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.quantity"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.unit.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.product_id.product_description"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.target_price"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.currency.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.country.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.product_id.shipping_terms"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.product_id.payment_mode"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.product_id.buyers_country.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.partner_id.primary_business"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.partner_id.establishment_year"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.partner_id.annual_sales"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="rtb.partner_id.no_of_employees"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.designation"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.company_address"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.country_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.state_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.city"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.zip"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.country_id.phone_code"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.area_code"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.phone"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc=""/>
+                                                    <t t-esc="partner_id.email"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="enquiry.create_date.strftime('%d-%b-%Y')"/>
                                                 </td>
                                                 
                                             </tr>
@@ -2371,7 +2375,7 @@
                                                     <t t-esc="rfq.rfq_id.partner_id.email" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rfq.create_date" />
+                                                    <t t-esc="rfq.create_date.strftime('%d-%b-%Y')" />
                                                 </td>
                                             </tr>
                                         </t>
@@ -2550,22 +2554,23 @@
                                 <table id="supplier_quotations_received_table">
                                     <thead>
                                         <tr>
-                                            <!-- <th>Quotation No</th> -->
-                                            <th>Product</th>
-                                            <th>Buyer</th>
                                             <th>Email</th>
                                             <th>Phone</th>
+                                            <th>Country</th>
+                                            <th>Contact Person Name</th>
                                             <th>Message</th>
-                                            <th>Product Description</th>
+                                            <th>Company Name</th>
+                                            <th>Nature of Business</th>
                                             <th>Company Website URL</th>
-
-                                            <th>Minimum Order Quantity</th>
+                                            <th>Product</th>
+                                            <th>Minimum Order Quantity (MOQ)</th>
                                             <th>Unit</th>
                                             <th>Product Description</th>
-                                            <th>Taget Price</th>
+                                            <th>Target Price</th>
                                             <th>Currency</th>
                                             <th>Shipping Terms</th>
                                             <th>Payment Terms</th>
+                                            <th>Looking for Suppliers from</th>
                                             <th>Primary Business</th>
                                             <th>Establishment Year</th>
                                             <th>Annual Sales in USD (Approx)</th>
@@ -2577,6 +2582,7 @@
                                             <th>State</th>
                                             <th>City</th>
                                             <th>Zip/Postal Code</th>
+                                            <th>Country Code</th>
                                             <th>Area Code</th>
                                             <th>Phone Number</th>
                                             <th>Email Address</th>
@@ -2593,13 +2599,7 @@
                                                     <t t-esc="rfq.quotation_no" />
                                             
                                                 </td> -->
-                                                <td>
-                                                    <a t-attf-href="/product/{{rtb.product_id.id}}" style="color:#07407a;"><t t-esc="rtb.product_id.product_name" /></a>
-                                                </td>
-                                                <td>
-                                                    <t t-esc="rtb.partner_id.name" />
-                                                </td>
-                                                
+                                            
                                                 <td>
                                                     <t t-esc="rtb.email" />
                                                 </td>
@@ -2607,81 +2607,103 @@
                                                     <t t-esc="rtb.phone" />
                                                 </td>
                                                 <td>
+                                                    <t t-esc="rtb.product_id.partner_id.country_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="rtb.product_id.partner_id.name" />
+                                                </td>
+                                                <td>
                                                     <t t-esc="rtb.message" />
                                                 </td>
+                                                
                                                 <td>
-                                                    <t t-esc="rtb.product_id.product_description" />
+                                                    <t t-esc="rtb.partner_id.name" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.partner_id.website" />
-                                                </td>
 
-
+                                                    <t t-esc="rtb.partner_id.member_type"/>
+                                                </td>
+                                                
                                                 <td>
-                                                    <t t-esc="rtb.quantity" />
+                                                    <t t-esc="rtb.partner_id.company_website"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.unit.name" />
+                                                    <t t-esc="rtb.product_id.product_name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.product_id.product_description" />
+                                                    <t t-esc="rtb.quantity"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.target_price" />
+                                                    <t t-esc="rtb.unit.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.currency.name" />
+                                                    <t t-esc="rtb.product_id.product_description"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.product_id.sample_policy" />
+                                                    <t t-esc="rtb.target_price"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.product_id.payment_mode" />
+                                                    <t t-esc="rtb.currency.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.partner_id.primary_business" />
+                                                    <t t-esc="rtb.country.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.partner_id.establishment_year" />
+                                                    <t t-esc="rtb.product_id.shipping_terms"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.partner_id.annual_sales" />
+                                                    <t t-esc="rtb.product_id.payment_mode"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.partner_id.no_of_employees" />
+                                                    <t t-esc="rtb.product_id.buyers_country.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.user_name" />
+                                                    <t t-esc="rtb.partner_id.primary_business"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.designation" />
+                                                    <t t-esc="rtb.partner_id.establishment_year"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.company_address" />
+                                                    <t t-esc="rtb.partner_id.annual_sales"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.country_id.name" />
+                                                    <t t-esc="rtb.partner_id.no_of_employees"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.state_id.name" />
+                                                    <t t-esc="partner_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.city" />
+                                                    <t t-esc="partner_id.designation"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.zip" />
+                                                    <t t-esc="partner_id.company_address"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.area_code" />
+                                                    <t t-esc="partner_id.country_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.phone" />
+                                                    <t t-esc="partner_id.state_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner.email" />
+                                                    <t t-esc="partner_id.city"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="rtb.create_date" />
+                                                    <t t-esc="partner_id.zip"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="partner_id.country_id.phone_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="partner_id.area_code"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="partner_id.phone"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="partner_id.email"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="enquiry.create_date.strftime('%d-%b-%Y')"/>
                                                 </td>
 
 

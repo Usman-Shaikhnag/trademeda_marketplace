@@ -2,7 +2,7 @@
     <data noupdate="1">
         <!-- Cron Job to check RFQ expiration -->
         <record id="ir_cron_rfq_expiration_check" model="ir.cron">
-            <field name="name">RFQ Expiration Check</field>
+            <field name="name">Trademeda RFQ Expiration Check</field>
             <field name="model_id" ref="model_trademeda_rfq"/>
             <field name="state">code</field>
             <field name="code">model._cron_expire_rfqs()</field>
@@ -12,7 +12,7 @@
         </record>
 
         <record id="ir_cron_reset_daily_quotations" model="ir.cron">
-            <field name="name">Reset Daily Quotations</field>
+            <field name="name">Trademeda Reset Daily Quotations</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="state">code</field>
             <field name="code">model._reset_quotation()</field>
@@ -22,7 +22,7 @@
         </record>
 
         <record id="ir_cron_reset_category_rankings" model="ir.cron">
-            <field name="name">Reset Category Rankings</field>
+            <field name="name">Trademeda Reset Category Rankings</field>
             <field name="model_id" ref="model_product_subcategories"/>
             <field name="state">code</field>
             <field name="code">model.action_calculate_ranking()</field>
@@ -31,7 +31,7 @@
             <field name="active">True</field>
         </record>
         <record id="ir_cron_delete_expired_otps" model="ir.cron">
-            <field name="name">Delete Expired OTPs</field>
+            <field name="name">Trademeda Delete Expired OTPs</field>
             <field name="model_id" ref="model_otp_verification"/>
             <field name="state">code</field>
             <field name="code">model.delete_expired_otps()</field>
@@ -42,7 +42,7 @@
         </record>
 
         <record id="ir_cron_update_subscription" model="ir.cron">
-            <field name="name">Update Subscription</field>
+            <field name="name">Trademeda Update Subscription</field>
             <field name="model_id" ref="model_res_partner"/>
             <field name="state">code</field>
             <field name="code">model._reset_quotation()</field>
@@ -52,7 +52,7 @@
         </record>
 
         <record id="ir_cron_reset_category_point" model="ir.cron">
-            <field name="name">Reset Category Points</field>
+            <field name="name">Trademeda Reset Category Points</field>
             <field name="model_id" ref="model_product_subcategories"/>
             <field name="state">code</field>
             <field name="code">model.action_points_update()</field>
