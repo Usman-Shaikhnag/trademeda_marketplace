@@ -662,7 +662,9 @@ class ProductController(http.Controller):
             enquiry_worksheet.write(row_num, 27, enq.partner_id.area_code)
             enquiry_worksheet.write(row_num, 28, enq.user_name)
             enquiry_worksheet.write(row_num, 29, enq.partner_id.designation)
+            enquiry_worksheet.write(row_num, 30, enq.partner_id.phone)
             enquiry_worksheet.write(row_num, 30, enq.partner_id.email)
+
 
 
         workbook.close()
@@ -712,9 +714,9 @@ class ProductController(http.Controller):
             quotation_worksheet.write(row_num, 8 , quotation.rfq_id.product_description)
             quotation_worksheet.write(row_num, 9 , quotation.rfq_id.quantity)
             quotation_worksheet.write(row_num, 10 , quotation.rfq_id.unit.name)
-            quotation_worksheet.write(row_num, 11 , quotation.target_price)
-            quotation_worksheet.write(row_num, 12 , quotation.currency.name)
-            quotation_worksheet.write(row_num, 13 , quotation.destination.name)
+            quotation_worksheet.write(row_num, 11 , quotation.rfq_id.target_price)
+            quotation_worksheet.write(row_num, 12 , quotation.rfq_id.currency.name)
+            quotation_worksheet.write(row_num, 13 , quotation.rfq_id.destination.name)
             quotation_worksheet.write(row_num, 14 , quotation.rfq_id.shipping_terms)
             quotation_worksheet.write(row_num, 15 , quotation.rfq_id.payment_terms)
             quotation_worksheet.write(row_num, 16 , quotation.rfq_id.suppliers_country.name)
@@ -730,7 +732,9 @@ class ProductController(http.Controller):
             quotation_worksheet.write(row_num, 26 , quotation.partner_id.area_code)
             quotation_worksheet.write(row_num, 27 , quotation.contact_name)
             quotation_worksheet.write(row_num, 28 , quotation.partner_id.designation)
+            quotation_worksheet.write(row_num, 29 , quotation.phone)
             quotation_worksheet.write(row_num, 29 , quotation.email)
+
         
         workbook.close()
         excel_buffer.seek(0)

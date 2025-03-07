@@ -2211,6 +2211,9 @@
                                                     <t t-esc="enq.partner_id.designation" />
                                                 </td>
                                                 <td>
+                                                    <t t-esc="enq.partner_id.phone" />
+                                                </td>
+                                                <td>
                                                     <t t-esc="enq.partner_id.email" />
                                                 </td>
                                                 
@@ -2306,13 +2309,13 @@
                                                     <t t-esc="quotation.rfq_id.unit.name" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="quotation.target_price" />
+                                                    <t t-esc="quotation.rfq_id.target_price" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="quotation.currency.name" />
+                                                    <t t-esc="quotation.rfq_id.currency.name" />
                                                 </td>
                                                 <td>
-                                                    <t t-esc="quotation.destination.name" />
+                                                    <t t-esc="quotation.rfq_id.destination.name" />
                                                 </td>
                                                 <td>
                                                     <t t-esc="quotation.rfq_id.shipping_terms" />
@@ -2364,6 +2367,9 @@
                                                 </td>
                                                 <td>
                                                     <t t-esc="quotation.partner_id.designation" />
+                                                </td>
+                                                <td>
+                                                    <t t-esc="quotation.phone" />
                                                 </td>
                                                 <td>
                                                     <t t-esc="quotation.email" />
@@ -2661,40 +2667,40 @@
                                                     <t t-esc="rtb.partner_id.no_of_employees"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.name"/>
+                                                    <t t-esc="partner.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.designation"/>
+                                                    <t t-esc="partner.designation"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.company_address"/>
+                                                    <t t-esc="partner.company_address"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.country_id.name"/>
+                                                    <t t-esc="partner.country_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.state_id.name"/>
+                                                    <t t-esc="partner.state_id.name"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.city"/>
+                                                    <t t-esc="partner.city"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.zip"/>
+                                                    <t t-esc="partner.zip"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.country_id.phone_code"/>
+                                                    <t t-esc="partner.country_id.phone_code"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.area_code"/>
+                                                    <t t-esc="partner.area_code"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.phone"/>
+                                                    <t t-esc="partner.phone"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="partner_id.email"/>
+                                                    <t t-esc="partner.email"/>
                                                 </td>
                                                 <td>
-                                                    <t t-esc="enquiry.create_date.strftime('%d-%b-%Y')"/>
+                                                    <t t-esc="rtb.create_date.strftime('%d-%b-%Y')"/>
                                                 </td>
 
 
