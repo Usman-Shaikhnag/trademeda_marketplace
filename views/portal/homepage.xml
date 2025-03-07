@@ -276,7 +276,13 @@
                                             </div>
                                             <div class="product-supplier">
                                                 <b><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color:#07407a;text-decoration:underline;cursor:pointer;"><t t-esc="product.partner_id.name"/></a></b>
-                                                <p><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                <!-- <p><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height:0.9rem;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/></p>
+                                                 -->
+                                                <p style="display: flex; align-items: center; gap: 0.3rem;">
+                                                    <img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;"/>
+                                                    <strong>Supplier From :</strong>
+                                                    <t t-esc="product.partner_id.country_id.name"/>
+                                                </p>
                                                 <div class="rating">
                                                     <span>⭐⭐⭐⭐⭐</span>
                                                 </div>
@@ -314,14 +320,16 @@
                         <div class="ready-to-buy-products">
                             <!-- <t t-foreach="env['product.customer.images'].sudo().search([('product_name','!=','')],order='create_date desc',limit=5)" t-as="product"> -->
                                 
-                            <t t-foreach="env['product.customer.images'].sudo().search([('ready_to_ship','=',True)],order='views desc',limit=10)" t-as="product">
+                            <t t-foreach="env['product.customer.images'].sudo().search([('ready_to_ship','=',True)],order='create_date desc',limit=10)" t-as="product">
                                 <div class="ready-to-buy-product">
                                     <t t-if="product.product_image">
                                         <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                     </t>
                                     <div class="">
-                                        <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                        <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                        <h4 style="text-align: center;margin-bottom:0.4rem;"><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                        <!-- <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span> -->
+                                        <div style="text-align: center;">Supplier from:</div>
+                                        <div style="text-align: center;"><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><t t-esc="product.partner_id.country_id.name"/></div>
                                     </div>
 
                                 </div>
@@ -347,8 +355,10 @@
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                         
                                             <div class="">
-                                                <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                                <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                                <h4 style="text-align: center;margin-bottom:0.4rem;"><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                                <!-- <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span> -->
+                                                <div style="text-align: center;">Supplier from:</div>
+                                                <div style="text-align: center;"><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><t t-esc="product.partner_id.country_id.name"/></div>
                                             </div>
 
                                         </div>
@@ -376,8 +386,10 @@
                                         <div class="new-arrival-product">
                                             <img t-att-src="'data:image/png;base64,' + product.product_image.decode('utf-8')" alt="Product Image"/>
                                             <div class="">
-                                                <h4><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
-                                                <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span>
+                                                <h4 style="text-align: center;margin-bottom:0.4rem;"><a t-attf-href="/product/{{product.id}}" style="color: inherit; text-decoration: none;"><t t-esc="product.product_name"/></a></h4>
+                                                <!-- <span class=""><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><strong>Supplier From :</strong> <t t-esc="product.partner_id.country_id.name"/><a t-attf-href="/profile/supplier/{{product.partner_id.id}}" style="color: inherit; text-decoration: none;"></a></span> -->
+                                                <div style="text-align: center;">Supplier from:</div>
+                                                <div style="text-align: center;"><img t-att-src="product.partner_id.country_id.image_url" alt="" style="height: 0.9rem;max-width: fit-content;"/><t t-esc="product.partner_id.country_id.name"/></div>
                                             </div>
 
                                         </div>

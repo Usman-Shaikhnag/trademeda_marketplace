@@ -677,7 +677,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=Suppliers_Information.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=Buyers_Information.xlsx;')
                                          ])
         return response
     
@@ -750,7 +750,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=product_quotations.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=Suppliers_information.xlsx;')
                                          ])
         return response
     

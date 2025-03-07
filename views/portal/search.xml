@@ -214,8 +214,8 @@
                                                         <t t-esc="product.partner_id.name"/>
                                                     </a>
                                                     <span onclick="show_verification_popup(this)" style="cursor: pointer;margin-left: 33%;">
-                                                        <i class="fa-solid fa-certificate" style="color: #238e09;"></i>
-                                                        <span>Verified</span>
+                                                        <i class="fa-solid fa-circle" style="color: #238e09;"></i>
+                                                        <span>Trust Score</span>
                                                     </span>
                                                 </b>
                                                 <div class="verification_popup" style="display: none; position: absolute; background: #fff; padding: 1rem; z-index: 100;">
