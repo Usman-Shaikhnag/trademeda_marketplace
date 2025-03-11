@@ -623,7 +623,7 @@ class ProductController(http.Controller):
 
         # Add headers
         # headers = ['Date','Product','Supplier', 'Your Email', 'Your Phone','Message','Your Country']
-        headers = [ "Email", "Phone", "Country", "Contact Person Name", "Message", "Company Name", "Nature of Business", "Company Website URL", "Product Name", "Minimum Order Quantity (MOQ)", "Unit", "Product description", "Target Price", "Currency", "Destination", "Shipping Terms", "Payment Terms", "Looking for Suppliers from", "Primary Business", "Establishment Year", "Annual Sales in USD (Approx)", "Number of Employees", "Your Name", "Designation", "Address", "Country", "State", "City", "Zip/Postal Code", "Country Code", "Area Code", "Phone Number", "Email Address", "Date (Newest First)"]
+        headers = [ "Date", "Company Name", "Company's Owner Name", "Company Email", "Company Phone No", "Message", "Nature of Business","Company Website URL","Product Description","Minimum Order Quantity","Unit","Target Price","Currency","Destination","Shipping Terms","Payment Terms","Looking for Buyers from","Primary Business","Establishment Year","Annual Sales in USD","No of Employees","Country","State","City","Zip/Postal Code","Country Code","Area Code","Contact Person Name","Contact Person Designation","Contact Person Phone No","Contact Person Email ID"]
 
         for col_num, header in enumerate(headers):
             enquiry_worksheet.write(0, col_num, header)
@@ -632,41 +632,38 @@ class ProductController(http.Controller):
         enquiries = request.env['product.enquiries'].sudo().search([('partner_id','=',partner_id.id)],order='create_date desc')
 
         # Write data to worksheet
-        for row_num, enquiry in enumerate(enquiries, 1):
-            enquiry_worksheet.write(row_num, 1, enquiry.email)
-            enquiry_worksheet.write(row_num, 2, enquiry.phone)
-            enquiry_worksheet.write(row_num, 3, enquiry.partner_id.country_id.name)
-            enquiry_worksheet.write(row_num, 4, enquiry.product_id.contact_person) # contact person
-            enquiry_worksheet.write(row_num, 5, enquiry.message)
-            enquiry_worksheet.write(row_num, 6, enquiry.partner_id.name)
-            enquiry_worksheet.write(row_num, 7, enquiry.partner_id.member_type)
-            enquiry_worksheet.write(row_num, 8, enquiry.partner_id.company_website)
-            enquiry_worksheet.write(row_num, 9, enquiry.product_id.product_name)
-            enquiry_worksheet.write(row_num, 10, enquiry.quantity)
-            enquiry_worksheet.write(row_num, 11, enquiry.unit.name) #unit
-            enquiry_worksheet.write(row_num, 12, enquiry.product_id.product_description)
-            enquiry_worksheet.write(row_num, 13, enquiry.target_price)
-            enquiry_worksheet.write(row_num, 14, enquiry.currency.name)
-            enquiry_worksheet.write(row_num, 15, enquiry.country.name)
-            enquiry_worksheet.write(row_num, 16, enquiry.product_id.shipping_terms) #shipping terms
-            enquiry_worksheet.write(row_num, 17, enquiry.product_id.payment_mode)
-            enquiry_worksheet.write(row_num, 18, enquiry.product_id.buyers_country.name) #suppliers from
-            enquiry_worksheet.write(row_num, 19, enquiry.partner_id.primary_business)
-            enquiry_worksheet.write(row_num, 20, enquiry.partner_id.establishment_year)
-            enquiry_worksheet.write(row_num, 21, enquiry.partner_id.annual_sales)
-            enquiry_worksheet.write(row_num, 22, enquiry.partner_id.no_of_employees)
-            enquiry_worksheet.write(row_num, 23, partner_id.name)
-            enquiry_worksheet.write(row_num, 24, partner_id.designation)
-            enquiry_worksheet.write(row_num, 25, partner_id.company_address)
-            enquiry_worksheet.write(row_num, 26, partner_id.country_id.name)
-            enquiry_worksheet.write(row_num, 27, partner_id.state_id.name)
-            enquiry_worksheet.write(row_num, 28, partner_id.city)
-            enquiry_worksheet.write(row_num, 29, partner_id.zip)
-            enquiry_worksheet.write(row_num, 30, partner_id.country_id.phone_code)
-            enquiry_worksheet.write(row_num, 31, partner_id.area_code)
-            enquiry_worksheet.write(row_num, 32, partner_id.phone)
-            enquiry_worksheet.write(row_num, 33, partner_id.email)
-            enquiry_worksheet.write(row_num, 34, enquiry.create_date)
+        for row_num, enq in enumerate(enquiries, 1):
+            enquiry_worksheet.write(row_num, 1, enq.create_date.strftime('%d-%b-%Y'))
+            enquiry_worksheet.write(row_num, 2, enq.product_id.partner_id.name)
+            enquiry_worksheet.write(row_num, 3, enq.product_id.partner_id.user_name)
+            enquiry_worksheet.write(row_num, 4, enq.product_id.partner_id.email) 
+            enquiry_worksheet.write(row_num, 5, enq.product_id.partner_id.phone)
+            enquiry_worksheet.write(row_num, 6, enq.message)
+            enquiry_worksheet.write(row_num, 7, enq.product_id.partner_id.member_type)
+            enquiry_worksheet.write(row_num, 8, enq.product_id.partner_id.company_website)
+            enquiry_worksheet.write(row_num, 9, enq.product_id.product_description)
+            enquiry_worksheet.write(row_num, 10, enq.product_id.product_quantity)
+            enquiry_worksheet.write(row_num, 11, enq.product_id.unit.name) 
+            enquiry_worksheet.write(row_num, 12, enq.target_price)
+            enquiry_worksheet.write(row_num, 13, enq.currency.name)
+            enquiry_worksheet.write(row_num, 14, enq.country.name)
+            enquiry_worksheet.write(row_num, 15, enq.product_id.shipping_terms)
+            enquiry_worksheet.write(row_num, 16, enq.product_id.payment_mode) #shipping terms
+            enquiry_worksheet.write(row_num, 17, enq.product_id.buyers_country.name)
+            enquiry_worksheet.write(row_num, 18, enq.product_id.partner_id.primary_business) #suppliers from
+            enquiry_worksheet.write(row_num, 19, enq.product_id.partner_id.establishment_year)
+            enquiry_worksheet.write(row_num, 20, enq.product_id.partner_id.annual_sales)
+            enquiry_worksheet.write(row_num, 21, enq.product_id.partner_id.no_of_employees)
+            enquiry_worksheet.write(row_num, 22, enq.partner_id.country_id.name)
+            enquiry_worksheet.write(row_num, 23, enq.partner_id.state_id.name)
+            enquiry_worksheet.write(row_num, 24, enq.partner_id.city)
+            enquiry_worksheet.write(row_num, 25, enq.partner_id.zip)
+            enquiry_worksheet.write(row_num, 26, enq.partner_id.country_id.phone_code)
+            enquiry_worksheet.write(row_num, 27, enq.partner_id.area_code)
+            enquiry_worksheet.write(row_num, 28, enq.user_name)
+            enquiry_worksheet.write(row_num, 29, enq.partner_id.designation)
+            enquiry_worksheet.write(row_num, 30, enq.partner_id.phone)
+            enquiry_worksheet.write(row_num, 30, enq.partner_id.email)
 
 
 
@@ -696,7 +693,7 @@ class ProductController(http.Controller):
 
         # Add headers
         # headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Supplier']
-        headers = ['Date','RFQ No','Company Name', 'Email', 'Phone','Country', 'Message','Buyer','Nature of Business','Company Website URL','Minimum Order Quantity','Unit','Product Description','Target Price','Currency','Destination','Shipping Terms','Payment Terms','Looking for Suppliers from','Primary Business','Establishment Year','Annual Sales in USD','No of Employees','Your Name','Designation','Country','State','City','Zip/Postal Code','Country Code','Area Code','Phone No','Email Address']
+        headers = [ "Date", "Company Name", "Company's Owner Name", "Company Email", "Company Phone No", "Message", "Nature of Business","Company Website URL","Product Description","Minimum Order Quantity","Unit","Target Price","Currency","Destination","Shipping Terms","Payment Terms","Looking for Suppliers from","Primary Business","Establishment Year","Annual Sales in USD","No of Employees","Country","State","City","Zip/Postal Code","Country Code","Area Code","Contact Person Name","Contact Person Designation","Contact Person Phone No","Contact Person Email ID"]
 
         for col_num, header in enumerate(headers):
             quotation_worksheet.write(0, col_num, header)
@@ -707,42 +704,38 @@ class ProductController(http.Controller):
         # Write data to worksheet
         for row_num, quotation in enumerate(quotations, 1):
             quotation_worksheet.write(row_num, 0, quotation.create_date.strftime('%d-%b-%Y'))
-            quotation_worksheet.write(row_num, 1, quotation.rfq_id.rfq_no)
-            quotation_worksheet.write(row_num, 2 , quotation.company_name)
-            quotation_worksheet.write(row_num, 3, quotation.email)
-            quotation_worksheet.write(row_num, 4, quotation.phone)
-            quotation_worksheet.write(row_num, 5, quotation.country_id.name)  # Assuming country_id is a Many2one field
-            quotation_worksheet.write(row_num, 6 , quotation.message)
-            quotation_worksheet.write(row_num, 7 , quotation.rfq_id.partner_id.name)
-            quotation_worksheet.write(row_num, 8 , quotation.partner_id.member_type)
-            quotation_worksheet.write(row_num, 9 , quotation.rfq_id.partner_id.website)
-            quotation_worksheet.write(row_num, 10 , quotation.rfq_id.quantity)
-            quotation_worksheet.write(row_num, 11 , quotation.rfq_id.unit.name)
-            quotation_worksheet.write(row_num, 12 , quotation.rfq_id.product_description)
-            quotation_worksheet.write(row_num, 13 , quotation.rfq_id.target_price)
-            quotation_worksheet.write(row_num, 14 , quotation.rfq_id.currency.name)
-            quotation_worksheet.write(row_num, 15 , quotation.rfq_id.destination.name)
-            quotation_worksheet.write(row_num, 16 , quotation.rfq_id.shipping_terms)
-            quotation_worksheet.write(row_num, 17 , quotation.rfq_id.payment_terms)
-            quotation_worksheet.write(row_num, 18 , quotation.rfq_id.suppliers_country.name)
-            quotation_worksheet.write(row_num, 19 , quotation.rfq_id.partner_id.primary_business)
-            quotation_worksheet.write(row_num, 20 , quotation.rfq_id.partner_id.establishment_year)
-            quotation_worksheet.write(row_num, 21 , quotation.rfq_id.partner_id.annual_sales)
-            quotation_worksheet.write(row_num, 22 , quotation.rfq_id.partner_id.no_of_employees)
-            quotation_worksheet.write(row_num, 23 , quotation.partner_id.name)
-            quotation_worksheet.write(row_num, 24 , quotation.partner_id.designation)
-            quotation_worksheet.write(row_num, 25 , quotation.partner_id.company_address)
-            quotation_worksheet.write(row_num, 26 , quotation.partner_id.country_id.name)
-            quotation_worksheet.write(row_num, 27 , quotation.partner_id.state_id.name)
-            quotation_worksheet.write(row_num, 28 , quotation.partner_id.city)
-            quotation_worksheet.write(row_num, 29 , quotation.partner_id.zip)
-            quotation_worksheet.write(row_num, 30 , quotation.partner_id.country_id.name) # country code to be done
-            quotation_worksheet.write(row_num, 31 , quotation.partner_id.area_code)
-            quotation_worksheet.write(row_num, 32 , quotation.partner_id.phone)
-            quotation_worksheet.write(row_num, 33 , quotation.partner_id.email)
+            quotation_worksheet.write(row_num, 1, quotation.company_name)
+            quotation_worksheet.write(row_num, 2 , quotation.partner_id.name)
+            quotation_worksheet.write(row_num, 3, quotation.partner_id.email)
+            quotation_worksheet.write(row_num, 4, quotation.partner_id.phone)
+            quotation_worksheet.write(row_num, 5, quotation.message)  # Assuming country_id is a Many2one field
+            quotation_worksheet.write(row_num, 6 , quotation.partner_id.member_type)
+            quotation_worksheet.write(row_num, 7 , quotation.partner_id.company_website)
+            quotation_worksheet.write(row_num, 8 , quotation.rfq_id.product_description)
+            quotation_worksheet.write(row_num, 9 , quotation.rfq_id.quantity)
+            quotation_worksheet.write(row_num, 10 , quotation.rfq_id.unit.name)
+            quotation_worksheet.write(row_num, 11 , quotation.rfq_id.target_price)
+            quotation_worksheet.write(row_num, 12 , quotation.rfq_id.currency.name)
+            quotation_worksheet.write(row_num, 13 , quotation.rfq_id.destination.name)
+            quotation_worksheet.write(row_num, 14 , quotation.rfq_id.shipping_terms)
+            quotation_worksheet.write(row_num, 15 , quotation.rfq_id.payment_terms)
+            quotation_worksheet.write(row_num, 16 , quotation.rfq_id.suppliers_country.name)
+            quotation_worksheet.write(row_num, 17 , quotation.partner_id.primary_business)
+            quotation_worksheet.write(row_num, 18 , quotation.partner_id.establishment_year)
+            quotation_worksheet.write(row_num, 19 , quotation.partner_id.annual_sales)
+            quotation_worksheet.write(row_num, 20 , quotation.partner_id.no_of_employees)
+            quotation_worksheet.write(row_num, 21 , quotation.partner_id.country_id.name)
+            quotation_worksheet.write(row_num, 22 , quotation.partner_id.state_id.name)
+            quotation_worksheet.write(row_num, 23 , quotation.partner_id.city)
+            quotation_worksheet.write(row_num, 24 , quotation.partner_id.zip)
+            quotation_worksheet.write(row_num, 25 , quotation.partner_id.country_id.phone_code)
+            quotation_worksheet.write(row_num, 26 , quotation.partner_id.area_code)
+            quotation_worksheet.write(row_num, 27 , quotation.contact_name)
+            quotation_worksheet.write(row_num, 28 , quotation.partner_id.designation)
+            quotation_worksheet.write(row_num, 29 , quotation.phone)
+            quotation_worksheet.write(row_num, 29 , quotation.email)
 
-
-
+        
         workbook.close()
         excel_buffer.seek(0)
 
@@ -750,7 +743,7 @@ class ProductController(http.Controller):
         response = request.make_response(excel_buffer.read(),
                                          headers=[
                                              ('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
-                                             ('Content-Disposition', 'attachment; filename=Suppliers_information.xlsx;')
+                                             ('Content-Disposition', 'attachment; filename=Suppliers_Information.xlsx;')
                                          ])
         return response
     
