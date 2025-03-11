@@ -149,6 +149,7 @@ class ResPartner(models.Model):
     @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','phone_verified')
     def _compute_total_rating_points(self):
         for record in self:
+            record.total_rating_points = 10
             if record.company_registration_verified:
                 record.total_rating_points = record.total_rating_points + 5
             if record.company_registration:
@@ -177,6 +178,7 @@ class ResPartner(models.Model):
                 record.total_rating_points = record.total_rating_points + 10
             if record.certificates or record.awards:
                 record.total_rating_points = record.total_rating_points + 5
+
             
     @api.model
     def _reset_quotation(self):
