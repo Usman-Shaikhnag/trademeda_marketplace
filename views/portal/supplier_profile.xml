@@ -538,8 +538,6 @@
 
                 }
                 function send_product_enquiry(element){
-                    var partner_id = element.getAttribute('data-partner-id');
-                    console.log("Partner",partner_id)
                     const name = document.getElementById('buyer_name').value
                     const message = document.getElementById('message').value
                     const email = document.getElementById('buyer_email').value
