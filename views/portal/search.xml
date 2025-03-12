@@ -214,11 +214,22 @@
                                                         <t t-esc="product.partner_id.name"/>
                                                     </a>
                                                     <span onclick="show_verification_popup(this)" style="cursor: pointer;margin-left: 33%;">
-                                                        <i class="fa-solid fa-circle" style="color: #238e09;"></i>
-                                                        <span>Trust Score</span>
+                                                        <t t-if="partner.total_rating_points &lt; 25">
+                                                            <i class="fa-solid fa-circle" style="color: red;"></i>
+                                                        </t>
+                                                        <t t-elif="partner.total_rating_points &lt; 50">
+                                                            <i class="fa-solid fa-circle" style="color: yellow;"></i>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <i class="fa-solid fa-circle" style="color: #238e09;"></i>
+                                                        </t>
+                                                        <span>Trust Score </span>
                                                     </span>
                                                 </b>
                                                 <div class="verification_popup" style="display: none; position: absolute; background: #fff; padding: 1rem; z-index: 100;">
+                                                    <div style="text-align: center;display: block;">
+                                                        <span style="font-weight:600;">Trust Score(<t t-esc="partner.total_rating_points"/>/100)</span>
+                                                    </div>
                                                     <div>
                                                         <span>Email Verification</span><span>
                                                             <i class="fa-solid fa-square-check" style="color:#238e09"></i>

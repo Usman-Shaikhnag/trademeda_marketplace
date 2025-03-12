@@ -261,6 +261,8 @@
                 <field name="membership_expiration_date" string="Membership Expiration"/>
                 <field name="likes" string="Likes"/>
                 <field name="dislikes" string="Dislikes"/>
+                <field name="total_rating_points" string="Rating Points"/>
+
 
 
 

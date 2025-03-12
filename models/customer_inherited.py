@@ -92,6 +92,10 @@ class ResPartner(models.Model):
     prior_import_export_name = fields.Char(string="Prior Import / Export Name")
     prior_import_export_verified = fields.Boolean(string="")
 
+    proof_of_product = fields.Binary(string="Proof of Product")
+    proof_of_product_name = fields.Char(string="Proof of Product Name")
+    proof_of_product_verified = fields.Boolean(string="")
+
 
     tax_id_proof = fields.Binary(string="Tax Id Proof")
     tax_id_proof_name = fields.Char(string="Tax Id Proof Name")
@@ -139,7 +143,43 @@ class ResPartner(models.Model):
     likes = fields.Integer("Likes")
     dislikes = fields.Integer("DisLikes")
 
+    total_rating_points = fields.Integer("Total Rating Points",compute="_compute_total_rating_points",default=10)
 
+
+    @api.depends('company_registration_verified','company_address_proof_verified','identity_proof_verified','trading_license_verified','prior_import_export_verified','tax_id_proof_verified','phone_verified')
+    def _compute_total_rating_points(self):
+        for record in self:
+            record.total_rating_points = 10
+            if record.company_registration_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.company_registration:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.company_address_proof_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.company_address_proof:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.identity_proof_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.identity_proof:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.trading_license_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.trading_license:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.prior_import_export_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.prior_import_export:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.tax_id_proof_verified:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.tax_id_proof:
+                record.total_rating_points = record.total_rating_points + 5
+            if record.phone_verified:
+                record.total_rating_points = record.total_rating_points + 10
+            if record.certificates or record.awards:
+                record.total_rating_points = record.total_rating_points + 5
+
+            
     @api.model
     def _reset_quotation(self):
         for record in self:
@@ -352,6 +392,7 @@ class ProductEnquiries(models.Model):
     unit = fields.Many2one("uom.uom",string='Unit')
     target_price = fields.Float("Target Price")
     currency = fields.Many2one("res.currency",string='Currency')
+    suppliers_country = fields.Many2one('res.country', string="Supplier Country")
 
     
 

@@ -115,7 +115,7 @@ class HomepageController(http.Controller):
         for sb in subcategory:
             # points = sb.points + 20
             sb.sudo().write({
-                'points':sb.points + 10
+                'points':sb.points + 1
             })
         vals = {
             'product':product,

@@ -74,7 +74,7 @@ class SearchController(http.Controller):
             for sb2 in subcategory:
                 # points = subcategory.points + 20
                 sb2.sudo().write({
-                    'points':sb2.points + 20
+                    'points':sb2.points + 1
                 })
 
         vals = {

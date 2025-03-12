@@ -199,7 +199,8 @@ class ProductController(http.Controller):
                 'message':kw.get('message'),
                 'email':kw.get('buyer_email'),
                 'phone':kw.get('buyer_phone'),
-                'country':int(kw.get('buyer_country'))
+                'country':int(kw.get('buyer_country')),
+                'supplier:country':int(kw.get('supplier_country'))
                 
             })
             return request.redirect("/product/"+kw.get('product_id'))
