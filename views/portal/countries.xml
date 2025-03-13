@@ -18,226 +18,128 @@
                 <button onclick="sortCountriesUsers(this)">Registered Users</button>  -->
                 <div class="select-container" style="display: inline;">
                                                 
-                    <select>
-                        <option onclick="sortCountriesAlphabetically(this)">Alphabetically</option>
-                        <option onclick="sortCountriesUsers(this)">Registered Users</option>
-
+                    <select onchange="handleSortChange(this)">
+                        <option value="alphabetical">Alphabetically</option>
+                        <option value="users">Registered Users</option>
                     </select>
                 </div>
             </div>
         </div>
         <main id="countries_list" class="countries_list">
-            
-            <div id="buyer_countries" class="buyer_countries" style="display:flex;flex-wrap:wrap;flex-direction: column;">
-                <t t-set="countries_with_buyers" t-value="[
-                    (country, env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['buyer', 'both'])]))
-                    for country in env['res.country'].sudo().search([])
-                ]"/>
-                <t t-set="sorted_countries_with_buyers" t-value="sorted(countries_with_buyers, key=lambda x: x[0].name)"/>
-                <t t-foreach="sorted_countries_with_buyers" t-as="country">
-                    <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findBuyers/country/{{country[0].id}}">
-                            <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><t t-esc="country[0].name"/>
-                        </a>
-                        <span> (<t t-esc="country[1]"/>)</span>
-                    </div>
-                </t>
-            </div>
+                <div id="buyer_countries" class="buyer_countries" style="display:flex;flex-wrap:wrap;flex-direction: column;">
+                    <t t-set="countries_with_buyers" t-value="[
+                        (country, env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['buyer', 'both'])]))
+                        for country in env['res.country'].sudo().search([])
+                    ]"/>
+                    <t t-set="sorted_countries_with_buyers" t-value="sorted(countries_with_buyers, key=lambda x: x[0].name)"/>
+                    <t t-foreach="sorted_countries_with_buyers" t-as="country">
+                        <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
+                            <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findBuyers/country/{{country[0].id}}">
+                                <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>
+                                <t t-esc="country[0].name"/>
+                            </a>
+                            <span> (<t t-esc="country[1]"/>)</span>
+                        </div>
+                    </t>
+                </div>
 
-            <div id="supplier_countries" class="supplier_countries" style="display:none;flex-wrap:wrap;flex-direction: column;">
-                <t t-set="countries_with_suppliers" t-value="[
-                    (country, env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['seller', 'both'])]))
-                    for country in env['res.country'].sudo().search([])
-                ]"/>
-                <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[0].name)"/>
-                <t t-foreach="sorted_countries_with_suppliers" t-as="country">
-                    <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
-                        <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findSuppliers/country/{{country[0].id}}">
-                            <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/><t t-esc="country[0].name"/>
-                        </a>
-                        <span> (<t t-esc="country[1]"/>)</span>
-                    </div>
-                </t>
-            </div>
-        </main>
+                <div id="supplier_countries" class="supplier_countries" style="display:none;flex-wrap:wrap;flex-direction: column;">
+                    <t t-set="countries_with_suppliers" t-value="[
+                        (country, env['res.partner'].sudo().search_count([('country_id', '=', country.id), ('member_type', 'in', ['seller', 'both'])]))
+                        for country in env['res.country'].sudo().search([])
+                    ]"/>
+                    <t t-set="sorted_countries_with_suppliers" t-value="sorted(countries_with_suppliers, key=lambda x: x[0].name)"/>
+                    <t t-foreach="sorted_countries_with_suppliers" t-as="country">
+                        <div t-att-data-name="country[0].name" t-att-data-count="country[1]">
+                            <a style="text-decoration:none;font-size:1.1rem;" class="country_link" t-att-countryId="country[0].id" t-attf-href="/findSuppliers/country/{{country[0].id}}">
+                                <img t-att-src="country[0].image_url" alt="" style="height:0.9rem;margin-right:0.5rem;"/>
+                                <t t-esc="country[0].name"/>
+                            </a>
+                            <span> (<t t-esc="country[1]"/>)</span>
+                        </div>
+                    </t>
+                </div>
+            </main>
         <script>
-                function buyer_countries(element){
-                    const buyer_countries = document.getElementById('buyer_countries')
-                    const supplier_countries = document.getElementById('supplier_countries')
-                    buyer_countries.style.display = 'flex'
-                    supplier_countries.style.display = 'none'
-                    element.classList.add('active')
-                    element.nextElementSibling.classList.remove('active');
-
-
-
-                }
-                function supplier_countries(element){
-                    const buyer_countries = document.getElementById('buyer_countries')
-                    const supplier_countries = document.getElementById('supplier_countries')
-                    buyer_countries.style.display = 'none'
-                    supplier_countries.style.display = 'flex'
-                    element.classList.add('active')
-                    element.previousElementSibling.classList.remove('active');
-
-
-                }
-                function sortCountriesAlphabetically(element){
-                    let buyer_countries = []
-                    let supplier_countries = []
-
-                    let countries_list = document.getElementById('buyer_countries')
-                    let supplier_countries_list = document.getElementById('supplier_countries')
-
-                    for(let i = 0;i &lt;countries_list.childElementCount;i++){
-                        <!-- debugger; -->
-                        let country = String(countries_list.children[i].children[0].innerText.trim())
-                        let count = parseInt(countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
-                        let country_id = parseInt(countries_list.children[i].children[0].getAttribute('countryId'))
-                        buyer_countries.push({'country':country,'count':count,'id':country_id})
-                    } 
-                    for(let i = 0;i &lt;supplier_countries_list.childElementCount;i++){
-                        let country = String(supplier_countries_list.children[i].children[0].innerText.trim())
-                        let count = parseInt(supplier_countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
-                        let country_id = parseInt(supplier_countries_list.children[i].children[0].getAttribute('countryId'))
-                        <!-- debugger; -->
-                        supplier_countries.push({'country':country,'count':count,'id':country_id})
-                    } 
-                    buyer_countries.sort(function(a, b) {
-                        return a.country.localeCompare(b.country); // Locale-based comparison
-                    });
-                    supplier_countries.sort(function(a, b) {
-                        return a.country.localeCompare(b.country); // Locale-based comparison
-                    });
-                    while (countries_list.firstChild) {
-                        countries_list.removeChild(countries_list.firstChild);
+                <![CDATA[
+                    // Function to switch between buyer and supplier tabs
+                    function buyer_countries(element) {
+                        const buyer_countries = document.getElementById('buyer_countries');
+                        const supplier_countries = document.getElementById('supplier_countries');
+                        buyer_countries.style.display = 'flex';
+                        supplier_countries.style.display = 'none';
+                        element.classList.add('active');
+                        element.nextElementSibling.classList.remove('active');
                     }
-                    <!-- debugger; -->
 
-                    while (supplier_countries_list.firstChild) {
-                        supplier_countries_list.removeChild(supplier_countries_list.firstChild);
+                    function supplier_countries(element) {
+                        const buyer_countries = document.getElementById('buyer_countries');
+                        const supplier_countries = document.getElementById('supplier_countries');
+                        buyer_countries.style.display = 'none';
+                        supplier_countries.style.display = 'flex';
+                        element.classList.add('active');
+                        element.previousElementSibling.classList.remove('active');
                     }
-                    buyer_countries.forEach(function(item){
-                        const countryDiv = document.createElement('div');
-                        const countrySpan = document.createElement('a');
-                        countrySpan.textContent = item.country;
-                        countrySpan.href = '/findBuyers/country/'+item.id;
-                        countrySpan.classList.add('country_link')
 
-                        const countSpan = document.createElement('span');
-                        countSpan.textContent = ` (${item.count})`;
-                        countryDiv.appendChild(countrySpan);
-                        countryDiv.appendChild(countSpan);
-
-                        // Append the div to the container
-                        countries_list.appendChild(countryDiv);
-                    })
-                    supplier_countries.forEach(function(item){
-                        const countryDiv = document.createElement('div');
-                        const countrySpan = document.createElement('a');
-                        countrySpan.textContent = item.country;
-                        countrySpan.href = '/findSuppliers/country/'+item.id;
-                        countrySpan.classList.add('country_link')
-
-                        const countSpan = document.createElement('span');
-                        countSpan.textContent = ` (${item.count})`;
-                        countryDiv.appendChild(countrySpan);
-                        countryDiv.appendChild(countSpan);
-
-                        // Append the div to the container
-                        supplier_countries_list.appendChild(countryDiv);
-                    })
-
-                    
-                }
-                function sortCountriesUsers(element){
-                    let buyer_countries = []
-                    let supplier_countries = []
-
-                    let countries_list = document.getElementById('buyer_countries')
-                    let supplier_countries_list = document.getElementById('supplier_countries')
-
-                    for(let i = 0;i &lt;countries_list.childElementCount;i++){
-                        <!-- debugger; -->
-                        let country = String(countries_list.children[i].children[0].innerText.trim())
-                        let count = parseInt(countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
-                        let country_id = parseInt(countries_list.children[i].children[0].getAttribute('countryId'))
-                        buyer_countries.push({'country':country,'count':count,'id':country_id})
-                    } 
-                    for(let i = 0;i &lt;supplier_countries_list.childElementCount;i++){
-                        let country = String(supplier_countries_list.children[i].children[0].innerText.trim())
-                        let count = parseInt(supplier_countries_list.children[i].children[1].innerText.trim().replace(/[^\d]/g, ''));
-                        let country_id = parseInt(supplier_countries_list.children[i].children[0].getAttribute('countryId'))
-                        <!-- debugger; -->
-                        supplier_countries.push({'country':country,'count':count,'id':country_id})
-                    } 
-                    buyer_countries.sort(function(a, b) {return b.count - a.count;});
-                    supplier_countries.sort(function(a, b) {return b.count - a.count;});
-
-                    while (countries_list.firstChild) {
-                        countries_list.removeChild(countries_list.firstChild);
+                    // Function to handle sorting based on the selected option
+                    function handleSortChange(selectElement) {
+                        const sortType = selectElement.value;
+                        if (sortType === 'alphabetical') {
+                            sortCountriesAlphabetically();
+                        } else if (sortType === 'users') {
+                            sortCountriesUsers();
+                        }
                     }
-                    while (supplier_countries_list.firstChild) {
-                        supplier_countries_list.removeChild(supplier_countries_list.firstChild);
+
+                    // Function to sort countries alphabetically
+                    function sortCountriesAlphabetically() {
+                        console.log('sorting alphabetically');
+                        sortCountries((a, b) => a.name.localeCompare(b.name));
                     }
-                    buyer_countries.forEach(function(item){
-                        const countryDiv = document.createElement('div');
-                        const countrySpan = document.createElement('a');
-                        countrySpan.textContent = item.country;
-                        countrySpan.href = '/findBuyers/country/'+item.id;
-                        countrySpan.classList.add('country_link')
 
-                        const countSpan = document.createElement('span');
-                        countSpan.textContent = ` (${item.count})`;
-                        countryDiv.appendChild(countrySpan);
-                        countryDiv.appendChild(countSpan);
+                    // Function to sort countries by the number of users
+                    function sortCountriesUsers() {
+                        console.log('sorting by users');
+                        sortCountries((a, b) => b.count - a.count);
+                    }
 
-                        // Append the div to the container
-                        countries_list.appendChild(countryDiv);
-                    })
-                    supplier_countries.forEach(function(item){
-                        const countryDiv = document.createElement('div');
-                        const countrySpan = document.createElement('a');
-                        countrySpan.textContent = item.country;
-                        countrySpan.href = '/findSuppliers/country/'+item.id;
-                        countrySpan.classList.add('country_link')
+                    // Generic function to sort countries
+                    function sortCountries(sortFunction) {
+                        const buyerCountriesList = document.getElementById('buyer_countries');
+                        const supplierCountriesList = document.getElementById('supplier_countries');
 
-                        const countSpan = document.createElement('span');
-                        countSpan.textContent = ` (${item.count})`;
-                        countryDiv.appendChild(countrySpan);
-                        countryDiv.appendChild(countSpan);
+                        // Extract and sort buyer countries
+                        const buyerCountries = Array.from(buyerCountriesList.children).map(child => ({
+                            element: child,
+                            count: parseInt(child.querySelector('span').textContent.match(/\d+/)[0], 10),
+                            name: child.querySelector('.country_link').textContent.trim(),
+                            id: child.querySelector('.country_link').getAttribute('countryId')
+                        })).sort(sortFunction);
 
-                        // Append the div to the container
-                        supplier_countries_list.appendChild(countryDiv);
-                    })
-                    
-                }
-                function sortCountries() {
-                    var sortType = document.getElementById('sort_countries').value;
-                    var countriesList = document.getElementById('countries_list');
-                    var countries = Array.prototype.slice.call(countriesList.children); // Convert NodeList to Array
+                        // Extract and sort supplier countries
+                        const supplierCountries = Array.from(supplierCountriesList.children).map(child => ({
+                            element: child,
+                            count: parseInt(child.querySelector('span').textContent.match(/\d+/)[0], 10),
+                            name: child.querySelector('.country_link').textContent.trim(),
+                            id: child.querySelector('.country_link').getAttribute('countryId')
+                        })).sort(sortFunction);
 
-                    if (sortType === 'alphabetical') {
-                        countries.sort(function(a, b) {
-                            var nameA = a.getAttribute('data-name').toLowerCase();
-                            var nameB = b.getAttribute('data-name').toLowerCase();
-                            return nameA.localeCompare(nameB);
+                        // Clear the existing lists
+                        buyerCountriesList.innerHTML = '';
+                        supplierCountriesList.innerHTML = '';
+
+                        // Rebuild the buyer countries list
+                        buyerCountries.forEach(country => {
+                            buyerCountriesList.appendChild(country.element);
                         });
-                    } else if (sortType === 'numbers') {
-                        countries.sort(function(a, b) {
-                            var countA = parseInt(a.getAttribute('data-count'), 10);
-                            var countB = parseInt(b.getAttribute('data-count'), 10);
-                            return countB - countA; // Sort in descending order of count
+
+                        // Rebuild the supplier countries list
+                        supplierCountries.forEach(country => {
+                            supplierCountriesList.appendChild(country.element);
                         });
                     }
-
-                    // Clear the container and re-append sorted elements
-                    countriesList.innerHTML = '';
-                    for (var i = 0; i &lt; countries.length; i++) {
-                        countriesList.appendChild(countries[i]);
-                    }
-                }
-        </script>
+                ]]>
+            </script>
 
         </template>
     </data>
